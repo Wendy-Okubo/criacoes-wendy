@@ -1,0 +1,172 @@
+{
+  "app": {
+    "name": "Rito Health",
+    "tagline": "Sua inteligência de saúde preventiva"
+  },
+  "common": {
+    "next": "Próximo",
+    "back": "Voltar",
+    "save": "Salvar",
+    "saving": "Salvando...",
+    "cancel": "Cancelar",
+    "finish": "Concluir",
+    "loading": "Carregando...",
+    "genericError": "Algo deu errado. Tente novamente.",
+    "optional": "opcional",
+    "addItem": "Adicionar",
+    "remove": "Remover",
+    "yes": "Sim",
+    "no": "Não"
+  },
+  "theme": {
+    "toggle": "Alternar tema",
+    "light": "Claro",
+    "dark": "Escuro",
+    "system": "Sistema"
+  },
+  "auth": {
+    "login": {
+      "title": "Entrar",
+      "subtitle": "Acesse sua conta para continuar",
+      "submit": "Entrar",
+      "google": "Continuar com Google",
+      "noAccount": "Não tem uma conta?",
+      "signupLink": "Criar conta",
+      "forgot": "Esqueceu a senha?"
+    },
+    "signup": {
+      "title": "Criar conta",
+      "subtitle": "Comece sua jornada de saúde preventiva",
+      "submit": "Criar conta",
+      "hasAccount": "Já tem uma conta?",
+      "loginLink": "Entrar",
+      "checkEmail": "Enviamos um e-mail de confirmação. Verifique sua caixa de entrada para ativar a conta."
+    },
+    "forgot": {
+      "title": "Recuperar senha",
+      "subtitle": "Enviaremos um link para redefinir sua senha",
+      "submit": "Enviar link",
+      "sent": "Se existir uma conta com este e-mail, enviamos um link de recuperação.",
+      "backToLogin": "Voltar para entrar"
+    },
+    "reset": {
+      "title": "Definir nova senha",
+      "subtitle": "Escolha uma nova senha para sua conta",
+      "submit": "Atualizar senha",
+      "success": "Senha atualizada com sucesso."
+    },
+    "fields": {
+      "email": "E-mail",
+      "password": "Senha",
+      "confirmPassword": "Confirmar senha"
+    },
+    "errors": {
+      "invalidCredentials": "E-mail ou senha incorretos.",
+      "generic": "Algo deu errado. Tente novamente.",
+      "passwordsDontMatch": "As senhas não coincidem."
+    },
+    "logout": "Sair"
+  },
+  "onboarding": {
+    "title": "Vamos personalizar sua experiência",
+    "stepOf": "Etapa {current} de {total}",
+    "steps": {
+      "basic": "Básico",
+      "health": "Saúde",
+      "goals": "Objetivos",
+      "lifestyle": "Estilo de vida",
+      "preferences": "Preferências"
+    },
+    "basic": {
+      "title": "Informações básicas",
+      "fullName": "Nome completo",
+      "dateOfBirth": "Data de nascimento",
+      "gender": "Gênero",
+      "height": "Altura (cm)",
+      "weight": "Peso (kg)"
+    },
+    "gender": {
+      "female": "Feminino",
+      "male": "Masculino",
+      "other": "Outro",
+      "preferNotToSay": "Prefiro não informar"
+    },
+    "health": {
+      "title": "Informações de saúde",
+      "medicalConditions": "Condições médicas",
+      "medicalConditionsHint": "Ex.: hipertensão, diabetes",
+      "dietaryRestrictions": "Restrições alimentares",
+      "dietaryRestrictionsHint": "Ex.: vegetariano, sem lactose",
+      "allergies": "Alergias",
+      "allergiesHint": "Ex.: amendoim, glúten",
+      "medications": "Medicamentos atuais",
+      "medicationsHint": "Ex.: losartana 50mg"
+    },
+    "goals": {
+      "title": "Quais são seus objetivos?",
+      "subtitle": "Selecione um ou mais",
+      "weightLoss": "Perder peso",
+      "muscleGain": "Ganhar massa muscular",
+      "performance": "Performance",
+      "generalHealth": "Saúde geral",
+      "betterSleep": "Dormir melhor"
+    },
+    "lifestyle": {
+      "title": "Seu estilo de vida",
+      "occupation": "Ocupação",
+      "dailyRoutine": "Rotina diária",
+      "dailyRoutineHint": "Conte um pouco sobre o seu dia a dia",
+      "activityLevel": "Nível de atividade"
+    },
+    "activityLevel": {
+      "sedentary": "Sedentário",
+      "light": "Levemente ativo",
+      "moderate": "Moderadamente ativo",
+      "active": "Ativo",
+      "athlete": "Atleta"
+    },
+    "preferences": {
+      "title": "Preferências",
+      "unitSystem": "Sistema de unidades",
+      "metric": "Métrico (kg, cm)",
+      "imperial": "Imperial (lb, in)",
+      "notifications": "Notificações",
+      "notificationsHint": "Receba lembretes e insights"
+    },
+    "finish": "Concluir e começar",
+    "saved": "Tudo pronto! Bem-vindo(a) ao Rito Health."
+  },
+  "dashboard": {
+    "welcome": "Olá, {name}",
+    "comingSoonTitle": "Seu painel está a caminho",
+    "comingSoon": "Estamos construindo seu resumo diário, score de saúde e insights personalizados. Em breve por aqui.",
+    "settings": "Configurações"
+  },
+  "profile": {
+    "title": "Meu perfil",
+    "subtitle": "Edite suas informações a qualquer momento",
+    "saved": "Alterações salvas.",
+    "sections": {
+      "basic": "Informações básicas",
+      "health": "Informações de saúde",
+      "goals": "Objetivos",
+      "lifestyle": "Estilo de vida",
+      "preferences": "Preferências",
+      "account": "Conta"
+    },
+    "account": {
+      "deleteTitle": "Excluir conta",
+      "deleteDescription": "Exclui permanentemente sua conta e todos os seus dados, em conformidade com a LGPD. Esta ação não pode ser desfeita.",
+      "deleteButton": "Excluir minha conta",
+      "deleteConfirm": "Tem certeza? Todos os seus dados serão apagados permanentemente.",
+      "deleting": "Excluindo..."
+    }
+  },
+  "validation": {
+    "required": "Campo obrigatório",
+    "email": "E-mail inválido",
+    "minPassword": "A senha deve ter ao menos 8 caracteres",
+    "positiveNumber": "Informe um valor válido",
+    "selectOne": "Selecione ao menos uma opção"
+  }
+}
