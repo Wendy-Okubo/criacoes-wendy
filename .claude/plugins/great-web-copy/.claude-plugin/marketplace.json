@@ -1,0 +1,20 @@
+{
+  "name": "great-web-copy",
+  "owner": {
+    "name": "Akash Mahajan",
+    "email": "akash@kloudle.com"
+  },
+  "metadata": {
+    "description": "Marketplace for high-converting website copywriting tools using proven frameworks like PAS, AIDA, BAB, and StoryBrand"
+  },
+  "plugins": [
+    {
+      "name": "great-web-copy",
+      "source": "./",
+      "description": "Write high-converting website copy using proven frameworks (PAS, AIDA, BAB, StoryBrand). Auto-activates for landing pages, hero sections, CTAs, and product copy.",
+      "version": "1.0.0",
+      "category": "copywriting",
+      "tags": ["copywriting", "landing-page", "conversion", "marketing", "website-copy", "cta", "headlines"]
+    }
+  ]
+}

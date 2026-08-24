@@ -1,0 +1,22 @@
+{
+  "name": "great-web-copy",
+  "version": "1.0.0",
+  "description": "Write high-converting website copy using proven frameworks (PAS, AIDA, BAB, StoryBrand). Auto-activates for landing pages, hero sections, CTAs, and product copy. Enforces outcome-driven headlines, 3:1 you-to-we ratio, banned word filtering, and conversion-optimized section flow. Use when writing website copy, landing pages, README intros, marketing pages, or any copy meant to convert visitors into users.",
+  "author": {
+    "name": "Akash Mahajan",
+    "email": "akash@kloudle.com"
+  },
+  "homepage": "https://akashm.dev",
+  "repository": "https://github.com/makash/great-web-copy",
+  "license": "MIT",
+  "keywords": [
+    "copywriting",
+    "landing-page",
+    "conversion",
+    "marketing",
+    "website-copy",
+    "cta",
+    "headlines",
+    "content"
+  ]
+}
