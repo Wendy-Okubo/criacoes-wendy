@@ -1,0 +1,13 @@
+{
+  "extraKnownMarketplaces": {
+    "great-web-copy": {
+      "source": {
+        "source": "directory",
+        "path": "./.claude/plugins/great-web-copy"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "great-web-copy@great-web-copy": true
+  }
+}
