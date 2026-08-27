@@ -5,9 +5,16 @@
         "source": "directory",
         "path": "./.claude/plugins/great-web-copy"
       }
+    },
+    "marketingskills": {
+      "source": {
+        "source": "directory",
+        "path": "./.claude/plugins/marketingskills"
+      }
     }
   },
   "enabledPlugins": {
-    "great-web-copy@great-web-copy": true
+    "great-web-copy@great-web-copy": true,
+    "marketing-skills@marketingskills": true
   }
 }
