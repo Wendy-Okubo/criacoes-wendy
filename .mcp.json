@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "algrow": {
+      "type": "http",
+      "url": "https://mcp.algrow.online/mcp",
+      "headers": {
+        "Authorization": "Bearer ${ALGROW_API_KEY}"
+      }
+    }
+  }
+}
