@@ -13,6 +13,16 @@ Espaço de testes.
   visual-critique), vendorizada em `.claude/plugins/designer-skills/`. As outras quatro
   coleções do mesmo marketplace (AI product design, UX program management, design
   leadership, inclusive design) vivem em repositórios separados e não foram baixadas.
+- `knowledge-work-plugins` — marketplace oficial da Anthropic ([anthropics/knowledge-work-plugins](https://github.com/anthropics/knowledge-work-plugins)),
+  vendorizado em `.claude/plugins/knowledge-work-plugins/` (commit `da38ec1`). Os 22 plugins
+  com código no próprio repositório estão habilitados: productivity, enterprise-search,
+  cowork-plugin-management, sales, finance, data, legal, marketing, customer-support,
+  product-management, bio-research, engineering, human-resources, design, operations,
+  small-business, pdf-viewer e os partner-built slack-by-salesforce, apollo, common-room,
+  brand-voice e zoom-plugin. Os outros ~99 plugins do marketplace apontam para repositórios
+  externos (git-subdir) e não foram baixados nem habilitados — dá para ativar um a um em
+  `enabledPlugins` com `<nome>@knowledge-work-plugins`. Vários plugins trazem conectores MCP
+  (HTTP/OAuth: Slack, Notion, HubSpot, Figma etc.) que só funcionam depois de autenticados.
 
 ## Política de PRs do Claude Code
 
