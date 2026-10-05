@@ -24,10 +24,10 @@ A skill deve ser usada antes da escrita final.
 Ela complementa:
 - Radar de Roteiros / pesquisa de tendências;
 - análise de referências;
-- Reels Scripting;
+- roteiro de Reels/Shorts (`roteiros-refatorando`);
 - Post Scorer;
-- briefing criativo;
-- direção visual.
+- briefing criativo (`briefings-social-refatorando`);
+- direção visual (`identidade-visual-refatorando`).
 
 Ela não substitui pesquisa factual, checagem de fontes ou validação de claims.
 
@@ -818,7 +818,7 @@ Canais:
 Pilar:
 Linha editorial:
 Etapa de funil:
-Orientações visuais:
+Modo visual: (Notícia ou Conceitual — ver `identidade-visual-refatorando`)
 Objetivo:
 Mensagem central:
 Público-alvo:
