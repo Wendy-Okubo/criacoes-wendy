@@ -1,6 +1,6 @@
 ---
 name: discovery-follow-up
-description: Transforma notas, transcrições ou resumos de conversas comerciais (discovery, reunião de vendas, call com lead ou cliente) em um registro estruturado da oportunidade — contexto, necessidade, o que foi confirmado, o que está em aberto, objeções, compromissos, próxima ação, responsável e prazo — e prepara o follow-up a partir disso. Use SEMPRE que o usuário colar ou enviar notas de reunião comercial, transcrição de call, histórico de oportunidade ou mensagens trocadas com lead/cliente, ou pedir para organizar uma oportunidade, resumir uma conversa de vendas, listar próximos passos, recuperar o contexto de um lead ("onde paramos com o cliente X?"), montar checklist pós-reunião ou escrever/revisar um follow-up — mesmo que não diga "discovery", "skill" ou "follow-up" (por exemplo "o que ficou combinado nessa call?", "me ajuda a responder esse lead", "organiza isso aqui da reunião de ontem"). Serve para SDRs, vendedores, executivos de contas e closers.
+description: Transforma notas, transcrições ou resumos de conversas comerciais (discovery, reunião de vendas, call com lead ou cliente) em um registro estruturado da oportunidade — necessidade, o que foi confirmado, o que está em aberto, objeções, compromissos, próxima ação, responsável e prazo — e prepara o follow-up: rascunho de mensagem e plano que antecipa objeções e cenários (se o cliente sumir, se o decisor travar). Busca o material em conectores de reunião ou CRM quando não for colado. Use SEMPRE que o usuário enviar notas, transcrição, histórico ou mensagens com lead/cliente, ou pedir para organizar uma oportunidade, listar próximos passos, recuperar contexto ("onde paramos com o cliente X?"), escrever um follow-up ou planejar os próximos contatos ("e se ele não responder?") — mesmo sem dizer "discovery" ou "follow-up" (ex.: "o que ficou combinado nessa call?", "me ajuda a responder esse lead"). Para SDRs, vendedores, executivos de contas e closers.
 ---
 
 # Discovery + Follow-up
@@ -38,10 +38,21 @@ Identifique qual entrega o usuário quer:
 - **A) Resumo estruturado da oportunidade** — padrão quando ele só cola o material ou pede para "organizar".
 - **B) Checklist do próximo passo** — quando pede "o que eu preciso fazer", "próximos passos", "checklist".
 - **C) Rascunho de follow-up** — quando pede mensagem, e-mail, WhatsApp, "como respondo".
+- **D) Plano de follow-up** — quando pede ideias, cadência, "e se ele não responder?", "o que mando se esfriar?".
 
-Entregue só o que foi pedido. Se ele pediu A, termine oferecendo B e C em uma linha. Se pediu C, faça a análise internamente (você precisa dela para não inventar), mas mostre só o rascunho mais uma lista curta do que ele usou e do que ficou de fora.
+Entregue só o que foi pedido. Se ele pediu A, termine oferecendo B, C e D em uma linha (ex.: "Quer que eu monte o checklist, o rascunho do follow-up ou um plano com cenários caso a conversa esfrie?"). Se pediu C ou D, faça a análise internamente (você precisa dela para não inventar), mas mostre só a entrega pedida. Depois de C, ofereça D.
 
-### 2. Leia o material como ele é
+### 2. Consiga o material
+
+- **Material colado ou anexado:** use-o. Não busque em outro lugar, a menos que o usuário peça.
+- **Sem material, mas o usuário cita uma reunião, cliente ou lead** ("organiza a call de ontem com a Agro Vale", "onde paramos com a Juliana?"): se houver conector disponível, busque lá. Pode ser de reuniões (Granola, Zoom, Fireflies, Gong, Google Meet), CRM (HubSpot, Salesforce, Pipedrive), e-mail ou Slack.
+  - Só leitura. Nunca crie, edite ou envie nada pelo conector.
+  - Se a busca trouxer mais de uma reunião ou oportunidade possível, mostre as opções (título, data, participantes) e pergunte qual antes de analisar.
+  - Abra a saída com uma linha de fonte: `Fonte: Granola — "Call Agro Vale", 04/10, participantes: ...`.
+  - Dados de CRM podem estar desatualizados. Se divergirem da conversa, registre as duas versões com a fonte de cada uma e marque **A CONFIRMAR**.
+- **Sem material e sem conector:** peça para a pessoa colar as notas, a transcrição ou o histórico.
+
+### 3. Leia o material como ele é
 
 Transcrições reais são bagunçadas: falas sem identificação, erros de transcrição, assuntos que voltam, conversa paralela. Antes de estruturar:
 
@@ -51,7 +62,7 @@ Transcrições reais são bagunçadas: falas sem identificação, erros de trans
 - Trechos ininteligíveis que pareçam importantes: cite-os entre aspas e marque **A CONFIRMAR**.
 - Se houver material de mais de uma conversa, respeite a ordem cronológica e deixe claro o que é mais recente.
 
-### 3. Monte o resumo (entrega A)
+### 4. Monte o resumo (entrega A)
 
 Use esta estrutura, sem pular seções. Seção sem conteúdo recebe o marcador adequado, em vez de ser omitida, porque a lacuna também é informação.
 
@@ -97,7 +108,7 @@ Só o que exige julgamento humano antes do próximo contato (ex.: "Oferecer ou n
 cliente perguntou?", "Envolver o gestor dele agora ou esperar a reunião interna?").
 ```
 
-### 4. Checklist do próximo passo (entrega B)
+### 5. Checklist do próximo passo (entrega B)
 
 Lista de tarefas acionáveis, na ordem em que precisam acontecer, cada uma com responsável e prazo (ou **NÃO DEFINIDO**). Comece pelos compromissos que o vendedor assumiu, porque são os que mais pesam na credibilidade dele se não forem cumpridos. Termine com os pontos que exigem decisão dele.
 
@@ -105,11 +116,21 @@ Lista de tarefas acionáveis, na ordem em que precisam acontecer, cada uma com r
 - [ ] [Ação] — Responsável: ... — Prazo: ...
 ```
 
-### 5. Rascunho de follow-up (entrega C)
+### 6. Rascunho de follow-up (entrega C)
 
 Leia `references/follow-up.md` antes de escrever. Em resumo: use só o que está registrado, retome os compromissos e pontos abertos, respeite o estágio da conversa, não crie urgência, benefício, desconto ou condição, e não diga que algo foi combinado se não foi. Sempre apresente como **rascunho para revisão**, nunca como mensagem pronta para envio.
 
 Se o canal (e-mail, WhatsApp, LinkedIn) não foi informado e muda o texto, pergunte. Se não muda tanto, escolha e-mail e diga que é fácil adaptar.
+
+### 7. Plano de follow-up (entrega D)
+
+Uma análise da situação e ideias para os próximos contatos. Leia `references/plano-follow-up.md` antes de montar. O plano tem três partes:
+
+1. **Leitura da situação:** o que move a oportunidade e o que trava, com base no que foi dito (sem classificar o lead nem estimar chance).
+2. **Objeções e cenários prováveis:** o que pode aparecer pela frente mesmo sem ter sido dito ainda (ex.: o diretor que vai aprovar provavelmente vai perguntar de retorno do investimento). Cada item é uma **hipótese**, rotulada assim, com o sinal do registro que a motiva e como se preparar. Isso não contradiz a regra de só registrar objeções ditas: no resumo (A) entram só os fatos; aqui você antecipa, e de forma explícita.
+3. **Ações por cenário:** o que fazer se o cliente responder, se sumir, se uma objeção (registrada ou prevista) aparecer, se entrar um novo decisor.
+
+Aqui você **sugere**, e isso é diferente de inventar. Cada ideia precisa partir de algo do registro (um ponto aberto, uma objeção, um material prometido, uma pessoa citada, um prazo dito pelo cliente), e essa base fica visível. Intervalos de tempo são sugestões, a menos que o cliente tenha dado uma data. Materiais que não apareceram na conversa entram como tipo ("um case do mesmo setor, se existir"), nunca como algo que a empresa com certeza tem. O vendedor escolhe o que usar.
 
 ## Exemplos de uso
 
@@ -120,6 +141,8 @@ Se o canal (e-mail, WhatsApp, LinkedIn) não foi informado e muda o texto, pergu
 | "o que eu tenho que fazer depois dessa call?" | B |
 | "me ajuda a responder esse lead" + histórico de mensagens | C |
 | "onde paramos com a Clínica X?" + histórico | A, focando o estado atual e a próxima ação |
+| "organiza a call de ontem com a Agro Vale" (sem colar nada) | busca no conector de reuniões e depois A |
+| "e se ela não responder? o que eu mando?" | D |
 
 ## Quando perguntar ao usuário
 
@@ -134,5 +157,6 @@ Releia sua saída e confira:
 3. Alguma inferência aparece sem o rótulo `(inferência — confirmar)`?
 4. Existe classificação de lead, score ou probabilidade? Remova.
 5. O follow-up promete, cita ou "lembra" algo que não está registrado? Remova.
+6. Cada ideia e cada hipótese do plano mostra em que parte do registro se apoia? Hipótese está rotulada como hipótese?
 
 Para um exemplo completo de transcrição bagunçada e a saída esperada, veja `references/exemplo.md`.

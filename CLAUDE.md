@@ -7,7 +7,8 @@ Espaço de testes.
 Skills próprias ficam em `.claude/skills/<nome>/SKILL.md` (carregam automaticamente no Claude Code).
 
 - `discovery-follow-up` — transforma notas/transcrições de conversas comerciais em registro
-  estruturado da oportunidade e prepara follow-up. Prompts de teste em `evals/prompts-de-teste.md`.
+  estruturado da oportunidade e prepara follow-up (rascunho e plano com cenários); busca em
+  conectores de reunião/CRM só para leitura. Prompts de teste em `evals/prompts-de-teste.md`.
 
 ## Plugins instalados
 
