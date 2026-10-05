@@ -2,6 +2,13 @@
 
 Espaço de testes.
 
+## Skills do projeto
+
+Skills próprias ficam em `.claude/skills/<nome>/SKILL.md` (carregam automaticamente no Claude Code).
+
+- `discovery-follow-up` — transforma notas/transcrições de conversas comerciais em registro
+  estruturado da oportunidade e prepara follow-up. Prompts de teste em `evals/prompts-de-teste.md`.
+
 ## Plugins instalados
 
 - `great-web-copy` — copywriting de páginas web (frameworks PAS, AIDA, BAB, StoryBrand).
