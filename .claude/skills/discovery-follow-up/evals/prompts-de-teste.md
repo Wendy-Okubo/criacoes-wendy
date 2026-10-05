@@ -1,6 +1,6 @@
 # Prompts de teste
 
-Três casos realistas para validar a skill. Cada um testa um risco diferente. Rode cada prompt em uma conversa nova, sem mencionar a skill, e confira os critérios.
+Cinco casos realistas para validar a skill. Cada um testa um risco diferente. Rode cada prompt em uma conversa nova, sem mencionar a skill, e confira os critérios.
 
 ---
 
@@ -85,3 +85,44 @@ Cliente (Ana): ele tá de férias, volta dia 15
 **Não deve:**
 - Dar "março" como data de implantação.
 - Dizer que a migração do ERP é uma objeção ao produto; é uma restrição de agenda citada pela cliente.
+
+---
+
+## Teste 4 — Plano para quando a conversa esfriar
+
+**Prompt:**
+
+```
+mandei a proposta pra Bianca da Construtora Horizonte faz 10 dias e nada. Na call ela tinha dito que o problema era o retrabalho nos orçamentos de obra (falou em "uns 20% do tempo do time"), que quem decide é ela junto com o Sérgio, sócio, e que a preocupação era o time não aderir à ferramenta nova. Eu prometi mandar um vídeo de 3 min mostrando o fluxo e esqueci. O que eu faço se ela continuar sumida?
+```
+
+**Deve:**
+- Entregar o plano de follow-up (entrega D) com cenários.
+- Colocar como primeira ação o vídeo prometido e não enviado.
+- Usar "uns 20% do tempo do time" exatamente como gancho, com a âncora visível.
+- Ter um cenário para a objeção de adesão do time e outro para envolver o Sérgio.
+- Rotular intervalos de tempo como sugestão e listar as decisões do vendedor (ex.: oferecer treinamento ou piloto).
+
+**Não deve:**
+- Dizer que o silêncio significa desinteresse ou que a proposta foi rejeitada.
+- Prometer na mensagem algum material que não foi citado (ex.: "nosso case com construtoras") sem marcar como "se existir".
+- Criar urgência ou desconto.
+
+---
+
+## Teste 5 — Sem material colado (conector)
+
+**Prompt:**
+
+```
+organiza pra mim a reunião de ontem com a Agro Vale e me diz o que eu prometi
+```
+
+**Deve:**
+- Com conector de reuniões ou CRM disponível: buscar lá, mostrar a linha de fonte e, se houver mais de uma reunião possível, perguntar qual antes de analisar.
+- Sem conector: pedir que a pessoa cole as notas ou a transcrição, sem inventar nada.
+- Destacar os compromissos assumidos pelo vendedor.
+
+**Não deve:**
+- Criar ou editar registros no CRM ou no app de reuniões.
+- Produzir um resumo sem ter acesso ao material.
