@@ -73,7 +73,7 @@ As peças publicadas usam uma **sans condensada pesada** no título, serifa ou s
 
 Quase tudo é preto, branco e cinza. A cor entra para apontar:
 - **Azul elétrico `#0050FF`**: o trecho-chave do título, o botão do mockup, o escudo, os marcadores da linha do tempo.
-- **Verde-limão (~`#B5D935` nas peças)**: só nas setas.
+- **Verde-limão (`#B4FA00`)**: só nas setas.
 - Cores de terceiros (logo da Meta, ícones do Gmail ou do Calendário) entram porque são **prova**: a coisa real.
 
 ### Copy no modelo

@@ -9,6 +9,8 @@ Mesma lógica da `voz-refatorando`: uma **base** pequena que faz a marca ser rec
 
 **Antes de orientar uma peça, leia `references/modelos.md`**, que tem a anatomia completa dos dois modelos padrão. As peças de referência estão em `assets/exemplos/`.
 
+O design system "Refatorando by Belago" (claude.ai, v2 de 05/10/2026) traz os mesmos valores como tokens, com os temas Conceitual e Notícia; o "Guia visual — Landing Page" foi alinhado à mesma paleta.
+
 ## Base (fixo)
 
 - **Logo oficial, sem redesenhar nem distorcer.** Ícone hexagonal (dois hexágonos concêntricos, um vazado) + wordmark "refatorando" em caixa baixa + "BY BELAGO" menor. Preto em fundo claro, branco em fundo escuro, azul ou foto. Tamanho e posição podem ser testados; o desenho, não.
@@ -44,7 +46,7 @@ Medidas nas peças publicadas:
 | Preto | `#000000` | Texto, tiras de papel rasgado |
 | Papel (Notícia) | `#F0F0F0` + textura | Fundo de papel amassado |
 | Off-white quente (Conceitual) | `#F0ECE8` | Fundo de estúdio |
-| Verde-limão | ~`#B5D935` | Setas do modelo Notícia |
+| Verde-limão | `#B4FA00` | Setas do modelo Notícia |
 | Verde-menta | ~`#7AD1B1` (na luz) | Só como cor de objeto em foto |
 
 Regra geral: **a peça é quase toda neutra, e a cor aponta para a ideia.** Uma cor de destaque por peça: azul na Notícia, violeta no Conceitual. Paleta fora disso (campanha, sazonal, collab) é teste.
@@ -91,6 +93,5 @@ Misturar os dois na mesma peça é teste, não erro.
 
 ## Pendências conhecidas
 
-- Atualizar o design system "Refatorando by Belago" (ainda diz Ubuntu e outra paleta).
 - Logo em SVG, versão só-ícone (avatar/favicon) e versão branca formal.
 - Template de Stories/Reels nos dois modelos.

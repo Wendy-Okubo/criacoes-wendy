@@ -65,7 +65,7 @@ As duas referências visuais salvas não batiam (o design system dizia Ubuntu e 
 - Cores e modelos que já estão em uso nas peças viram padrão, com valores medidos nos arquivos: **azul elétrico `#0050FF`** (modelo Notícia) e **violeta `#4A28FF`** (modelo Conceitual), mais preto, papel `#F0F0F0`, off-white `#F0ECE8`, limão nas setas e menta como cor de objeto.
 - O modo "Editorial" passa a se chamar **Conceitual**. A anatomia dos dois modelos está em `identidade-visual-refatorando/references/modelos.md`, com as peças de referência em `assets/exemplos/`.
 
-Ainda falta atualizar o design system "Refatorando by Belago", que continua com Ubuntu.
+O design system "Refatorando by Belago" foi atualizado para a v2 (Poppins, tokens com os temas Conceitual e Notícia, peças de exemplo), e o "Guia visual — Landing Page" foi alinhado à mesma paleta (violeta `#4A28FF` no lugar de `#3E2EFF`, azul elétrico `#0050FF`, verde-limão `#B4FA00`).
 
 ## Para ativar
 
