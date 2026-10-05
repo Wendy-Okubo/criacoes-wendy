@@ -43,8 +43,8 @@ Toda peça (briefing, roteiro, formato) ganhou um campo **Teste**. O registro do
 | Caixa alta só em sigla | Padrão; caixa alta como recurso visual é teste |
 | Comparar concorrente pelo nome: não pode | Teste, sem afirmar o que não é verdade sobre o outro |
 | "Terminar no medo" como vício grave de roteiro | Padrão de tom; fechamento de ameaça pode ser variante gravada |
-| Nunca misturar os modos Notícia e Editorial | Padrão; peça híbrida é teste |
-| "Fonte única Ubuntu, não usar outra família" | Uma família por peça é padrão; qual família é decisão pendente (ver abaixo) |
+| Nunca misturar os modos Notícia e Editorial | Padrão; peça híbrida é teste (o modo Editorial agora se chama Conceitual) |
+| "Fonte única Ubuntu, não usar outra família" | Poppins em tudo (decidido em 05/10/2026) |
 | Fotografia real sempre, nunca ilustração | Padrão; ilustração, 3D e imagem de IA assumida são teste. Só imagem usada como **prova** precisa ser real |
 | "Seção 7 — área de risco jurídico" | "Verdade": mesmo conteúdo, motivo diferente, menos itens |
 
@@ -57,17 +57,15 @@ Toda peça (briefing, roteiro, formato) ganhou um campo **Teste**. O registro do
 
 ---
 
-## Decisão que precisa ser tomada: as duas identidades visuais não batem
+## Decisão tomada: Poppins e os modelos Notícia e Conceitual (05/10/2026)
 
-| | Design System (redes) | Guia da Landing Page |
-|---|---|---|
-| Fonte | Ubuntu | Poppins |
-| Azul | `#2961EB` | `#3E2EFF` |
-| Verde-menta | `#26FFBA` (vivo) | `#B8F7DE` (pastel) |
-| Lima | `#D4FF3D` | `#D7F500` |
-| Outro | roxo `#6147EC` | azul profundo `#17136B` |
+As duas referências visuais salvas não batiam (o design system dizia Ubuntu e `#2961EB`; o guia da LP dizia Poppins e `#3E2EFF`). A decisão:
 
-O design system diz "não usar outra família", o guia da LP manda usar Poppins. Na skill nova os dois ficaram válidos (DS para redes, guia para LP e mídia da formação) até haver decisão — e a comparação entre eles está listada como teste. Quando decidir, atualize a skill e o design system.
+- **Poppins em tudo**, todos os modelos e canais.
+- Cores e modelos que já estão em uso nas peças viram padrão, com valores medidos nos arquivos: **azul elétrico `#0050FF`** (modelo Notícia) e **violeta `#4A28FF`** (modelo Conceitual), mais preto, papel `#F0F0F0`, off-white `#F0ECE8`, limão nas setas e menta como cor de objeto.
+- O modo "Editorial" passa a se chamar **Conceitual**. A anatomia dos dois modelos está em `identidade-visual-refatorando/references/modelos.md`, com as peças de referência em `assets/exemplos/`.
+
+Ainda falta atualizar o design system "Refatorando by Belago", que continua com Ubuntu.
 
 ## Para ativar
 

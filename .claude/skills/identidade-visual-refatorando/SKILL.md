@@ -1,97 +1,96 @@
 ---
 name: identidade-visual-refatorando
-description: "Identidade visual da Refatorando: logo, cores, tipografia, modos visuais (Notícia e Editorial), fotografia, elementos gráficos, margens e prompts de imagem. Use SEMPRE que for definir o modo visual ou as referências de um briefing, orientar design de carrossel, post, Stories, capa, thumbnail, landing page, slide ou anúncio da Refatorando, escrever prompt de geração de imagem para a marca, revisar se uma arte está 'na cara da marca', ou quando a pessoa quiser testar uma direção visual nova. Complementa voz-refatorando (texto) e content-format-rotator (formato); quando o tema for laboratório de testes, o registro fica em voz-refatorando/references/laboratorio.md."
+description: "Identidade visual da Refatorando: logo, cores, tipografia (Poppins), os dois modelos de publicação (Notícia e Conceitual), fotografia, elementos gráficos, margens e prompts de imagem. Use SEMPRE que for definir o modo visual ou as referências de um briefing, orientar design de carrossel, post, Stories, capa, thumbnail, landing page, slide ou anúncio da Refatorando, escrever prompt de geração de imagem para a marca, revisar se uma arte está 'na cara da marca', ou quando a pessoa quiser testar uma direção visual nova. Complementa voz-refatorando (texto) e content-format-rotator (formato); o registro de testes fica em voz-refatorando/references/laboratorio.md."
 ---
 
 # Identidade visual — Refatorando
 
-Mesma lógica da `voz-refatorando`: uma **base** pequena que faz a marca ser reconhecível, **padrões** que são o ponto de partida e um **laboratório** onde quase tudo pode ser testado. Visual é o lugar onde a Refatorando mais quer experimentar; este guia existe para que o experimento seja intencional, não para impedi-lo.
+Mesma lógica da `voz-refatorando`: uma **base** pequena que faz a marca ser reconhecível, **padrões** que são o ponto de partida e um **laboratório** onde quase tudo pode ser testado. O visual é onde a Refatorando mais quer experimentar; este guia existe para que o experimento seja intencional, não para impedi-lo.
 
-## Fontes que existem hoje (e o conflito entre elas)
-
-Há duas referências salvas, feitas em momentos diferentes, que **não batem**:
-
-| | Design System "Refatorando by Belago" | Guia visual — Landing Page |
-|---|---|---|
-| Fonte | Ubuntu (400/500/700) | Poppins (400/500/600/800) |
-| Azul principal | `#2961EB` | `#3E2EFF` ("Azul Refatorando") |
-| Roxo | `#6147EC` | — |
-| Azul escuro | — | `#17136B` |
-| Verde-menta | `#26FFBA` (vivo) | `#B8F7DE` (pastel) |
-| Lima | `#D4FF3D` | `#D7F500` |
-| Fundo claro | `#F2EEE4` | `#F5F2EE` |
-| Preto | `#0A0A0A` / ink `#141413` | `#08080B` |
-| Origem | Peças de redes sociais publicadas | Direção para a landing page da formação |
-
-**Enquanto a marca não decidir uma base única, trate como dois sistemas válidos** e diga no briefing qual está sendo usado. Se a peça for de redes sociais, o padrão é o Design System; se for landing page, slide institucional ou criativo de mídia da formação, o padrão é o Guia da LP. Essa ambiguidade é também um teste pronto (ver laboratório): qual dos dois sistemas a audiência reconhece mais como Refatorando?
-
-Quando a decisão for tomada, atualize esta seção e as tabelas abaixo.
+**Antes de orientar uma peça, leia `references/modelos.md`**, que tem a anatomia completa dos dois modelos padrão. As peças de referência estão em `assets/exemplos/`.
 
 ## Base (fixo)
 
-- **Logo oficial, sem redesenhar nem distorcer.** Ícone hexagonal (dois hexágonos concêntricos, um vazado) + wordmark "refatorando" em caixa baixa + "BY BELAGO" menor. Preto em fundo claro, branco em fundo escuro, azul ou foto. Tamanho, posição e presença do logo são livres para testar; o desenho dele não.
-- **Legibilidade.** Texto tem que ser lido no celular, na velocidade do feed. Contraste mínimo de leitura (4.5:1 para texto corrido, 3:1 para título grande). Quebrar isso não é estilo, é peça que ninguém lê.
-- **Margens de segurança do formato.** Stories/Reels 1080×1920: nada essencial nos 250px do topo e do rodapé. Post/carrossel 1080×1350: margem de 96–120px; área mais segura 840×1080 no centro. São limites da interface do Instagram, não escolha de marca.
-- **Imagem verdadeira quando é prova.** Print, dado, interface ou foto usados como evidência têm que ser reais. Imagem ilustrativa (inclusive gerada por IA) é livre, desde que não se passe por prova.
+- **Logo oficial, sem redesenhar nem distorcer.** Ícone hexagonal (dois hexágonos concêntricos, um vazado) + wordmark "refatorando" em caixa baixa + "BY BELAGO" menor. Preto em fundo claro, branco em fundo escuro, azul ou foto. Tamanho e posição podem ser testados; o desenho, não.
+- **Legibilidade.** Tem que ler no celular, na velocidade do feed. Contraste mínimo de 4.5:1 para texto corrido e 3:1 para título grande.
+- **Margens de segurança do formato.** Stories/Reels 1080×1920: nada essencial nos 250px do topo e do rodapé. Post/carrossel 1080×1350: margem de 96 a 120px; a área mais segura é o retângulo central de 840×1080. São limites da interface do Instagram, não escolha de marca.
+- **Imagem verdadeira quando é prova.** Print, dado, interface, logo de empresa ou foto usados como evidência numa notícia têm que ser reais. Imagem ilustrativa (inclusive gerada por IA) é livre, desde que não se passe por prova.
 
-## Padrões atuais
+## Padrões
 
-### Os dois modos
+### Tipografia: Poppins em tudo
 
-A marca alterna dois modos conforme o conteúdo:
+Uma família só, para todos os modelos e canais. A hierarquia vem do peso:
 
-**Notícia / pop** — curadoria de notícia de IA, lançamento de ferramenta, comparação antes/depois. Fundo quase preto, colagem de recortes de papel e fita adesiva, fotografia em preto e branco com realces pontuais de cor (azul, lima), tipografia bold condensada em blocos grandes.
+| Uso | Peso |
+|---|---|
+| Títulos, palavra-chave | ExtraBold 800 (Black 900 na palavra-chave gigante do Conceitual), tracking negativo |
+| Subtítulos, rótulos, datas | SemiBold 600 / Bold 700 |
+| Botões, tags | Medium 500 |
+| Texto corrido, fonte da notícia | Regular 400 |
 
-**Editorial** — conteúdo formativo, reflexivo, "teoria x prática", provocação. Fundo off-white, fotografia real e colorida usada como metáfora do texto, roxo ou azul no destaque do título, duas colunas quando há contraste a mostrar.
+Google Fonts: `family=Poppins:wght@400;500;600;700;800;900`.
 
-O padrão é não misturar os dois na mesma peça. **Peça híbrida é teste aberto**, não erro.
+Os modelos de Notícia publicados até out/2026 usavam uma condensada no título. Na migração para Poppins, o título fica cerca de 30% mais largo: corte palavras antes de reduzir o tamanho (detalhes em `references/modelos.md`).
 
-### Cor
+### Cores
 
-O azul lidera; verde-menta e lima são acentos (setas, sublinhados, tarjas, painéis de interface), não cores dominantes ao mesmo tempo. A paleta não é fechada: variações de tom dentro da família já apareceram em peças reais e são aceitáveis. O que mantém a marca reconhecível é ink + fundo + azul. Paletas fora da família (sazonal, campanha, collab) são teste.
+Medidas nas peças publicadas:
 
-### Tipografia
+| Cor | Hex | Onde |
+|---|---|---|
+| Azul elétrico | `#0050FF` | Destaque do modelo **Notícia**: trecho-chave do título, botões de mockup, ícone 3D, marcadores |
+| Violeta Refatorando | `#4A28FF` | Destaque do modelo **Conceitual**: palavra de entrada, rótulos, objeto em destaque na foto |
+| Preto | `#000000` | Texto, tiras de papel rasgado |
+| Papel (Notícia) | `#F0F0F0` + textura | Fundo de papel amassado |
+| Off-white quente (Conceitual) | `#F0ECE8` | Fundo de estúdio |
+| Verde-limão | ~`#B5D935` | Setas do modelo Notícia |
+| Verde-menta | ~`#7AD1B1` (na luz) | Só como cor de objeto em foto |
 
-Uma família por peça, pesos para hierarquia (bold/extrabold em título, regular em corpo, semibold em rótulos e kicker em caixa alta). Título grande com poucas palavras. Qual família é o padrão depende do sistema (Ubuntu ou Poppins, ver conflito acima). Segunda família de display numa campanha é teste.
+Regra geral: **a peça é quase toda neutra, e a cor aponta para a ideia.** Uma cor de destaque por peça: azul na Notícia, violeta no Conceitual. Paleta fora disso (campanha, sazonal, collab) é teste.
+
+### Os dois modelos
+
+**Notícia** — fato recente, lançamento, mudança. Colagem com papel amassado, tiras pretas rasgadas, assunto em foto colorida e contexto em P&B, mockups e ícones reais, título como frase completa com o trecho-chave em azul, fonte no rodapé, logo branco no canto superior direito.
+
+**Conceitual** — ideia, contraste, "teoria x prática", formação. Fundo de estúdio off-white, uma foto-metáfora de objeto com **um único** elemento na cor da marca, título em dois níveis (palavra curta violeta + palavra-chave gigante preta), duas colunas "Na teoria / Na prática" com divisória fina, logo preto no canto superior esquerdo, sem fonte e sem CTA na arte.
+
+Misturar os dois na mesma peça é teste, não erro.
 
 ### Fotografia
 
-- Pessoas reais em ação: decidindo, analisando, conversando, executando. Telas e dispositivos em cena; papel como detalhe.
-- No modo Notícia, P&B com realce de cor; no Editorial, colorida e usada como metáfora.
-- Padrão de fuga: sorriso corporativo posado, pessoa apontando para o notebook, hologramas, neon, robô, mão digitando em câmera lenta. Esses clichês não são proibidos por regra, são evitados porque fazem a peça parecer banco de imagem genérico — se a ideia for **parodiar** exatamente esse clichê, é um ótimo teste.
-- Ilustração, 3D, colagem digital, imagem gerada por IA assumida: fora do padrão, abertos a teste.
+- **Notícia:** assunto em cor, contexto em P&B, recortes com borda rasgada. Logos e produtos reais são bem-vindos porque são prova.
+- **Conceitual:** still life fotorrealista de estúdio, luz lateral suave, sombra real, fundo infinito, objeto cotidiano como metáfora (não tela, não robô, não holograma).
+- Padrão de fuga nos dois: sorriso corporativo posado, pessoa apontando para o notebook, holograma, neon, robô, "mão digitando em câmera lenta". Parodiar esse clichê de propósito é um bom teste.
 
-### Elementos gráficos
+### Prompts de imagem
 
-Sinais de avanço e foco, não decoração: setas curvas e espessas em lima com contorno branco e sombra suave; painéis pretos com texto em verde-menta para interface/produto; objetos com matéria (metal, telas com volume). Até três focos visuais por tela/seção; ordem de leitura chamada → imagem → ação.
+**Conceitual (objeto-metáfora):**
+> Fotografia de estúdio fotorrealista, fundo infinito off-white quente (#F0ECE8), luz lateral suave e sombra natural. [Conjunto de objetos neutros em bege/cinza/metal] com um único [objeto] na cor violeta #4A28FF que [ação que representa a ideia]. Composição na metade inferior do quadro, objeto entrando pela borda, muito espaço livre na metade superior para texto. Sem texto na imagem, sem telas, sem estética tecnológica.
 
-### Prompts de imagem (geração)
+**Notícia (elemento para colagem):**
+> Fotografia em preto e branco de alto contraste de [contexto: cidade, escritório, objeto], para recorte com borda de papel rasgado. Sem texto.
+> + elemento de assunto em cor (foto real do produto/empresa sempre que existir; gerar só o que for ilustrativo).
 
-Base de prompt que funciona para o padrão:
+## Fluxo
 
-> Fotografia editorial realista de [pessoa/objeto] [fazendo ação concreta de trabalho], com tela ou dispositivo em primeiro plano. Luz lateral suave, sombras naturais, tons neutros com detalhes em [azul da marca], espaço negativo para texto. Sem textos na imagem, sem hologramas, sem estética de banco de imagens.
-
-Variações prontas (do guia da LP): hero humano analisando dados; método em equipe ao redor de uma tela; produto/objeto com painel preto e interface verde-menta; close de mãos e tela. Para testar outra estética, troque deliberadamente o bloco de estilo ("colagem de papel recortado", "ilustração flat", "3D", "foto de celular sem tratamento") e registre como teste.
-
-## Fluxo de trabalho
-
-1. Qual sistema (DS de redes ou Guia da LP) e qual modo (Notícia ou Editorial)? Diga no briefing, no campo **Modo visual**.
-2. **Padrão ou teste?** Se for teste visual, escreva a hipótese e a métrica no campo **Teste** do briefing.
-3. Defina assets reais primeiro (print, dado, foto, interface); imagem gerada só onde ela não está fingindo ser prova.
-4. Cheque: logo oficial, legibilidade no celular, margens do formato, até três focos.
+1. Notícia ou Conceitual? Diga no campo **Modo visual** do briefing.
+2. Padrão ou teste? Se for teste, hipótese e métrica no campo **Teste**.
+3. Notícia: junte os assets reais primeiro (logo, print, foto do produto, fonte). Conceitual: defina o objeto-metáfora e qual elemento leva a cor.
+4. Rode o checklist.
 
 ## Checklist
 
-1. O logo é o oficial, sem distorção?
-2. Lê no celular em um segundo?
-3. Respeita a área segura do formato?
-4. Sistema e modo estão declarados?
-5. Imagem usada como prova é real?
-6. Se fugiu do padrão (mistura de modos, outra paleta, ilustração, imagem de IA, segunda fonte): está declarado como teste, com métrica?
-7. Tem algum clichê visual (holograma, robô, sorriso posado) usado sem intenção?
+1. Logo oficial, sem distorção, na posição do modelo?
+2. Poppins em todo o texto?
+3. Uma cor de destaque só, apontando para a ideia?
+4. Lê no celular em um segundo? Respeita a área segura?
+5. Notícia: tem fonte no rodapé? A imagem usada como prova é real?
+6. Conceitual: um objeto, um ponto de cor, metáfora clara sem precisar de legenda?
+7. Fugiu do padrão? Está declarado como teste?
 
 ## Pendências conhecidas
 
-- Decidir a base única de fonte e paleta (Ubuntu × Poppins; `#2961EB` × `#3E2EFF`; menta viva × pastel).
-- Logo em SVG/vetor, versão só-ícone (avatar/favicon) e versão branca formal.
-- Iconografia própria e grid de fotografia.
+- Atualizar o design system "Refatorando by Belago" (ainda diz Ubuntu e outra paleta).
+- Logo em SVG, versão só-ícone (avatar/favicon) e versão branca formal.
+- Template de Stories/Reels nos dois modelos.
