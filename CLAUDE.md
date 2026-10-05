@@ -17,6 +17,9 @@ Skills próprias ficam em `.claude/skills/<nome>/SKILL.md` (carregam automaticam
   - `roteiros-refatorando` — roteiros de Reels/Shorts com direção de gravação.
   - `content-format-rotator` — escolha de formato narrativo e execução visual.
   As versões ativas na conta do claude.ai são separadas; mudou aqui, reenviar lá.
+  Os resumos de voz dentro de `briefings-social-refatorando` e `roteiros-refatorando` repetem a
+  `voz-refatorando` de propósito (cada skill precisa funcionar sozinha na conta); ao mudar a voz,
+  atualizar os resumos. Mapa do repositório e duplicações intencionais: `README.md`.
 
 ## Plugins instalados
 
