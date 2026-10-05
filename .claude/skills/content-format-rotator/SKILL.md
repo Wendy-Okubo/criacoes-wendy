@@ -1,6 +1,6 @@
 ---
 name: content-format-rotator
-description: Biblioteca e sistema de decisão para escolher formatos narrativos e execuções visuais de conteúdos da Refatorando em vídeo, carrossel e estático. A skill cruza objetivo, tema, funil, prova disponível, assets, recursos de produção, histórico recente e potencial de retenção para evitar repetição de linguagem e formato.
+description: Biblioteca e sistema de decisão para escolher formatos narrativos e execuções visuais de conteúdos da Refatorando em vídeo, carrossel e estático. A skill cruza objetivo, tema, funil, prova disponível, assets, recursos de produção, histórico recente e potencial de retenção para evitar repetição de linguagem e formato, e para propor formatos novos como teste com hipótese e métrica. Use antes de escrever roteiro, carrossel ou estático, e quando a pessoa quiser variar, experimentar ou sair do formato de sempre.
 ---
 
 # Content Format Rotator — Refatorando
@@ -30,6 +30,8 @@ Ela complementa:
 - direção visual.
 
 Ela não substitui pesquisa factual, checagem de fontes ou validação de claims.
+
+A Refatorando é uma marca que testa formato, linguagem e visual. Esta skill é o lugar natural para propor experimentos: quando a melhor rota for um formato que a marca nunca usou, proponha como **teste** (hipótese + métrica no campo Teste da saída) em vez de descartar. Voz: `voz-refatorando`. Visual: `identidade-visual-refatorando`. Registro do que funcionou: `voz-refatorando/references/laboratorio.md`.
 
 ---
 
@@ -76,6 +78,7 @@ Referências:
 Conteúdos recentes da marca:
 Restrições:
 Tom desejado:
+Teste em curso (se houver):
 
 Se algum campo não estiver disponível, não travar a execução. Inferir apenas o que for seguro e explicitar internamente a hipótese.
 
@@ -570,7 +573,7 @@ Perguntar internamente:
 - o ritmo está parecido?
 - a CTA está sempre entrando do mesmo jeito?
 
-Regras:
+Padrões (ponto de partida; quebrar é válido quando a repetição é a variável de um teste, como série com formato fixo):
 
 - não repetir talking head puro em mais de 2 vídeos consecutivos;
 - em 5 vídeos, usar pelo menos 3 famílias de execução;
@@ -695,8 +698,9 @@ Asset principal:
 Risco:
 Alternativa 1:
 Alternativa 2:
+É teste? Hipótese e métrica:
 
-Depois escolher uma rota final.
+Depois escolher uma rota final. Se a alternativa menos óbvia tiver boa chance, ela pode virar a variante de teste da rota final em vez de ser descartada.
 
 Não entregar todas as possibilidades ao usuário quando ele pediu uma peça pronta. Usar as alternativas apenas para tomar decisão, salvo quando ele pedir opções.
 
@@ -740,6 +744,7 @@ Duração estimada:
 Quem aparece:
 Cenário:
 Áudio e trilha:
+Teste: (hipótese + métrica, ou — se segue o padrão)
 
 ABERTURAS (2 opções — gravar as duas)
 
@@ -818,6 +823,7 @@ Objetivo:
 Mensagem central:
 Público-alvo:
 Formato:
+Teste: (hipótese + métrica, ou — se segue o padrão)
 
 TELAS
 
@@ -859,6 +865,7 @@ Antes de entregar, revisar:
 13. É possível reduzir texto e aumentar comunicação visual?
 14. O conteúdo continua claro sem depender de contexto externo?
 15. Há uma execução mais simples que entregaria melhor resultado?
+16. Se a peça é teste, a hipótese, a variável e a métrica estão explícitas?
 
 Se 3 ou mais respostas indicarem problema, reformular antes da entrega.
 
@@ -888,7 +895,9 @@ Evite repetição estrutural em relação aos conteúdos recentes.
 
 Dê preferência a imagens, screenshots, dados, interfaces, fotos e documentos reais quando eles puderem funcionar como evidência ou parte do raciocínio.
 
-Não invente dados, depoimentos, resultados, cases ou funcionalidades.
+Não invente dados, depoimentos, resultados, cases ou funcionalidades (estudo ou caso fictício só identificado como fictício).
+
+Se a melhor rota fugir dos padrões de voz ou visual da marca, proponha como teste, com hipótese e métrica.
 
 Depois de definir internamente a melhor combinação narrativa + execução, escreva a peça completa seguindo o briefing padrão da Refatorando.
 

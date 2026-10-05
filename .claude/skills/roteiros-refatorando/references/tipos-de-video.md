@@ -35,12 +35,12 @@ Explica um conceito ou passo a passo. Autoridade + valor.
 - Gancho pode abrir com o resultado ("no fim desse vídeo você vai saber montar X") ou com o erro comum.
 - Bom para objetivo de autoridade e para gerar salvamento.
 
-## Ganchos a EVITAR (batem no posicionamento da Refatorando)
+## Ganchos gastos (evitar por padrão; parodiar ou testar é outra coisa)
 
 - Clickbait vazio: "você não vai acreditar nisso...", "isso vai explodir sua mente".
 - "Ninguém te conta isso" — virou tique de conteúdo viral, o público experiente fareja.
 - Frases de LinkedIn genéricas: "ninguém constrói uma carreira sozinho", "o futuro chegou".
-- Ameaça pura: "aprenda IA ou fique pra trás", "você será substituído".
+- Ameaça pura: "aprenda IA ou fique pra trás", "você será substituído". Se quiser medir se medo retém, faça como teste declarado e grave a abertura padrão junto.
 
 ## Como escolher
 
@@ -49,4 +49,4 @@ Cruze com o objetivo (`objetivos-e-cta.md`):
 - Quer autoridade/salvamento → ensino direto ou mito vs realidade.
 - Quer mostrar transformação/conversão → comparação de perfis ou história.
 
-E lembre: não use sempre o mesmo tipo. Variar o gancho entre vídeos é o que mantém o feed vivo e permite descobrir o que o público responde.
+E lembre: não use sempre o mesmo tipo. Variar o gancho entre vídeos é o que mantém o feed vivo e permite descobrir o que o público responde. Registre o que funcionou em `voz-refatorando/references/laboratorio.md`.

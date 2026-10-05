@@ -9,6 +9,7 @@ Objetivo:
 Mensagem central:
 Público-alvo:
 Formato e idioma:
+Teste: (hipótese + métrica, ou — se segue o padrão)
 
 ─── TELAS EM PORTUGUÊS ───────────────────────────
 

@@ -1,148 +1,91 @@
 ---
 name: voz-refatorando
-description: "Guia de voz, tom e escrita da Refatorando, escola de tecnologia e IA aplicada ao mercado de trabalho (público B2C). Use SEMPRE que for escrever, revisar ou ajustar qualquer texto da marca — landing page, página de vendas, e-mail de CRM, newsletter, mensagem de WhatsApp, notícia sobre IA, post de blog, e-book, anúncio, headline, CTA, bio, resposta a comentário, texto de site. Use TAMBÉM sempre que a dúvida for de tom e não de formato — se uma palavra pode ser usada, se o texto soa artificial, se a pontuação está certa, se a provocação passou do ponto, se um dado pode ser afirmado. Esta skill é a fonte de verdade da voz da marca; quando briefings-social-refatorando (artes estáticas) ou roteiros-refatorando (Reels e Shorts) divergirem dela, vale o que está aqui."
+description: "Guia de voz, tom e linguagem da Refatorando, escola de tecnologia e IA aplicada ao mercado de trabalho (público B2C). Use SEMPRE que for escrever, revisar ou ajustar qualquer texto da marca: landing page, página de vendas, e-mail de CRM, newsletter, WhatsApp, notícia sobre IA, blog, e-book, anúncio, headline, CTA, bio, resposta a comentário, texto de site. Use TAMBÉM quando a dúvida for de tom e não de formato (se uma palavra cabe, se o texto soa artificial, se a provocação funciona, se um dado pode ser afirmado) e quando a pessoa quiser testar uma linguagem, um tom ou um ângulo novo, montar variações A/B ou registrar o que funcionou. Esta skill é a fonte de verdade da voz da marca e do laboratório de testes; quando briefings-social-refatorando, roteiros-refatorando, content-format-rotator ou identidade-visual-refatorando divergirem dela, vale o que está aqui."
 ---
 
 # Voz da Refatorando
 
-Fonte de verdade: `references/brand-book.md`. Este arquivo é o resumo operacional — leia o brand book completo quando a tarefa envolver canal específico, claims, padronização de escrita ou quando houver dúvida que este resumo não resolva.
+Fonte completa: `references/brand-book.md`. Laboratório de testes e aprendizados: `references/laboratorio.md`. Este arquivo é o resumo operacional.
 
-## A marca em uma frase
+## Como esta skill pensa
+
+A Refatorando é uma marca que **testa**: linguagem, tom, formato, visual, ideia. Este guia não é uma lista de proibições. Ele separa três coisas:
+
+1. **Base** — o pouco que faz a Refatorando ser a Refatorando. Muda raramente, e só por decisão de marca.
+2. **Padrão atual** — o ponto de partida quando não há motivo para fazer diferente. É a aposta que está funcionando hoje, não lei. Pode ser quebrado sempre que existir uma hipótese.
+3. **Laboratório** — o que está em teste e o que já se aprendeu. É daqui que os padrões mudam.
+
+Na dúvida entre seguir o padrão e testar algo novo, a pergunta não é "pode?", é **"o que a gente aprende com isso?"**. Quase tudo é contornável; o que não pode é testar sem saber o que está testando.
+
+## Base
 
 > A Refatorando ensina tecnologia e IA de forma prática, com pessoas do mercado, para você alavancar a carreira e otimizar o seu trabalho.
 
-Dois pilares de comunicação, mesma voz, intenções diferentes:
+- **Dois pilares, mesma voz.** *Formar* (formações, método, preparação; leva a uma decisão) e *Informar* (WhatsApp de notícias, newsletter, e-books, blog, podcast, YouTube; constrói o hábito de voltar, com a ambição de ser referência de informação sobre IA no Brasil).
+- **Público.** Profissional que já trabalha, tem pouco tempo e quer aplicação. Não quer "aprender IA", quer trabalhar melhor num mundo em que a IA existe. Escopo B2C.
+- **Parte do trabalho, chega na tecnologia.** A situação que a pessoa reconhece vem antes da ferramenta (notícia é a exceção natural, mas ainda aterrissa no trabalho).
+- **Verdade.** Não se inventa dado, estatística, fonte, depoimento, resultado, professor, preço, parceria ou característica de curso. Rumor sai como rumor. Promessa só do que a escola de fato entrega. Isso não é medo de processo, é credibilidade: uma peça mentirosa queima a confiança que as outras cem construíram. Estudo, caso ou cena **fictícios** são liberados quando aparecem como fictícios.
 
-- **Formar** — formações, método, preparação para o mercado. Leva a uma decisão.
-- **Informar** — WhatsApp de notícias, newsletter, e-books, blog, podcast, YouTube. Constrói o hábito de voltar. A ambição é ser referência de informação sobre IA no Brasil.
+Só isso é fixo. O resto é padrão.
 
-Escopo: **apenas B2C.** Nada de conteúdo, exemplo ou vocabulário voltado a RH, T&D ou empresa contratante.
+## Padrões atuais
+
+Ponto de partida. Cada um traz o porquê, para você saber o que está quebrando quando quebrar.
+
+**O teste da voz alta.** Uma pessoa falaria isso conversando? É o filtro que mais pega texto com cara de IA. (Exceção consciente: peça que testa justamente um registro não-falado, como manifesto, poema, texto de interface.)
+
+**Tom.** Direta, prática, próxima, confiante sem arrogância, com opinião. Por padrão a provocação mira a ideia e não quem lê, e a peça prefere mostrar como acertar a apontar onde se erra. Motivo: o público é adulto e tende a responder melhor a ajuda do que a bronca. **Tom acusatório, confronto direto, ironia ácida, humor absurdo, medo nomeado sem rodeio: tudo testável.** Quando testar, marque no briefing como teste e defina o que vai medir (ver laboratório).
+
+**Específico por padrão.** Número real, ferramenta, tarefa, cargo, horas. Peça que precisa de identificação ou convite pode ser ampla. O genérico que promete ("transforme sua carreira") é o que costuma não funcionar.
+
+**Pessoa.** "você" no singular; "a gente" para proximidade; "nós" institucional; "eu" quando há uma pessoa real na tela ou no áudio. Um narrador, persona ou mascote em primeira pessoa é um teste possível, não um erro.
+
+**Verbo e chamada.** Verbo concreto (aplicar, montar, testar, resolver), voz ativa, presente. Imperativo em CTA e e-mail de CRM. Chamada direta ("Vem ver", "Entra no grupo") é o padrão porque converte mais que o convite condicional ("se quiser"), mas isso é hipótese a confirmar, não regra.
+
+**Ritmo.** Frases de tamanhos diferentes. A sequência de frases curtas do mesmo tamanho, uma por linha, é a assinatura mais fácil de texto artificial. Quebra de frase só quando a pausa faz trabalho.
+
+**Pontuação e emoji.** Critério, não proibição. Exclamação quando o entusiasmo é real; pergunta quando é a que a pessoa já se fez; caixa alta para ênfase vira opção de teste em peça de impacto. Emoji decorativo em série (🚀🔥💡✨) costuma baratear, mas um uso intencional pode ser exatamente a ideia da peça.
+
+**Repetição.** A mesma palavra, exemplo ou estrutura voltando em toda peça deixa a marca com cara de template. "travar" é o tique mais visível hoje. Vale para formato também: todo carrossel abrindo com pergunta, todo Reels abrindo com negação.
+
+**IA.** Analogia com pessoa é ótima didática; ao explicar como a IA funciona, seja preciso (gera, resume, classifica, não "pensa"). Falar de limitação e custo é território livre e diferencia. Previsão grande ("a IA vai mudar tudo") precisa de argumento para não soar como todo mundo.
+
+**Notícia.** O que aconteceu, o que significa na prática, para quem interessa, fonte com link. Se não estiver confirmado, diga. Formato da notícia (fofoca, reação, comentário, meme) é livre para testar; a apuração não.
+
+## Clichês gastos
+
+Não são proibidos, são **gastos**: soam a texto de IA e o público já passa direto. Usar de propósito (paródia, ironia, comentário sobre o próprio clichê) é outra coisa e pode ser ótimo.
+
+No mundo cada vez mais · Em um cenário de constantes mudanças · Mais do que nunca · Não é apenas sobre X, é sobre Y · Imagine um mundo onde · A verdade é que · O futuro chegou · Vamos mergulhar · Desbloqueie seu potencial · Eleve seu nível · Revolucione sua carreira · Game changer · É aqui que entra · E é aí que · Mas calma · A boa notícia é que · no braço · e ninguém te conta
+
+Palavras que costumam sinalizar frase frouxa: travar, potencial, mindset, ecossistema, solução completa, expert, conteúdo de valor, imersão.
+
+Vocabulário que é a cara da marca: aplicar · na prática · no trabalho que você já faz · resolver · montar · testar · alavancar a carreira · o que muda no seu dia.
 
 ## Fluxo de trabalho
 
-1. Identifique canal e objetivo antes de escrever uma linha. O canal define densidade, extensão e CTA (tabela completa no brand book).
-2. Escreva partindo da situação de trabalho da pessoa, não da ferramenta.
-3. Rode o checklist do fim deste arquivo antes de entregar.
-4. Quando a pessoa corrigir algo, registre a correção — o brand book tem uma seção de log justamente para isso. Correção recorrente vira regra.
-
-## O teste que vale para tudo
-
-**Uma pessoa falaria isso em voz alta?**
-
-Não "um redator escreveria", não "soa bem". Alguém diria essa frase conversando? Esse teste sozinho pega a maior parte dos problemas: a expressão que ninguém usa, a construção torta, o entusiasmo falso, a frase que só existe porque preencheu espaço.
-
-Foi esse teste que baniu "no braço" da comunicação da marca.
-
-## Os quatro princípios
-
-### 1. Parte do trabalho, chega na tecnologia
-
-A peça abre por algo que a pessoa reconhece na rotina e só depois nomeia a tecnologia. O caminho inverso produz conteúdo que qualquer escola poderia publicar.
-
-- Evite: "O Claude tem uma função de projetos que organiza contexto."
-- Prefira: "Você reexplica a mesma coisa pra IA toda vez que abre uma conversa nova. Dá pra resolver isso."
-
-Exceção: conteúdo de notícia, em que a ferramenta vem primeiro por natureza — mas a peça ainda precisa aterrissar no que muda para quem trabalha.
-
-**Teste:** cubra a primeira frase. Ela abre com ferramenta, sigla ou tendência? Se não for notícia, reescreva.
-
-### 2. Específico por padrão, genérico quando a peça pede
-
-Especificidade é a melhor defesa contra texto que parece feito por máquina: número real, nome de ferramenta, tipo de tarefa, cargo, quantidade de horas.
-
-Mas nem toda peça comporta. Post institucional, capa de campanha, mensagem de boas-vindas, frase de encerramento — nesses casos um texto mais amplo funciona melhor, e forçar especificidade deixa a peça estranha.
-
-Critério: a peça precisa que a pessoa **acredite** em algo? Seja específico. Precisa que ela **se reconheça** ou se sinta convidada? Registro amplo resolve.
-
-Inaceitável em qualquer caso: o genérico **que promete**. "Transforme sua carreira" é genérico e promete. "A gente acha que aprender tecnologia devia ser mais simples do que é" é genérico e não promete nada — está ok.
-
-### 3. Direta e construtiva, com julgamento
-
-A marca pode ser incisiva, contrariar consenso e deixar quem lê desconfortável. Por padrão, não acusa o leitor de recusa deliberada.
-
-O eixo é o verbo:
-
-| Recusa intencional (evitar como padrão) | Lacuna (liberado, mesmo em tom duro) |
-|---|---|
-| boicotar, sabotar, se enganar, fingir que não vê | deixar de lado, ainda não ter testado, rodar no automático, nunca ter parado pra pensar |
-
-Padrão dentro do padrão: entre apontar onde a pessoa erra e mostrar como ela acerta, **mostre como acerta**. "Quatro passos pra te ajudar a montar isso" vence "onde quase todo mundo erra ao montar isso".
-
-Quebrar é permitido em peça que pede provocação de verdade — mas como decisão consciente, não descuido.
-
-### 4. Confiança que se prova
-
-Fato (tem fonte e data), interpretação (o que os dados sugerem) e opinião (leitura editorial) podem conviver na mesma peça, desde que dê para distinguir qual é qual.
-
-**Nunca invente** dado, estatística, pesquisa, fonte, depoimento, resultado, informação sobre cursos, professor, preço ou parceria. Dado que não pode ser confirmado no momento da escrita não entra — sinalize para quem pediu em vez de preencher.
-
-## Gramática da marca
-
-**Pessoa.** "você" é o padrão, sempre singular. "a gente" cria proximidade em Stories, WhatsApp, legenda e roteiro falado. "nós" em contexto institucional. **A marca não tem porta-voz e não fala "eu"** — "eu" só existe quando há uma pessoa real na tela ou no áudio, e é a voz dela.
-
-**Verbo.** Voz ativa, presente do indicativo, verbo concreto (aplicar, montar, testar, reduzir, organizar, resolver, entregar) no lugar de abstrato (potencializar, viabilizar, impulsionar). Imperativo é obrigatório em e-mail de CRM e em CTA.
-
-**Convite condicional é proibido.** Nada de "se quiser", "caso tenha interesse", "se fizer sentido pra você". A peça parte do princípio de que a pessoa já quer. Chame direto: "Traz o seu caso", "Entra no grupo", "Vem ver".
-
-**Ritmo.** Frases de tamanhos diferentes. O vício mais detectável de texto artificial é a sequência de frases curtas do mesmo comprimento, uma por linha, cada uma soando como revelação. Cuidado com a quebra por reflexo — partir uma ideia em duas frases só para dar impacto. Ela ganha em tese isolada e em tela de destaque; no meio de parágrafo explicativo, quase sempre perde.
-
-**Pontuação: critério, não proibição.** Exclamação pode, quando o entusiasmo é real e não em série. Pergunta pode e costuma ser boa, desde que seja a pergunta que a pessoa já se fez, não transição preguiçosa. Reticências podem, quando marcam hesitação real. Ponto e vírgula e aspas, liberados. Caixa alta só em sigla — para ênfase, use negrito.
-
-**Repetição.** A mesma palavra, o mesmo exemplo e a mesma construção voltando peça após peça deixam a marca com cara de template. O caso mais visível é **"travar"**. A palavra não está proibida; a pergunta é se ela é a que melhor descreve isso ou a que veio primeiro. Quase sempre existe uma mais precisa — emperrar, parar no meio, empacar, ficar sem saber o próximo passo. Vale o mesmo para exemplos recorrentes e para estruturas repetidas (todo carrossel abrindo com pergunta, todo Reels abrindo com negação).
-
-**Números.** Um a dez por extenso em prosa; algarismos para dado, medida ou comparação. Todo dado externo com fonte nomeada e ano. Arredondar pode, inflar não. Percentual sem base é inútil.
-
-## Como falar de IA
-
-**Personificação: pode em analogia, não pode em explicação.** Comparar a IA com uma pessoa é excelente recurso didático e a marca deve usar:
-
-> Pensa na IA como alguém que entrou hoje na empresa. Sabe fazer muita coisa, mas não conhece ninguém e não faz ideia do que já foi decidido antes. Se você não contar, ela chuta.
-
-Quando a peça explica **como a IA funciona**, a precisão importa: ela gera, processa, prevê, classifica, resume, rascunha. Dizer que "entende", "sabe" ou "pensa" como afirmação sobre funcionamento é impreciso, e imprecisão técnica custa autoridade justamente com o público que interessa.
-
-**Nunca como afirmação solta:** "A IA vai mudar tudo", "Você será substituído se não aprender IA", "Aprenda IA ou fique pra trás", "A IA é o futuro".
-
-**Medo não é gancho.** A ansiedade profissional é real e pode ser nomeada com honestidade, mas a marca não vende com ela.
-
-**Falar de limitação é diferencial.** Quase todo perfil fala do que a IA faz; poucos falam bem de onde ela erra, quanto custa, o que não compensa automatizar e quando o resultado precisa de revisão humana.
-
-**Curadoria de notícia** (WhatsApp, newsletter, Stories) — quatro elementos nesta ordem: o que aconteceu, em uma frase sem adjetivo de urgência; o que significa na prática; para quem interessa e o que fazer com isso; fonte com link. Nada de "URGENTE", "BOMBA", "isso muda tudo" ou previsão apresentada como fato. Informação não confirmada se publica dizendo que não está confirmada.
-
-## Léxico
-
-**Banidas.** No mundo cada vez mais · Em um cenário de constantes mudanças · Mais do que nunca · Não é apenas sobre X, é sobre Y · Imagine um mundo onde · A verdade é que · O futuro chegou · Vamos mergulhar · Desbloqueie seu potencial · Eleve seu nível · Revolucione sua carreira · Transforme sua jornada · O próximo nível · Game changer · Sem dúvida alguma · É aqui que entra · E é aí que · Mas calma · A boa notícia é que
-
-**Banidas por não serem fala real.** "no braço" (ninguém fala assim — use manualmente, na mão, ou reformule) · "e quase ninguém faz / e quase ninguém sabe / e ninguém te conta" (gancho gasto — se o ponto é que você vai ensinar, diga: "e eu vou te mostrar como").
-
-**De risco** (não proibidas, mas quase sempre sinal de frase frouxa): travar, potencial, mindset, ecossistema, solução completa, expert, conteúdo de valor, imersão.
-
-**Liberadas:** spoiler, bora, jornada. Naturais com esse público — só não como bordão em toda peça.
-
-**Vocabulário da marca:** aplicar · na prática · no trabalho que você já faz · quem faz isso todo dia · resolver · montar · testar · alavancar a carreira · o que muda no seu dia. "Alavancar" vale para carreira e resultado, não para abstração ("alavancar seu potencial" continua fora).
-
-**Como chamar as pessoas:** "você", "quem trabalha com [área]", "quem está começando em tech". "Aluno" só depois da matrícula. Nunca "amigo", "galera do código", "devs de plantão", "guerreiro".
+1. Canal e objetivo antes de escrever (tabela de canais no brand book).
+2. Decida: **padrão ou teste?** Se for teste, escreva a hipótese em uma linha ("tom acusatório no gancho aumenta retenção nos 3s sem derrubar salvamento") e a métrica. Consulte `references/laboratorio.md` para ver se isso já foi testado.
+3. Escreva partindo da situação de trabalho.
+4. Rode o checklist.
+5. Quando a pessoa corrigir algo, aprovar algo diferente do padrão ou trouxer resultado de uma peça, **registre no laboratório**. Aprendizado repetido vira padrão; padrão que perde vira teste de novo.
 
 ## Checklist antes de entregar
 
-1. Uma pessoa falaria isso em voz alta?
-2. Tem uma ideia realmente interessante, ou só uma boa formatação?
-3. Parte do trabalho da pessoa e chega na tecnologia — ou é notícia, e ainda assim aterrissa no trabalho?
-4. Se está genérica, está genérica **sem prometer**?
-5. Repeti palavra, exemplo ou estrutura que já aparece demais? ("travar" é o primeiro a checar)
-6. Algum dado, número, depoimento ou promessa foi inventado ou não confirmado?
-7. O tom mira a ideia e não quem lê — e, se acusa, foi decisão consciente?
-8. Tem clichê da lista de banidas?
-9. As frases têm tamanhos diferentes?
-10. Tem convite condicional ("se quiser", "caso tenha interesse")?
-11. O CTA faz sentido pro canal e pro objetivo?
-12. Se for notícia: fonte, ano e o que não está confirmado estão explícitos?
+1. Uma pessoa falaria isso? (ou o registro não-falado é a aposta?)
+2. Tem uma ideia interessante, ou só boa formatação?
+3. Parte do trabalho da pessoa?
+4. Algum dado, depoimento, resultado ou promessa foi inventado ou não confirmado?
+5. Repeti palavra, exemplo ou estrutura que já aparece demais?
+6. Tem clichê gasto usado sem intenção?
+7. Se quebrei um padrão: está marcado como teste, com hipótese e métrica?
+8. O CTA combina com canal e objetivo?
+9. Se for notícia: fonte e o que não está confirmado estão explícitos?
+
+## Uma observação de método
+
+Não concorde com ideia fraca só para agradar: se um ângulo parece genérico, diga em uma linha e proponha outro. Mas **ousadia não é ideia fraca**. Se a pessoa quer testar algo fora do padrão, ajude a testar bem (hipótese clara, variável isolada, métrica certa) em vez de puxar de volta para o padrão.
 
 ## Quando ler o brand book completo
 
-`references/brand-book.md` tem o que não cabe aqui e é consultado sob demanda:
-
-- **Seção 8** — tabela de modulação por canal, com registro, extensão, CTA típico e erro mais comum de cada um. Leia sempre que o canal não for óbvio.
-- **Seção 7** — o que a marca pode e não pode afirmar sobre empregabilidade, MEC, salário, números institucionais e depoimentos. Leia antes de qualquer peça de conversão.
-- **Seção 9** — padronização de escrita (grafias, siglas, horário em 19h00, formato de data e preço).
-- **Seção 10** — nove exemplos comentados de antes e depois.
-- **Seção 12** — log de correções datado e pontos ainda em aberto.
+`references/brand-book.md`: modulação por canal (seção 6), claims e verdade (seção 5), padronização de escrita (seção 7), exemplos de antes e depois (seção 8), histórico de versões (seção 10).

@@ -9,6 +9,14 @@ Skills próprias ficam em `.claude/skills/<nome>/SKILL.md` (carregam automaticam
 - `discovery-follow-up` — transforma notas/transcrições de conversas comerciais em registro
   estruturado da oportunidade e prepara follow-up (rascunho e plano com cenários); busca em
   conectores de reunião/CRM só para leitura. Prompts de teste em `evals/prompts-de-teste.md`.
+- Skills de marca da Refatorando (v2.0, out/2026 — premissa de testar em vez de proibir; ver
+  `docs/revisao-marca-2026-10.md`):
+  - `voz-refatorando` — fonte de verdade de voz/tom + `references/laboratorio.md` (registro de testes).
+  - `identidade-visual-refatorando` — logo, cores, tipografia, modos visuais, fotografia, prompts de imagem.
+  - `briefings-social-refatorando` — briefing e copy de carrossel, post, stories, e-mail.
+  - `roteiros-refatorando` — roteiros de Reels/Shorts com direção de gravação.
+  - `content-format-rotator` — escolha de formato narrativo e execução visual.
+  As versões ativas na conta do claude.ai são separadas; mudou aqui, reenviar lá.
 
 ## Plugins instalados
 
