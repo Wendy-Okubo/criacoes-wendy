@@ -1,6 +1,6 @@
 # Plano de follow-up (entrega D)
 
-O plano dá ao vendedor ideias prontas para os próximos contatos, separadas por cenário, para ele não precisar pensar do zero quando a conversa andar, travar ou esfriar. Ele **sugere**: cada ideia é uma opção que o vendedor avalia, não algo que foi combinado com o cliente.
+O plano analisa a situação, antecipa objeções e cenários e dá ao vendedor ideias prontas para os próximos contatos, separadas por cenário, para ele não precisar pensar do zero quando a conversa andar, travar ou esfriar. Ele **sugere**: cada ideia é uma opção que o vendedor avalia, não algo que foi combinado com o cliente.
 
 ## Regra de ouro: toda ideia tem âncora
 
@@ -18,6 +18,39 @@ O que pode e o que não pode:
 | Listar desconto, piloto ou condição como **decisão do vendedor** | Colocar condição comercial nova dentro da mensagem sugerida |
 
 Silêncio continua não sendo objeção. No cenário "sem resposta", as ideias retomam um ponto concreto ou facilitam a resposta. Nunca interpretam o silêncio ("parece que não é prioridade").
+
+## Leitura da situação
+
+Antes dos cenários, de 3 a 6 linhas sobre o momento da oportunidade:
+
+- **O que move:** dores, números e motivações que o cliente declarou.
+- **O que trava:** objeções ditas, pessoas que ainda precisam entrar, dúvidas sem resposta, prazos incertos.
+- **Onde está a decisão:** quem decide e o que se sabe do processo (ou NÃO INFORMADO).
+
+Nada de "lead quente", "boa chance" ou nota. Descreva a situação, não a classifique.
+
+## Antecipar objeções e cenários
+
+O vendedor ganha muito chegando preparado para o que ainda não foi dito. Você pode antecipar, desde que:
+
+- cada item seja rotulado como **Hipótese**;
+- cada hipótese tenha um **Sinal** concreto do registro que a justifica;
+- cada hipótese venha com **Como se preparar**: pergunta a fazer, material a ter em mãos, resposta a verificar internamente.
+
+Sinais comuns e as hipóteses que costumam vir junto:
+
+| Sinal no registro | Hipótese provável |
+|---|---|
+| Decisão passa por diretor, sócio ou financeiro que não esteve na call | Vai perguntar de retorno do investimento, custo total e por que agora. |
+| Jurídico ou compras vão ver o contrato | Prazo maior que o esperado; perguntas sobre LGPD, multa e fidelidade. |
+| TI participou ou integração foi citada | Pedido de documentação técnica, segurança ou teste antes de aprovar. |
+| Já usam outra ferramenta ou planilha | "Por que trocar?" e custo de migração. |
+| Time precisa adotar algo novo | Resistência do time; pedido de treinamento ou piloto. |
+| "Orçamento apertado", "talvez ano que vem" | Pedido de desconto, parcelamento ou adiamento. |
+| Prazo citado com incerteza ou contradição | A data vai escorregar; risco de a conversa esfriar no meio. |
+| Contato não é quem decide | Vai precisar de material para vender internamente. |
+
+Use a tabela como inspiração, não como checklist: só entra hipótese que tenha sinal real naquela conversa. Com material muito curto, é melhor listar 1 ou 2 hipóteses fortes do que 6 fracas.
 
 ## Cenários
 
@@ -50,6 +83,14 @@ Use só os cenários que fazem sentido para aquela oportunidade, normalmente de 
 # PLANO DE FOLLOW-UP
 Sugestões para você avaliar. Nada disso foi combinado com o cliente, exceto o que estiver marcado como "combinado".
 
+## Leitura da situação
+- O que move: ...
+- O que trava: ...
+- Onde está a decisão: ...
+
+## Objeções e cenários prováveis
+- Hipótese: ... — Sinal: ... — Como se preparar: ...
+
 ## Próximo contato
 Quando: [combinado: ... | sugestão: ...]
 Motivo: [âncora]
@@ -76,6 +117,17 @@ Se o usuário pedir, transforme qualquer ideia do plano em rascunho (entrega C),
 
 # PLANO DE FOLLOW-UP
 Sugestões para você avaliar. Nada disso foi combinado com o cliente, exceto o que estiver marcado como "combinado".
+
+## Leitura da situação
+- O que move: dor concreta ("uns 3 casos" de gente sem notebook no trimestre) e volume de "umas 60 pessoas até o fim do ano".
+- O que trava: integração com um segundo sistema ainda desconhecido (condição do Paulo); orçamento "apertado" este ano.
+- Onde está a decisão: a Lu (diretora da Marina) aprova; ela ainda não participou.
+
+## Objeções e cenários prováveis
+- Hipótese: a Lu vai perguntar por que resolver isso agora e quanto custa por contratação. — Sinal: ela aprova e não esteve na call; orçamento apertado. — Como se preparar: ter o custo por pessoa da proposta à mão e retomar os 3 casos do trimestre como custo do problema.
+- Hipótese: o segundo sistema não integra, ou integra só parcialmente. — Sinal: "o outro eu preciso confirmar"; "se não integrar não rola". — Como se preparar: confirmar com o time antes de quinta e ter uma alternativa (ex.: importação manual), se existir.
+- Hipótese: a decisão escorrega para janeiro. — Sinal: "se for pra começar em janeiro talvez dê". — Como se preparar: perguntar se o orçamento de janeiro já está sendo discutido e quando.
+- Hipótese: o RH ou os gestores vão resistir a mudar o processo. — Sinal: hoje é planilha e e-mail, e o gestor "às vezes esquece". — Como se preparar: mostrar no case da Fintech X como foi a adoção, se o case tiver isso.
 
 ## Próximo contato
 Quando: combinado: até quinta (data exata A CONFIRMAR)

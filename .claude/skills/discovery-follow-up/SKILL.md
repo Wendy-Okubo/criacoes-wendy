@@ -1,6 +1,6 @@
 ---
 name: discovery-follow-up
-description: Transforma notas, transcrições ou resumos de conversas comerciais (discovery, reunião de vendas, call com lead ou cliente) em um registro estruturado da oportunidade — necessidade, o que foi confirmado, o que está em aberto, objeções, compromissos, próxima ação, responsável e prazo — e prepara o follow-up: rascunho de mensagem e plano com cenários (se o cliente sumir, se a objeção voltar). Busca o material em conectores de reunião ou CRM quando não for colado. Use SEMPRE que o usuário enviar notas, transcrição, histórico ou mensagens com lead/cliente, ou pedir para organizar uma oportunidade, listar próximos passos, recuperar contexto ("onde paramos com o cliente X?"), escrever um follow-up ou planejar os próximos contatos ("e se ele não responder?") — mesmo sem dizer "discovery" ou "follow-up" (ex.: "o que ficou combinado nessa call?", "me ajuda a responder esse lead"). Para SDRs, vendedores, executivos de contas e closers.
+description: Transforma notas, transcrições ou resumos de conversas comerciais (discovery, reunião de vendas, call com lead ou cliente) em um registro estruturado da oportunidade — necessidade, o que foi confirmado, o que está em aberto, objeções, compromissos, próxima ação, responsável e prazo — e prepara o follow-up: rascunho de mensagem e plano que antecipa objeções e cenários (se o cliente sumir, se o decisor travar). Busca o material em conectores de reunião ou CRM quando não for colado. Use SEMPRE que o usuário enviar notas, transcrição, histórico ou mensagens com lead/cliente, ou pedir para organizar uma oportunidade, listar próximos passos, recuperar contexto ("onde paramos com o cliente X?"), escrever um follow-up ou planejar os próximos contatos ("e se ele não responder?") — mesmo sem dizer "discovery" ou "follow-up" (ex.: "o que ficou combinado nessa call?", "me ajuda a responder esse lead"). Para SDRs, vendedores, executivos de contas e closers.
 ---
 
 # Discovery + Follow-up
@@ -124,7 +124,11 @@ Se o canal (e-mail, WhatsApp, LinkedIn) não foi informado e muda o texto, pergu
 
 ### 7. Plano de follow-up (entrega D)
 
-Ideias para os próximos contatos, organizadas por cenário: o que fazer se o cliente responder, se sumir, se a objeção voltar, se entrar um novo decisor. Leia `references/plano-follow-up.md` antes de montar.
+Uma análise da situação e ideias para os próximos contatos. Leia `references/plano-follow-up.md` antes de montar. O plano tem três partes:
+
+1. **Leitura da situação:** o que move a oportunidade e o que trava, com base no que foi dito (sem classificar o lead nem estimar chance).
+2. **Objeções e cenários prováveis:** o que pode aparecer pela frente mesmo sem ter sido dito ainda (ex.: o diretor que vai aprovar provavelmente vai perguntar de retorno do investimento). Cada item é uma **hipótese**, rotulada assim, com o sinal do registro que a motiva e como se preparar. Isso não contradiz a regra de só registrar objeções ditas: no resumo (A) entram só os fatos; aqui você antecipa, e de forma explícita.
+3. **Ações por cenário:** o que fazer se o cliente responder, se sumir, se uma objeção (registrada ou prevista) aparecer, se entrar um novo decisor.
 
 Aqui você **sugere**, e isso é diferente de inventar. Cada ideia precisa partir de algo do registro (um ponto aberto, uma objeção, um material prometido, uma pessoa citada, um prazo dito pelo cliente), e essa base fica visível. Intervalos de tempo são sugestões, a menos que o cliente tenha dado uma data. Materiais que não apareceram na conversa entram como tipo ("um case do mesmo setor, se existir"), nunca como algo que a empresa com certeza tem. O vendedor escolhe o que usar.
 
@@ -153,6 +157,6 @@ Releia sua saída e confira:
 3. Alguma inferência aparece sem o rótulo `(inferência — confirmar)`?
 4. Existe classificação de lead, score ou probabilidade? Remova.
 5. O follow-up promete, cita ou "lembra" algo que não está registrado? Remova.
-6. Cada ideia do plano de follow-up mostra em que parte do registro se apoia?
+6. Cada ideia e cada hipótese do plano mostra em que parte do registro se apoia? Hipótese está rotulada como hipótese?
 
 Para um exemplo completo de transcrição bagunçada e a saída esperada, veja `references/exemplo.md`.

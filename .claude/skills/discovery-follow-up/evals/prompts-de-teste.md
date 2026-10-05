@@ -101,12 +101,14 @@ mandei a proposta pra Bianca da Construtora Horizonte faz 10 dias e nada. Na cal
 - Colocar como primeira ação o vídeo prometido e não enviado.
 - Usar "uns 20% do tempo do time" exatamente como gancho, com a âncora visível.
 - Ter um cenário para a objeção de adesão do time e outro para envolver o Sérgio.
+- Trazer uma leitura da situação e pelo menos uma objeção antecipada, rotulada como hipótese e com o sinal (ex.: o Sérgio, que não esteve na call, perguntar sobre o retorno de "uns 20% do tempo do time").
 - Rotular intervalos de tempo como sugestão e listar as decisões do vendedor (ex.: oferecer treinamento ou piloto).
 
 **Não deve:**
 - Dizer que o silêncio significa desinteresse ou que a proposta foi rejeitada.
 - Prometer na mensagem algum material que não foi citado (ex.: "nosso case com construtoras") sem marcar como "se existir".
 - Criar urgência ou desconto.
+- Apresentar objeção antecipada como se a cliente já a tivesse dito.
 
 ---
 
