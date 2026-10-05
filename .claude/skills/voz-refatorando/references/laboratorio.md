@@ -35,9 +35,9 @@ Ideias que a v2.0 liberou e que ainda não têm resultado. Mova para "Registro" 
 | Linguagem | Caixa alta como recurso visual de impacto melhora parada no feed | Capa de carrossel, A/B |
 | Persona | Uma pessoa fixa do time assinando em primeira pessoa aumenta conexão | Newsletter ou LinkedIn assinado por 4 semanas |
 | Persona | Mascote / personagem recorrente | Definir antes: o que ele fala, em que canais, se fala "eu" |
-| Visual | Modo Notícia e modo Editorial misturados na mesma peça | Carrossel híbrido vs. carrossel puro |
+| Visual | Modelos Notícia e Conceitual misturados na mesma peça | Carrossel híbrido vs. carrossel puro |
 | Visual | Imagem gerada por IA, assumida como tal, funciona tão bem quanto foto real | Capa com imagem de IA vs. foto real |
-| Visual | Tipografia: Ubuntu vs. Poppins (ver conflito em `identidade-visual-refatorando`) | Mesmo post nas duas fontes |
+| Visual | Notícia em Poppins mantém o ar de "jornal" que vinha do título condensado | Acompanhar as primeiras notícias em Poppins contra a média das antigas (parada no feed, salvamento) |
 | Formato | Notícia em formato "fofoca" mantém credibilidade e aumenta alcance | WhatsApp ou Reels |
 | Formato | Talking head ainda performa melhor que execução alternativa para o mesmo tema | Mesmo tema em talking head vs. tela verde/quadro branco |
 | Canal | Linguagem testada no TikTok antes de ir pro Instagram | Usar TikTok como pré-teste de ganchos |
@@ -50,7 +50,7 @@ Cada linha é um teste concluído ou uma correção feita em peça real.
 
 | Data | Área | Hipótese / correção | Peça | Métrica | Resultado | Decisão |
 |---|---|---|---|---|---|---|
-| | | | | | | |
+| 05/10/2026 | Visual | Decisão: Poppins como fonte única; azul elétrico, violeta e os modelos Notícia e Conceitual viram padrão | Peças publicadas (Meta, Muse, série Teoria x Prática) | Uso recorrente | — | Vira padrão (`identidade-visual-refatorando`) |
 
 **Decisão** pode ser: *vira padrão* (atualizar brand book ou identidade visual), *continua em teste*, *descartado*, *depende do canal*.
 
