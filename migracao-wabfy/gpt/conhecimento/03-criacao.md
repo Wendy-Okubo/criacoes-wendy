@@ -141,7 +141,7 @@ Carregue antes a skill `wabfy-cerebro`.
 ## Entrega
 Quem anima é o designer (Nallan), então o roteiro é para ele, sem prompt de IA (só escreva prompts se a Wendy pedir). Duração: proponha caso a caso, conforme a peça e o canal.
 1. Ficha: objetivo, canal, duração proposta, funil, CTA e destino, métrica.
-2. Roteiro em tabela por cena: tempo, locução, texto na tela, direção de imagem (o que aparece e o que se move, de forma descritiva e direta) e elementos a usar (personagem, objetos, ícones e elementos de vidro do brandbook, glow).
+2. Roteiro em tabela por cena: tempo, locução, texto na tela, direção de imagem (o que aparece e o que se move, de forma descritiva e direta) e elementos a usar (personagem, objetos, ícones do brandbook, glow).
 3. Em vídeo de produto: o print de cada cena com a origem exata na plataforma (módulo, visão, tela e bloco a recortar), conferido na demo.
 4. Locução corrida, para gravação.
 5. Legenda do post e itens a validar.

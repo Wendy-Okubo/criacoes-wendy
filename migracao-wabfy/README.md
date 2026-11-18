@@ -7,7 +7,7 @@ Pacote gerado em 18/11/2026 com tudo da Wabfy que dava para tirar do Claude por 
 | Pasta | O que é | Uso no ChatGPT |
 |---|---|---|
 | `gpt/instrucoes-projeto-wabfy.md` | Instruções do time de agentes, condensadas (~4,7 mil caracteres, cabe no limite de 8 mil) | Colar em **Instruções** do projeto "Wabfy" ou de um GPT personalizado |
-| `gpt/conhecimento/01..06-*.md` | As 19 skills, as referências do Cérebro, a skill de fila e os 14 subagentes, juntados em 6 arquivos por área | Subir como **arquivos** do projeto/GPT |
+| `gpt/conhecimento/00..06-*.md` | A memória do projeto (00), as 19 skills, as referências do Cérebro, a skill de fila e os 14 subagentes, juntados em 6 arquivos por área | Subir como **arquivos** do projeto/GPT |
 | `skills-claude/` | Cópia fiel do plugin `wabfy-agentes` v0.4.1 e da skill `wabfy-fila`, no formato original (`SKILL.md`) | Backup; serve também para ferramentas que leem o formato de skills |
 | `tarefas-agendadas/` | Os prompts completos das tarefas agendadas dos agentes (Chefão, radares, listening etc.), com horário | Recriar como **Tarefas** agendadas no ChatGPT, ou guardar como receita |
 | `artifacts/` | HTML dos artifacts da Wabfy (painel, Pulso, calendário, wireframes, prévias de e-mail...) e o texto dos 6 documentos Docs em `.md` e `.docx` | Abrir no navegador; republicar onde quiser |
@@ -36,7 +36,7 @@ Os dados dos bancos dos artifacts (registros do painel, leads, ideias, Pulso Org
 ## Falta você baixar (não consigo acessar daqui)
 
 - [ ] **Documentos do Projeto Claude "Wabfy"**: pasta `claude/` (fonte da verdade, base de conhecimento, pendências, releases, revisões, calendário, briefings, concorrentes...). Abra o projeto no claude.ai e baixe os arquivos. São a parte mais valiosa depois das skills.
-- [ ] **Memória do projeto** (`preferences.md` e `areas/wabfy.md`): copie o texto pela tela de memória do projeto.
+- [x] **Memória do projeto**: já está em `gpt/conhecimento/00-memoria.md`.
 - [ ] **Exportação oficial da conta**: claude.ai → Settings → Privacy → Export data (histórico de conversas).
 - [ ] **Artifacts compartilhados por outras pessoas**: "Painel Wabfy" e "Wabfy Design System". Peça o original a quem compartilhou.
 - [ ] **Skills que você subiu na conta**: o pacote aqui veio da sincronização da conta; se você editou algo direto no claude.ai depois de hoje, baixe de novo.
