@@ -10,7 +10,7 @@ Pacote gerado em 18/11/2026 com tudo da Wabfy que dava para tirar do Claude por 
 | `gpt/conhecimento/01..06-*.md` | As 19 skills, as referências do Cérebro, a skill de fila e os 14 subagentes, juntados em 6 arquivos por área | Subir como **arquivos** do projeto/GPT |
 | `skills-claude/` | Cópia fiel do plugin `wabfy-agentes` v0.4.1 e da skill `wabfy-fila`, no formato original (`SKILL.md`) | Backup; serve também para ferramentas que leem o formato de skills |
 | `tarefas-agendadas/` | Os prompts completos das tarefas agendadas dos agentes (Chefão, radares, listening etc.), com horário | Recriar como **Tarefas** agendadas no ChatGPT, ou guardar como receita |
-| `artifacts/` | HTML dos artifacts da Wabfy (painel, Pulso, calendário, wireframes, prévias de e-mail...) | Abrir no navegador; republicar onde quiser |
+| `artifacts/` | HTML dos artifacts da Wabfy (painel, Pulso, calendário, wireframes, prévias de e-mail...) e o texto dos 6 documentos Docs em `.md` e `.docx` | Abrir no navegador; republicar onde quiser |
 
 Os dados dos bancos dos artifacts (registros do painel, leads, ideias, Pulso Orgânico) **não** estão no repositório, porque têm nome de pessoas. Vão num `.zip` à parte.
 

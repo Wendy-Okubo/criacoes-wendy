@@ -37,9 +37,7 @@ bancos de dados compartilhados de cada uma. Tudo foi lido sem alterar nada no cl
 
 ## O que este backup NÃO cobre
 
-- **Os 6 documentos do tipo Docs**: o `index.html` salvo é só o visualizador genérico. O
-  texto dos documentos fica no serviço Claude Docs e precisa ser exportado pelo conector
-  Claude Docs (ler ou exportar cada doc).
+- **Imagens dos documentos Docs no `.md`**: o texto das 6 abas foi exportado (`conteudo*.md` e `.docx`), mas no `.md` as imagens viram marcação de texto; use o `.docx`, que mantém as imagens. Datas e menções saíram como texto simples.
 - **Whiteboard e Motion**: o `index.html` também é só o visualizador. O conteúdo está nos
   dumps do banco de dados (fora do repositório).
 - **Banco de dados dos dois wireframes (Design)**: o banco existe, mas a página não diz
