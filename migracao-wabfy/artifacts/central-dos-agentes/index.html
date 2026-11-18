@@ -1,0 +1,337 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Central dos Agentes Wabfy</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: sala de controle; faixa de agentes no topo, abas de trabalho embaixo */
+:root{
+  --bg:#F5F6FB; --surface:#FFFFFF; --ink:#18214A; --muted:#5B6386; --line:#E2E5F1;
+  --accent:#6147EC; --accent-soft:#EEEBFF; --blue:#2961EB;
+  --ok:#1F8A5B; --ok-soft:#E3F4EC; --warn:#B26A00; --warn-soft:#FFF2DC; --bad:#C2334D; --bad-soft:#FDE7EB; --idle:#8A90AD;
+  --f-display:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0E1230; --surface:#161B3F; --ink:#E9EBFA; --muted:#A3A8C8; --line:#2A3060;
+  --accent:#9C8CFF; --accent-soft:#2A2560; --blue:#7FA2FF;
+  --ok:#5CD39B; --ok-soft:#16382C; --warn:#F2B45A; --warn-soft:#3A2C12; --bad:#FF7F96; --bad-soft:#3E1A26; --idle:#7A80A3; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1230; --surface:#161B3F; --ink:#E9EBFA; --muted:#A3A8C8; --line:#2A3060;
+  --accent:#9C8CFF; --accent-soft:#2A2560; --blue:#7FA2FF;
+  --ok:#5CD39B; --ok-soft:#16382C; --warn:#F2B45A; --warn-soft:#3A2C12; --bad:#FF7F96; --bad-soft:#3E1A26; --idle:#7A80A3; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-display);font-size:15px;line-height:1.5}
+.wrap{max-width:1180px;margin:0 auto;padding-block:28px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;gap:28px}
+header{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px}
+h1{font-size:clamp(24px,4vw,34px);font-weight:800;letter-spacing:-.02em;margin:0;text-wrap:balance}
+.sub{color:var(--muted);margin:4px 0 0}
+.stamp{font-family:var(--f-mono);font-size:12px;color:var(--muted)}
+h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:0 0 12px;font-weight:700}
+.groups{display:grid;gap:18px}
+.group-title{font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px}
+.agents{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px}
+.agent{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;gap:4px;text-align:left;font:inherit;color:inherit;cursor:pointer;min-width:0}
+.agent:hover,.agent:focus-visible{border-color:var(--accent);outline:none}
+.agent[aria-pressed="true"]{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent-soft)}
+.agent .top{display:flex;align-items:center;gap:8px}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--idle);flex:none}
+.dot.ok{background:var(--ok)}.dot.atencao{background:var(--warn)}.dot.urgente,.dot.falhou{background:var(--bad)}.dot.sem_novidade{background:var(--blue)}
+.agent b{font-size:14px}
+.agent .when{font-size:12px;color:var(--muted)}
+.agent .last{font-size:12px;color:var(--muted);font-family:var(--f-mono)}
+.agent .who{display:flex;gap:10px;align-items:center;min-width:0}
+.agent .who>div{display:grid;gap:1px;min-width:0}
+.agent .role{font-size:12px;color:var(--muted)}
+.agent .status{display:flex;align-items:center;gap:6px;margin-top:4px}
+.av{flex:none;display:block;border-radius:50%;overflow:hidden}
+.av svg{display:block;width:100%;height:100%}
+.subs-mini{display:flex;margin-left:auto}
+.subs-mini .av{border:2px solid var(--surface);margin-left:-8px}
+.ficha{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start}
+.ficha h3{font-size:20px}
+.ficha .cargo{color:var(--accent);font-weight:700;font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+.ficha .rotina{font-size:13px;color:var(--muted)}
+.subs{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:4px}
+.sub-card{display:flex;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-width:0}
+.sub-card div{display:grid;gap:2px;min-width:0}
+.sub-card b{font-size:13px}
+.sub-card span{font-size:12px;color:var(--muted)}
+@media (max-width:520px){.ficha{grid-template-columns:1fr}}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;border-bottom:1px solid var(--line)}
+.tab{background:none;border:0;border-bottom:2px solid transparent;padding:10px 12px;font:600 14px var(--f-display);color:var(--muted);cursor:pointer}
+.tab[aria-selected="true"]{color:var(--ink);border-color:var(--accent)}
+.tab .n{font-family:var(--f-mono);font-size:11px;background:var(--accent-soft);color:var(--accent);border-radius:99px;padding:1px 7px;margin-left:6px}
+.panel{display:grid;gap:12px}
+.filters{display:flex;gap:8px;flex-wrap:wrap;align-items:center;color:var(--muted);font-size:13px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:4px 10px;font:500 12px var(--f-display);color:var(--ink);cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:grid;gap:10px;min-width:0}
+.card.urgente{border-left:4px solid var(--bad)}.card.atencao{border-left:4px solid var(--warn)}
+.meta{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:12px;color:var(--muted)}
+.pill{font-size:11px;font-weight:700;padding:2px 8px;border-radius:99px;text-transform:uppercase;letter-spacing:.04em;background:var(--accent-soft);color:var(--accent)}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}.pill.atencao,.pill.pendente,.pill.novo{background:var(--warn-soft);color:var(--warn)}.pill.urgente,.pill.falhou,.pill.critica,.pill.recusado{background:var(--bad-soft);color:var(--bad)}.pill.lead,.pill.aprovado,.pill.feito,.pill.encaminhado,.pill.concluido{background:var(--ok-soft);color:var(--ok)}
+.card h3{margin:0;font-size:16px;font-weight:700;text-wrap:balance}
+.card p{margin:0;max-width:75ch}
+details summary{cursor:pointer;color:var(--accent);font-weight:600;font-size:13px}
+ul.items{margin:8px 0 0;padding-left:18px;display:grid;gap:8px}
+ul.items li{max-width:80ch}
+.items .t{font-weight:600}
+.items .s{font-size:12px;color:var(--muted)}
+a{color:var(--blue)}
+.acoes{background:var(--accent-soft);border-radius:8px;padding:10px 12px;font-size:13px}
+.acoes b{display:block;margin-bottom:4px}
+.acoes ul{margin:0;padding-left:18px}
+.row-actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;padding:6px 12px;font:600 13px var(--f-display);cursor:pointer}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--surface)}
+.btn:focus-visible,.chip:focus-visible,.tab:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.btn[disabled]{opacity:.5;cursor:default}
+.empty{border:1px dashed var(--line);border-radius:12px;padding:28px;text-align:center;color:var(--muted)}
+.empty b{display:block;color:var(--ink);margin-bottom:4px}
+.note{font-size:12px;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){.card{animation:in .25s ease both}@keyframes in{from{transform:translateY(4px)}to{transform:none}}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1>Central dos Agentes Wabfy</h1>
+      <p class="sub">O que cada agente encontrou, o que pede decisão sua e o que ficou pendente.</p>
+    </div>
+    <div class="stamp" id="stamp">Carregando…</div>
+  </header>
+
+  <section aria-labelledby="h-time">
+    <h2 id="h-time">O time</h2>
+    <div class="groups" id="groups"></div>
+  </section>
+
+  <section>
+    <div class="tabs" role="tablist" id="tabs">
+      <button class="tab" role="tab" id="tab-feed" aria-selected="true" data-v="feed">Entregas <span class="n" id="n-feed">0</span></button>
+      <button class="tab" role="tab" id="tab-leads" aria-selected="false" data-v="leads">Mensagens e leads <span class="n" id="n-leads">0</span></button>
+      <button class="tab" role="tab" id="tab-testes" aria-selected="false" data-v="testes">Testes <span class="n" id="n-testes">0</span></button>
+      <button class="tab" role="tab" id="tab-comercial" aria-selected="false" data-v="comercial">Voz do cliente <span class="n" id="n-comercial">0</span></button>
+      <button class="tab" role="tab" id="tab-memoria" aria-selected="false" data-v="memoria">Memória <span class="n" id="n-memoria">0</span></button>
+    </div>
+  </section>
+
+  <section class="panel" id="view"></section>
+  <p class="note" id="dbnote" hidden>Os dados dos agentes não carregaram nesta visualização. Abra a página no claude.ai, com sua conta, para ver e aprovar itens.</p>
+</div>
+
+<script>
+/* Rostinhos: ilustração simples, mesmo traço para todos. f = [fundo, pele, cabelo, cor do cabelo, roupa, óculos, brinco] */
+const SKIN=["#F3D5B5","#E4B98F","#C98E62","#94603F","#6A4128"];
+const BG=["#E6E1FF","#DCE6FD","#EFEAFF","#E3F0FB","#F2E8FF"];
+const HAIRC={preto:"#1E1A2B",castanho:"#4B2F20",ruivo:"#9A4E26",loiro:"#CFA761",grisalho:"#9FA3B5",roxo:"#6147EC"};
+const SHIRT=["#25356E","#6147EC","#2961EB","#AAA4FF","#3B2E8F"];
+function avatar(f,size){
+  const [bg,sk,hs,hc,sh,gl,er]=f;const s=SKIN[sk],h=HAIRC[hc],b=BG[bg],c=SHIRT[sh];
+  const back={longo:`<path d="M17 30 C15 12 49 12 47 30 L48 50 C44 52 40 49 40 42 L24 42 C24 49 20 52 16 50 Z" fill="${h}"/>`,ondulado:`<path d="M16 30 C14 10 50 10 48 30 C51 38 47 44 49 50 C44 53 41 48 40 43 L24 43 C23 48 20 53 15 50 C17 44 13 38 16 30 Z" fill="${h}"/>`}[hs]||"";
+  const top={curto:`<path d="M19 28 C17 12 47 12 45 28 C42 21 37 18 32 18 C26 18 22 21 19 28 Z" fill="${h}"/>`,
+    lateral:`<path d="M19 29 C16 11 48 11 45 27 C41 20 33 17 25 21 C23 23 21 26 19 29 Z" fill="${h}"/>`,
+    coque:`<circle cx="32" cy="10" r="6.5" fill="${h}"/><path d="M19 28 C17 13 47 13 45 28 C42 21 37 18 32 18 C26 18 22 21 19 28 Z" fill="${h}"/>`,
+    cacheado:`<g fill="${h}"><circle cx="21" cy="22" r="5.5"/><circle cx="26" cy="15.5" r="6"/><circle cx="33" cy="13.5" r="6.5"/><circle cx="40" cy="16" r="6"/><circle cx="44" cy="22.5" r="5.5"/><circle cx="19.5" cy="29" r="4"/><circle cx="45" cy="29" r="4"/></g>`,
+    raspado:`<path d="M20.5 25 C21 14 43 14 43.5 25 C40 20 36 19 32 19 C28 19 24 20 20.5 25 Z" fill="${h}" opacity=".55"/>`,
+    longo:`<path d="M19 29 C17 12 47 12 45 29 C43 21 38 18 32 18 C26 18 21 21 19 29 Z" fill="${h}"/>`,
+    ondulado:`<path d="M18 30 C16 11 48 11 46 30 C43 22 39 19 32 19 C25 19 21 22 18 30 Z" fill="${h}"/>`}[hs];
+  const glasses=gl?`<g fill="none" stroke="#25356E" stroke-width="1.4"><circle cx="27.5" cy="29.5" r="3.8"/><circle cx="36.5" cy="29.5" r="3.8"/><path d="M31.3 29.5 H32.7"/></g>`:"";
+  const ear=er?`<circle cx="20.6" cy="34" r="1.3" fill="#AAA4FF"/><circle cx="43.4" cy="34" r="1.3" fill="#AAA4FF"/>`:"";
+  return el("span",{class:"av",style:`width:${size}px;height:${size}px`,"aria-hidden":"true",html:`<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="32" fill="${b}"/>${back}<path d="M9 66 C11 50 21 45 32 45 C43 45 53 50 55 66 Z" fill="${c}"/><rect x="27.5" y="37" width="9" height="10" rx="3" fill="${s}"/><ellipse cx="32" cy="29" rx="12" ry="13.5" fill="${s}"/>${top}${ear}<circle cx="27.5" cy="29.5" r="1.6" fill="#1E1A2B"/><circle cx="36.5" cy="29.5" r="1.6" fill="#1E1A2B"/><path d="M28.5 35.2 Q32 38 35.5 35.2" fill="none" stroke="#1E1A2B" stroke-width="1.5" stroke-linecap="round"/>${glasses}</svg>`});
+}
+const AGENTS=[
+ {g:"Comando",id:"chefao",nome:"Heitor",n:"Chefão",cargo:"Chefe de operações",w:"Seg a sex, 9h40 e 17h27 · e sempre que você pedir",f:[0,3,"raspado","preto",0,1,0],
+  d:"Coordena o time inteiro. Recebe seus pedidos e distribui para os agentes certos, na ordem certa; inspeciona tudo o que eles entregam, manda refazer o que estiver fraco (até 2 vezes) e só traz para você o que passou ou o que só você pode decidir: campanha, claim novo, conflito e o que sairia do Claude. Abre o dia com as prioridades, fecha o dia com os vereditos e, na sexta, faz o balanço da semana e o placar de confiança de cada agente.",
+  subs:[{nome:"Ivo",cargo:"Inspetor de entregas",f:[2,1,"curto","castanho",1,0,0]}]},
+ {g:"Base",id:"cerebro",nome:"Sofia",n:"Cérebro Wabfy",cargo:"Base da marca",w:"Lida por todos antes de trabalhar",f:[2,1,"coque","castanho",0,1,1],
+  d:"Não roda sozinha: é o que todos os agentes leem antes de trabalhar. Guarda posicionamento, claims aprovados, módulos e pilares, regras de estilo, de briefing e de visual, fontes e pessoas. Toda correção sua que vira regra passa a morar aqui."},
+ {g:"Inteligência",id:"radar-rh",nome:"Helena",n:"Radar de RH",cargo:"Pesquisadora de RH",w:"Seg 9h41",f:[0,0,"longo","castanho",1,0,1],
+  d:"Toda segunda, vasculha o que mudou no mundo do RH nos últimos 7 a 14 dias: estudos, notícias, dados, vozes do LinkedIn e eventos. Separa fato de opinião, confere cada número na fonte original e entrega de 5 a 8 sinais que podem virar pauta, com editoria, pilar, formato e funil.",
+  subs:[{nome:"Davi",cargo:"Pesquisador de notícias e estudos",f:[1,3,"curto","preto",0,0,0]},{nome:"Lu",cargo:"Agenda de eventos de RH",f:[4,1,"ondulado","ruivo",2,0,1]},{nome:"Alice",cargo:"Checadora de fontes",f:[3,2,"coque","preto",4,1,0]}]},
+ {g:"Inteligência",id:"radar-cultura",nome:"Caio",n:"Radar de cultura",cargo:"Caçador de cultura",w:"Seg e qui 9h53",f:[1,2,"cacheado","preto",3,0,0],
+  d:"Segunda e quinta, descobre o que está em alta fora do RH: séries, programas de TV, música, perfis da internet, memes, formatos que estão bombando nas redes, artes, design e publicidade. Entrega só os achados, com validade e risco, para o Diretor criativo transformar em ideia.",
+  subs:[{nome:"Pipa",cargo:"Cultura pop e TV",f:[4,0,"longo","loiro",1,0,1]},{nome:"Zeca",cargo:"Internet, memes e formatos",f:[0,3,"raspado","preto",2,0,0]},{nome:"Mel",cargo:"Artes, design e publicidade",f:[2,4,"cacheado","preto",4,0,1]}]},
+ {g:"Inteligência",id:"concorrentes",nome:"Otávio",n:"Espião de concorrentes",cargo:"Analista de mercado",w:"Qua 9h47",f:[3,0,"lateral","grisalho",0,1,0],
+  d:"Toda quarta, lê o que os 10 concorrentes e as marcas de referência publicaram, anunciaram e mudaram nos sites. Olha formato, gancho, o que engajou, ofertas e o que estão falando, e aponta os espaços vazios que a Wabfy pode ocupar. Nunca sugere copiar.",
+  subs:[{nome:"Nico e equipe",cargo:"Analistas por lote de 3 ou 4 marcas",f:[1,2,"curto","castanho",2,0,0]}]},
+ {g:"Inteligência",id:"analista",nome:"Bia",n:"Analista de desempenho",cargo:"Analista de desempenho",w:"Sex 15h41",f:[4,3,"coque","preto",2,1,1],
+  d:"Toda sexta, depois da coleta do Pulso, diz o que funcionou e o que não funcionou a partir de 5 números: engajamento no Instagram, buscas no LinkedIn, cliques em link, novas mensagens e alcance. Acompanha os testes, dá veredito e propõe hipóteses novas. Na 1ª sexta do mês, fecha o mês e a campanha."},
+ {g:"Inteligência",id:"releases",nome:"Igor",n:"Monitor de releases",cargo:"Monitor de produto",w:"Sex 14h22",f:[0,1,"curto","loiro",4,0,0],
+  d:"Toda sexta, junta as novidades da semana no Teams, nas reuniões de Produto e na demo. Classifica cada uma (módulo, pilar, novo ou melhoria), decide o óbvio e te passa as dúvidas, indica o print e sugere onde entra: post, Seu 1:1 ou página."},
+ {g:"Inteligência",id:"listening",nome:"Lia",n:"Social listening",cargo:"Escuta das redes",w:"Seg a sex, 9h47 e 15h47",f:[2,2,"ondulado","castanho",1,0,1],
+  d:"Duas vezes por dia útil, lê DMs, comentários e menções no Instagram e no LinkedIn para nada passar sem ser visto. Classifica cada mensagem, avisa no celular quando é urgente e separa os leads para o Will. Nunca responde por conta própria."},
+ {g:"Inteligência",id:"visibilidade-ia",nome:"Nina",n:"Visibilidade em IA",cargo:"Especialista em busca e IA",w:"1ª seg do mês",f:[1,4,"raspado","preto",3,1,1],
+  d:"Na primeira segunda do mês, faz 20 perguntas de RH no ChatGPT, no Gemini, no Google, no Claude e no Copilot e anota se a Wabfy aparece e quem aparece no lugar. Propõe ajustes nas páginas do site e os lugares onde a marca precisa estar."},
+ {g:"Inteligência",id:"parcerias",nome:"Rafa",n:"Parcerias e influenciadores",cargo:"Parcerias e influência",w:"Quando você pedir",f:[3,1,"lateral","roxo",1,0,1],
+  d:"Quando você pede, encontra criadores, páginas de humor, mídias, newsletters, eventos e comunidades de RH para collabs, com tamanho, engajamento, tom, aderência e risco de cada um."},
+ {g:"Inteligência",id:"escuta-comercial",nome:"Tereza",n:"Escuta do comercial",cargo:"Voz do cliente",w:"A cada 15 dias, qui 15h37",f:[4,2,"longo","grisalho",0,1,0],
+  d:"A cada 15 dias, lê as calls do comercial na Elephan e acumula dores, perguntas, objeções, motivos de perda e frases reais dos clientes de RH, sem identificar ninguém. É o principal insumo para escolher a campanha.",
+  subs:[{nome:"Gil",cargo:"Leitor de calls",f:[0,3,"curto","grisalho",4,1,0]}]},
+ {g:"Criação",id:"editor-chefe",nome:"Vera",n:"Editor-chefe",cargo:"Editora-chefe",w:"Quando você pedir · mês fechado até o dia 25",f:[0,1,"coque","grisalho",0,1,1],
+  d:"Monta o mês até o dia 25 do anterior e revisa a semana toda sexta, no Calendário Vivo. Junta o que todos os agentes trouxeram, propõe variações de mote sobre a sua direção e garante funil completo toda semana e as editorias fixas. Para no calendário."},
+ {g:"Criação",id:"diretor-criativo",nome:"Theo",n:"Diretor criativo",cargo:"Diretor criativo",w:"Quando você pedir",f:[2,0,"ondulado","preto",1,0,0],
+  d:"Transforma pauta em ideia que faz o RH parar e prestar atenção. Põe seis criativos para pensar ao mesmo tempo, cada um por um ângulo, e uma juíza escolhe as 3 finalistas, com gancho, referência visual e esboço simples.",
+  subs:[{nome:"Os Seis",cargo:"Criativos por ângulo: paródia, dado, cena humana, humor, trend e formato nativo",f:[3,2,"cacheado","roxo",1,0,1]},{nome:"Dora",cargo:"Juíza do scroll",f:[1,1,"lateral","ruivo",0,1,1]}]},
+ {g:"Criação",id:"copy",nome:"Clara",n:"Copy e briefing",cargo:"Redatora e briefing",w:"Quando você pedir",f:[1,0,"longo","ruivo",3,0,1],
+  d:"Escreve em duas etapas: primeiro o briefing no seu template, com direção visual e esboço em grade; depois de aprovado, a copy final, a legenda, o LinkedIn e o story. Uma versão só, a melhor, num doc que você edita."},
+ {g:"Criação",id:"video",nome:"Bento",n:"Roteirista de vídeo",cargo:"Roteirista",w:"Quando você pedir",f:[4,4,"curto","preto",2,0,0],
+  d:"Escreve roteiros de animação e vídeos de módulo para o designer animar: locução, texto na tela, direção de imagem, elementos e, em vídeo de produto, o print exato de cada cena."},
+ {g:"Criação",id:"email",nome:"Júlia",n:"E-mails e CRM",cargo:"Especialista em CRM",w:"Quando você pedir",f:[3,3,"longo","preto",4,0,1],
+  d:"Escreve o Seu 1:1 com a Wabfy, e-mails de campanha, convites, nutrição e reengajamento, com dois assuntos para teste A/B, botões em vários pontos e preview em layout de e-mail para a Lari montar."},
+ {g:"Controle",id:"revisor",nome:"Augusto",n:"Revisor final",cargo:"Revisor final",w:"Antes de toda entrega",f:[0,2,"raspado","grisalho",0,1,0],
+  d:"Revisa toda peça pública sem ter visto como ela foi feita: claims, módulos, links, estilo, ortografia, tamanho, vícios de IA, coerência com a campanha e força criativa (nota de 1 a 5). Só aponta; quem criou corrige.",
+  subs:[{nome:"Ana",cargo:"Revisora às cegas",f:[2,1,"coque","preto",3,1,0]}]},
+ {g:"Controle",id:"revisor-paginas",nome:"Íris",n:"Revisor de páginas",cargo:"Revisora do site",w:"A cada 15 dias, ter 15h34",f:[1,3,"cacheado","castanho",1,1,1],
+  d:"A cada 15 dias, revisa até 2 páginas da fila que você monta: produto atualizado, prints, SEO e IA, conversão e concorrentes. Entrega o texto para o ClickUp, a versão consolidada e os dois HTMLs.",
+  subs:[{nome:"Sami",cargo:"Auditor de página",f:[4,0,"lateral","castanho",2,0,0]}]},
+ {g:"Controle",id:"guardiao",nome:"Jorge",n:"Guardião da memória",cargo:"Guardião da memória",w:"Sex 16h43",f:[3,4,"raspado","grisalho",4,1,0],
+  d:"Toda sexta, confere memória e documentos do projeto: acrescenta o que você decidiu, traz decisões de reuniões para validar, aponta o que está velho ou duplicado e propõe ajustes nas skills. Só apaga ou arquiva com a sua aprovação.",
+  subs:[{nome:"Rui",cargo:"Auditor de memória",f:[0,1,"curto","castanho",1,1,0]}]},
+];
+const S={view:"feed",agent:null,reg:[],leads:[],testes:[],memoria:[],comercial:[],comFilter:"dor",leadFilter:"abertos",db:null};
+const $=s=>document.querySelector(s);
+const el=(t,a={},...c)=>{const e=document.createElement(t);for(const[k,v]of Object.entries(a)){if(k==="class")e.className=v;else if(k==="html")e.innerHTML=v;else if(k.startsWith("on"))e.addEventListener(k.slice(2),v);else e.setAttribute(k,v)}for(const x of c.flat()){if(x==null||x===false)continue;e.append(x.nodeType?x:document.createTextNode(String(x)))}return e};
+const fmt=iso=>{if(!iso)return"";const d=new Date(iso);if(isNaN(d))return String(iso);return d.toLocaleString("pt-BR",{day:"2-digit",month:"2-digit",hour:"2-digit",minute:"2-digit",timeZone:"America/Sao_Paulo"})};
+const safeUrl=u=>{try{const x=new URL(u);return(x.protocol==="https:"||x.protocol==="http:")?x.href:null}catch{return null}};
+const link=(u,t)=>{const s=safeUrl(u);return s?el("a",{href:s,target:"_blank",rel:"noopener"},t||"abrir"):null};
+const sort=(a,k)=>a.sort((x,y)=>String(y[k]||"").localeCompare(String(x[k]||"")));
+
+function renderGroups(){
+  const box=$("#groups");box.replaceChildren();
+  for(const g of["Comando","Base","Inteligência","Criação","Controle"]){
+    const grid=el("div",{class:"agents"});
+    for(const a of AGENTS.filter(x=>x.g===g)){
+      const last=S.reg.find(r=>r.agente===a.id);
+      const st=last?.status||"idle";
+      grid.append(el("button",{class:"agent","aria-pressed":S.agent===a.id?"true":"false","aria-label":a.nome+", "+a.cargo,onclick:()=>{S.agent=S.agent===a.id?null:a.id;S.view="feed";render()}},
+        el("span",{class:"who"},avatar(a.f,44),el("div",{},el("b",{},a.nome),el("span",{class:"role"},a.cargo)),
+          a.subs?el("span",{class:"subs-mini",title:a.subs.length+" subagente(s)"},a.subs.slice(0,3).map(s=>avatar(s.f,22))):null),
+        el("span",{class:"when"},a.w),
+        el("span",{class:"status"},el("span",{class:"dot "+st,"aria-hidden":"true"}),el("span",{class:"last"},a.id==="cerebro"?"base comum":(last?("última: "+fmt(last.data)):"ainda sem entrega")))));
+    }
+    box.append(el("div",{},el("div",{class:"group-title"},g),grid));
+  }
+}
+
+function itemList(items){
+  if(!Array.isArray(items)||!items.length)return null;
+  return el("ul",{class:"items"},items.map(i=>el("li",{},
+    el("span",{class:"t"},i.titulo||i.tipo||"Item"),i.texto?[" ",i.texto]:null,
+    el("div",{class:"s"},[i.fonte,i.data_fonte,i.prioridade&&("prioridade "+i.prioridade),i.validade&&("vale até "+i.validade)].filter(Boolean).join(" · "),i.link?[" · ",link(i.link,"fonte")]:null))));
+}
+
+function renderFeed(v){
+  let rows=S.reg;if(S.agent)rows=rows.filter(r=>r.agente===S.agent);
+  const nm=id=>{const a=AGENTS.find(a=>a.id===id);return a?a.nome+" · "+a.n:id};
+  if(S.agent){
+    const a=AGENTS.find(x=>x.id===S.agent);
+    v.append(el("article",{class:"card ficha"},avatar(a.f,88),
+      el("div",{style:"display:grid;gap:8px;min-width:0"},
+        el("span",{class:"cargo"},a.cargo+" · "+a.n),
+        el("h3",{},a.nome),
+        el("p",{},a.d),
+        el("span",{class:"rotina"},"Quando trabalha: "+a.w),
+        a.subs?el("div",{},el("div",{class:"group-title",style:"margin:6px 0"},"Subagentes"),el("div",{class:"subs"},a.subs.map(s=>el("div",{class:"sub-card"},avatar(s.f,36),el("div",{},el("b",{},s.nome),el("span",{},s.cargo)))))):el("span",{class:"note"},"Trabalha sem subagentes."),
+        el("div",{class:"row-actions"},el("button",{class:"chip",onclick:()=>{S.agent=null;render()}},"ver o time todo")))));
+  }
+  if(!rows.length){v.append(el("div",{class:"empty"},el("b",{},S.agent?"Nenhuma entrega deste agente ainda":"Nenhuma entrega ainda"),"Quando um agente rodar, o resultado aparece aqui com o que ele achou e o que pede decisão sua."));return}
+  for(const r of rows.slice(0,60)){
+    const its=itemList(r.itens);
+    v.append(el("article",{class:"card "+(r.status||"")},
+      el("div",{class:"meta"},el("span",{class:"pill "+(r.status||"")},(r.status||"ok").replace("_"," ")),r.chefe&&r.chefe.veredito?el("span",{class:"pill "+({aprovado:"aprovado",refeito:"pendente",escalado:"urgente"}[r.chefe.veredito]||""),title:r.chefe.nota||""},"Heitor: "+r.chefe.veredito+(r.chefe.tentativas>1?" ("+r.chefe.tentativas+"x)":"")):null,el("span",{},nm(r.agente)),el("span",{},fmt(r.data))),
+      el("h3",{},r.titulo||nm(r.agente)),
+      r.resumo?el("p",{},r.resumo):null,
+      Array.isArray(r.acoes)&&r.acoes.length?el("div",{class:"acoes"},el("b",{},"Pede você"),el("ul",{},r.acoes.map(a=>el("li",{},a)))):null,
+      its?el("details",{},el("summary",{},`Ver ${r.itens.length} itens`),its):null,
+      r.doc?el("div",{class:"note"},"Documento completo no projeto: "+r.doc):null));
+  }
+}
+
+async function setField(col,id,data){if(!S.db)return;try{await S.db.collection(col).doc(id).update(data)}catch(e){toast("Não foi possível salvar: "+(e.message||e.code))}}
+function toast(m){const n=$("#dbnote");n.textContent=m;n.hidden=false;setTimeout(()=>{n.hidden=true},5000)}
+
+function renderLeads(v){
+  const F={abertos:l=>l.status==="novo"||!l.status,urgentes:l=>l.urgente&&l.status!=="respondido"&&l.status!=="ignorado",leads:l=>l.classificacao==="lead",todos:()=>true};
+  v.append(el("div",{class:"filters"},Object.keys(F).map(k=>el("button",{class:"chip","aria-pressed":S.leadFilter===k?"true":"false",onclick:()=>{S.leadFilter=k;render()}},k))));
+  const rows=S.leads.filter(F[S.leadFilter]);
+  if(!rows.length){v.append(el("div",{class:"empty"},el("b",{},"Nada por aqui"),"O Social listening lê comentários, DMs e menções às 9h e às 16h e lista tudo aqui, sem responder ninguém."));return}
+  for(const l of rows){
+    v.append(el("article",{class:"card "+(l.urgente?"urgente":"")},
+      el("div",{class:"meta"},el("span",{class:"pill "+(l.classificacao||"")},l.classificacao||"outro"),l.urgente?el("span",{class:"pill urgente"},"urgente"):null,el("span",{class:"pill "+(l.status||"novo")},l.status||"novo"),el("span",{},[l.rede,l.tipo].filter(Boolean).join(" · ")),el("span",{},fmt(l.recebido_em))),
+      el("h3",{},[l.autor,l.empresa].filter(Boolean).join(" · ")||"Mensagem"),
+      el("p",{},l.mensagem||""),
+      l.motivo?el("div",{class:"note"},l.motivo):null,
+      el("div",{class:"row-actions"},link(l.link,"Abrir na rede"),
+        ["encaminhado","respondido","ignorado"].map(s=>el("button",{class:"btn"+(l.status===s?" primary":""),onclick:()=>setField("leads",l._id,{status:s})},s)))));
+  }
+}
+
+function renderTestes(v){
+  if(!S.testes.length){v.append(el("div",{class:"empty"},el("b",{},"Sem testes ainda"),"O Analista de desempenho propõe hipóteses toda sexta e dá veredito quando o teste termina."));return}
+  const order={rodando:0,proposto:1,concluido:2,descartado:3};
+  for(const t of [...S.testes].sort((a,b)=>(order[a.status]??9)-(order[b.status]??9))){
+    v.append(el("article",{class:"card"},
+      el("div",{class:"meta"},el("span",{class:"pill "+(t.status||"")},t.status||"proposto"),el("span",{},"aberto em "+(t.aberto_em||"?"))),
+      el("h3",{},t.hipotese||t._id),
+      el("p",{},[t.metrica&&("Métrica: "+t.metrica),t.como_testar&&("Como testar: "+t.como_testar)].filter(Boolean).join(" · ")),
+      t.veredito?el("div",{class:"acoes"},el("b",{},"Veredito"),t.veredito):null,
+      t.status==="proposto"?el("div",{class:"row-actions"},el("button",{class:"btn primary",onclick:()=>setField("testes",t._id,{status:"rodando"})},"Vamos testar"),el("button",{class:"btn",onclick:()=>setField("testes",t._id,{status:"descartado"})},"Descartar")):null));
+  }
+}
+
+function renderComercial(v){
+  const T={dor:"Dores",objecao:"Objeções",pergunta:"Perguntas",perda:"Perdas",ganho:"Ganhos",termo:"Palavras do cliente",modulo:"Módulos"};
+  v.append(el("div",{class:"filters"},Object.keys(T).map(k=>el("button",{class:"chip","aria-pressed":S.comFilter===k?"true":"false",onclick:()=>{S.comFilter=k;render()}},T[k]+" ("+S.comercial.filter(i=>i.tipo===k).length+")"))));
+  const rows=S.comercial.filter(i=>i.tipo===S.comFilter&&i.status!=="descartado").sort((a,b)=>(b.frequencia||0)-(a.frequencia||0));
+  if(!rows.length){v.append(el("div",{class:"empty"},el("b",{},"Ainda sem dados"),"A Escuta do comercial lê as calls da Elephan a cada 15 dias e acumula aqui o que os clientes de RH falam, do mais frequente para o menos."));return}
+  for(const i of rows){
+    v.append(el("article",{class:"card"},
+      el("div",{class:"meta"},el("span",{class:"pill"},(i.frequencia||0)+" calls"),el("span",{class:"pill "+(i.status||"novo")},i.status||"novo"),el("span",{},"última vez "+(i.ultima_vez||"?"))),
+      el("h3",{},i.texto||i._id),
+      Array.isArray(i.exemplos)&&i.exemplos.length?el("details",{},el("summary",{},"Ver frases"),el("ul",{class:"items"},i.exemplos.map(x=>el("li",{},"“"+x+"”")))):null,
+      Array.isArray(i.modulos)&&i.modulos.length?el("div",{class:"note"},"Módulos: "+i.modulos.join(", ")):null,
+      el("div",{class:"row-actions"},el("button",{class:"btn"+(i.status==="usado"?" primary":""),onclick:()=>setField("insights_comercial",i._id,{status:"usado"})},"Já usei"),el("button",{class:"btn",onclick:()=>setField("insights_comercial",i._id,{status:"descartado"})},"Descartar"))));
+  }
+}
+
+function renderMemoria(v){
+  const pend=S.memoria.filter(m=>m.status==="pendente");
+  const rest=S.memoria.filter(m=>m.status!=="pendente");
+  if(!S.memoria.length){v.append(el("div",{class:"empty"},el("b",{},"Nada para revisar"),"O Guardião da memória confere tudo toda sexta. Remoções e correções aparecem aqui para você aprovar antes de qualquer mudança."));return}
+  v.append(el("p",{class:"note"},"Aprovar não apaga na hora: o Guardião executa os itens aprovados na próxima rodada."));
+  for(const m of [...pend,...rest].slice(0,80)){
+    v.append(el("article",{class:"card "+(m.status==="pendente"?"atencao":"")},
+      el("div",{class:"meta"},el("span",{class:"pill "+(m.status||"")},m.status),el("span",{class:"pill"},m.tipo),el("span",{},m.alvo||"")),
+      el("p",{},m.texto||""),
+      m.motivo?el("div",{class:"note"},m.motivo):null,
+      m.status==="pendente"?el("div",{class:"row-actions"},el("button",{class:"btn primary",onclick:()=>setField("memoria",m._id,{status:"aprovado"})},"Aprovar"),el("button",{class:"btn",onclick:()=>setField("memoria",m._id,{status:"recusado"})},"Recusar")):null));
+  }
+}
+
+function render(){
+  renderGroups();
+  document.querySelectorAll(".tab").forEach(t=>t.setAttribute("aria-selected",t.dataset.v===S.view?"true":"false"));
+  $("#n-feed").textContent=S.reg.length;
+  $("#n-leads").textContent=S.leads.filter(l=>l.status==="novo"||!l.status).length;
+  $("#n-testes").textContent=S.testes.filter(t=>t.status==="rodando"||t.status==="proposto").length;
+  $("#n-memoria").textContent=S.memoria.filter(m=>m.status==="pendente").length;
+  $("#n-comercial").textContent=S.comercial.filter(i=>i.status!=="descartado").length;
+  const v=$("#view");v.replaceChildren();
+  ({feed:renderFeed,leads:renderLeads,testes:renderTestes,comercial:renderComercial,memoria:renderMemoria})[S.view](v);
+}
+document.querySelectorAll(".tab").forEach(t=>t.addEventListener("click",()=>{S.view=t.dataset.v;render()}));
+render();
+
+(async()=>{
+  const timer=setTimeout(()=>{$("#stamp").textContent="Sem conexão com os dados";$("#dbnote").hidden=false},10000);
+  const db=await claude.use("db");
+  if(!db){clearTimeout(timer);$("#stamp").textContent="Sem conexão com os dados";$("#dbnote").hidden=false;return}
+  S.db=db;
+  const sub=(col,key,ord)=>db.collection(col).onSnapshot(snap=>{clearTimeout(timer);S[key]=sort(snap.docs.map(d=>({_id:d.id,...d.data()})),ord);$("#stamp").textContent="Atualizado "+new Date().toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"});render()},()=>{clearTimeout(timer);$("#dbnote").hidden=false});
+  sub("registros","reg","data");sub("leads","leads","recebido_em");sub("testes","testes","aberto_em");sub("memoria","memoria","_id");sub("insights_comercial","comercial","ultima_vez");
+})();
+</script>
+
+</body></html>

@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Wireframe LP Colaboradores Wabfy</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#6147EC}a:hover{color:#25356E}
+.wf *{box-sizing:border-box}
+.wf h1,.wf h2,.wf h3,.wf h4,.wf p,.wf ul{margin:0}
+.wf ul{list-style:none;padding:0}
+.eb{font-size:12.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#6147EC}
+.dk .eb{color:#C9C2FF}
+.chk{display:flex;gap:10px;align-items:flex-start;font-size:15px;line-height:1.5;color:#5B5C79}
+.chk::before{content:"✓";flex-shrink:0;width:20px;height:20px;border-radius:6px;background:rgba(97,71,236,.10);color:#6147EC;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.dk .chk{color:rgba(255,255,255,.80)}
+.dk .chk::before{background:rgba(255,255,255,.14);color:#fff}
+.ph{border:2px dashed rgba(97,71,236,.45);background:repeating-linear-gradient(135deg,rgba(97,71,236,.05) 0 14px,rgba(97,71,236,.09) 14px 28px);border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;padding:24px;color:#25356E;font-size:13.5px;font-weight:600;line-height:1.45}
+.dk .ph{border-color:rgba(201,194,255,.55);background:repeating-linear-gradient(135deg,rgba(255,255,255,.04) 0 14px,rgba(255,255,255,.08) 14px 28px);color:#fff}
+.ph small{font-weight:500;font-size:12px;opacity:.75}
+.dl{display:flex;align-items:center;gap:12px;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#B4235A;margin:0 0 14px}
+.dl::after{content:"";flex:1;height:2px;background:repeating-linear-gradient(90deg,#B4235A 0 8px,transparent 8px 14px);opacity:.5}
+.tag{display:inline-flex;align-items:center;font-size:10.5px;font-weight:800;letter-spacing:.06em;color:#fff;background:#0E9F6E;padding:4px 8px;border-radius:5px;text-transform:uppercase}
+.tag.val{background:#C2410C}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:14px 30px;border-radius:8px;font-family:inherit;font-size:16px;font-weight:500;color:#fff;background:linear-gradient(90deg,#403D99 0%,#6B66FF 100%);border:none;text-decoration:none;box-shadow:0 12px 28px -10px rgba(64,61,153,.55)}
+.btn:hover{color:#fff}
+.mod{display:inline-flex;font-size:10.5px;font-weight:800;letter-spacing:.08em;color:#6147EC;background:rgba(97,71,236,.10);border:1px solid rgba(97,71,236,.35);border-radius:6px;padding:3px 7px}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:18px;padding:20px 0;font-size:16px;font-weight:600;color:#25356E}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:22px;font-weight:500;color:#6147EC}
+.faq[open] summary::after{content:"–"}
+.chg{position:relative;outline:2px dashed #0E9F6E;outline-offset:5px;border-radius:6px;background:rgba(14,159,110,.08)}
+.dk .chg{outline-color:#34D399;background:rgba(52,211,153,.14)}
+.chg::after{content:"ALTERADO";position:absolute;top:-14px;right:-10px;z-index:3;font:800 9.5px/1 'Plus Jakarta Sans',sans-serif;letter-spacing:.06em;color:#fff;background:#0E9F6E;padding:4px 7px;border-radius:4px;white-space:nowrap}
+.chg[data-l]::after{content:attr(data-l)}
+.chg.novo{outline:2px solid #2563EB;background:rgba(37,99,235,.06)}
+.chg.novo::after{content:"NOVO";background:#2563EB}
+.nblk{position:relative;outline:3px solid #2563EB;outline-offset:6px}
+.flag-n{font-size:10.5px;font-weight:800;letter-spacing:.07em;color:#fff;background:#2563EB;padding:5px 9px;border-radius:5px}
+small.chg{display:inline-block;padding:4px 6px}
+.lg{display:inline-flex;align-items:center;gap:8px}
+.lg i{width:18px;height:18px;border-radius:4px;display:inline-block}
+@media (max-width:900px){.split{flex-direction:column !important}.split.rev{flex-direction:column !important}.arrow{transform:rotate(90deg)}}
+</style>
+</helmet>
+<div class="wf" style="width: 100%; min-height: 8200px; background: #F3F1FB; font-family: 'Plus Jakarta Sans', -apple-system, sans-serif; color: #333333; line-height: 1.5; padding-bottom: 40px">
+
+<header style="background: rgba(255,255,255,.92); border-bottom: 1px solid rgba(23,23,48,.09)">
+<div style="max-width: 1240px; margin: 0 auto; padding: 18px 32px; display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap">
+<div style="display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 20px; color: #25356E"><span style="width: 30px; height: 30px; border-radius: 9px; background: #6147EC; display: inline-block"></span>Wabfy</div>
+<nav style="display: flex; gap: 28px; font-size: 15px; color: #25356E; flex-wrap: wrap"><a href="#" style="color: #25356E; text-decoration: none">Soluções</a><a href="#" style="color: #25356E; text-decoration: none">Quem Somos</a><a href="#" style="color: #25356E; text-decoration: none">Clientes</a><a href="#" style="color: #25356E; text-decoration: none">Blog</a><span>PT-BR</span></nav>
+<span style="font-size: 12px; color: #8E8FA8">Header e menu globais · mantém igual LP</span>
+</div>
+</header>
+
+<main style="max-width: 1240px; margin: 0 auto; padding: 28px 32px 0; display: flex; flex-direction: column; gap: 36px">
+<div style="background: #0B1F17; color: #E7FFF4; border-radius: 16px; padding: 18px 24px; display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: center; font-size: 13.5px"><strong style="color: #fff">Legenda</strong><span class="lg"><i style="outline: 2px dashed #34D399; background: rgba(52,211,153,.16)"></i>ALTERADO: texto ou estrutura muda em relação à LP atual</span><span class="lg"><i style="outline: 2px solid #60A5FA; background: rgba(37,99,235,.25)"></i>NOVO: elemento ou dobra que não existe hoje</span><span class="lg"><i style="border: 1px solid rgba(255,255,255,.3)"></i>Sem marcação: mantém igual LP</span></div>
+
+<section aria-label="Dobra 1 Hero">
+<div class="dl">Dobra 1 · Hero</div>
+<div class="dk split" style="background: radial-gradient(120% 140% at 85% 0%, #4C3FB5 0%, #2E1B6B 42%, #170B34 82%); border-radius: 48px; padding: 64px 56px; display: flex; gap: 48px; align-items: center; color: #fff">
+<div style="flex: 1 1 520px; display: flex; flex-direction: column; gap: 20px">
+<span class="eb">Pilar 03 · Engajar · Colaboradores</span>
+<h1 class="chg" style="font-size: 46px; font-weight: 700; line-height: 1.12; letter-spacing: -0.01em; color: #fff">Tenha uma visualização centralizada do perfil dos colaboradores</h1>
+<p class="chg" style="font-size: 17px; line-height: 1.6; color: rgba(255,255,255,.75); max-width: 56ch">Um diretório para buscar colaboradores pelo nome e consultar, em cada perfil, o cargo, a área e o histórico de desenvolvimento, sem precisar de planilhas ou solicitar essas informações ao RH.</p>
+<ul style="display: flex; flex-direction: column; gap: 12px">
+<li class="chk">A pesquisa por nome localiza qualquer pessoa na empresa</li>
+<li class="chk">Um único diretório, com acesso direto aos dados de contato</li>
+<li class="chk chg">Perfil com cargo, área e histórico de desenvolvimento de cada pessoa</li>
+</ul>
+<div><a class="btn" href="#">Fale com um especialista</a></div>
+</div>
+<div class="ph" style="flex: 1 1 480px; min-height: 420px">Imagem atual do hero (mantém)<small class="chg" data-l="ALT ALTERADO">Alt: Diretório de colaboradores da Wabfy com busca por nome e cartões de perfil.</small></div>
+</div>
+</section>
+
+<section aria-label="Dobra 2 O que é">
+<div class="dl">Dobra 2 · O que é</div>
+<div style="background: #fff; border: 1px solid rgba(23,23,48,.09); border-radius: 48px; padding: 60px 52px; display: flex; flex-direction: column; align-items: center; gap: 18px; text-align: center">
+<span class="eb">O que é</span>
+<h2 style="font-size: 32px; font-weight: 700; line-height: 1.18; color: #25356E; max-width: 24ch">O diretório que reúne todos os colaboradores da empresa num só lugar</h2>
+<p class="chg" style="font-size: 16px; line-height: 1.68; color: #5B5C79; max-width: 66ch">O módulo colaboradores reúne todas as pessoas da empresa em um diretório com busca por nome e filtro por atividade recente. Cada perfil mostra cargo, área e histórico de desenvolvimento, e RH e gestores também veem o status de PDI e avaliações.</p>
+<a class="btn" href="#">Fale com um especialista</a>
+</div>
+</section>
+
+<section aria-label="Dobra 3 Recursos principais">
+<div class="dl">Dobra 3 · Recursos principais</div>
+<div style="background: #fff; border: 1px solid rgba(23,23,48,.09); border-radius: 48px; padding: 60px 52px; display: flex; flex-direction: column; gap: 0">
+<div style="text-align: center; display: flex; flex-direction: column; gap: 12px; align-items: center; margin-bottom: 20px">
+<span class="eb">Recursos principais</span>
+<h2 class="chg" data-l="ALTERADO · H1 → H2" style="font-size: 32px; font-weight: 700; color: #25356E">Busca, filtro e perfil de cada colaborador</h2>
+</div>
+
+<div class="split" style="display: flex; gap: 48px; align-items: center; padding: 40px 0; border-top: 1px solid rgba(23,23,48,.09)">
+<div style="flex: 1 1 460px; display: flex; flex-direction: column; gap: 14px">
+<span class="eb" style="font-size: 12px">Pesquisar</span>
+<h3 style="font-size: 23px; font-weight: 700; color: #25356E; max-width: 26ch">Busca por nome, em qualquer tamanho de empresa</h3>
+<p style="font-size: 15.5px; line-height: 1.65; color: #5B5C79">Encontre qualquer colaborador digitando o nome, sem navegar por uma lista inteira.</p>
+<ul style="display: flex; flex-direction: column; gap: 10px"><li class="chk">Busca funciona com parte do nome</li><li class="chk">Resultado aparece direto no diretório, sem abrir outra tela</li><li class="chk">Um contador mostra o número total de membros da empresa</li></ul>
+</div>
+<div class="ph" style="flex: 1 1 540px; min-height: 340px">Tela atual · busca por nome (mantém)<small class="chg" data-l="ALT E LINK ALTERADOS">Link de ampliação: versão em português da tela<br>Alt: Busca por nome no diretório de colaboradores da Wabfy.</small></div>
+</div>
+
+<div class="split rev" style="display: flex; flex-direction: row-reverse; gap: 48px; align-items: center; padding: 40px 0; border-top: 1px solid rgba(23,23,48,.09)">
+<div style="flex: 1 1 460px; display: flex; flex-direction: column; gap: 14px">
+<span class="eb" style="font-size: 12px">Filtro</span>
+<h3 class="chg" style="font-size: 23px; font-weight: 700; color: #25356E; max-width: 26ch">Filtro por atividade recente</h3>
+<p style="font-size: 15.5px; line-height: 1.65; color: #5B5C79">Veja quem entrou há pouco ou esteve ativo recentemente, sem abrir perfil por perfil.</p>
+<ul style="display: flex; flex-direction: column; gap: 10px"><li class="chk">Ordenação por atividade recente, direto no topo do diretório</li><li class="chk">Alternância entre visualização em grade ou lista</li><li class="chk">Busca e filtro funcionam juntos, na mesma tela</li></ul>
+</div>
+<div class="ph" style="flex: 1 1 540px; min-height: 340px">Tela atual · diretório ordenado por atividade recente (mantém)<small class="chg" data-l="ALT ALTERADO">Alt: Diretório de colaboradores da Wabfy ordenado por atividade recente.</small></div>
+</div>
+
+<div class="split" style="display: flex; gap: 48px; align-items: center; padding: 40px 0; border-top: 1px solid rgba(23,23,48,.09)">
+<div style="flex: 1 1 460px; display: flex; flex-direction: column; gap: 14px">
+<span class="eb" style="font-size: 12px">Perfil</span>
+<h3 class="chg" style="font-size: 23px; font-weight: 700; color: #25356E; max-width: 26ch">As informações principais já aparecem no card</h3>
+<p style="font-size: 15.5px; line-height: 1.65; color: #5B5C79">Data de ingresso e seguidores aparecem direto na busca, sem precisar abrir o perfil completo.</p>
+<ul style="display: flex; flex-direction: column; gap: 10px"><li class="chk">Data de ingresso na empresa já visível no card</li><li class="chk">Contagem de seguidores de cada colaborador</li><li class="chk">Confirmação rápida de que é a pessoa certa, antes de qualquer contato</li></ul>
+</div>
+<div class="ph" style="flex: 1 1 540px; min-height: 340px">Tela atual · cartões com data de ingresso e seguidores (mantém)<small class="chg" data-l="ALT ALTERADO">Alt: Cartões de colaboradores da Wabfy com data de ingresso e seguidores.</small></div>
+</div>
+
+<div class="split rev chg novo" data-l="CARD NOVO" style="display: flex; flex-direction: row-reverse; gap: 48px; align-items: center; padding: 40px 20px; margin-top: 24px; border-top: 1px solid rgba(23,23,48,.09)">
+<div style="flex: 1 1 460px; display: flex; flex-direction: column; gap: 14px">
+<span class="eb" style="font-size: 12px">Desenvolvimento</span>
+<h3 style="font-size: 23px; font-weight: 700; color: #25356E; max-width: 26ch">Visualização rápida do histórico de desenvolvimento de cada pessoa</h3>
+<p style="font-size: 15.5px; line-height: 1.65; color: #5B5C79">No perfil, RH e gestores veem cargo, área, histórico de desenvolvimento e o status de PDI e avaliações, sem procurar em outros módulos.</p>
+<ul style="display: flex; flex-direction: column; gap: 10px"><li class="chk">Cargo e área de cada colaborador</li><li class="chk">Histórico de desenvolvimento no perfil</li><li class="chk">Status de PDI e avaliações para RH e gestores</li></ul>
+</div>
+<div class="ph" style="flex: 1 1 540px; min-height: 340px">Tela nova a capturar · perfil de um colaborador com cargo, área e histórico de desenvolvimento<small>Alt: Perfil de colaborador na Wabfy com cargo, área e histórico de desenvolvimento.</small></div>
+</div>
+</div>
+</section>
+
+<section aria-label="Dobra 4 Como funciona">
+<div class="dl">Dobra 4 · Como funciona</div>
+<div style="background: #fff; border: 1px solid rgba(23,23,48,.09); border-radius: 48px; padding: 60px 52px; display: flex; flex-direction: column; gap: 36px">
+<div class="chg" data-l="EYEBROW E H2 ALTERADOS" style="display: flex; flex-direction: column; gap: 12px"><span class="eb">Como funciona</span><h2 style="font-size: 32px; font-weight: 700; color: #25356E">Do nome ao perfil em três passos</h2></div>
+<div class="chg" data-l="PASSOS ALTERADOS · TÍTULOS EM H3" style="display: flex; gap: 20px; flex-wrap: wrap">
+<div style="flex: 1 1 260px; border-top: 2px solid rgba(23,23,48,.09); padding-top: 22px; display: flex; flex-direction: column; gap: 10px"><span style="width: 32px; height: 32px; border-radius: 8px; background: rgba(97,71,236,.10); border: 1px solid rgba(97,71,236,.35); color: #6147EC; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center">01</span><h3 style="font-size: 17px; font-weight: 700; color: #25356E">Busque ou filtre</h3><p style="font-size: 14.5px; color: #5B5C79">Pelo nome, por parte dele ou pela atividade recente.</p></div>
+<div style="flex: 1 1 260px; border-top: 2px solid rgba(23,23,48,.09); padding-top: 22px; display: flex; flex-direction: column; gap: 10px"><span style="width: 32px; height: 32px; border-radius: 8px; background: rgba(97,71,236,.10); border: 1px solid rgba(97,71,236,.35); color: #6147EC; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center">02</span><h3 style="font-size: 17px; font-weight: 700; color: #25356E">Confira no card</h3><p style="font-size: 14.5px; color: #5B5C79">Data de ingresso e seguidores, para ter certeza de que é a pessoa certa.</p></div>
+<div style="flex: 1 1 260px; border-top: 2px solid rgba(23,23,48,.09); padding-top: 22px; display: flex; flex-direction: column; gap: 10px"><span style="width: 32px; height: 32px; border-radius: 8px; background: rgba(97,71,236,.10); border: 1px solid rgba(97,71,236,.35); color: #6147EC; font-size: 13px; font-weight: 800; display: flex; align-items: center; justify-content: center">03</span><h3 style="font-size: 17px; font-weight: 700; color: #25356E">Abra o perfil</h3><p style="font-size: 14.5px; color: #5B5C79">Cargo, área, histórico de desenvolvimento e contato.</p></div>
+</div>
+</div>
+</section>
+
+<section aria-label="Dobra 5 Conexões na plataforma">
+<div class="dl">Dobra 5 · Conexões na plataforma <span class="flag-n">DOBRA NOVA</span></div>
+<div class="nblk" style="background: #fff; border: 1px solid rgba(23,23,48,.09); border-radius: 48px; padding: 60px 52px; display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 12px"><span class="eb">Conexões na plataforma</span><h2 style="font-size: 32px; font-weight: 700; color: #25356E">De onde vêm as informações de cada perfil</h2></div>
+<div class="split" style="display: flex; gap: 16px; align-items: stretch">
+<div style="flex: 1 1 360px; background: #F6F5FC; border: 1px solid rgba(23,23,48,.09); border-radius: 20px; padding: 26px; display: flex; flex-direction: column; gap: 16px">
+<span style="font-size: 13px; font-weight: 700; color: #8E8FA8; text-transform: uppercase; letter-spacing: .06em">Recebe de</span>
+<a href="#" style="text-decoration: none; display: flex; flex-direction: column; gap: 6px"><span class="mod" style="align-self: flex-start">MÓDULO</span><strong style="color: #25356E; font-size: 15.5px">Plano de Cargos</strong><span style="color: #5B5C79; font-size: 14px">Cargo e área de cada pessoa.</span><span style="font-size: 11.5px; color: #8E8FA8">/pt-br/wabfy-plano-de-cargos/</span></a>
+<a href="#" style="text-decoration: none; display: flex; flex-direction: column; gap: 6px; border-top: 1px solid rgba(23,23,48,.09); padding-top: 14px"><span class="mod" style="align-self: flex-start">MÓDULO</span><strong style="color: #25356E; font-size: 15.5px">Avaliação 360°</strong><span style="color: #5B5C79; font-size: 14px">O status das avaliações.</span><span style="font-size: 11.5px; color: #8E8FA8">/pt-br/wabfy-avaliacao-360/</span></a>
+<a href="#" style="text-decoration: none; display: flex; flex-direction: column; gap: 6px; border-top: 1px solid rgba(23,23,48,.09); padding-top: 14px"><span class="mod" style="align-self: flex-start">MÓDULO</span><strong style="color: #25356E; font-size: 15.5px">PDI e Trajetória</strong><span style="color: #5B5C79; font-size: 14px">O status do PDI e o histórico de desenvolvimento.</span><span style="font-size: 11.5px; color: #8E8FA8">/pt-br/wabfy-pdi-e-trajetoria/</span></a>
+</div>
+<div class="arrow" style="display: flex; align-items: center; justify-content: center; flex: 0 0 40px; align-self: center"><svg width="36" height="24" viewBox="0 0 36 24" fill="none" stroke="#6147EC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12h30M24 4l8 8-8 8"></path></svg></div>
+<div class="dk" style="flex: 1 1 300px; background: radial-gradient(120% 140% at 85% 0%, #4C3FB5 0%, #2E1B6B 42%, #170B34 82%); border-radius: 20px; padding: 26px; display: flex; flex-direction: column; justify-content: center; gap: 12px; color: #fff">
+<span style="font-size: 13px; font-weight: 700; color: #C9C2FF; text-transform: uppercase; letter-spacing: .06em">No diretório</span>
+<strong style="font-size: 20px; line-height: 1.3">Busca, filtro e o perfil de cada colaborador</strong>
+</div>
+<div class="arrow" style="display: flex; align-items: center; justify-content: center; flex: 0 0 40px; align-self: center"><svg width="36" height="24" viewBox="0 0 36 24" fill="none" stroke="#6147EC" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12h30M24 4l8 8-8 8"></path></svg></div>
+<div style="flex: 1 1 300px; background: #F6F5FC; border: 1px solid rgba(23,23,48,.09); border-radius: 20px; padding: 26px; display: flex; flex-direction: column; gap: 16px; justify-content: center">
+<span style="font-size: 13px; font-weight: 700; color: #8E8FA8; text-transform: uppercase; letter-spacing: .06em">Leva para</span>
+<a href="#" style="text-decoration: none; display: flex; flex-direction: column; gap: 6px"><div style="display: flex; gap: 8px; align-items: center"><span class="mod">MÓDULO</span><span class="tag val">Validar</span></div><strong style="color: #25356E; font-size: 15.5px">Feed e Comunidades</strong><span style="color: #5B5C79; font-size: 14px">O perfil de quem publica e os seguidores de cada pessoa.</span><span style="font-size: 11.5px; color: #8E8FA8">Link: página do Feed (a confirmar)</span></a>
+</div>
+</div>
+</div>
+</section>
+
+<section aria-label="Dobra 6 Uso por perfil">
+<div class="dl">Dobra 6 · Uso por perfil <span class="flag-n">DOBRA NOVA</span></div>
+<div class="nblk" style="background: #fff; border: 1px solid rgba(23,23,48,.09); border-radius: 48px; padding: 60px 52px; display: flex; flex-direction: column; gap: 32px">
+<div style="display: flex; flex-direction: column; gap: 12px"><span class="eb">Uso por perfil</span><h2 style="font-size: 32px; font-weight: 700; color: #25356E">Três formas de usar o mesmo diretório</h2></div>
+<div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: stretch">
+<div style="flex: 1 1 300px; background: #F6F5FC; border: 1px solid rgba(23,23,48,.09); border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+<h3 style="font-size: 19px; font-weight: 700; color: #25356E">Colaborador</h3><p style="font-size: 14px; color: #5B5C79">Encontra colegas sem depender do RH.</p>
+<ul style="display: flex; flex-direction: column; gap: 12px"><li class="chk" style="font-size: 14px">Busca colegas pelo nome ou pela atividade recente</li><li class="chk" style="font-size: 14px">Consegue conferir a data de ingresso</li><li class="chk" style="font-size: 14px">Segue colegas e acompanha quem chegou à empresa</li></ul>
+</div>
+<div class="dk" style="flex: 1 1 300px; background: radial-gradient(120% 140% at 85% 0%, #4C3FB5 0%, #2E1B6B 42%, #170B34 82%); border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 14px; color: #fff">
+<div style="display: flex; justify-content: space-between; align-items: center"><h3 style="font-size: 19px; font-weight: 700; color: #fff">Gestor</h3><span style="font-size: 11px; font-weight: 700; color: #C9C2FF; text-transform: uppercase; letter-spacing: .06em">Destaque</span></div><p style="font-size: 14px; color: rgba(255,255,255,.75)">Conhece o desenvolvimento de cada pessoa do time.</p>
+<ul style="display: flex; flex-direction: column; gap: 12px"><li class="chk" style="font-size: 14px">Vê cargo, área e histórico de desenvolvimento do time de forma rápida</li><li class="chk" style="font-size: 14px">Acompanha o status de PDI e avaliações de cada pessoa</li></ul>
+</div>
+<div style="flex: 1 1 300px; background: #F6F5FC; border: 1px solid rgba(23,23,48,.09); border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+<h3 style="font-size: 19px; font-weight: 700; color: #25356E">RH</h3><p style="font-size: 14px; color: #5B5C79">Tem o retrato de todas as pessoas da empresa.</p>
+<ul style="display: flex; flex-direction: column; gap: 12px"><li class="chk" style="font-size: 14px">Localiza qualquer pessoa da empresa pela busca</li><li class="chk" style="font-size: 14px">Consulta o histórico de desenvolvimento para decisões de alocação e mobilidade</li></ul>
+</div>
+</div>
+</div>
+</section>
+
+<section aria-label="Dobra 7 Case Caixa">
+<div class="dl">Dobra 7 · Prova (case Caixa) <span class="flag-n">DOBRA NOVA</span></div>
+<div class="dk nblk" style="background: radial-gradient(120% 140% at 85% 0%, #4C3FB5 0%, #2E1B6B 42%, #170B34 82%); border-radius: 48px; padding: 60px 52px; display: flex; flex-direction: column; gap: 36px; color: #fff">
+<div class="split" style="display: flex; gap: 40px; align-items: center">
+<div style="flex: 1 1 560px; display: flex; flex-direction: column; gap: 14px">
+<span class="eb">O maior banco público do Brasil</span>
+<h2 style="font-size: 32px; font-weight: 700; color: #fff">Case da Caixa Econômica Federal</h2>
+<p style="font-size: 16px; line-height: 1.65; color: rgba(255,255,255,.75); max-width: 62ch">A Wabfy é utilizada diariamente pela Caixa no desenvolvimento de 150 mil colaboradores. Em uma única plataforma, o banco reúne gestão estratégica, desenvolvimento e decisões de carreira, com o ciclo completo da Wabfy em escala real.</p>
+</div>
+<div class="ph" style="flex: 0 1 280px; min-height: 120px">Logo Caixa<small>Mesmo arquivo das páginas de pilar</small></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; border-top: 1px solid rgba(201,194,255,.28); padding-top: 28px; gap: 20px 0">
+<div style="flex: 1 1 220px; padding: 0 18px; display: flex; flex-direction: column; gap: 6px"><strong style="font-size: 40px; font-weight: 800; letter-spacing: -0.02em">150K</strong><span style="font-size: 13.5px; color: rgba(255,255,255,.72)">funcionários públicos com PDIs individuais</span></div>
+<div style="flex: 1 1 220px; padding: 0 18px; border-left: 1px solid rgba(201,194,255,.28); display: flex; flex-direction: column; gap: 6px"><strong style="font-size: 40px; font-weight: 800; letter-spacing: -0.02em">−80%</strong><span style="font-size: 13.5px; color: rgba(255,255,255,.72)">Carga de trabalho operacional de RH</span></div>
+<div style="flex: 1 1 220px; padding: 0 18px; border-left: 1px solid rgba(201,194,255,.28); display: flex; flex-direction: column; gap: 6px"><strong style="font-size: 40px; font-weight: 800; letter-spacing: -0.02em">30 min</strong><span style="font-size: 13.5px; color: rgba(255,255,255,.72)">para mapear um departamento</span></div>
+<div style="flex: 1 1 220px; padding: 0 18px; border-left: 1px solid rgba(201,194,255,.28); display: flex; flex-direction: column; gap: 6px"><strong style="font-size: 40px; font-weight: 800; letter-spacing: -0.02em">3 dias</strong><span style="font-size: 13.5px; color: rgba(255,255,255,.72)">para encerrar o ciclo de avaliação de 360°</span></div>
+</div>
+</div>
+</section>
+
+<section aria-label="Dobra 8 Conversão">
+<div class="dl">Dobra 8 · Conversão</div>
+<div class="dk split" style="background: radial-gradient(120% 140% at 85% 0%, #4C3FB5 0%, #2E1B6B 42%, #170B34 82%); border-radius: 48px; padding: 60px 52px; display: flex; gap: 52px; align-items: flex-start; color: #fff">
+<div style="flex: 1 1 520px; display: flex; flex-direction: column; gap: 18px">
+<span class="eb">Próximo passo</span>
+<h2 class="chg" style="font-size: 32px; font-weight: 700; line-height: 1.2; color: #fff; max-width: 22ch">Tenha uma visão ampla dos seus colaboradores e veja como cada pessoa está se desenvolvendo</h2>
+<p class="chg" style="font-size: 16px; line-height: 1.65; color: rgba(255,255,255,.75); max-width: 46ch">Reúna todos os colaboradores em um só diretório, consulte cargo, área e histórico de cada pessoa e desenvolva seus colaboradores.</p>
+<div><a class="btn" href="#">Agende uma demonstração</a></div>
+<div class="ph" style="min-height: 260px; margin-top: 8px">Imagem atual (mantém)<small class="chg" data-l="ALT ALTERADO">Alt: Profissional de RH com telas da plataforma Wabfy.</small></div>
+</div>
+<form style="flex: 1 1 420px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.16); border-radius: 20px; padding: 28px; display: flex; flex-direction: column; gap: 14px">
+<h3 class="chg" style="font-size: 19px; font-weight: 700; color: #fff; line-height: 1.3">Agende uma demonstração e veja os Colaboradores funcionando</h3>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; font-weight: 600; color: rgba(255,255,255,.7)">Nome<input type="text" style="min-height: 46px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.18); border-radius: 10px; padding: 12px 14px; color: #fff; font-family: inherit; font-size: 14px"></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; font-weight: 600; color: rgba(255,255,255,.7)">E-mail<input type="email" style="min-height: 46px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.18); border-radius: 10px; padding: 12px 14px; color: #fff; font-family: inherit; font-size: 14px"></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; font-weight: 600; color: rgba(255,255,255,.7)">WhatsApp<input type="tel" style="min-height: 46px; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.18); border-radius: 10px; padding: 12px 14px; color: #fff; font-family: inherit; font-size: 14px"></label>
+<label style="display: flex; gap: 10px; align-items: center; font-size: 13.5px; color: rgba(255,255,255,.8)"><input type="checkbox" style="width: 18px; height: 18px">Aceito receber comunicações da Wabfy.</label>
+<button type="button" class="btn" style="width: 100%">Acessar o WhatsApp</button>
+<p style="font-size: 12.5px; color: rgba(255,255,255,.6)">Seus dados são tratados de acordo com nossa <a href="#" style="color: #C9C2FF">Política de Privacidade</a>.</p>
+</form>
+</div>
+</section>
+
+<section aria-label="Dobra 9 FAQ">
+<div class="dl">Dobra 9 · FAQ</div>
+<div style="background: #fff; border: 1px solid rgba(23,23,48,.09); border-radius: 48px; padding: 60px 52px; display: flex; flex-direction: column; gap: 28px">
+<div style="display: flex; flex-direction: column; gap: 10px"><h2 style="font-size: 32px; font-weight: 700; color: #25356E">Perguntas frequentes</h2><p style="font-size: 15px; color: #5B5C79">Não encontrou o que procurava? Nossa equipe pode ajudar.</p></div>
+<div class="chg" data-l="6 PERGUNTAS E RESPOSTAS ALTERADAS" style="border-top: 1px solid rgba(23,23,48,.09); padding: 0 12px">
+<details class="faq" open="" style="border-bottom: 1px solid rgba(23,23,48,.09)"><summary>O que é o Colaboradores da Wabfy?</summary><p style="padding-bottom: 20px; font-size: 14.5px; line-height: 1.65; color: #5B5C79; max-width: 75ch">É o diretório de pessoas da Wabfy, ligado ao resto da plataforma. Além de encontrar qualquer colaborador pelo nome, RH e gestores veem no perfil o cargo, a área, o histórico de desenvolvimento e o status de PDI e avaliações.</p></details>
+<details class="faq" style="border-bottom: 1px solid rgba(23,23,48,.09)"><summary>É possível encontrar alguém sem saber o nome completo?</summary><p style="padding-bottom: 20px; font-size: 14.5px; line-height: 1.65; color: #5B5C79; max-width: 75ch">Sim. A busca funciona com parte do nome, e o filtro por atividade recente mostra quem entrou há pouco ou esteve ativo.</p></details>
+<details class="faq" style="border-bottom: 1px solid rgba(23,23,48,.09)"><summary>O que aparece no perfil de cada colaborador?</summary><p style="padding-bottom: 20px; font-size: 14.5px; line-height: 1.65; color: #5B5C79; max-width: 75ch">Cargo, área, data de ingresso, seguidores e o histórico de desenvolvimento da pessoa.</p></details>
+<details class="faq" style="border-bottom: 1px solid rgba(23,23,48,.09)"><summary><span>Quem vê o status de PDI e avaliações? <span class="tag val" style="margin-left: 8px">Validar</span></span></summary><p style="padding-bottom: 20px; font-size: 14.5px; line-height: 1.65; color: #5B5C79; max-width: 75ch">RH e gestores. [Validar permissões e se o gestor vê só o próprio time]</p></details>
+<details class="faq" style="border-bottom: 1px solid rgba(23,23,48,.09)"><summary><span>O diretório reúne pessoas de empresas do mesmo grupo? <span class="tag val" style="margin-left: 8px">Validar</span></span></summary><p style="padding-bottom: 20px; font-size: 14.5px; line-height: 1.65; color: #5B5C79; max-width: 75ch">[Validar antes de publicar. A página hoje fala em “todo mundo do mesmo grupo da empresa”.]</p></details>
+<details class="faq" style="border-bottom: 1px solid rgba(23,23,48,.09)"><summary>Como o Colaboradores se conecta aos outros módulos?</summary><p style="padding-bottom: 20px; font-size: 14.5px; line-height: 1.65; color: #5B5C79; max-width: 75ch">Recebe cargo e área do Plano de Cargos, o status das avaliações da Avaliação 360° e o PDI e o histórico de PDI e Trajetória. Assim, o perfil de cada pessoa mostra o desenvolvimento sem consulta a outro sistema.</p></details>
+</div>
+</div>
+</section>
+
+<section aria-label="SEO e metadados">
+<div class="dl">Fora da página · SEO e metadados</div>
+<div class="chg" data-l="SEO ALTERADO" style="background: #fff; border: 1px solid rgba(23,23,48,.09); border-radius: 24px; padding: 28px 32px; display: flex; flex-direction: column; gap: 10px; font-size: 14px; color: #5B5C79">
+<p><strong style="color: #25356E">Title / og:title:</strong> Diretório de colaboradores com cargo, área e PDI | Wabfy</p>
+<p><strong style="color: #25356E">Meta description:</strong> Encontre qualquer colaborador pelo nome e veja cargo, área, histórico de desenvolvimento e status de PDI e avaliações. Conheça o módulo Colaboradores.</p>
+<p><strong style="color: #25356E">og:image:alt:</strong> Diretório de colaboradores da Wabfy com busca por nome e cartões de perfil.</p>
+<p><strong style="color: #25356E">Hierarquia:</strong> um único H1 (hero) · título dos recursos em H2 · passos em H3</p>
+</div>
+</section>
+
+</main>
+
+<footer style="max-width: 1240px; margin: 36px auto 0; padding: 32px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; border-top: 1px solid rgba(23,23,48,.09)">
+<div style="display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 17px; color: #25356E"><span style="width: 24px; height: 24px; border-radius: 7px; background: #6147EC; display: inline-block"></span>Wabfy</div>
+<span style="font-size: 12.5px; color: #8E8FA8">Footer global · mantém igual LP</span>
+</footer>
+
+<div style="position: sticky; bottom: 24px; display: flex; justify-content: flex-end; align-items: center; gap: 12px; padding: 0 24px">
+<div class="chg" data-l="BALÃO E MENSAGEM ALTERADOS" style="background: #fff; border: 1px solid rgba(23,23,48,.09); border-radius: 14px; padding: 12px 16px; font-size: 13.5px; color: #25356E; box-shadow: 0 12px 28px -12px rgba(23,23,48,.3); max-width: 260px">Fale com um especialista e conheça a <strong>Wabfy</strong> na prática<br><span style="font-size: 11.5px; color: #8E8FA8">Msg: Olá! Vim pela página de Colaboradores da Wabfy e gostaria de agendar uma demonstração.</span></div>
+<a href="#" aria-label="Abrir WhatsApp" style="width: 56px; height: 56px; border-radius: 50%; background: #25D366; display: flex; align-items: center; justify-content: center; flex-shrink: 0"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 20.5l1.6-5.4A8.4 8.4 0 1 1 21 11.5z"></path></svg></a>
+</div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":8200}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

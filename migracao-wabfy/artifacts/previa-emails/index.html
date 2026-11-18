@@ -1,0 +1,921 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Prévia dos E-mails Wabfy</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: aba E-mails (régua, e-mail aberto como num cliente de e-mail, mapa de cliques) e aba Fluxo no RD (diagrama vertical da automação). */
+:root{
+  --bg:#F1F1F8; --surface:#FFFFFF; --fg:#1B2140; --muted:#5B6180; --line:#DCDDEB;
+  --accent:#6147EC; --accent-fg:#FFFFFF; --chip:#ECEBFF; --chip-fg:#3E2DB5;
+  --warn:#8A5200; --warn-bg:#FFF1D6; --ok:#17734A; --ok-bg:#E2F5EA; --wait:#5B6180; --wait-bg:#ECEDF4;
+  --paper:#FFFFFF; --paper-ink:#232735; --paper-muted:#6B7080; --paper-line:#E6E7EE; --paper-soft:#F7F7FB;
+  --mail-link:#1A5BD8; --btn-a:#2961EB; --btn-b:#6147EC; --pill-bg:#F1F0FF; --pill-line:#CFCBFF; --pill-ink:#3E2DB5;
+  --mk:#6147EC; --mk-fg:#FFFFFF; --pflag-bg:#FFF1D6; --pflag:#8A5200; --shot-bg:#EEF0FA; --shot-ink:#4A4F75;
+  --overlay:rgba(14,16,34,.55);
+  --f-ui:"Plus Jakarta Sans", "Segoe UI", Arial, sans-serif;
+  --f-mail:Arial, Helvetica, sans-serif;
+  --f-mono:"IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1222; --surface:#181C33; --fg:#E8E9F5; --muted:#A0A5C3; --line:#2B3050;
+  --accent:#AAA4FF; --accent-fg:#14123A; --chip:#272A4C; --chip-fg:#CFCBFF; --warn:#F2B25C; --warn-bg:#3A2A12;
+  --ok:#7FD8A8; --ok-bg:#163526; --wait:#A0A5C3; --wait-bg:#232745; --overlay:rgba(0,0,0,.65); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1222; --surface:#181C33; --fg:#E8E9F5; --muted:#A0A5C3; --line:#2B3050;
+  --accent:#AAA4FF; --accent-fg:#14123A; --chip:#272A4C; --chip-fg:#CFCBFF; --warn:#F2B25C; --warn-bg:#3A2A12;
+  --ok:#7FD8A8; --ok-bg:#163526; --wait:#A0A5C3; --wait-bg:#232745; --overlay:rgba(0,0,0,.65); color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-ui);font-size:14px;line-height:1.5;margin:0}
+.wrap{max-width:1360px;margin:0 auto;padding-block:20px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px;margin-bottom:16px}
+h1{font-size:22px;font-weight:800;margin:0;letter-spacing:-.01em;text-wrap:balance}
+.sub{color:var(--muted);margin:2px 0 0;font-size:13px}
+.sub a{color:var(--accent)}
+.bar{display:flex;flex-wrap:wrap;gap:10px}
+.flows{display:flex;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:4px}
+.flows button{all:unset;cursor:pointer;padding:7px 14px;border-radius:7px;font-weight:600;font-size:13px;color:var(--muted)}
+.flows button[aria-pressed="true"]{background:var(--accent);color:var(--accent-fg)}
+button:focus-visible,a:focus-visible,.sw:focus-within{outline:2px solid var(--accent);outline-offset:2px}
+
+.grid{display:grid;grid-template-columns:230px minmax(0,1fr) 300px;gap:18px;align-items:start}
+@media (max-width:1100px){.grid{grid-template-columns:210px minmax(0,1fr)}.legend{grid-column:1 / -1}}
+@media (max-width:760px){.grid{grid-template-columns:minmax(0,1fr)}}
+
+.rail{display:flex;flex-direction:column;gap:6px}
+@media (max-width:760px){.rail{flex-direction:row;overflow-x:auto;padding-bottom:4px}.rail button{min-width:150px}}
+.rail .lbl{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:2px 2px 4px}
+@media (max-width:760px){.rail .lbl{display:none}}
+.rail button{all:unset;cursor:pointer;display:grid;grid-template-columns:28px 1fr;gap:2px 10px;padding:10px 12px;border-radius:10px;border:1px solid transparent}
+.rail button:hover{background:var(--surface)}
+.rail button[aria-current="true"]{background:var(--surface);border-color:var(--line);box-shadow:0 1px 2px rgba(20,20,60,.06)}
+.rail .num{grid-row:span 2;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:13px;background:var(--chip);color:var(--chip-fg)}
+.rail button[aria-current="true"] .num{background:var(--accent);color:var(--accent-fg)}
+.rail .deg{font-weight:700;font-size:13px}
+.rail .when{font-size:12px;color:var(--muted);font-family:var(--f-mono)}
+.rail .vers{grid-column:2;font-size:11px;color:var(--accent);font-weight:600}
+
+.controls{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:12px}
+.ctl{display:flex;flex-direction:column;gap:4px;min-width:0}
+.ctl > span{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.seg{display:flex;flex-wrap:wrap;gap:3px;background:var(--bg);border-radius:8px;padding:3px}
+.seg button{all:unset;cursor:pointer;padding:4px 9px;border-radius:6px;font-size:12px;font-weight:600;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--fg);box-shadow:0 1px 2px rgba(20,20,60,.12)}
+.seg button:disabled{cursor:default}
+.ctl.off{opacity:.4}
+.sw{display:flex;align-items:center;gap:6px;font-size:12px;font-weight:600;cursor:pointer;border-radius:6px}
+.sw input{accent-color:var(--accent);width:15px;height:15px;margin:0}
+.note{background:var(--warn-bg);color:var(--warn);border-radius:10px;padding:8px 12px;font-size:12.5px;margin-bottom:12px;font-weight:600}
+
+.client{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.inbox{padding:12px 16px;border-bottom:1px solid var(--line)}
+.inbox .cap{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:700;margin-bottom:6px}
+.row{display:grid;grid-template-columns:36px minmax(0,1fr) auto;gap:10px;align-items:center;padding:8px 10px;border-radius:8px;background:var(--bg)}
+.av{width:36px;height:36px;border-radius:50%;background:var(--accent);color:var(--accent-fg);display:grid;place-items:center;font-weight:700}
+.row .who{font-weight:700;font-size:13px}
+.row .line{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px}
+.row .line .pre{color:var(--muted)}
+.row .t{font-size:12px;color:var(--muted);font-family:var(--f-mono)}
+.alt{margin-top:6px;font-size:12px;color:var(--muted)}
+.alt b{color:var(--fg);font-weight:600}
+
+.stage{background:var(--paper-soft);padding:22px 12px;overflow-x:auto}
+.mail{margin:0 auto;max-width:600px;background:var(--paper);color:var(--paper-ink);font-family:var(--f-mail);font-size:15px;line-height:1.6;border:1px solid var(--paper-line);border-radius:6px;transition:max-width .25s ease}
+.mail.mobile{max-width:375px}
+.mhead{padding:14px 22px;border-bottom:1px solid var(--paper-line);font-size:13px;color:var(--paper-muted);display:grid;gap:2px}
+.mhead b{color:var(--paper-ink)}
+.mhead .subj{font-size:17px;color:var(--paper-ink);font-weight:700;margin-top:6px;line-height:1.35}
+.mbody{padding:20px 22px 8px}
+.mbody p{margin:0 0 14px}
+.mbody ul,.mbody ol{margin:0 0 14px;padding-left:22px}
+.mbody li{margin-bottom:6px}
+.mbody a.lk{color:var(--mail-link);text-decoration:underline;font-weight:700}
+.brand{padding:18px 22px 4px;display:flex;align-items:baseline;gap:6px}
+.brand .wm{font-family:var(--f-ui);font-weight:800;font-size:22px;color:var(--btn-b);letter-spacing:-.02em}
+.brand .by{font-family:var(--f-ui);font-size:11px;color:var(--paper-muted);letter-spacing:.08em;text-transform:uppercase}
+.mail.b .mbody{font-family:var(--f-ui)}
+.cta{margin:4px 0 18px}
+.cta a{display:inline-block;background:var(--btn-a);color:#FFFFFF;text-decoration:none;font-weight:700;padding:11px 20px;border-radius:6px;font-size:15px}
+.mail.b .cta a{background:var(--btn-b);border-radius:24px;padding:12px 24px}
+.cta{position:relative}
+.cta a,.mail.b .cta a{display:block;text-align:center;background:var(--btn-b);border-radius:8px;padding:14px 20px;text-transform:uppercase;letter-spacing:.02em;font-size:14.5px}
+.cta a::after{content:" →"}
+.cta .mk{position:absolute;right:-24px;top:50%;transform:translateY(-50%)}
+.mbody p.kick{margin:6px 0 2px;font:700 11px/1.4 var(--f-ui);letter-spacing:.1em;text-transform:uppercase;color:var(--btn-b)}
+.mbody p.quiet{margin:18px 0 6px;font-size:12.5px;color:var(--paper-muted)}
+.mbody p.agline{text-align:center;font-size:13px;color:var(--paper-muted)}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 14px;align-items:center}
+.pills a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--pill-ink);background:var(--pill-bg);border:1px solid var(--pill-line);border-radius:20px;padding:7px 13px;font-weight:700;font-size:14px;cursor:pointer}
+.pills a:hover{border-color:var(--btn-b)}
+.pills a.sel{background:var(--btn-b);border-color:var(--btn-b);color:#FFFFFF}
+.shot{margin:2px 0 16px;aspect-ratio:16/9;max-width:100%;border-radius:8px;background:var(--shot-bg);border:1px dashed #B9BCD9;display:grid;place-items:center;text-align:center;padding:14px;color:var(--shot-ink);font-family:var(--f-ui);font-size:13px;font-weight:600;cursor:pointer}
+.shot small{display:block;font-weight:500;font-size:11.5px;opacity:.8;margin-top:4px}
+.sign{margin:6px 0 4px}
+.sign .nm{font-weight:700}
+.sign .rl{color:var(--paper-muted);font-size:13px}
+.ps{margin-top:14px;padding-top:12px;border-top:1px dashed var(--paper-line);font-size:14px}
+.mfoot{padding:14px 22px 18px;font-size:11.5px;color:var(--paper-muted);border-top:1px solid var(--paper-line);line-height:1.5;margin-top:10px}
+.mail.b .mfoot{background:var(--paper-soft);border-radius:0 0 6px 6px}
+
+.v{background:#EEF0FF;color:#3E2DB5;border-radius:4px;padding:0 4px;font-family:var(--f-mono);font-size:.82em;font-weight:500;white-space:nowrap}
+.ex{border-bottom:1px dotted #8C84F0}
+.mk{display:none;vertical-align:super;margin-left:3px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:var(--mk);color:var(--mk-fg);font:700 10px/17px var(--f-ui);text-align:center}
+.pills .mk,.shot .mk{vertical-align:middle;margin-left:0}
+.marks .mk{display:inline-block}
+.flag{display:none;margin-left:6px;background:var(--pflag-bg);color:var(--pflag);border-radius:4px;padding:1px 6px;font:600 10.5px/1.6 var(--f-ui);letter-spacing:.04em;text-transform:uppercase;vertical-align:1px}
+.marks .flag{display:inline-block}
+
+.legend{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 14px 6px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px)}
+@media (max-width:1100px){.legend{position:static}}
+.legend h2{font-size:14px;margin:0 0 2px;font-weight:800}
+.legend .hint{font-size:12px;color:var(--muted);margin:0 0 10px}
+.li{display:grid;grid-template-columns:22px minmax(0,1fr);gap:8px;padding:10px 0;border-top:1px solid var(--line)}
+.li .n{width:22px;height:22px;border-radius:50%;background:var(--accent);color:var(--accent-fg);font-weight:700;font-size:11px;display:grid;place-items:center}
+.li .what{font-weight:700;font-size:13px}
+.li .dest{display:inline-block;margin:3px 0;font-family:var(--f-mono);font-size:11.5px;background:var(--chip);color:var(--chip-fg);border-radius:4px;padding:1px 6px}
+.li .det{font-size:12px;color:var(--muted)}
+.li .det q{color:var(--fg);quotes:"“" "”"}
+.meta{margin-top:10px;padding:10px 0 8px;border-top:1px solid var(--line);font-size:12px;color:var(--muted);display:grid;gap:4px}
+.meta b{color:var(--fg)}
+
+/* edição */
+.mail.editing .ed[contenteditable]{outline:1px dashed #9C93F5;outline-offset:2px;border-radius:3px;cursor:text}
+.mail.editing .ed[contenteditable]:hover{background:#F5F3FF}
+.mail.editing .ed[contenteditable]:focus{outline:2px solid #6147EC;background:#F5F3FF}
+.alt .ed[contenteditable]{outline:1px dashed var(--accent);outline-offset:2px;border-radius:3px;cursor:text}
+.alt .ed[contenteditable]:focus{outline:2px solid var(--accent)}
+.ed.chg{background:#FFF4C9;border-radius:3px;box-shadow:0 0 0 2px #FFF4C9}
+.alt .ed.chg{background:var(--warn-bg);box-shadow:0 0 0 2px var(--warn-bg)}
+.cta a .ed.chg,.pills a .ed.chg{background:transparent;box-shadow:none;text-decoration:underline wavy #F2B25C}
+.mail.editing .cta a,.mail.editing .pills a{cursor:text}
+.note.edit{background:var(--chip);color:var(--chip-fg)}
+.btn.on{background:var(--fg);color:var(--bg)}
+.btn:disabled{opacity:.5;cursor:default}
+.btn.sm{padding:4px 10px;font-size:12px;margin-top:6px}
+.chgli .now{color:var(--fg);font-size:12.5px}
+.chgli .was{text-decoration:line-through;opacity:.75}
+.chgli .by{font-size:11.5px;margin-top:2px}
+
+.mail.editing .mbody{padding-left:84px}
+.blk{position:relative;border-radius:6px;transition:background .15s}
+.blk.dragging{opacity:.4}
+.blk.drop-before{box-shadow:0 -3px 0 0 #6147EC}
+.blk.drop-after{box-shadow:0 3px 0 0 #6147EC}
+.blk .tools{position:absolute;left:-76px;top:1px;display:flex;flex-direction:row;gap:2px;align-items:center}
+.blk .tools .grip{cursor:grab;font-size:15px;line-height:1;color:#8C84F0;padding:2px 4px;user-select:none}
+.blk .tools button{all:unset;cursor:pointer;width:22px;height:20px;display:grid;place-items:center;border-radius:4px;font:700 12px var(--f-ui);color:#4A4F75;background:#EEF0FA}
+.blk .tools button:hover{background:#DCD8FF}
+.blk .tools button:disabled{opacity:.3;cursor:default}
+.blk .tools button:focus-visible{outline:2px solid #6147EC}
+.blk:hover{background:#FAF9FF}
+
+/* simulação do clique */
+.sim{position:fixed;inset:0;background:var(--overlay);display:grid;place-items:center;padding:20px max(16px,env(safe-area-inset-right,0px)) 20px max(16px,env(safe-area-inset-left,0px));z-index:20;overflow-y:auto}
+.sim[hidden],[hidden]{display:none!important}
+.simbox{width:min(960px,100%);display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:14px;align-items:start}
+@media (max-width:820px){.simbox{grid-template-columns:minmax(0,1fr)}}
+.browser{background:var(--paper);border-radius:12px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.3);color:var(--paper-ink)}
+.bchrome{display:flex;align-items:center;gap:8px;background:#E8E9F1;padding:9px 12px}
+.dots{display:flex;gap:5px}.dots i{width:10px;height:10px;border-radius:50%;background:#C5C7D6;display:block}
+.url{flex:1;min-width:0;background:#FFFFFF;border-radius:6px;padding:4px 10px;font:12px var(--f-mono);color:#4A4F75;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tabname{font:600 11px var(--f-ui);color:#4A4F75;white-space:nowrap}
+.wa{background:#EFEAE2;font-family:var(--f-ui);display:flex;flex-direction:column;min-height:320px}
+.wahead{display:flex;gap:10px;align-items:center;background:#075E54;color:#FFFFFF;padding:10px 14px}
+.wahead small{display:block;font-size:11px;opacity:.8}
+.waav{width:34px;height:34px;border-radius:50%;background:#FFFFFF;color:#6147EC;display:grid;place-items:center;font-weight:800}
+.wachat{flex:1;padding:16px;display:flex;align-items:flex-start;justify-content:center}
+.wanote{background:#FFF5C4;color:#54656F;font-size:12px;border-radius:8px;padding:6px 10px;text-align:center;max-width:32ch}
+.wainput{display:flex;gap:8px;align-items:center;margin:10px;background:#FFFFFF;border-radius:22px;padding:10px 14px;color:#111B21;font-size:14px}
+.wainput span:first-child{flex:1}
+.wasend{width:34px;height:34px;border-radius:50%;background:#00A884;color:#FFFFFF;display:grid;place-items:center;font-size:14px;flex:none}
+.lp{padding:34px 28px 30px;font-family:var(--f-ui);text-align:center;background:linear-gradient(160deg,#F4F2FF 0%,#FFFFFF 60%)}
+.lp .wm{font-weight:800;font-size:20px;color:var(--btn-b);letter-spacing:-.02em}
+.lp .check{width:52px;height:52px;border-radius:50%;background:var(--btn-b);color:#FFFFFF;display:grid;place-items:center;margin:18px auto 12px;font-size:26px;font-weight:800}
+.lp h3{font-size:26px;margin:0 0 8px;font-weight:800;color:#25356E}
+.lp p{margin:0 auto 18px;max-width:38ch;color:#4A4F75;font-size:15px}
+.lp .b1{display:inline-block;background:var(--btn-b);color:#FFFFFF;font-weight:700;padding:12px 24px;border-radius:24px;text-decoration:none}
+.lp .b2{display:block;margin-top:12px;color:var(--mail-link);font-weight:700;font-size:14px}
+.rdpanel{background:var(--surface);color:var(--fg);border-radius:12px;padding:16px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.rdpanel h3{margin:0 0 2px;font-size:15px;font-weight:800}
+.rdpanel .hint{font-size:12px;color:var(--muted);margin:0 0 12px}
+.steps{display:grid;gap:10px;margin:0 0 14px;padding:0;list-style:none}
+.steps li{display:grid;grid-template-columns:24px minmax(0,1fr);gap:8px;font-size:13px}
+.steps li > span{width:24px;height:24px;border-radius:50%;background:var(--chip);color:var(--chip-fg);display:grid;place-items:center;font-weight:700;font-size:12px}
+.steps b{font-weight:700}
+.truth{background:var(--warn-bg);color:var(--warn);border-radius:8px;padding:9px 11px;font-size:12.5px;margin-bottom:12px}
+.truth b{font-weight:800}
+.simact{display:flex;flex-wrap:wrap;gap:8px}
+.btn{all:unset;cursor:pointer;padding:8px 14px;border-radius:8px;font-weight:700;font-size:13px;background:var(--accent);color:var(--accent-fg)}
+.btn.ghost{background:transparent;color:var(--fg);border:1px solid var(--line)}
+
+/* fluxo no RD */
+.rd{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:18px;align-items:start}
+@media (max-width:1000px){.rd{grid-template-columns:minmax(0,1fr)}}
+.canvas{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px 18px 26px;overflow-x:auto}
+.lane{display:flex;flex-direction:column;align-items:center;min-width:0}
+.stagecap{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:700;margin:0 0 8px;text-align:center}
+.cards{display:grid;gap:10px;width:100%}
+.c3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.c5{grid-template-columns:repeat(5,minmax(0,1fr))}
+.c2{grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (max-width:820px){.c5{grid-template-columns:repeat(2,minmax(0,1fr))}.c3{grid-template-columns:minmax(0,1fr)}}
+.node{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:12.5px;min-width:0}
+.node .k{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;color:var(--muted)}
+.node .t{font-weight:700;font-size:13px;margin:2px 0}
+.node .s{color:var(--muted);font-size:12px}
+.node.mail-n{border-color:var(--accent);background:var(--surface);cursor:pointer;text-align:left;font:inherit;color:inherit;width:100%}
+.node.mail-n:hover{box-shadow:0 0 0 2px var(--chip)}
+.node.mail-n .k{color:var(--accent)}
+.node.cond{background:var(--chip);border-color:transparent;text-align:center;max-width:460px;width:100%}
+.node.cond .k{color:var(--chip-fg)}
+.node.wait{background:var(--wait-bg);border-color:transparent;text-align:center;color:var(--wait);font-weight:600;padding:6px 12px;width:auto}
+.node.end{text-align:center}
+.node.end.ok{background:var(--ok-bg);border-color:transparent}
+.node.end.ok .k{color:var(--ok)}
+.arrow{width:2px;height:22px;background:var(--line);position:relative;margin:4px 0}
+.arrow::after{content:"";position:absolute;left:-4px;bottom:-2px;border:5px solid transparent;border-top-color:var(--line);border-bottom:0}
+.merge{width:100%;height:14px;border:2px solid var(--line);border-top:0;border-radius:0 0 10px 10px;margin-top:6px}
+.split{width:100%;height:14px;border:2px solid var(--line);border-bottom:0;border-radius:10px 10px 0 0;margin-bottom:6px}
+.tags{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-top:6px}
+.tag{font-family:var(--f-mono);font-size:11px;background:var(--surface);color:var(--chip-fg);border-radius:4px;padding:1px 6px;border:1px solid var(--line)}
+.side{display:grid;gap:14px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.box h3{margin:0 0 8px;font-size:14px;font-weight:800}
+.box ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:13px}
+.box .big{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:8px}
+.box .big div{font-size:12px;color:var(--muted)}
+.box .big b{display:block;font-size:24px;color:var(--fg);font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1}
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 20px);transform:translateX(-50%) translateY(20px);opacity:0;background:var(--fg);color:var(--bg);padding:10px 16px;border-radius:10px;font-size:13px;font-weight:600;transition:.25s;pointer-events:none;max-width:calc(100% - 32px);z-index:30}
+.toast.on{opacity:1;transform:translateX(-50%)}
+@media (prefers-reduced-motion:reduce){.mail,.toast{transition:none}}
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Prévia dos e-mails de recuperação de leads</h1>
+      <p class="sub">Copies v7 · para aprovação · Fluxos A e B revisados</p>
+    </div>
+    <div class="bar">
+      <div class="flows" role="group" aria-label="Visão">
+        <button id="tE" aria-pressed="true">E-mails</button>
+        <button id="tR" aria-pressed="false">Fluxo no RD</button>
+      </div>
+      <div class="flows" role="group" aria-label="Fluxo" id="flowSw">
+        <button id="fA" aria-pressed="true">Fluxo A · Meta</button>
+        <button id="fB" aria-pressed="false">Fluxo B · LinkedIn</button>
+      </div>
+    </div>
+  </header>
+
+  <section id="viewE">
+    <div class="grid">
+      <nav class="rail" id="rail" aria-label="E-mails do fluxo"></nav>
+      <main style="min-width:0">
+        <div class="controls">
+          <div class="ctl" id="cSit"><span>Situação do lead</span><div class="seg" data-k="sit"></div></div>
+          <div class="ctl" id="cArea"><span>Área do RH</span><div class="seg" data-k="area"></div></div>
+          <div class="ctl"><span>Tela</span><div class="seg" data-k="device"></div></div>
+          <div class="ctl"><span>Textos</span><button class="btn" id="editBtn" disabled>Carregando…</button></div>
+          <div class="ctl"><span>Mostrar</span>
+            <div style="display:flex;gap:12px;flex-wrap:wrap;padding:3px 0">
+              <label class="sw"><input type="checkbox" id="marks" checked> Cliques e validações</label>
+              <label class="sw"><input type="checkbox" id="sample"> Exemplo preenchido</label>
+            </div>
+          </div>
+        </div>
+        <div class="note edit" id="enote" hidden>Modo edição. Clique em qualquer texto do e-mail, no assunto alternativo ou no pré-header. Os campos entre colchetes, como [NOME], são variáveis do RD: mantenha os colchetes. A alteração vale para a versão que está na tela.</div>
+        <div class="note" id="bnote" hidden>No Fluxo B, os e-mails 3, 4 e 5 são iguais aos do Fluxo A.</div>
+        <div class="client">
+          <div class="inbox">
+            <div class="cap">Como chega na caixa de entrada</div>
+            <div class="row">
+              <div class="av" id="av">W</div>
+              <div style="min-width:0"><div class="who" id="who"></div><div class="line" id="line"></div></div>
+              <div class="t" id="when"></div>
+            </div>
+            <div class="alt" id="alt"></div>
+          </div>
+          <div class="stage"><article class="mail marks" id="mail"></article></div>
+        </div>
+      </main>
+      <aside class="legend" id="legend" aria-label="Mapa de cliques"></aside>
+    </div>
+  </section>
+
+  <section id="viewR" hidden>
+    <div class="rd">
+      <div class="canvas" id="canvas"></div>
+      <div class="side" id="side"></div>
+    </div>
+  </section>
+</div>
+
+<div class="sim" id="sim" hidden role="dialog" aria-modal="true" aria-label="Simulação do clique no botão de área">
+  <div class="simbox">
+    <div class="browser">
+      <div class="bchrome"><span class="dots"><i></i><i></i><i></i></span><span class="tabname">WhatsApp</span><span class="url" id="simUrl"></span></div>
+      <div class="wa">
+        <div class="wahead"><span class="waav">W</span><div><b>Wabfy</b><small>comercial</small></div></div>
+        <div class="wachat"><div class="wanote">A conversa abre com a mensagem já escrita. A pessoa só toca em enviar.</div></div>
+        <div class="wainput"><span id="simMsg"></span><span class="wasend" aria-hidden="true">➤</span></div>
+      </div>
+    </div>
+    <div class="rdpanel">
+      <h3>O que acontece no RD</h3>
+      <p class="hint">Simulação do clique em <b id="simArea"></b> no e-mail 1.</p>
+      <div class="truth"><b>Todo botão de e-mail é um link.</b> Aqui, o link de cada área abre o WhatsApp com a área na mensagem. Assim a pessoa responde e já começa a conversa com o comercial.</div>
+      <ol class="steps" id="simSteps"></ol>
+      <div class="simact">
+        <button class="btn" id="simGo">Ver o e-mail 2 que ela vai receber</button>
+        <button class="btn ghost" id="simClose">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const VARS = {NOME:'Mariana', REM:'Rafael', CARGO:'Executivo de contas', RESUMO:'a avaliação de desempenho do time'};
+const VLABEL = {NOME:'NOME', REM:'NOME DO REMETENTE', CARGO:'CARGO', RESUMO:'RESUMO DA CONVERSA'};
+const S = {view:'E', flow:'A', idx:0, area:'geral', sit:'novo', device:'desktop', marks:true, sample:false, edit:false};
+
+const AREAS = [
+  {k:'ted', btn:'T&D', name:'T&D', msg:'Olá! Sou de T&D e quero agendar uma demonstração da Wabfy.'},
+  {k:'dho', btn:'DHO e carreira', name:'DHO e carreira', msg:'Olá! Sou de DHO e carreira e quero agendar uma demonstração da Wabfy.'},
+  {k:'atracao', btn:'Atração e seleção', name:'Atração e seleção', msg:'Olá! Sou de atração e seleção e quero agendar uma demonstração da Wabfy.'},
+  {k:'lideranca', btn:'Liderança de RH e BP', name:'Liderança de RH e BP', msg:'Olá! Sou da liderança de RH e quero agendar uma demonstração da Wabfy.'},
+  {k:'geral', btn:'Outra área', name:'RH geral', msg:'Olá! Quero agendar uma demonstração da Wabfy.'}
+];
+const aName = k => AREAS.find(a=>a.k===k).name;
+const WA = {A:'Olá! Recebi o e-mail da Wabfy e quero agendar uma demonstração.', B:'Olá! Vim pelo e-mail sobre O Fim do Apagão de Talentos e quero conhecer a Wabfy.'};
+const WA_NOTE = 'Pausa o fluxo por 2 dias úteis e cria tarefa para o comercial.';
+const waDet = f => () => `Mensagem pronta: <q>${WA[f]}</q> ${WA_NOTE}`;
+const FLOW = {
+  A:{from:'{REM} · Wabfy', sign:'Estamos te esperando!', role:'{CARGO} · Wabfy by Belago',
+     foot:'Você recebe este e-mail porque pediu informações sobre a Wabfy. <u>Descadastrar</u> · <u>Política de privacidade</u>'},
+  B:{from:'{REM} · Wabfy', sign:'Um abraço,', role:'{CARGO} · Wabfy by Belago',
+     foot:'Você recebe este e-mail porque se cadastrou para acessar O Fim do Apagão de Talentos. <u>Descadastrar</u> · <u>Política de privacidade</u><br><span class="v">[RAZÃO SOCIAL E ENDEREÇO]</span>'}
+};
+const DEG = ['Isso é para mim','O custo de não mudar','Na minha empresa','Decidir com segurança','Agora ou depois'];
+const WHEN = {A:['D0 · poucos minutos','D+2 úteis','D+5 úteis','D+9 úteis','D+14 úteis'], B:['D0 · poucos minutos','D+3 úteis','D+6 úteis','D+10 úteis','D+15 úteis']};
+
+/* ---------- Fluxo A (v7) ---------- */
+const A1 = {
+  novo:{subj:'{NOME}, recebi sua solicitação!', alt:'{NOME}, vamos marcar a sua demonstração?', pre:'Escolha o melhor horário e eu te mostro a Wabfy por dentro.',
+        p2:'Aqui é {REM}, da Wabfy. Vi que você fez uma solicitação agora há pouco para conhecer a plataforma.',
+        p3:['De forma resumida, a Wabfy é uma plataforma que conecta cargos e competências, avaliação, PDI, desenvolvimento e carreira em um mesmo ciclo.',
+            'Quero bater um papo com você para mostrar a Wabfy mais a fundo e entender como podemos ser úteis para a sua operação.']},
+  antigo:{subj:'{NOME}, ainda quer conhecer a Wabfy?', alt:'{NOME}, vamos retomar a sua solicitação?', pre:'Ainda dá tempo de marcar o nosso papo.',
+        p2:'Aqui é {REM}, da Wabfy. Há um tempo, você fez uma solicitação para conhecer a plataforma, e eu queria retomar com você.',
+        p3:['Vamos agendar um papo para eu te mostrar como a Wabfy funciona?']},
+  esfriou:{subj:'{NOME}, vamos retomar nossa conversa?', alt:'{NOME}, continuamos de onde paramos?', pre:'Um novo papo, agora com a plataforma aberta.',
+        p2:'Aqui é {REM}, da Wabfy. Chegamos a conversar sobre a plataforma, e quero retomar de onde paramos.',
+        p3:['Que tal agendarmos um novo papo? Quero te mostrar todas as soluções que a Wabfy pode proporcionar.']}
+};
+const agenda = (txt) => ({p:txt, link:'Abrir agenda', dest:'Agenda', agline:true, det:()=>'<span class="v">[LINK DA AGENDA]</span>. A pessoa escolhe o horário sozinha.'});
+const waBtn = (label, f='A') => ({btn:label, dest:'WhatsApp', det:waDet(f)});
+const AGL = () => agenda('Se preferir escolher o horário por conta própria, minha agenda está aberta: ');
+const agBtn = (label) => ({btn:label, dest:'Agenda', style:'sec', det:()=>'<span class="v">[LINK DA AGENDA]</span>. A pessoa escolhe o horário sozinha.'});
+const shotB = (shot, shotS) => ({shot, shotS, dest:'WhatsApp', det:()=>`Print da tela de ${shot}. Clicar na imagem abre o WhatsApp com <q>${WA.A}</q>`});
+const A2 = {
+  geral:{subj:'Quantos arquivos o RH abre antes de começar uma análise?', alt:'{NOME}, quanto tempo leva para responder sobre uma pessoa?', pre:'Quando cada informação está em um lugar diferente, a resposta demora.',
+    body:()=>[
+      {p:'{NOME}, quantas abas o RH precisa abrir para responder uma pergunta sobre uma pessoa?'},
+      {p:'Às vezes, a pergunta é sobre quem está pronto para um novo desafio. Em outras, sobre qual gap desenvolver ou como acompanhar um PDI.'},
+      {p:'Com a Wabfy, essas etapas vivem conectadas. O RH deixa de reconstruir o contexto a cada nova pergunta e passa a acompanhar desenvolvimento, carreira e decisões de pessoas a partir da mesma referência.'},
+      shotB('Trajetória e PDI', 'a pessoa, o cargo, a avaliação e o plano na mesma tela'),
+      waBtn('Chamar no WhatsApp'),
+      {p:'Reúna cargos, competências, avaliações, PDIs e informações de carreira em um só lugar. Chame a gente no WhatsApp e veja como a Wabfy ajuda seu RH a responder com mais contexto e menos busca manual.'},
+      AGL(),
+      {sign:true}]},
+  ted:{subj:'{NOME}, qual curso resolve o gap de cada pessoa?', alt:'{NOME}, o curso que falta vira mais uma demanda?', pre:'Quando a trilha nasce do gap, essa resposta fica fácil.',
+    body:()=>[
+      {p:'{NOME}, difícil responder, né?'},
+      {p:'A gente sabe como é: curso tem de sobra, mas ninguém sabe ao certo qual resolve qual gap. E quando falta conteúdo, vira mais uma demanda na fila ou mais um custo para a empresa.'},
+      {p:'Com a Wabfy, tudo está conectado: a trilha já nasce do gap encontrado na avaliação e o Gerador de Cursos com IA cria novos conteúdos em minutos.'},
+      shotB('Trilhas e Gerador de Cursos com IA', 'trilha gerada a partir do gap'),
+      {p:'Quando o conteúdo parte do gap identificado, o desenvolvimento deixa de ser uma escolha no escuro. Chame a gente no WhatsApp e veja como conectar cada necessidade ao próximo passo de aprendizagem.'},
+      waBtn('Chamar no WhatsApp'),
+      AGL(),
+      {sign:true}]},
+  dho:{subj:'{NOME}, cada gestor usa um critério diferente de avaliação?', alt:'{NOME}, o PDI fica pronto antes do fim do ciclo?', pre:'Uma régua só para cargo, avaliação e PDI.',
+    body:()=>[
+      {p:'Se a resposta foi sim, isso é mais comum do que parece, {NOME}.'},
+      {p:'Quando cada gestor avalia de um jeito, os resultados deixam de ser comparáveis. O feedback fica mais subjetivo, o RH precisa reconstruir o contexto depois do ciclo e o PDI costuma começar sem uma referência clara sobre o que a pessoa precisa desenvolver.'},
+      {p:'Com a Wabfy, o Plano de Cargos define o que se espera em cada nível e quais competências orientam aquela função. Essa mesma régua segue para a avaliação e ajuda a transformar os gaps identificados em ações de desenvolvimento no PDI.'},
+      shotB('Plano de Cargos', 'níveis e competências de cada cargo'),
+      {p:'Leve o mesmo critério para avaliação, desenvolvimento e carreira. Chame a gente no WhatsApp e veja como isso funcionaria na sua operação.'},
+      waBtn('Chamar no WhatsApp'),
+      AGL(),
+      {sign:true}]},
+  atracao:{subj:'{NOME}, quem do time poderia ser uma boa opção para a próxima vaga?', alt:'{NOME}, cada vaga começa do zero aí?', pre:'Candidatos em um lugar só e vagas internas com critério.',
+    body:()=>[
+      {p:'Pergunta difícil de responder, né, {NOME}?'},
+      {p:'A gente sabe como é: cada processo parece surgir do zero, com currículo espalhado e critério redefinido. E, quase sempre, você seleciona alguém de fora.'},
+      {p:'Com a Wabfy, cada candidato tem um cadastro só, o time indica pelo próprio link e as vagas internas mostram quem já está pronto.'},
+      shotB('Vagas internas e banco de candidatos', 'Seleções e Sucessões'),
+      {p:'Imagine não precisar começar um processo seletivo do zero a cada vaga aberta. Chame a gente no WhatsApp e preencha a próxima vaga de maneira mais rápida e assertiva.'},
+      waBtn('Chamar no WhatsApp'),
+      AGL(),
+      {sign:true}]},
+  lideranca:{subj:'{NOME}, quem está pronto para o próximo desafio no seu time?', alt:'{NOME}, quem assume se alguém sair amanhã?', pre:'Desempenho, competências e trajetória no mesmo lugar.',
+    body:()=>[
+      {p:'{NOME}, difícil responder, né?'},
+      {p:'Ainda mais quando desempenho, competências, PDI e trajetória estão em lugares diferentes.'},
+      {p:'Com a Wabfy, essas informações ficam conectadas para apoiar conversas sobre desenvolvimento, movimentação e sucessão.'},
+      waBtn('Chamar no WhatsApp'),
+      shotB('Sucessões', 'posições críticas e sucessores sugeridos'),
+      {p:'Veja como dar mais contexto às decisões de pessoas na sua empresa.'},
+      AGL(),
+      {sign:true}]}
+};
+
+const GET3 = ()=>({subj:'Por onde começar a mudança?', alt:'{NOME}, o PDI continua depois da avaliação?', pre:'Quando a avaliação termina, o desenvolvimento precisa continuar.'});
+const GET4 = ()=>({subj:'Case Caixa: o que acontece quando o ciclo de pessoas deixa de ser manual?', alt:'{NOME}, isso funciona de verdade?', pre:'150 mil servidores em uma plataforma só.'});
+const GET5 = ()=>({subj:'{NOME}, quando é o melhor momento?', alt:'Sem pressa: a gente volta quando fizer sentido', pre:'Escolha quando quer que a gente retome o contato.'});
+const SIGN = {sign:true, close:'Estamos te esperando!'};
+const body3 = f => [
+    {p:'{NOME}, imagine uma empresa que já avalia as pessoas, mas não consegue fazer o PDI continuar depois do ciclo.'},
+    {p:'O RH identifica os gaps e o gestor recebe o resultado. Mas, semanas depois, ninguém sabe com clareza o que avançou, o que precisa ser retomado e qual desenvolvimento faz sentido para cada pessoa.'},
+    {p:'Com a Wabfy, isso não acontece. A avaliação parte de cargos e competências, os gaps orientam o PDI e o acompanhamento continua conectado à trajetória de cada pessoa.'},
+    waBtn('Ver como isso funcionaria na minha empresa', f),
+    {p:'A partir daí, a empresa pode conectar trilhas, cursos, conversas de 1:1 e decisões de carreira ao mesmo contexto, sem recomeçar a leitura a cada etapa.'},
+    {p:'Na demonstração, mostramos por onde sua operação pode começar.'},
+    AGL(),
+    SIGN];
+const body4 = f => [
+    {p:'{NOME}, quando a gente fala de uma plataforma nova, a primeira dúvida costuma ser: isso funciona de verdade?'},
+    {p:'A Caixa Econômica Federal usa a Wabfy com 150 mil servidores. Em uma plataforma só, ela reúne gestão estratégica, desenvolvimento e decisões de carreira.'},
+    {p:'Na prática, isso permite que uma operação grande estruture o ciclo de pessoas com mais agilidade:'},
+    {ul:[
+      ['150 mil servidores com um PDI individual.','Cada pessoa tem um plano de desenvolvimento conectado à sua trajetória.','Validar número'],
+      ['80% menos trabalho operacional de RH.','Menos esforço para reunir informações e conduzir etapas manuais do ciclo.','Validar número'],
+      ['30 minutos para mapear um departamento.','Cargos, níveis e competências passam a dar referência para as próximas decisões.','Validar número'],
+      ['3 dias para encerrar um ciclo de Avaliação 360°.','A avaliação acontece com uma base estruturada e segue para o desenvolvimento.','Validar número']
+    ]},
+    waBtn('Ver como a Wabfy funciona na minha empresa', f),
+    {p:'Os desafios podem ser diferentes, mas o princípio é o mesmo: conectar o que a função exige, o que a avaliação revela e o que cada pessoa precisa desenvolver depois.'},
+    AGL(),
+    SIGN];
+const body5 = f => [
+    {p:'{NOME}, a gente sabe que escolher uma plataforma para o RH é uma decisão grande, e ela não acontece de um dia para o outro.'},
+    {p:'Por isso, o convite continua: queremos te mostrar a Wabfy funcionando.'},
+    waBtn('Quero ver agora', f),
+    {p:'Se este não for o momento, tudo bem. Em quanto tempo podemos retomar o contato?'},
+    {retomada:true},
+    AGL(),
+    SIGN,
+    ...(f==='B' ? [{ps:'P.S.: o estudo continua disponível aqui: ', links:[{label:'Abrir o material', dest:'Material', det:()=>'<span class="v">[LINK DO MATERIAL]</span>'}], tail:'.'}] : [])];
+
+const EMAILS_A = [
+  {uses:['sit'], vers:'3 versões', get:()=>A1[S.sit],
+   body:()=>[
+    {p:'{NOME}, tudo bem?'},
+    {p:A1[S.sit].p2},
+    ...A1[S.sit].p3.map(t=>({p:t})),
+    {btn:'Agendar nosso papo', dest:'WhatsApp', det:waDet('A')},
+    {p:'Será uma call com a plataforma aberta e com tempo para entender a sua necessidade e tirar todas as suas dúvidas.'},
+    {p:'Para eu personalizar a demonstração antes da call, me conta: de qual área você é?'},
+    {p:'Com um clique, você escolhe sua área, é direcionado para o WhatsApp e eu preparo a conversa pensando exatamente na sua necessidade.'},
+    {areas:'wa'},
+    AGL(),
+    {sign:true},
+    {ps:'P.S.: ainda está em dúvida? ', links:[
+      {label:'Conheça a Wabfy no nosso site', dest:'Home', det:()=>'wabfy.com/pt-br/'},
+      {mid:' ou ', label:'reveja o vídeo', dest:'Vídeo', det:()=>'<span class="v">[LINK DO VÍDEO]</span>. O mesmo link para os dois vídeos da Meta.'}
+    ], tail:'.'}
+   ]},
+  {uses:['area'], vers:'5 versões', get:()=>A2[S.area], body:()=>A2[S.area].body()},
+  {uses:[], vers:'1 versão', get:GET3, body:()=>body3('A')},
+  {uses:[], vers:'1 versão', get:GET4, body:()=>body4('A')},
+  {uses:[], vers:'1 versão', get:GET5, body:()=>body5('A')}
+];
+
+/* ---------- Fluxo B (v5) ---------- */
+const B_E2 = {
+  geral:{t:'', w:'Com a Wabfy, o resultado da avaliação já vira o plano de desenvolvimento de cada pessoa, e o próximo ciclo começa de onde esse parou. Assim, o RH passa a acompanhar o desenvolvimento do time de forma contínua.', dest:'Home', url:'wabfy.com/pt-br/'},
+  dho:{t:'Quando cada gestor avalia de um jeito e o PDI só aparece depois que o ciclo acabou, fica difícil mostrar para a pessoa o que ela precisa construir para crescer.', w:'Com a Wabfy, o Plano de Cargos define o que se espera em cada nível, e a avaliação e o PDI usam essa mesma régua.', dest:'Plano de Cargos', url:'wabfy.com/pt-br/wabfy-plano-de-cargos/'},
+  ted:{t:'Quando a pessoa não enxerga como se desenvolver, os cursos disponíveis pouco ajudam. A empresa pode criar ou contratar conteúdos, mas, sem conexão com os gaps de cada pessoa, tudo vira catálogo.', w:'Com a Wabfy, a trilha parte da avaliação e, se falta conteúdo, o Gerador de Cursos com IA ajuda a criá-lo em minutos.', dest:'Pilar Desenvolver', url:'wabfy.com/pt-br/wabfy-desenvolver/'},
+  atracao:{t:'Parte desse problema está nas oportunidades que não chegam a aparecer para quem já está no time. Quando cada vaga começa do zero, com currículos espalhados e critérios redefinidos, fica mais difícil identificar quem já tem perfil para o próximo passo.', w:'Com a Wabfy, cada candidato tem um único cadastro, o time indica pessoas pelo próprio link, e as vagas internas ajudam a dar visibilidade a quem pode crescer dentro da empresa.', dest:'Pilar Escalar', url:'wabfy.com/pt-br/wabfy-escalar/'},
+  lideranca:{t:'Para não descobrir esse movimento só na saída, o RH precisa enxergar sinais antes. Quando a diretoria pede uma leitura por área ou ciclo, juntar dados de vários lugares atrasa essa conversa.', w:'Com a Wabfy, o Dashboard de RH reúne desenvolvimento e performance em uma só visão.', dest:'Pilar Estruturar', url:'wabfy.com/pt-br/wabfy-estruturar/'}
+};
+const B_E3 = {
+  geral:'Dá para começar pelo que mais pesa hoje aí: cargos e avaliação, trilhas ou indicadores para a diretoria. Na demonstração, a gente escolhe junto.',
+  dho:'Para quem é de DHO, costuma fazer sentido começar pelo Plano de Cargos e já usar essa base na primeira Avaliação 360°.',
+  ted:'Para quem é de T&D, costuma fazer sentido ligar as trilhas aos gaps de cada cargo e criar com IA os cursos que estão faltando.',
+  atracao:'Para quem é de atração e seleção, costuma fazer sentido juntar os candidatos num banco só e abrir vagas internas com os critérios de cada cargo.',
+  lideranca:'Para quem lidera o RH, costuma fazer sentido começar pelo painel que vai para as reuniões com a diretoria.'
+};
+const B1V = {
+  novo:{subj:'O apagão de talentos começa antes da demissão', alt:'{NOME}, vamos continuar a conversa do material?', pre:'Do estudo para a rotina da sua empresa.',
+    p2:'Aqui é {REM}, da Wabfy. Agora há pouco, você baixou o material O Fim do Apagão de Talentos.',
+    p4:'Agora, a ideia é olhar para como esse desafio aparece na rotina da sua empresa.',
+    p5:'Reter bons talentos não depende de uma conversa isolada no fim do ciclo. Depende de criar condições para que as pessoas enxerguem o que precisam desenvolver, quais oportunidades existem e qual pode ser o próximo passo.'},
+  antigo:{subj:'O apagão de talentos começa antes da demissão', alt:'{NOME}, vamos continuar a conversa do material?', pre:'Do estudo para a rotina da sua empresa.',
+    p2:'Aqui é {REM}, da Wabfy. Faz um tempo que você se cadastrou para ler o material O Fim do Apagão de Talentos.',
+    p4:'Agora, a ideia é olhar para como esse desafio aparece na rotina da sua empresa.',
+    p5:'Entender por que bons talentos deixam a empresa é importante. Mas criar condições para que eles enxerguem desenvolvimento, oportunidades e próximos passos é o que pode mudar a jornada antes que a saída aconteça.'},
+  esfriou:{subj:'Vamos retomar essa conversa?', alt:'{NOME}, continuamos de onde paramos?', pre:'Um novo papo, agora com a plataforma aberta.',
+    p2:'Aqui é {REM}, da Wabfy. Depois de baixar o material O Fim do Apagão de Talentos, você conversou com o nosso time sobre {RESUMO}.',
+    p4:'Quero entender como esse tema está hoje na sua operação.',
+    p5:'Para que uma pessoa enxergue futuro dentro da empresa, ela precisa conseguir conectar o que faz hoje, o que precisa desenvolver e quais podem ser seus próximos movimentos. Quando cada etapa fica separada, essa conversa perde contexto.'}
+};
+const bAreaLink = () => ({p:'Ainda com dúvidas? Para saber mais sobre a Wabfy e suas soluções, ', link:'acesse o site', tail:'.', quiet:true, dest:B_E2[S.area].dest, det:()=>B_E2[S.area].url+'. Muda conforme a área.'});
+const EMAILS_B = [
+  {uses:['sit'], vers:'3 versões', get:()=>B1V[S.sit],
+   body:()=>{const v=B1V[S.sit]; return [
+    {p:'{NOME}, tudo bem?', bold:true},
+    {p:v.p2},
+    {p:'Vamos continuar essa conversa?', bold:true},
+    {p:v.p4},
+    {p:v.p5},
+    {p:'Com a Wabfy, cargos e competências orientam a avaliação. A avaliação mostra os gaps. E o PDI, o desenvolvimento e a carreira seguem conectados a partir daí.'},
+    waBtn('Ver como isso funcionaria na minha empresa','B'),
+    {p:'Assim, RH, gestores e colaboradores deixam de reconstruir o contexto a cada etapa e passam a acompanhar a jornada a partir da mesma referência.'},
+    {p:'Na demonstração, abrimos a plataforma para mostrar como essa jornada pode funcionar na sua operação.'},
+    {kick:'Personalize sua demonstração'},
+    {p:'Me conta: de qual área você é?', bold:true},
+    {p:'Com um clique, você escolhe sua área, é direcionado para o WhatsApp e eu preparo a conversa e os próximos conteúdos pensando na sua necessidade.'},
+    {areas:'wa'},
+    {...agenda('Caso prefira, '), link:'acesse minha agenda', tail:' e escolha o melhor horário para a conversa.'},
+    {sign:true},
+    {ps:'P.S.: conheça a plataforma antes da conversa: ', links:[
+      {label:'Assistir ao vídeo', dest:'Vídeo', det:()=>'<span class="v">[LINK DO VÍDEO]</span>'},
+      {mid:' ou ', label:'Abrir o material', dest:'Material', det:()=>'<span class="v">[LINK DO MATERIAL]</span>'}], tail:'.'}
+   ];}},
+  {uses:['area'], vers:'5 versões', get:()=>({subj:'Quem do seu time está pensando em sair?', alt:'{NOME}, o talento que ninguém viu a tempo', pre:'Muitas vezes dava para perceber antes.'}),
+   body:()=>[
+    {p:'{NOME}, sabe aquela pessoa que entregava bem, pediu demissão e pegou todo mundo de surpresa? Muitas vezes ela só não via para onde crescer.'},
+    ...(B_E2[S.area].t ? [{p:B_E2[S.area].t, areaPara:true}] : []),
+    {p:B_E2[S.area].w, areaPara:true},
+    {p:'Quer ver como isso funcionaria com o seu time? Me chama no WhatsApp.'},
+    waBtn('Chamar no WhatsApp', 'B'),
+    AGL(),{sign:true},bAreaLink()
+   ]},
+  {uses:[], vers:'1 versão', get:GET3, body:()=>body3('B')},
+  {uses:[], vers:'1 versão', get:GET4, body:()=>body4('B')},
+  {uses:[], vers:'1 versão', get:GET5, body:()=>body5('B')}
+];
+const EMAILS = {A:EMAILS_A, B:EMAILS_B};
+
+/* ---------- textos editáveis ---------- */
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+const fill = s => esc(s).replace(/\{(NOME|REM|CARGO|RESUMO)\}/g,(m,k)=> S.sample ? `<span class="ex">${VARS[k]}</span>` : `<span class="v">[${VLABEL[k]}]</span>`);
+const plain = s => s.replace(/\{(NOME|REM|CARGO|RESUMO)\}/g,(m,k)=> S.sample ? VARS[k] : `[${VLABEL[k]}]`);
+const toBr = s => s.replace(/\{(NOME|REM|CARGO|RESUMO)\}/g,(m,k)=>`[${VLABEL[k]}]`);
+const fromBr = s => s.replace(/\[NOME DO REMETENTE\]/g,'{REM}').replace(/\[RESUMO DA CONVERSA\]/g,'{RESUMO}').replace(/\[NOME\]/g,'{NOME}').replace(/\[CARGO\]/g,'{CARGO}');
+let OV = {};               // alterações salvas: chave -> {key,label,text,orig,by,at}
+const DEF = {}, LAB = {};  // texto original e rótulo de cada chave desenhada
+const txt = (key, def) => (OV[key] && typeof OV[key].text==='string') ? OV[key].text : def;
+const SITN = {novo:'Novo', antigo:'Antigo', esfriou:'Esfriou'};
+let OVL = {};              // ordem dos blocos salva: chave do e-mail -> {key,label,order,by,at}
+function getOrder(K, n){
+  const def = [...Array(n).keys()], o = OVL[K] && OVL[K].order;
+  if(!Array.isArray(o) || o.length!==n) return def;
+  const seen = new Set(o); if(seen.size!==n || o.some(x=>!(Number.isInteger(x) && x>=0 && x<n))) return def;
+  return o.slice();
+}
+const KEYV = 'k2'; // trocar quando a estrutura dos e-mails mudar, para alterações antigas não caírem no bloco errado
+function ctx(flow, idx, sit, area){
+  const e = EMAILS[flow][idx]; let k = KEYV + '.' + flow + (idx+1);
+  if(e.uses.includes('sit')) k += '.' + (sit||S.sit);
+  if(e.uses.includes('area')) k += '.' + (area||S.area);
+  return k;
+}
+function ctxLabel(flow, idx){
+  const e = EMAILS[flow][idx]; let l = `Fluxo ${flow} · E-mail ${idx+1}`;
+  if(e.uses.includes('sit')) l += ' · ' + SITN[S.sit];
+  if(e.uses.includes('area')) l += ' · ' + aName(S.area);
+  return l;
+}
+function ed(key, def, label){
+  DEF[key] = def; LAB[key] = label;
+  const val = txt(key, def), chg = OV[key] ? ' chg' : '';
+  if(S.edit) return `<span class="ed${chg}" data-k="${esc(key)}" contenteditable="plaintext-only" spellcheck="true" role="textbox" aria-label="${esc(label)}">${esc(toBr(val))}</span>`;
+  return `<span class="ed${chg}">${fill(val)}</span>`;
+}
+let clicks = [];
+const mark = item => { clicks.push(item); return `<span class="mk" aria-hidden="true">${clicks.length}</span>`; };
+const flag = t => t ? `<span class="flag">${t}</span>` : '';
+
+function renderE(){
+  const list = EMAILS[S.flow], e = list[S.idx], F = FLOW[S.flow], h0 = e.get();
+  const K = ctx(S.flow, S.idx), L = ctxLabel(S.flow, S.idx);
+  clicks = [];
+  document.getElementById('rail').innerHTML = `<div class="lbl">${S.flow==='A'?'Fluxo A · Meta':'Fluxo B · LinkedIn'}</div>` +
+    list.map((x,i)=>`<button data-i="${i}" aria-current="${i===S.idx}"><span class="num">${i+1}</span><span class="deg">${DEG[i]}</span><span class="when">${WHEN[S.flow][i]}</span>${x.vers!=='1 versão'?`<span class="vers">${x.vers}</span>`:''}</button>`).join('');
+  const setOff=(id,on)=>{const el=document.getElementById(id);el.classList.toggle('off',!on);el.querySelectorAll('button').forEach(b=>b.disabled=!on)};
+  setOff('cSit', e.uses.includes('sit'));
+  setOff('cArea', e.uses.includes('area'));
+  document.querySelectorAll('.seg').forEach(seg=>seg.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed', S[seg.dataset.k]===b.dataset.v)));
+  document.getElementById('bnote').hidden = S.flow!=='B';
+  document.getElementById('enote').hidden = !S.edit;
+  document.getElementById('who').textContent = plain(F.from);
+  const subjKey = K+'.subj';
+  document.getElementById('line').innerHTML = `<b>${fill(txt(subjKey, h0.subj))}</b> <span class="pre">· ${fill(txt(K+'.pre', h0.pre))}</span>`;
+  document.getElementById('when').textContent = WHEN[S.flow][S.idx].split(' · ')[0];
+  document.getElementById('alt').innerHTML = `Assunto alternativo para teste A/B: <b>${ed(K+'.alt', h0.alt, L+' · Assunto alternativo')}</b>` +
+    (S.edit ? `<br>Pré-header: <b>${ed(K+'.pre', h0.pre, L+' · Pré-header')}</b>` : '');
+  const m = document.getElementById('mail');
+  m.className = 'mail ' + (S.flow==='B'?'b ':'') + (S.device==='mobile'?'mobile ':'') + (S.marks?'marks ':'') + (S.edit?'editing':'');
+  let h = S.flow==='B' ? `<div class="brand"><span class="wm">wabfy</span><span class="by">by Belago</span></div>` : '';
+  h += `<div class="mhead"><span>De: <b>${fill(F.from)}</b></span><span>Para: ${fill('{NOME}')}</span><div class="subj">${ed(subjKey, h0.subj, L+' · Assunto')}</div></div><div class="mbody">`;
+  const blocks = e.body(), order = getOrder(K, blocks.length);
+  order.forEach((i,pos)=>{
+    const b = blocks[i], _s = h.length;
+    const bk = K+'.b'+i, bl = L+' · bloco '+(i+1);
+    if(b.areas){
+      const n = clicks.length+1;
+      clicks.push({what:'Botões de área (5)', dest:'WhatsApp', det:`Cada botão abre o WhatsApp com a área já na mensagem, e o RD aplica a tag da área pelo link clicado. Como é um clique no WhatsApp, o fluxo pausa 2 dias úteis e o comercial recebe a tarefa. <b>Clique numa área aqui na prévia para ver a simulação.</b>`});
+      h += `<div class="pills">` + AREAS.map(a=>`<a role="button" tabindex="0" data-area="${a.k}" data-mode="${b.areas}" class="${S.area===a.k && a.k!=='geral' ? 'sel':''}">${ed(S.flow+'.areas.'+a.k, a.btn, `Fluxo ${S.flow} · Botão de área ${a.name}`)}</a>`).join('') + `<span class="mk" aria-hidden="true">${n}</span></div>`;
+    } else if(b.kick){
+      h += `<p class="kick">${ed(bk+'.kick', b.kick, bl+' · rótulo')}</p>`;
+    } else if(b.btn){
+      const priM = mark({what:txt(bk+'.btn',b.btn), dest:b.dest, det:b.det()});
+      h += `<div class="cta"><a href="#" onclick="return false">${ed(bk+'.btn', b.btn, bl+' · botão')}</a>${priM}</div>`;
+    } else if(b.shot){
+      h += `<div class="shot" role="img" aria-label="Print da plataforma: ${esc(b.shot)}"><div>PRINT · ${ed(bk+'.shot', b.shot, bl+' · print')}<small>${ed(bk+'.shotS', b.shotS, bl+' · legenda do print')}</small>${mark({what:'Print: '+txt(bk+'.shot',b.shot), dest:b.dest, det:b.det()})}</div></div>`;
+    } else if(b.ol || b.ul){
+      const items = b.ol || b.ul, tagn = b.ol ? 'ol' : 'ul';
+      h += `<${tagn}>` + items.map((it,j)=> Array.isArray(it)
+        ? `<li><b>${ed(bk+'.i'+j+'.l', it[0], bl+' · item '+(j+1)+' (título)')}</b> ${ed(bk+'.i'+j+'.t', it[1], bl+' · item '+(j+1))}${it[2]?flag(it[2]===true?'Validar':it[2]):''}</li>`
+        : `<li>${ed(bk+'.i'+j, it, bl+' · item '+(j+1))}</li>`).join('') + `</${tagn}>`;
+    } else if(b.retomada){
+      clicks.push({what:'Em 1 mês · Em 3 meses · Em 6 meses', dest:'Links de retomada', det:'Aplicam a tag <span class="v">retomar</span> e a data no RD. O lead sai do fluxo e volta na data escolhida.'});
+      h += `<div class="pills">${['Em 1 mês','Em 3 meses','Em 6 meses'].map((t,j)=>`<a role="button" tabindex="-1">${ed(bk+'.r'+j, t, bl+' · retomada '+(j+1))}</a>`).join('')}<span class="mk" aria-hidden="true">${clicks.length}</span></div>`;
+    } else if(b.sign){
+      h += `<div class="sign">${ed(bk+'.close', b.close||F.sign, bl+' · despedida')}<br><span class="nm">${fill('{REM}')}</span><br><span class="rl">${fill(F.role)}</span></div>`;
+    } else if(b.ps){
+      h += `<div class="ps">${ed(bk+'.ps', b.ps, bl+' · P.S.')}` + b.links.map((l,j)=>`${l.mid?ed(bk+'.m'+j, l.mid, bl+' · P.S. trecho '+(j+1)):''}<a class="lk" href="#" onclick="return false">${ed(bk+'.l'+j, l.label, bl+' · P.S. link '+(j+1))}</a>${mark({what:txt(bk+'.l'+j,l.label), dest:l.dest, det:l.det()})}`).join('') + `${b.tail?ed(bk+'.tail', b.tail, bl+' · P.S. final'):''}</div>`;
+    } else if(b.link){
+      h += `<p${b.agline?' class="agline"':(b.quiet?' class="quiet"':'')}>${ed(bk+'.p', b.p, bl)}<a class="lk" href="#" onclick="return false">${ed(bk+'.link', b.link, bl+' · link')}</a>${mark({what:txt(bk+'.link',b.link), dest:b.dest, det:b.det()})}${b.tail?ed(bk+'.tail', b.tail, bl+' · final'):''}</p>`;
+    } else {
+      const tag = b.areaPara ? flag('Parágrafo ' + aName(S.area)) : '';
+      const inner = ed(bk+'.p', b.p, bl);
+      h += `<p>${b.bold?'<b>'+inner+'</b>':inner}${tag}${flag(b.flag)}</p>`;
+    }
+    if(S.edit){ const seg = h.slice(_s); h = h.slice(0,_s) + `<div class="blk" data-bi="${i}" data-pos="${pos}"><div class="tools" role="group" aria-label="Mover bloco"><span class="grip" draggable="true" title="Arraste para mover" aria-hidden="true">⠿</span><button type="button" data-mv="-1" data-pos="${pos}" ${pos===0?'disabled':''} aria-label="Subir bloco">↑</button><button type="button" data-mv="1" data-pos="${pos}" ${pos===order.length-1?'disabled':''} aria-label="Descer bloco">↓</button></div>${seg}</div>`; }
+  });
+  h += `</div><div class="mfoot">${F.foot}</div>`;
+  m.innerHTML = h;
+  renderLegend(e);
+}
+
+function renderLegend(e){
+  const lg = document.getElementById('legend');
+  const nEd = Object.keys(OV).length, nLay = Object.keys(OVL).length;
+  if(S.edit){
+    const items = Object.values(OV).sort((a,b)=>String(b.at||'').localeCompare(String(a.at||'')));
+    const lays = Object.values(OVL).sort((a,b)=>String(b.at||'').localeCompare(String(a.at||'')));
+    lg.innerHTML = `<h2>Alterações salvas (${nEd + lays.length})</h2><p class="hint">Clique num texto do e-mail, edite e saia do campo para salvar. Enter também salva. Para mudar um bloco de lugar, arraste pela alça ⠿ ou use as setas. Quem tem acesso de edição vê as mudanças na hora.</p>` +
+      lays.map(x=>`<div class="li chgli"><span class="n">⇅</span><div style="min-width:0"><div class="what">Ordem dos blocos · ${esc(x.label||x.key)}</div><div class="det by"><span data-uid="${esc(x.by||'')}">Alguém</span>${x.at?' · '+esc(new Date(x.at).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})):''}</div><button class="btn ghost sm" data-restore-order="${esc(x.key)}">Restaurar ordem original</button></div></div>`).join('') +
+      ((items.length||lays.length) ? items.map(x=>`<div class="li chgli"><span class="n">✎</span><div style="min-width:0"><div class="what">${esc(x.label||x.key)}</div><div class="det now">${fill(x.text)}</div><div class="det was">Antes: ${fill(x.orig||'')}</div><div class="det by"><span data-uid="${esc(x.by||'')}">Alguém</span>${x.at?' · '+esc(new Date(x.at).toLocaleString('pt-BR',{day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})):''}</div><button class="btn ghost sm" data-restore="${esc(x.key)}">Restaurar original</button></div></div>`).join('')
+        : `<div class="li"><span class="n">0</span><div class="det">Nenhuma alteração ainda. Os textos que você mudar aparecem aqui, com o original ao lado.</div></div>`);
+    resolveNames();
+    return;
+  }
+  const varies = [];
+  if(e.uses.includes('sit')) varies.push(S.flow==='A' ? 'assunto, pré-header e 2º e 3º parágrafos mudam com a situação do lead' : 'o 2º parágrafo muda com a situação do lead');
+  if(e.uses.includes('area')) varies.push(S.flow==='A' ? 'o e-mail inteiro muda com a tag de área (5 versões)' : 'um parágrafo e o link da área mudam com a tag de área');
+  lg.innerHTML =
+    `<h2>Onde cada clique leva</h2><p class="hint">E-mail ${S.idx+1} · ${DEG[S.idx]}. Os números batem com as marcações no e-mail.</p>` +
+    clicks.map((c,i)=>`<div class="li"><span class="n">${i+1}</span><div style="min-width:0"><div class="what">${esc(plain(c.what))}</div><span class="dest">→ ${esc(c.dest)}</span><div class="det">${c.det}</div></div></div>`).join('') +
+    `<div class="meta"><span><b>Envio:</b> ${WHEN[S.flow][S.idx]}</span><span><b>O que muda:</b> ${varies.length?varies.join('; ')+'.':'nada, o texto é igual para todos.'}</span><span><b>Formato:</b> ${S.flow==='A'?'e-mail pessoal, sem logo, com prints da plataforma onde indicado.':'template leve da marca, uma coluna, logo pequeno no topo.'}</span>${(nEd+nLay)?`<span><b>Alterações salvas:</b> ${nEd+nLay}. Abra “Editar textos” para ver a lista.</span>`:''}</div>`;
+}
+
+/* ---------- fluxo no RD ---------- */
+function renderR(){
+  const n = (k,t,s,cls='',attrs='') => `<${attrs?'button':'div'} class="node ${cls}" ${attrs}><div class="k">${k}</div><div class="t">${esc(t)}</div>${s?`<div class="s">${esc(s)}</div>`:''}</${attrs?'button':'div'}>`;
+  const ar = '<div class="arrow" aria-hidden="true"></div>';
+  const go = (i,extra) => `data-go="${i}" ${extra||''}`;
+  document.getElementById('canvas').innerHTML = `<div class="lane">
+    <div class="stagecap">Portas de entrada</div>
+    <div class="cards c3">
+      ${n('Porta 1','Novo','Conversão no formulário da Meta. Entra na hora.')}
+      ${n('Porta 2','Antigo','Segmentação: lead da Meta com mais de 30 dias sem avanço.')}
+      ${n('Porta 3','Esfriou','Tag aplicada pelo comercial.')}
+    </div>
+    <div class="cards c3" style="margin-top:8px">
+      ${n('E-mail 1','Versão Novo',plain(txt(ctx('A',0,'novo')+'.subj',A1.novo.subj)),'mail-n',go(0,'data-sit="novo"'))}
+      ${n('E-mail 1','Versão Antigo',plain(txt(ctx('A',0,'antigo')+'.subj',A1.antigo.subj)),'mail-n',go(0,'data-sit="antigo"'))}
+      ${n('E-mail 1','Versão Esfriou',plain(txt(ctx('A',0,'esfriou')+'.subj',A1.esfriou.subj)),'mail-n',go(0,'data-sit="esfriou"'))}
+    </div>
+    <div class="merge" aria-hidden="true"></div>${ar}
+    <div class="node cond"><div class="k">Condição</div><div class="t">Clicou num botão de área?</div><div class="s">Cada botão abre o WhatsApp com a área na mensagem e aplica a tag. "Outra área" ou sem clique: segue sem tag.</div>
+      <div class="tags"><span class="tag">area_rh_ted</span><span class="tag">area_rh_dho</span><span class="tag">area_rh_atracao</span><span class="tag">area_rh_lideranca</span></div></div>
+    ${ar}<div class="node wait">Espera 2 dias úteis</div>${ar}
+    <div class="node cond"><div class="k">Condição</div><div class="t">Qual tag de área o lead tem?</div></div>
+    <div class="split" aria-hidden="true"></div>
+    <div class="cards c5">
+      ${['geral','ted','dho','atracao','lideranca'].map(k=>n('E-mail 2', k==='geral'?'RH geral · sem tag':aName(k), plain(txt(ctx('A',1,null,k)+'.subj',A2[k].subj)),'mail-n',go(1,`data-area="${k}"`))).join('')}
+    </div>
+    <div class="merge" aria-hidden="true"></div>${ar}
+    <div class="node wait">Espera 3 dias úteis</div>${ar}
+    <div style="width:min(320px,100%)">${n('E-mail 3','Por onde começar',plain(txt(ctx('A',2)+'.subj',EMAILS_A[2].get().subj)),'mail-n',go(2))}</div>
+    ${ar}<div class="node wait">Espera 4 dias úteis</div>${ar}
+    <div style="width:min(320px,100%)">${n('E-mail 4','O caso da Caixa',plain(txt(ctx('A',3)+'.subj',EMAILS_A[3].get().subj)),'mail-n',go(3))}</div>
+    ${ar}<div class="node wait">Espera 5 dias úteis</div>${ar}
+    <div style="width:min(320px,100%)">${n('E-mail 5','Agora ou depois',plain(txt(ctx('A',4)+'.subj',EMAILS_A[4].get().subj)),'mail-n',go(4))}</div>
+    <div class="split" aria-hidden="true"></div>
+    <div class="cards c2">
+      ${n('Clicou em 1, 3 ou 6 meses','Tag retomar + data','Sai do fluxo e volta pela porta Antigo na data escolhida.','end')}
+      ${n('Sem clique','Fim do fluxo','Segue só no remarketing pago.','end')}
+    </div>
+  </div>`;
+  document.getElementById('side').innerHTML = `
+    <div class="box"><h3>Em qualquer ponto do fluxo</h3><ul>
+      <li><b>Clicou no WhatsApp, na agenda ou num print:</b> o fluxo pausa 2 dias úteis e o RD cria tarefa para o comercial.</li>
+      <li><b>Em conversa ou Qualificado:</b> sai do fluxo. Qualificado avisa a Meta.</li>
+      <li><b>Fora do perfil:</b> sai do fluxo.</li>
+      <li><b>Agora não:</b> tag <span class="tag">retomar</span> com a data combinada.</li>
+      <li><b>Esfriou:</b> entra de novo pela porta 3.</li></ul></div>
+    <div class="box"><h3>O que cadastrar no RD (Fluxo A)</h3>
+      <div class="big"><div><b>11</b>e-mails</div><div><b>1</b>segmentação</div></div>
+      <ul><li>E-mail 1: 3 versões (Novo, Antigo, Esfriou).</li><li>E-mail 2: 5 versões (uma por área).</li><li>E-mails 3, 4 e 5: uma versão cada.</li>
+      <li>Tags: <span class="tag">area_rh_*</span> <span class="tag">situacao</span> <span class="tag">retomar</span></li>
+      <li>O vídeo de origem não muda nada. O campo video_origem sai.</li></ul></div>
+    <div class="box"><h3>Para validar com quem opera o RD</h3><ul>
+      <li>Se o plano identifica o clique em cada link. Sem isso, a tag sai e o comercial marca a área pela mensagem que chega no WhatsApp.</li>
+      <li>Um fluxo com condição na entrada ou três fluxos, um por porta.</li>
+      <li>Espera em dias úteis ou corridos.</li></ul></div>
+    <p class="sub">Clique num e-mail do diagrama para abrir a prévia.</p>`;
+}
+
+function render(){
+  document.getElementById('viewE').hidden = S.view!=='E';
+  document.getElementById('viewR').hidden = S.view!=='R';
+  document.getElementById('flowSw').hidden = S.view!=='E';
+  document.getElementById('tE').setAttribute('aria-pressed',S.view==='E');
+  document.getElementById('tR').setAttribute('aria-pressed',S.view==='R');
+  document.getElementById('fA').setAttribute('aria-pressed',S.flow==='A');
+  document.getElementById('fB').setAttribute('aria-pressed',S.flow==='B');
+  if(S.view==='E') renderE(); else renderR();
+}
+
+function seg(k, opts){
+  const el = document.querySelector(`.seg[data-k="${k}"]`);
+  el.innerHTML = opts.map(([v,l])=>`<button data-v="${v}">${l}</button>`).join('');
+  el.addEventListener('click', ev=>{const b=ev.target.closest('button'); if(!b||b.disabled) return; S[k]=b.dataset.v; render();});
+}
+seg('sit',[['novo','Novo'],['antigo','Antigo'],['esfriou','Esfriou']]);
+seg('area',[['geral','RH geral'],['ted','T&D'],['dho','DHO'],['atracao','Atração'],['lideranca','Liderança']]);
+seg('device',[['desktop','Computador'],['mobile','Celular']]);
+
+let tt;
+function toast(t){const el=document.getElementById('toast');el.innerHTML=t;el.classList.add('on');clearTimeout(tt);tt=setTimeout(()=>el.classList.remove('on'),2600);}
+const sim = document.getElementById('sim');
+function openSim(k){
+  S.area = k;
+  const ar = AREAS.find(a=>a.k===k);
+  document.getElementById('simUrl').textContent = `wabfy.com/pt-br/whats/ · link de ${k==='geral'?'outra área':ar.name}`;
+  document.getElementById('simMsg').textContent = ar.msg;
+  document.getElementById('simArea').textContent = k==='geral' ? 'Outra área' : aName(k);
+  const tagged = k!=='geral';
+  document.getElementById('simSteps').innerHTML = [
+    `Abre o WhatsApp da Wabfy com a mensagem <q>${esc(ar.msg)}</q>. A pessoa envia e já está falando com o comercial.`,
+    tagged ? `O RD registra o clique no link <b>${esc(aName(k))}</b> do e-mail 1 e aplica a tag <span class="tag">area_rh_${k}</span>.` : `"Outra área" não aplica tag. O lead segue como RH geral.`,
+    `Como foi um clique no WhatsApp, o fluxo pausa 2 dias úteis e o comercial recebe a tarefa.`,
+    `Se ninguém registrar avanço, ela segue para o e-mail 2 na versão <b>${esc(aName(k))}</b>: <q>${esc(plain(txt(ctx(S.flow,1,null,k)+'.subj', S.flow==='A' ? A2[k].subj : EMAILS_B[1].get().subj)))}</q>.`
+  ].map((t,i)=>`<li><span>${i+1}</span><div>${t}</div></li>`).join('');
+  sim.hidden = false;
+  document.getElementById('simGo').focus();
+  renderE();
+}
+function closeSim(){ sim.hidden = true; }
+document.getElementById('simClose').onclick = closeSim;
+document.getElementById('simGo').onclick = ()=>{ closeSim(); S.idx = 1; render(); };
+sim.addEventListener('click', ev=>{ if(ev.target===sim) closeSim(); });
+document.addEventListener('keydown', ev=>{ if(ev.key==='Escape' && !sim.hidden) closeSim(); });
+
+function pickArea(a){
+  if(S.edit) return;
+  openSim(a.dataset.area);
+}
+const mailEl = document.getElementById('mail');
+mailEl.addEventListener('click',ev=>{const a=ev.target.closest('[data-area]'); if(a) pickArea(a);});
+mailEl.addEventListener('keydown',ev=>{if(S.edit) return; const a=ev.target.closest('[data-area]'); if(a&&(ev.key==='Enter'||ev.key===' ')){ev.preventDefault();pickArea(a);}});
+document.getElementById('rail').addEventListener('click',ev=>{const b=ev.target.closest('button[data-i]'); if(b){S.idx=+b.dataset.i; render();}});
+document.getElementById('canvas').addEventListener('click',ev=>{const b=ev.target.closest('[data-go]'); if(!b) return;
+  S.view='E'; S.flow='A'; S.idx=+b.dataset.go; if(b.dataset.sit) S.sit=b.dataset.sit; if(b.dataset.area) S.area=b.dataset.area; render(); window.scrollTo({top:0});});
+document.getElementById('tE').onclick=()=>{S.view='E';render();};
+document.getElementById('tR').onclick=()=>{S.view='R';render();};
+document.getElementById('fA').onclick=()=>{S.flow='A';render();};
+document.getElementById('fB').onclick=()=>{S.flow='B';render();};
+document.getElementById('marks').onchange=e=>{S.marks=e.target.checked;render();};
+document.getElementById('sample').onchange=e=>{S.sample=e.target.checked;render();};
+
+/* ---------- salvar alterações (db) ---------- */
+let db = null, userNs = null, myId = null, canWrite = false, pending = false;
+const editBtn = document.getElementById('editBtn');
+const docId = k => k.replace(/[^A-Za-z0-9_\-.~:@+]/g,'_');
+const editingNow = () => !!(document.activeElement && document.activeElement.classList && document.activeElement.classList.contains('ed'));
+function setEditBtn(){
+  if(!db){ editBtn.disabled = true; editBtn.textContent = 'Edição indisponível aqui'; return; }
+  if(!canWrite){ editBtn.disabled = true; editBtn.textContent = 'Somente leitura'; return; }
+  editBtn.disabled = false; editBtn.textContent = S.edit ? 'Concluir edição' : 'Editar textos'; editBtn.classList.toggle('on', S.edit);
+}
+editBtn.onclick = ()=>{ S.edit = !S.edit; if(S.view!=='E') S.view='E'; setEditBtn(); render(); };
+async function resolveNames(){
+  if(!userNs) return;
+  const els = [...document.querySelectorAll('[data-uid]')].filter(el=>el.dataset.uid);
+  if(!els.length) return;
+  try{ const ps = await userNs.profiles([...new Set(els.map(el=>el.dataset.uid))]);
+    els.forEach(el=>{ const p = ps[el.dataset.uid]; el.textContent = (p && (p.isMe ? 'Você' : p.name)) || 'Alguém'; }); }catch(_){}
+}
+async function saveEl(el){
+  const key = el.dataset.k; if(!key || !db) return;
+  const def = DEF[key];
+  let t = fromBr(el.innerText.replace(/\s*\n\s*/g,' ').replace(/ /g,' ').trim());
+  if(t==='') t = def;
+  if(t === txt(key, def)) return;
+  const ref = db.collection('edits').doc(docId(key));
+  try{
+    if(t === def){ await ref.delete(); toast('Voltou ao texto original.'); }
+    else { await ref.set({key, label:LAB[key]||key, text:t, orig:def, by:myId||'', at:new Date().toISOString()}); toast('Alteração salva.'); }
+  }catch(err){
+    if(err && err.code==='invalid_argument'){ canWrite = false; S.edit = false; setEditBtn(); render(); toast('Você não tem permissão para salvar aqui.'); }
+    else toast('Não consegui salvar agora. Tente de novo em instantes.');
+  }
+}
+document.addEventListener('focusout', ev=>{
+  const el = ev.target; if(!(el.classList && el.classList.contains('ed') && el.dataset.k)) return;
+  saveEl(el).finally(()=> setTimeout(()=>{ if(pending && !editingNow()){ pending=false; render(); } },0));
+});
+document.addEventListener('keydown', ev=>{
+  const el = ev.target; if(el.classList && el.classList.contains('ed') && el.dataset.k && ev.key==='Enter'){ ev.preventDefault(); el.blur(); }
+});
+document.addEventListener('paste', ev=>{
+  const el = ev.target.closest && ev.target.closest('.ed[contenteditable]'); if(!el || el.contentEditable==='plaintext-only') return;
+  ev.preventDefault(); const t = (ev.clipboardData||window.clipboardData).getData('text'); document.execCommand('insertText', false, t);
+});
+async function saveOrder(K, L, order){
+  const n = order.length, isDef = order.every((x,i)=>x===i);
+  const prev = OVL[K];
+  if(isDef) delete OVL[K]; else OVL[K] = {key:K, label:L, order, by:myId||'', at:new Date().toISOString()};
+  render();
+  if(!db) return;
+  const ref = db.collection('layout').doc(docId(K));
+  try{ if(isDef) await ref.delete(); else await ref.set(OVL[K]); toast(isDef ? 'Ordem original de volta.' : 'Nova ordem salva.'); }
+  catch(err){ if(prev) OVL[K]=prev; else delete OVL[K]; render(); toast('Não consegui salvar a nova ordem.'); }
+}
+function moveBlock(from, to){
+  const e = EMAILS[S.flow][S.idx], K = ctx(S.flow, S.idx), L = ctxLabel(S.flow, S.idx);
+  const order = getOrder(K, e.body().length);
+  if(to<0 || to>=order.length || from===to) return;
+  const [x] = order.splice(from,1); order.splice(to,0,x);
+  saveOrder(K, L, order);
+}
+mailEl.addEventListener('click', ev=>{
+  const b = ev.target.closest('[data-mv]'); if(!b || !S.edit) return;
+  const pos = +b.dataset.pos, to = pos + (+b.dataset.mv);
+  moveBlock(pos, to);
+  requestAnimationFrame(()=>{ const nb = mailEl.querySelector(`.blk[data-pos="${to}"] [data-mv="${b.dataset.mv}"]`) || mailEl.querySelector(`.blk[data-pos="${to}"] [data-mv]`); if(nb) nb.focus(); });
+});
+let dragFrom = null;
+mailEl.addEventListener('dragstart', ev=>{
+  const g = ev.target.closest && ev.target.closest('.grip'); if(!g || !S.edit){ return; }
+  const blk = g.closest('.blk'); dragFrom = +blk.dataset.pos; blk.classList.add('dragging');
+  try{ ev.dataTransfer.setData('text/plain', String(dragFrom)); ev.dataTransfer.effectAllowed='move'; ev.dataTransfer.setDragImage(blk, 20, 20); }catch(_){}
+});
+const clearDrop = () => mailEl.querySelectorAll('.drop-before,.drop-after,.dragging').forEach(x=>x.classList.remove('drop-before','drop-after','dragging'));
+mailEl.addEventListener('dragover', ev=>{
+  if(dragFrom===null) return; const blk = ev.target.closest('.blk'); if(!blk) return;
+  ev.preventDefault(); const r = blk.getBoundingClientRect(), after = ev.clientY > r.top + r.height/2;
+  mailEl.querySelectorAll('.drop-before,.drop-after').forEach(x=>x.classList.remove('drop-before','drop-after'));
+  blk.classList.add(after?'drop-after':'drop-before');
+});
+mailEl.addEventListener('drop', ev=>{
+  if(dragFrom===null) return; const blk = ev.target.closest('.blk'); ev.preventDefault();
+  if(blk){ const r = blk.getBoundingClientRect(), after = ev.clientY > r.top + r.height/2; let to = +blk.dataset.pos + (after?1:0); if(to > dragFrom) to -= 1; const f = dragFrom; dragFrom = null; clearDrop(); moveBlock(f, to); }
+  else { dragFrom = null; clearDrop(); }
+});
+mailEl.addEventListener('dragend', ()=>{ dragFrom = null; clearDrop(); });
+document.getElementById('legend').addEventListener('click', async ev=>{
+  const ro = ev.target.closest('[data-restore-order]');
+  if(ro && db){ try{ await db.collection('layout').doc(docId(ro.dataset.restoreOrder)).delete(); delete OVL[ro.dataset.restoreOrder]; render(); toast('Ordem original de volta.'); }catch(_){ toast('Não consegui restaurar agora.'); } return; }
+  const b = ev.target.closest('[data-restore]'); if(!b || !db) return;
+  try{ await db.collection('edits').doc(docId(b.dataset.restore)).delete(); toast('Texto original restaurado.'); }catch(_){ toast('Não consegui restaurar agora.'); }
+});
+render();
+(async ()=>{
+  if(!(window.claude && window.claude.use)){ setEditBtn(); return; }
+  try{ [db, userNs] = await Promise.all([window.claude.use('db'), window.claude.use('user')]); }catch(_){ db = null; }
+  if(userNs){ try{ myId = await userNs.id(); const c = await userNs.can('data.write'); canWrite = c !== false; }catch(_){ canWrite = true; } }
+  else canWrite = !!db;
+  setEditBtn();
+  if(!db) return;
+  db.collection('edits').onSnapshot(snap=>{
+    const next = {}; snap.docs.forEach(d=>{ const x = d.data(); if(x && typeof x.key==='string') next[x.key] = x; });
+    OV = next;
+    if(editingNow()) pending = true; else render();
+  }, ()=>{ toast('As alterações salvas não puderam ser carregadas.'); });
+  db.collection('layout').onSnapshot(snap=>{
+    const next = {}; snap.docs.forEach(d=>{ const x = d.data(); if(x && typeof x.key==='string' && Array.isArray(x.order)) next[x.key] = x; });
+    OVL = next;
+    if(editingNow() || dragFrom!==null) pending = true; else render();
+  }, ()=>{});
+})();
+</script>
+
+</body></html>
