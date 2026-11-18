@@ -1,0 +1,7 @@
+{
+  "name": "wabfy-agentes",
+  "version": "0.4.1",
+  "description": "Time de agentes de marketing da Wabfy: inteligência (radar de RH, cultura, concorrentes, desempenho, releases, social listening, visibilidade em IA, parcerias), criação (editor-chefe, diretor criativo, copy e briefing, vídeo, e-mail) e controle (revisor final, guardião da memória), com subagentes e painel único.",
+  "author": { "name": "Wendy Okubo" },
+  "keywords": ["wabfy", "marketing", "conteudo", "rh"]
+}

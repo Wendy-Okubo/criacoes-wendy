@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>BSC — LP de módulo (wireframe)</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+  body{margin:0;background:#FFFFFF;font-family:'Manrope',system-ui,sans-serif;color:#1C1533;}
+  a{color:#6C4CF5;text-decoration:none;}
+  a:hover{color:#4E32C7;}
+  .wf-check{color:#6C4CF5;font-weight:700;margin-right:10px;flex-shrink:0;}
+  .wf-faq summary{list-style:none;cursor:pointer;}
+  .wf-faq summary::-webkit-details-marker{display:none;}
+  .wf-faq summary::marker{display:none;content:"";}
+  .wf-faq .faq-icon::before{content:"+";}
+  .wf-faq details[open] > summary .faq-icon::before{content:"\2212";}
+</style>
+</helmet>
+
+<div style="width:100%;max-width:1440px;margin:0 auto;display:flex;flex-direction:column;background:#FFFFFF;">
+
+  <!-- TOPO: aviso de wireframe -->
+  <div style="background:#1C1533;color:#B9ACF7;font-size:12px;letter-spacing:0.04em;text-align:center;padding:8px 16px;">
+    WIREFRAME · referência visual de layout (padrão da LP do Gerador de Cursos IA) · copy do BSC já revisada · prints reais da plataforma
+  </div>
+
+  <!-- HEADER (fixo no topo durante o scroll) -->
+  <div style="position:sticky;top:0;z-index:998;background:#FFFFFF;display:flex;align-items:center;justify-content:space-between;padding:20px 64px;border-bottom:1px solid #F0EDFB;">
+    <div style="font-size:22px;font-weight:800;color:#1C1533;">Wab<span style="color:#6C4CF5;">fy</span></div>
+    <div style="display:flex;gap:32px;font-size:14px;font-weight:600;color:#3A3254;">
+      <span>Soluções</span>
+      <span>Quem Somos</span>
+      <span>Clientes</span>
+    </div>
+    <div style="display:flex;gap:10px;">
+      <div style="width:22px;height:22px;border-radius:50%;background:#2B6B3C;"></div>
+      <div style="width:22px;height:22px;border-radius:50%;background:#C5282F;"></div>
+      <div style="width:22px;height:22px;border-radius:50%;background:#C5282F;"></div>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div style="position:relative;overflow:hidden;background:radial-gradient(1100px 520px at 78% 10%,#5B2AA8 0%,#241057 42%,#140A33 78%);padding:96px 64px 72px 64px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:24px;">
+    <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;color:#C9B6FF;text-transform:uppercase;">MÓDULO BSC · PILAR ESCALAR</div>
+    <div style="max-width:880px;font-size:46px;line-height:1.14;font-weight:800;color:#FFFFFF;">BSC: o scorecard que liga a estratégia da empresa ao resultado de cada time</div>
+    <div style="max-width:620px;font-size:17px;line-height:1.6;color:#DCD3F7;">Organize missão, visão e metas em um scorecard único, com indicadores que vão da empresa até o time e se conectam ao desenvolvimento de cada pessoa.</div>
+    <a href="#demo" style="margin-top:8px;background:linear-gradient(90deg,#7C4DFF,#B13FE0);color:#FFFFFF;font-size:14px;font-weight:700;letter-spacing:0.03em;padding:16px 32px;border-radius:10px;">AGENDE UMA DEMONSTRAÇÃO</a>
+
+    <!-- print real: painel executivo, moldura estilo app -->
+    <div style="margin-top:40px;width:100%;max-width:1080px;border-radius:18px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.45);border:1px solid rgba(255,255,255,0.12);">
+      <img src="/_blob/f9c8998550ab43fac444b877b7bf4e7b" alt="Tela real do Painel Executivo do BSC, com velocímetro de performance corporativa e cards de perspectivas" style="display:block;width:100%;height:auto;">
+    </div>
+  </div>
+
+  <!-- O QUE É -->
+  <div style="padding:88px 64px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px;">
+    <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;color:#6C4CF5;text-transform:uppercase;">O QUE É</div>
+    <div style="max-width:760px;font-size:32px;line-height:1.25;font-weight:800;color:#1C1533;">Um scorecard que liga a missão da empresa ao indicador de cada time</div>
+    <div style="max-width:720px;display:flex;flex-direction:column;gap:14px;font-size:16px;line-height:1.7;color:#4B4365;margin-top:8px;">
+      <div>O BSC organiza missão, visão e valores da empresa em objetivos e indicadores, nas quatro perspectivas do método Balanced Scorecard: financeira, cliente, processos internos e aprendizado e crescimento.</div>
+      <div>Cada objetivo vira um ou mais KPIs, com peso, baseline, meta e resultado, e pode ser desdobrado da empresa até o time.</div>
+      <div>É o módulo da Wabfy que conecta o que a liderança decidiu medir ao que o RH já acompanha em desempenho e desenvolvimento, sem depender de planilha ou relatório manual feito uma vez por trimestre.</div>
+    </div>
+  </div>
+
+  <!-- RECURSOS PRINCIPAIS (linhas alternadas, estilo da referência) -->
+  <div style="background:#FAF9FF;padding:88px 64px;display:flex;flex-direction:column;gap:72px;">
+    <div style="text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;">
+      <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;color:#6C4CF5;text-transform:uppercase;">RECURSOS PRINCIPAIS</div>
+      <div style="max-width:700px;font-size:30px;line-height:1.25;font-weight:800;color:#1C1533;">O que o BSC organiza para a liderança e para o RH</div>
+    </div>
+
+    <!-- Recurso 1: texto esq, print dir -->
+    <div style="display:flex;flex-wrap:wrap;gap:48px;align-items:center;">
+      <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:14px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:36px;height:36px;border-radius:10px;background:#7C4DFF;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"></line><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><path d="M18 9a9 9 0 0 1-9 9"></path></svg></div>
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.1em;color:#6C4CF5;text-transform:uppercase;">SCORECARD POR NÓ</div>
+        </div>
+        <div style="font-size:24px;font-weight:800;color:#1C1533;">A estrutura desce da empresa até o time</div>
+        <div style="font-size:15px;line-height:1.6;color:#4B4365;">Peso, baseline, meta e resultado de cada KPI, com progresso e performance mostrados separadamente, nó por nó.</div>
+      </div>
+      <div style="flex:1 1 480px;min-width:0;border-radius:14px;overflow:hidden;box-shadow:0 20px 50px rgba(28,21,51,0.12);border:1px solid #ECE8FB;">
+        <img src="/_blob/704dacafe18782b32c59d733afaa1986" alt="Tela real de Metas e Objetivos, estrutura do BSC em árvore da empresa até os times" style="display:block;width:100%;height:auto;">
+      </div>
+    </div>
+
+    <!-- Recurso 2: print esq, texto dir -->
+    <div style="display:flex;flex-wrap:wrap-reverse;gap:48px;align-items:center;">
+      <div style="flex:1 1 480px;min-width:0;border-radius:14px;overflow:hidden;box-shadow:0 20px 50px rgba(28,21,51,0.12);border:1px solid #ECE8FB;">
+        <img src="/_blob/fabac76f0b80c134abdd0dce4c13e146" alt="Tela real do Mapa Estratégico, com objetivos por perspectiva, KPIs vinculados e setas de causa e efeito" style="display:block;width:100%;height:auto;">
+      </div>
+      <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:14px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:36px;height:36px;border-radius:10px;background:#7C4DFF;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg></div>
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.1em;color:#6C4CF5;text-transform:uppercase;">MAPA ESTRATÉGICO</div>
+        </div>
+        <div style="font-size:24px;font-weight:800;color:#1C1533;">Causa e efeito entre os objetivos, no modelo Kaplan e Norton</div>
+        <div style="font-size:15px;line-height:1.6;color:#4B4365;">Os objetivos das quatro perspectivas aparecem ligados por relações de causa e efeito, para mostrar o que puxa o quê antes de qualquer decisão.</div>
+      </div>
+    </div>
+
+    <!-- Recurso 3: texto esq, print dir -->
+    <div style="display:flex;flex-wrap:wrap;gap:48px;align-items:center;">
+      <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:14px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:36px;height:36px;border-radius:10px;background:#7C4DFF;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg></div>
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.1em;color:#6C4CF5;text-transform:uppercase;">OKRS CASCATEADOS</div>
+        </div>
+        <div style="font-size:24px;font-weight:800;color:#1C1533;">OKRs cascateados e ligados ao BSC</div>
+        <div style="font-size:15px;line-height:1.6;color:#4B4365;">Metas em cascata da empresa até o indivíduo, com check-in e pontuação por resultado-chave. Um resultado-chave pode ser vinculado a um KPI do BSC e passa a ser atualizado junto com ele.</div>
+      </div>
+      <div style="flex:1 1 480px;min-width:0;border-radius:14px;overflow:hidden;box-shadow:0 20px 50px rgba(28,21,51,0.12);border:1px solid #ECE8FB;">
+        <img src="/_blob/a1735f2dd2ce6fe6488c38336beb2fde" alt="Tela real de OKRs do BSC, com ciclo cascateado de empresa a indivíduo e score por objetivo" style="display:block;width:100%;height:auto;">
+      </div>
+    </div>
+
+    <!-- Recurso 4: print esq, texto dir -->
+    <div style="display:flex;flex-wrap:wrap-reverse;gap:48px;align-items:center;">
+      <div style="flex:1 1 480px;min-width:0;border-radius:14px;overflow:hidden;box-shadow:0 20px 50px rgba(28,21,51,0.12);border:1px solid #ECE8FB;">
+        <img src="/_blob/ab855efcaa20b2e09d9d0f297661be39" alt="Tela real de Eventos do BSC, com a lista de eventos cadastrados que alimentam os KPIs automaticamente" style="display:block;width:100%;height:auto;">
+      </div>
+      <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:14px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:36px;height:36px;border-radius:10px;background:#7C4DFF;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div>
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.1em;color:#6C4CF5;text-transform:uppercase;">INDICADORES AUTOMÁTICOS</div>
+        </div>
+        <div style="font-size:24px;font-weight:800;color:#1C1533;">Indicadores alimentados pela própria plataforma</div>
+        <div style="font-size:15px;line-height:1.6;color:#4B4365;">O BSC pode escutar eventos de outros módulos, como avaliações, Nine Box, 1:1, cursos e mentoria, e atualizar um KPI automaticamente, sem lançamento manual.</div>
+      </div>
+    </div>
+
+    <!-- Recurso 5: texto esq, print dir -->
+    <div style="display:flex;flex-wrap:wrap;gap:48px;align-items:center;">
+      <div style="flex:1 1 420px;min-width:0;display:flex;flex-direction:column;gap:14px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:36px;height:36px;border-radius:10px;background:#7C4DFF;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg></div>
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.1em;color:#6C4CF5;text-transform:uppercase;">SIMULAÇÃO DE CENÁRIO</div>
+        </div>
+        <div style="font-size:24px;font-weight:800;color:#1C1533;">Simule antes de comprometer uma meta</div>
+        <div style="font-size:15px;line-height:1.6;color:#4B4365;">Antes de comprometer uma meta, dá para simular a previsão do indicador e ver o efeito em cascata no mapa estratégico, sem alterar nenhum resultado já registrado.</div>
+      </div>
+      <div style="flex:1 1 480px;min-width:0;border-radius:14px;overflow:hidden;box-shadow:0 20px 50px rgba(28,21,51,0.12);border:1px solid #ECE8FB;">
+        <img src="/_blob/8cc689db14a1b67d1abe2265faaa1e8f" alt="Tela do Mapa Estratégico com o botão Simular Previsão, para simular um cenário antes de comprometer uma meta" style="display:block;width:100%;height:auto;">
+      </div>
+    </div>
+  </div>
+
+  <!-- COMO FUNCIONA (passos numerados, estilo da referência) -->
+  <div style="padding:88px 64px;display:flex;flex-direction:column;gap:48px;align-items:center;">
+    <div style="text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;">
+      <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;color:#6C4CF5;text-transform:uppercase;">COMO FUNCIONA</div>
+      <div style="max-width:700px;font-size:30px;line-height:1.25;font-weight:800;color:#1C1533;">Da missão da empresa ao indicador de cada time</div>
+    </div>
+    <div style="width:100%;background:radial-gradient(900px 400px at 50% 0%,#2E1A6B 0%,#140A33 70%);border-radius:24px;padding:56px 48px;display:flex;flex-wrap:wrap;gap:20px;">
+      <div style="flex:1 1 280px;min-width:0;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px;">
+        <div style="width:28px;height:28px;border-radius:50%;background:#7C4DFF;color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;">1</div>
+        <div style="font-size:15px;font-weight:700;color:#FFFFFF;">Missão, visão e valores</div>
+        <div style="font-size:13px;line-height:1.55;color:#C9BFF0;">A empresa registra o que orienta todos os objetivos do BSC.</div>
+      </div>
+      <div style="flex:1 1 280px;min-width:0;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px;">
+        <div style="width:28px;height:28px;border-radius:50%;background:#7C4DFF;color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;">2</div>
+        <div style="font-size:15px;font-weight:700;color:#FFFFFF;">Objetivos viram KPIs</div>
+        <div style="font-size:13px;line-height:1.55;color:#C9BFF0;">Peso, baseline e meta, organizados nas quatro perspectivas.</div>
+      </div>
+      <div style="flex:1 1 280px;min-width:0;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px;">
+        <div style="width:28px;height:28px;border-radius:50%;background:#7C4DFF;color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;">3</div>
+        <div style="font-size:15px;font-weight:700;color:#FFFFFF;">Causa e efeito no mapa</div>
+        <div style="font-size:13px;line-height:1.55;color:#C9BFF0;">Objetivos ligados e desdobrados da empresa até os times.</div>
+      </div>
+      <div style="flex:1 1 280px;min-width:0;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px;">
+        <div style="width:28px;height:28px;border-radius:50%;background:#7C4DFF;color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;">4</div>
+        <div style="font-size:15px;font-weight:700;color:#FFFFFF;">Atualização manual ou automática</div>
+        <div style="font-size:13px;line-height:1.55;color:#C9BFF0;">Quem é responsável decide como cada KPI é atualizado.</div>
+      </div>
+      <div style="flex:1 1 280px;min-width:0;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:22px;display:flex;flex-direction:column;gap:10px;">
+        <div style="width:28px;height:28px;border-radius:50%;background:#7C4DFF;color:#fff;font-size:13px;font-weight:800;display:flex;align-items:center;justify-content:center;">5</div>
+        <div style="font-size:15px;font-weight:700;color:#FFFFFF;">Painel executivo consolida</div>
+        <div style="font-size:13px;line-height:1.55;color:#C9BFF0;">Resultado por perspectiva, time e KPI, com status de atenção.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONEXÕES NA PLATAFORMA (diagrama recebe/entrega, estilo da referência) -->
+  <div style="background:radial-gradient(1000px 500px at 50% 0%,#241057 0%,#140A33 70%);padding:88px 64px;display:flex;flex-direction:column;gap:48px;align-items:center;">
+    <div style="text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;">
+      <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;color:#C9B6FF;text-transform:uppercase;">CONEXÕES NA PLATAFORMA</div>
+      <div style="max-width:720px;font-size:30px;line-height:1.25;font-weight:800;color:#FFFFFF;">O que alimenta o BSC e o que ele organiza para o resto do ciclo</div>
+    </div>
+    <div style="width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:stretch;">
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.08em;color:#9D8CE0;">→ ALIMENTA O BSC</div>
+        <div style="flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:22px;">
+          <div style="font-size:14px;font-weight:700;color:#FFFFFF;margin-bottom:8px;">Avaliações e desenvolvimento</div>
+          <div style="font-size:13px;line-height:1.6;color:#C9BFF0;">Avaliações de competência e desempenho, Nine Box, mentorias, cursos e trilhas concluídos, pesquisas de clima.</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.08em;color:#C9B6FF;text-align:center;">NO BSC</div>
+        <div style="flex:1;background:linear-gradient(135deg,rgba(124,77,255,0.25),rgba(177,63,224,0.25));border:1px solid rgba(255,255,255,0.18);border-radius:14px;padding:22px;display:flex;flex-direction:column;justify-content:center;gap:8px;">
+          <div style="font-size:15px;font-weight:700;color:#FFFFFF;">Scorecard, mapa estratégico, OKRs cascateados</div>
+          <div style="font-size:13px;line-height:1.6;color:#E3DBFC;">Da empresa até o indivíduo, em um só lugar.</div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.08em;color:#9D8CE0;text-align:right;">DEVOLVE PARA O CICLO →</div>
+        <div style="flex:1;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:22px;">
+          <div style="font-size:14px;font-weight:700;color:#FFFFFF;margin-bottom:8px;">Metas ligadas ao desenvolvimento</div>
+          <div style="font-size:13px;line-height:1.6;color:#C9BFF0;">Indicadores individuais ligados ao desenvolvimento de cada pessoa, e o efeito de um ciclo de treinamento no resultado do time.</div>
+        </div>
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:14px;">
+      <div style="font-size:12px;font-weight:700;letter-spacing:0.08em;color:#9D8CE0;">SAIBA MAIS SOBRE OS MÓDULOS CONECTADOS</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;">
+        <div style="font-size:12px;font-weight:600;color:#E3DBFC;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);border-radius:999px;padding:8px 16px;">↗ Avaliação 360°</div>
+        <div style="font-size:12px;font-weight:600;color:#E3DBFC;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);border-radius:999px;padding:8px 16px;">↗ 9 Box</div>
+        <div style="font-size:12px;font-weight:600;color:#E3DBFC;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);border-radius:999px;padding:8px 16px;">↗ Mentoria</div>
+        <div style="font-size:12px;font-weight:600;color:#E3DBFC;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);border-radius:999px;padding:8px 16px;">↗ Gerador de Cursos com IA</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GOVERNANÇA E IA -->
+  <div style="padding:88px 64px;display:flex;flex-direction:column;gap:40px;align-items:center;">
+    <div style="text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;">
+      <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;color:#6C4CF5;text-transform:uppercase;">COMO A IA PARTICIPA DO BSC</div>
+      <div style="max-width:700px;font-size:30px;line-height:1.25;font-weight:800;color:#1C1533;">A IA atualiza os indicadores automaticamente a partir dos eventos da plataforma</div>
+    </div>
+    <div style="width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;">
+      <div style="background:#FAF9FF;border:1px solid #ECE8FB;border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:36px;height:36px;border-radius:10px;background:#7C4DFF;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div>
+          <div style="font-size:16px;font-weight:700;color:#1C1533;">Indicadores atualizados automaticamente</div>
+        </div>
+        <div style="font-size:14px;line-height:1.6;color:#4B4365;">Eventos de outros módulos, como avaliações, Nine Box, cursos e mentoria, atualizam um KPI do BSC assim que acontecem, sem lançamento manual.</div>
+      </div>
+      <div style="background:#FAF9FF;border:1px solid #ECE8FB;border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:36px;height:36px;border-radius:10px;background:#7C4DFF;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg></div>
+          <div style="font-size:16px;font-weight:700;color:#1C1533;">Simulação de cenário</div>
+        </div>
+        <div style="font-size:14px;line-height:1.6;color:#4B4365;">Antes de comprometer uma meta, a plataforma simula o efeito do cenário no mapa estratégico, sem lançamento manual.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- USO POR PERFIL -->
+  <div style="background:#FAF9FF;padding:88px 64px;display:flex;flex-direction:column;gap:40px;align-items:center;">
+    <div style="text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center;">
+      <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;color:#6C4CF5;text-transform:uppercase;">USO POR PERFIL</div>
+      <div style="max-width:700px;font-size:30px;line-height:1.25;font-weight:800;color:#1C1533;">Como cada perfil acompanha o BSC</div>
+    </div>
+    <div style="width:100%;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;">
+      <div style="background:#FFFFFF;border:1px solid #ECE8FB;border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:36px;height:36px;border-radius:10px;background:#1C1533;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg></div>
+          <div style="font-size:16px;font-weight:700;color:#1C1533;">Liderança e diretoria</div>
+        </div>
+        <div style="font-size:14px;line-height:1.6;color:#4B4365;">Acompanha o painel executivo, a performance por perspectiva e o mapa estratégico para decidir onde agir primeiro.</div>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid #ECE8FB;border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:36px;height:36px;border-radius:10px;background:#1C1533;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+          <div style="font-size:16px;font-weight:700;color:#1C1533;">Gestor de área ou time</div>
+        </div>
+        <div style="font-size:14px;line-height:1.6;color:#4B4365;">Acompanha o scorecard do próprio time, os KPIs sob sua responsabilidade e os OKRs cascateados até a sua área.</div>
+      </div>
+      <div style="background:#FFFFFF;border:1px solid #ECE8FB;border-radius:14px;padding:28px;display:flex;flex-direction:column;gap:10px;">
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:36px;height:36px;border-radius:10px;background:#1C1533;display:flex;align-items:center;justify-content:center;flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><polyline points="17 11 19 13 23 9"></polyline></svg></div>
+          <div style="font-size:16px;font-weight:700;color:#1C1533;">RH e BP</div>
+        </div>
+        <div style="font-size:14px;line-height:1.6;color:#4B4365;">Configura quais eventos de desenvolvimento alimentam cada KPI e usa o indicador como evidência do efeito de um ciclo de treinamento.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROVA: CASE CAIXA -->
+  <div style="padding:88px 64px;display:flex;flex-direction:column;align-items:center;">
+    <div style="width:100%;max-width:1150px;background:radial-gradient(900px 420px at 15% 20%,#3A1F86 0%,#140A33 70%);border-radius:24px;padding:56px;display:flex;flex-wrap:wrap;gap:40px;align-items:center;">
+      <div style="flex:1 1 380px;min-width:0;display:flex;flex-direction:column;gap:14px;">
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.1em;color:#C9B6FF;text-transform:uppercase;">O MAIOR BANCO PÚBLICO DO BRASIL</div>
+        <div style="font-size:26px;font-weight:800;color:#FFFFFF;">Case da Caixa Econômica Federal</div>
+        <div style="font-size:15px;line-height:1.65;color:#DCD3F7;">A Wabfy é utilizada diariamente pela Caixa no desenvolvimento de 150 mil colaboradores. Em uma única plataforma, o banco reúne gestão estratégica, desenvolvimento e decisões de carreira, com o ciclo completo da Wabfy em escala real.</div>
+        <div style="margin-top:12px;background:#FFFFFF;color:#1C1533;font-size:13px;font-weight:800;padding:10px 20px;border-radius:8px;display:inline-block;width:fit-content;">CAIXA ECONÔMICA FEDERAL</div>
+      </div>
+      <div style="flex:1 1 420px;min-width:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;">
+        <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:14px;padding:22px;text-align:center;">
+          <div style="font-size:28px;font-weight:800;color:#FFFFFF;">150K</div>
+          <div style="font-size:12px;color:#C9BFF0;margin-top:6px;">funcionários públicos com PDIs individuais</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:14px;padding:22px;text-align:center;">
+          <div style="font-size:28px;font-weight:800;color:#FFFFFF;">−80%</div>
+          <div style="font-size:12px;color:#C9BFF0;margin-top:6px;">carga operacional de RH</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:14px;padding:22px;text-align:center;">
+          <div style="font-size:28px;font-weight:800;color:#FFFFFF;">30 min</div>
+          <div style="font-size:12px;color:#C9BFF0;margin-top:6px;">para mapear um departamento</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.14);border-radius:14px;padding:22px;text-align:center;">
+          <div style="font-size:28px;font-weight:800;color:#FFFFFF;">3 dias</div>
+          <div style="font-size:12px;color:#C9BFF0;margin-top:6px;">para encerrar o ciclo de avaliação 360°</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONVERSÃO: com formulário, estilo da referência (LP Gerador de Cursos IA) -->
+  <div id="demo" style="padding:0 64px 96px 64px;display:flex;flex-direction:column;align-items:center;">
+    <div style="width:100%;max-width:1150px;background:linear-gradient(120deg,#7C4DFF,#B13FE0);border-radius:24px;padding:56px;display:flex;flex-wrap:wrap;gap:48px;align-items:flex-start;">
+      <div style="flex:1 1 360px;min-width:0;display:flex;flex-direction:column;gap:16px;">
+        <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;color:#F1E9FF;text-transform:uppercase;">PRÓXIMO PASSO</div>
+        <div style="font-size:30px;line-height:1.3;font-weight:800;color:#FFFFFF;">Alinhe a estratégia da empresa ao desenvolvimento e performance do time</div>
+        <div style="font-size:15px;line-height:1.6;color:#F1E9FF;">Organize missão, visão e metas em um scorecard único, ligado ao que o RH já acompanha em desenvolvimento e desempenho. Agende uma demonstração e veja o BSC funcionando com dados da sua operação.</div>
+        <div style="margin-top:8px;border-radius:14px;border:1px dashed rgba(255,255,255,0.5);padding:32px 24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;min-height:160px;">
+          <div style="font-size:12px;font-weight:700;letter-spacing:0.06em;color:#FFFFFF;text-transform:uppercase;">IMAGEM A DEFINIR</div>
+          <div style="font-size:13px;line-height:1.5;color:#F1E9FF;max-width:320px;">Foto de pessoa de RH/liderança sorrindo, com notebook ou tablet, mesmo estilo da foto usada na LP do Gerador de Cursos com IA.</div>
+        </div>
+      </div>
+      <div style="flex:1 1 400px;min-width:0;display:flex;flex-direction:column;gap:14px;">
+        <div style="background:#FFFFFF;border-radius:10px;padding:16px 18px;font-size:14px;color:#8B84A8;">Digite seu nome *</div>
+        <div style="background:#FFFFFF;border-radius:10px;padding:16px 18px;font-size:14px;color:#8B84A8;">Email Corporativo *</div>
+        <div style="background:#FFFFFF;border-radius:10px;padding:16px 18px;font-size:14px;color:#8B84A8;display:flex;align-items:center;gap:10px;"><span style="font-size:16px;">🇧🇷</span> DDD+Whatsapp *</div>
+        <div style="background:#FFFFFF;border-radius:10px;padding:16px 18px;font-size:14px;color:#8B84A8;">Nome da Empresa *</div>
+        <div style="background:#FFFFFF;border-radius:10px;padding:16px 18px;font-size:14px;color:#8B84A8;min-height:68px;">Assunto</div>
+        <div style="display:flex;align-items:flex-start;gap:8px;font-size:12px;color:#F1E9FF;">
+          <div style="width:14px;height:14px;border:1px solid #F1E9FF;border-radius:3px;flex-shrink:0;margin-top:2px;"></div>
+          <div>Eu li e aceito a <span style="text-decoration:underline;color:#FFFFFF;">Política de Privacidade</span> da Wabfy.</div>
+        </div>
+        <a href="#" style="margin-top:4px;background:#FFFFFF;color:#4E32C7;font-size:14px;font-weight:800;letter-spacing:0.03em;padding:16px 36px;border-radius:10px;text-align:center;">SOLICITAR DEMONSTRAÇÃO</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ (acordeão real, clicável, estilo da referência) -->
+  <div style="padding:0 64px 96px 64px;display:flex;flex-direction:column;align-items:center;">
+    <div class="wf-faq" style="width:100%;max-width:820px;display:flex;flex-direction:column;gap:0;">
+      <div style="font-size:12px;font-weight:700;letter-spacing:0.12em;color:#6C4CF5;text-transform:uppercase;">PERGUNTAS FREQUENTES</div>
+      <div style="font-size:34px;font-weight:800;color:#1C1533;margin-bottom:12px;">FAQ</div>
+
+      <details open="" style="border-top:1px solid #ECE8FB;padding:22px 0;">
+        <summary style="display:flex;align-items:center;justify-content:space-between;gap:16px;">
+          <span style="font-size:16px;font-weight:700;color:#1C1533;">O que o BSC da Wabfy organiza, na prática?</span>
+          <span class="faq-icon" style="font-size:20px;font-weight:600;color:#6C4CF5;flex-shrink:0;"></span>
+        </summary>
+        <div style="font-size:14px;line-height:1.6;color:#6B6486;margin-top:10px;max-width:700px;">Reúne missão, visão, valores e metas em um scorecard com KPIs por perspectiva, desce esse scorecard da empresa até os times e liga cada meta ao desenvolvimento das pessoas responsáveis por ela.</div>
+      </details>
+      <details style="border-top:1px solid #ECE8FB;padding:22px 0;">
+        <summary style="display:flex;align-items:center;justify-content:space-between;gap:16px;">
+          <span style="font-size:16px;font-weight:700;color:#1C1533;">O BSC substitui uma ferramenta de OKR?</span>
+          <span class="faq-icon" style="font-size:20px;font-weight:600;color:#6C4CF5;flex-shrink:0;"></span>
+        </summary>
+        <div style="font-size:14px;line-height:1.6;color:#6B6486;margin-top:10px;max-width:700px;">Não. Os OKRs ficam dentro do próprio módulo, cascateados da empresa até o indivíduo, e podem ser vinculados a um KPI do BSC.</div>
+      </details>
+      <details style="border-top:1px solid #ECE8FB;padding:22px 0;">
+        <summary style="display:flex;align-items:center;justify-content:space-between;gap:16px;">
+          <span style="font-size:16px;font-weight:700;color:#1C1533;">Os indicadores precisam ser lançados manualmente?</span>
+          <span class="faq-icon" style="font-size:20px;font-weight:600;color:#6C4CF5;flex-shrink:0;"></span>
+        </summary>
+        <div style="font-size:14px;line-height:1.6;color:#6B6486;margin-top:10px;max-width:700px;">Só quando a pessoa responsável escolher. Um KPI também pode ser atualizado automaticamente a partir de eventos de outros módulos.</div>
+      </details>
+      <details style="border-top:1px solid #ECE8FB;padding:22px 0;">
+        <summary style="display:flex;align-items:center;justify-content:space-between;gap:16px;">
+          <span style="font-size:16px;font-weight:700;color:#1C1533;">O BSC integra com sistemas externos, como um ERP?</span>
+          <span class="faq-icon" style="font-size:20px;font-weight:600;color:#6C4CF5;flex-shrink:0;"></span>
+        </summary>
+        <div style="font-size:14px;line-height:1.6;color:#6B6486;margin-top:10px;max-width:700px;">Sim. O BSC pode receber dados de sistemas externos, além dos eventos que já circulam entre os módulos da própria plataforma Wabfy.</div>
+      </details>
+      <details style="border-top:1px solid #ECE8FB;border-bottom:1px solid #ECE8FB;padding:22px 0;">
+        <summary style="display:flex;align-items:center;justify-content:space-between;gap:16px;">
+          <span style="font-size:16px;font-weight:700;color:#1C1533;">É possível simular o efeito de uma meta antes de assumi-la?</span>
+          <span class="faq-icon" style="font-size:20px;font-weight:600;color:#6C4CF5;flex-shrink:0;"></span>
+        </summary>
+        <div style="font-size:14px;line-height:1.6;color:#6B6486;margin-top:10px;max-width:700px;">Sim. A simulação de previsão mostra o efeito esperado no mapa estratégico sem alterar nenhum resultado já registrado, e já é possível exportar essa visão em apresentação.</div>
+      </details>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div style="border-top:1px solid #F0EDFB;padding:48px 64px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:20px;">
+    <div style="font-size:18px;font-weight:800;color:#1C1533;">Wab<span style="color:#6C4CF5;">fy</span></div>
+    <div style="font-size:13px;color:#8B82A8;">© 2026 Belago School Educacional LTDA · Wireframe interno, não publicar</div>
+  </div>
+
+  <!-- BOTÃO FLUTUANTE DE WHATSAPP: fixo em todas as dobras da página, além do menu fixo -->
+  <div style="position:fixed;bottom:96px;right:28px;max-width:230px;background:#FFFFFF;border-radius:14px;padding:14px 16px;box-shadow:0 14px 36px rgba(28,21,51,0.18);font-size:13px;line-height:1.4;color:#3A3254;z-index:999;">
+    Fale com um especialista e conheça a <strong>Wabfy</strong> na prática!
+  </div>
+  <div style="position:fixed;bottom:28px;right:28px;width:58px;height:58px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 36px rgba(28,21,51,0.25);z-index:999;">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path></svg>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":7400}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

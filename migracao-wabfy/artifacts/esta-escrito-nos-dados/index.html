@@ -1,0 +1,989 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Está escrito nos dados</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  /* Layout: documento de validação com abas, no padrão dos docs Wabfy; mockups de post em céu noturno */
+  :root {
+    --paper:#FFFFFF; --surface:#F7F6FE; --tab:#EFEDFB; --ink:#1E1B4B; --muted:#5E5A7A; --rule:#E4E1F3;
+    --accent:#5B4BD6; --accent-2:#8B7CF6; --on-accent:#FFFFFF;
+    --ok:#0F8F67; --ok-dim:#E1F5EC; --warn:#A35A12; --warn-dim:#FCEFDF; --todo:#6E6B88; --todo-dim:#F0EFF6;
+    /* arte da campanha: igual nos dois temas */
+    --sky:#121741; --sky-2:#243079; --gold:#E2C677; --mint:#5FD3A6; --moon:#F4F2FF; --moon-2:#B9BCE6; --alert:#FF8A7A;
+    --font:"Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+    --paper:#121027; --surface:#1B1838; --tab:#242049; --ink:#ECEAFF; --muted:#ABA7CC; --rule:#2F2A5A;
+    --accent:#A99CFF; --accent-2:#7F6DF2; --on-accent:#15122E;
+    --ok:#4FD1A4; --ok-dim:#12352B; --warn:#F2B06A; --warn-dim:#3A2814; --todo:#A6A3C4; --todo-dim:#26233F;
+    color-scheme: dark; } }
+  :root[data-theme="dark"] {
+    --paper:#121027; --surface:#1B1838; --tab:#242049; --ink:#ECEAFF; --muted:#ABA7CC; --rule:#2F2A5A;
+    --accent:#A99CFF; --accent-2:#7F6DF2; --on-accent:#15122E;
+    --ok:#4FD1A4; --ok-dim:#12352B; --warn:#F2B06A; --warn-dim:#3A2814; --todo:#A6A3C4; --todo-dim:#26233F;
+    color-scheme: dark; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:var(--font); font-size:16px; line-height:1.6; }
+  .wrap { max-width:960px; margin:0 auto; padding-block:44px 80px; padding-left:max(16px, env(safe-area-inset-left,0px)); padding-right:max(16px, env(safe-area-inset-right,0px)); }
+  .eyebrow { font-size:12px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); margin:0 0 12px; }
+  h1 { font-size:clamp(28px,5vw,42px); font-weight:800; line-height:1.1; margin:0 0 10px; letter-spacing:-0.02em; text-wrap:balance; }
+  h1 .grad { background:linear-gradient(90deg,var(--accent),var(--accent-2)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .sub { color:var(--muted); margin:0 0 14px; font-size:15px; }
+  .status { font-size:14px; font-weight:600; margin:0 0 28px; }
+  .tabs { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:28px; }
+  .tab { appearance:none; border:1px solid var(--rule); background:var(--tab); color:var(--ink); padding:9px 15px; border-radius:999px; font:inherit; font-size:14px; font-weight:600; cursor:pointer; }
+  .tab[aria-selected="true"] { background:linear-gradient(90deg,var(--accent),var(--accent-2)); color:var(--on-accent); border-color:transparent; }
+  .tab:focus-visible, a:focus-visible { outline:2px solid var(--accent); outline-offset:3px; }
+  .panel { display:none; } .panel.active { display:block; }
+  h2 { font-size:22px; font-weight:800; letter-spacing:-0.01em; margin:0 0 6px; text-wrap:balance; }
+  h3 { font-size:16px; font-weight:700; margin:0 0 6px; }
+  p { margin:0 0 12px; }
+  .muted { color:var(--muted); font-size:14px; }
+  a { color:var(--accent); font-weight:600; word-break:break-word; }
+  .block { margin-top:32px; }
+
+  .fact-list { list-style:none; margin:0; padding:0; }
+  .fact-list li { display:grid; grid-template-columns:200px 1fr; gap:16px; padding:12px 0; border-bottom:1px solid var(--rule); }
+  .fact-list li:last-child { border-bottom:0; }
+  .fact-list .k { color:var(--accent); font-weight:700; font-size:14px; }
+  @media (max-width:560px) { .fact-list li { grid-template-columns:1fr; gap:2px; } }
+
+  .grid { display:grid; gap:14px; grid-template-columns:1fr; }
+  @media (min-width:680px) { .grid.two { grid-template-columns:1fr 1fr; } .grid.three { grid-template-columns:1fr 1fr 1fr; } }
+  .card { background:var(--surface); border:1px solid var(--rule); border-radius:16px; padding:18px 20px; min-width:0; }
+  .card p:last-child { margin-bottom:0; }
+  .label { display:inline-block; font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:.12em; color:var(--accent); margin-bottom:6px; }
+  .note { background:var(--tab); border-radius:14px; padding:14px 18px; font-size:14.5px; margin-top:14px; }
+
+  .manifesto { background:var(--surface); border:1px solid var(--rule); border-radius:16px; padding:22px 24px; }
+  .manifesto p { margin:0 0 4px; }
+  .manifesto .sign { margin-top:12px; font-weight:800; color:var(--accent); }
+
+  /* casos de referência */
+  .case { background:var(--surface); border:1px solid var(--rule); border-radius:16px; padding:18px 20px; display:grid; gap:6px; min-width:0; }
+  .case .brand { display:flex; flex-wrap:wrap; align-items:baseline; gap:8px; }
+  .case .brand b { font-size:17px; }
+  .case .row { font-size:14.5px; margin:0; }
+  .case .row strong { color:var(--accent); }
+
+  .table-wrap { overflow-x:auto; border-radius:16px; border:1px solid var(--rule); }
+  table { width:100%; border-collapse:collapse; font-size:14.5px; background:var(--surface); }
+  th, td { text-align:left; padding:12px 14px; border-bottom:1px solid var(--rule); vertical-align:top; }
+  th { font-size:12px; text-transform:uppercase; letter-spacing:.1em; color:var(--accent); background:var(--tab); white-space:nowrap; }
+  tr:last-child td { border-bottom:0; }
+  td.day { font-weight:800; color:var(--accent); white-space:nowrap; font-variant-numeric:tabular-nums; }
+  .t-wide table { min-width:760px; }
+
+  .badge { display:inline-block; font-size:11.5px; font-weight:700; padding:2px 10px; border-radius:999px; white-space:nowrap; }
+  .b-ok { background:var(--ok-dim); color:var(--ok); }
+  .b-warn { background:var(--warn-dim); color:var(--warn); }
+  .b-todo { background:var(--todo-dim); color:var(--todo); }
+  .b-acc { background:var(--tab); color:var(--accent); }
+
+  .fronts { display:grid; gap:12px; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); }
+  .front { background:var(--surface); border:1px solid var(--rule); border-radius:16px; padding:18px 20px; min-width:0; }
+  .front .tag { font-size:12px; font-weight:800; color:var(--accent); text-transform:uppercase; letter-spacing:.08em; }
+  .front h3 { margin:4px 0 6px; }
+  .front ul { margin:8px 0 0; padding-left:18px; font-size:14.5px; }
+
+  .quotes { list-style:none; margin:0; padding:0; display:grid; gap:10px; }
+  .quotes li { padding-left:14px; border-left:3px solid var(--accent-2); font-weight:600; }
+  .quotes li span { display:block; font-weight:500; font-size:13px; color:var(--muted); }
+
+  .versus { display:grid; grid-template-columns:1fr 1fr; border:1px solid var(--rule); border-radius:16px; overflow:hidden; }
+  .versus > div { padding:14px 18px; border-bottom:1px solid var(--rule); min-width:0; }
+  .versus .h { font-size:12px; font-weight:800; text-transform:uppercase; letter-spacing:.1em; }
+  .versus .astro { background:var(--surface); }
+  .versus .dado { background:var(--tab); }
+  .versus .h.astro { color:var(--muted); } .versus .h.dado { color:var(--accent); }
+  .versus > div:nth-last-child(-n+2) { border-bottom:0; }
+  @media (max-width:560px) { .versus { grid-template-columns:1fr; } }
+
+  .signs { display:grid; gap:10px; grid-template-columns:repeat(auto-fill, minmax(230px,1fr)); }
+  .sign-card { background:var(--surface); border:1px solid var(--rule); border-radius:14px; padding:12px 14px; min-width:0; }
+  .sign-card b { display:block; color:var(--accent); font-size:13px; text-transform:uppercase; letter-spacing:.08em; margin-bottom:2px; }
+
+  .sources { list-style:none; margin:0; padding:0; }
+  .sources li { background:var(--surface); border:1px solid var(--rule); border-radius:14px; padding:14px 18px; margin-bottom:10px; }
+  .sources strong { display:block; margin-bottom:2px; }
+
+  /* MOCKUPS de post 4:5 */
+  .mocks { display:grid; gap:16px; grid-template-columns:repeat(auto-fill,minmax(250px,1fr)); }
+  .mock-wrap { display:grid; gap:8px; min-width:0; }
+  .mock-wrap figcaption { font-size:13.5px; color:var(--muted); }
+  .mock-wrap figcaption b { color:var(--ink); }
+  figure { margin:0; }
+  .post { position:relative; aspect-ratio:4/5; max-width:100%; border-radius:14px; overflow:hidden; background:radial-gradient(130% 110% at 80% 0%, var(--sky-2) 0%, var(--sky) 62%); color:var(--moon); padding:22px 20px; display:flex; flex-direction:column; font-family:var(--font); }
+  .post .stars { position:absolute; inset:0; width:100%; height:100%; pointer-events:none; }
+  .post .brandmark { margin-top:auto; font-size:11px; font-weight:800; letter-spacing:.18em; text-transform:uppercase; color:var(--moon-2); display:flex; justify-content:space-between; position:relative; }
+  .post .k { position:relative; font-size:11px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); }
+  .post .big { position:relative; font-weight:800; letter-spacing:-0.02em; line-height:1.05; }
+  .post .gold { color:var(--gold); } .post .mint { color:var(--mint); }
+  .post .small { position:relative; font-size:13px; color:var(--moon-2); line-height:1.4; }
+  .dialog { position:relative; margin-top:14px; background:var(--moon); color:var(--sky); border-radius:10px; padding:12px 12px 10px; font-size:12.5px; box-shadow:0 10px 30px rgba(0,0,0,.35); }
+  .dialog .bar { display:flex; gap:5px; margin-bottom:8px; } .dialog .bar i { width:8px; height:8px; border-radius:50%; background:var(--moon-2); }
+  .dialog b { display:block; font-size:13px; margin-bottom:2px; }
+  .dialog code { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:11.5px; background:rgba(18,23,65,.08); padding:1px 4px; border-radius:4px; word-break:break-all; }
+  .dialog .btns { display:flex; gap:6px; margin-top:10px; flex-wrap:wrap; }
+  .dialog .btns span { font-size:11px; font-weight:700; padding:5px 8px; border-radius:6px; border:1px solid var(--moon-2); }
+  .dialog .btns span.primary { background:var(--sky); color:var(--gold); border-color:var(--sky); }
+  .orb { position:relative; margin:14px auto 10px; width:62%; aspect-ratio:1; border-radius:50%; background:radial-gradient(circle at 35% 30%, rgba(255,255,255,.55), rgba(95,211,166,.25) 35%, rgba(36,48,121,.9) 75%); box-shadow:0 0 40px rgba(95,211,166,.35), inset 0 0 30px rgba(255,255,255,.15); display:flex; align-items:flex-end; justify-content:center; gap:7%; padding-bottom:24%; }
+  .orb i { width:9%; background:var(--gold); border-radius:3px 3px 0 0; display:block; }
+  .orb-base { position:relative; width:46%; height:14px; margin:-10px auto 12px; background:var(--gold); border-radius:0 0 40px 40px; opacity:.85; }
+  .split { position:relative; display:grid; gap:10px; margin-top:14px; }
+  .split > div { font-size:14px !important; }
+  .split > div { border-radius:10px; padding:10px 12px; font-size:12.5px; line-height:1.35; }
+  .split .a { background:rgba(244,242,255,.08); border:1px dashed var(--moon-2); color:var(--moon-2); }
+  .split .d { background:rgba(95,211,166,.12); border:1px solid var(--mint); color:var(--moon); }
+  .split b { display:block; font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; margin-bottom:4px; }
+  .split .a b { color:var(--moon-2); } .split .d b { color:var(--mint); }
+  .tarot { position:relative; margin:12px auto 8px; width:64%; aspect-ratio:2/3; border:2px solid var(--gold); border-radius:12px; padding:8px; display:flex; flex-direction:column; align-items:center; justify-content:space-between; background:rgba(226,198,119,.06); }
+  .tarot .inner { flex:1; width:100%; text-align:center; border:1px solid rgba(226,198,119,.6); border-radius:8px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; }
+  .tarot .yes { font-size:34px; font-weight:800; color:var(--gold); letter-spacing:.06em; }
+  .tarot .roman { font-size:10px; letter-spacing:.3em; color:var(--gold); }
+  .retro { position:relative; display:inline-block; font-size:10.5px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; color:var(--sky); background:var(--alert); padding:5px 10px; border-radius:8px; margin-top:10px; align-self:flex-start; line-height:1.4; }
+  /* EXEMPLOS DE PEÇA no estilo Wabfy (aurora, vidro, quadradinhos de ícone) */
+  .pieces { display:grid; gap:18px; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); }
+  .piece { display:grid; gap:8px; min-width:0; margin:0; }
+  .piece figcaption { font-size:13.5px; color:var(--muted); line-height:1.45; }
+  .piece figcaption b { color:var(--ink); }
+  .art { position:relative; aspect-ratio:4/5; max-width:100%; border-radius:14px; overflow:hidden; color:#fff; padding:20px 18px; display:flex; flex-direction:column; gap:10px; font-family:var(--font);
+    background:
+      repeating-linear-gradient(90deg, rgba(255,255,255,0) 0 22px, rgba(255,255,255,.035) 22px 26px),
+      radial-gradient(60% 45% at 80% 15%, rgba(214,92,214,.55), transparent 70%),
+      radial-gradient(70% 55% at 10% 90%, rgba(74,110,245,.55), transparent 70%),
+      linear-gradient(160deg, #1b1550 0%, #3a1f86 45%, #5a2a9e 70%, #23185e 100%); }
+  .art::before { content:""; position:absolute; inset:0; background-image:radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,.7), transparent 60%),radial-gradient(1px 1px at 72% 9%, rgba(255,255,255,.6), transparent 60%),radial-gradient(1.5px 1.5px at 88% 46%, rgba(255,255,255,.7), transparent 60%),radial-gradient(1px 1px at 30% 62%, rgba(255,255,255,.5), transparent 60%),radial-gradient(1px 1px at 55% 88%, rgba(255,255,255,.6), transparent 60%),radial-gradient(1.5px 1.5px at 8% 76%, rgba(255,255,255,.6), transparent 60%); pointer-events:none; }
+  .art > * { position:relative; }
+  .art .eb { font-size:10.5px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:#e6dcff; }
+  .art .h { font-size:21px; font-weight:800; line-height:1.15; letter-spacing:-.01em; }
+  .art .s { font-size:12.5px; line-height:1.4; color:#e9e4ff; }
+  .art .foot { margin-top:auto; display:flex; justify-content:space-between; align-items:center; font-size:10.5px; font-weight:800; letter-spacing:.14em; text-transform:uppercase; color:#d9cffd; }
+  .glass { background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.38); border-radius:14px; box-shadow:0 8px 30px rgba(10,5,40,.35), inset 0 1px 0 rgba(255,255,255,.35); backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); }
+  .tile { width:46px; height:46px; border-radius:12px; display:grid; place-items:center; background:linear-gradient(135deg,#f7b6e3 0%,#c6b4ff 50%,#9ec2ff 100%); box-shadow:0 8px 18px rgba(20,10,60,.35), inset 0 1px 0 rgba(255,255,255,.7); flex:none; }
+  .tile svg { width:58%; height:58%; }
+  .tile.sm { width:30px; height:30px; border-radius:8px; }
+  .tile.blur { filter:blur(1.5px); opacity:.8; }
+  .bigyear { font-size:72px; font-weight:800; letter-spacing:-.04em; line-height:1; background:linear-gradient(180deg,rgba(255,255,255,.95),rgba(214,200,255,.55)); -webkit-background-clip:text; background-clip:text; color:transparent; text-shadow:0 0 30px rgba(200,170,255,.35); }
+  .ui-row { display:flex; align-items:center; gap:8px; font-size:11.5px; padding:6px 8px; border-radius:8px; background:rgba(255,255,255,.1); }
+  .ui-row i { width:8px; height:8px; border-radius:50%; flex:none; }
+  .ui-row .bar { flex:1; height:6px; border-radius:3px; background:rgba(255,255,255,.18); overflow:hidden; } .ui-row .bar span { display:block; height:100%; border-radius:3px; background:linear-gradient(90deg,#c6b4ff,#9ec2ff); }
+  .orbball { width:58%; aspect-ratio:1; margin:6px auto 0; border-radius:50%; background:radial-gradient(circle at 32% 28%, rgba(255,255,255,.75), rgba(214,200,255,.28) 30%, rgba(90,50,170,.55) 70%, rgba(40,20,100,.85)); border:1px solid rgba(255,255,255,.45); box-shadow:0 0 40px rgba(198,180,255,.45), inset 0 0 25px rgba(255,255,255,.2); display:flex; align-items:flex-end; justify-content:center; gap:7%; padding-bottom:26%; }
+  .orbball span { width:9%; border-radius:3px 3px 0 0; background:linear-gradient(180deg,#fff,#c6b4ff); }
+  .orbbase { width:40%; height:12px; margin:-6px auto 0; border-radius:0 0 30px 30px; background:rgba(255,255,255,.35); border:1px solid rgba(255,255,255,.4); }
+  .vs { display:grid; gap:8px; }
+  .vs .a { padding:10px 12px; border-radius:12px; border:1px dashed rgba(255,255,255,.45); color:#e2dbff; font-size:12px; filter:blur(.2px); background:rgba(255,255,255,.05); }
+  .vs b { display:block; font-size:9.5px; letter-spacing:.16em; text-transform:uppercase; margin-bottom:4px; color:#f0e9ff; }
+  .tarot2 { width:56%; aspect-ratio:2/3; margin:4px auto 0; padding:8px; display:flex; flex-direction:column; align-items:center; justify-content:space-between; }
+  .tarot2 .inner { flex:1; width:100%; border:1px solid rgba(255,255,255,.45); border-radius:9px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; text-align:center; }
+  .tarot2 .yes { font-size:30px; font-weight:800; letter-spacing:.08em; }
+  .tarot2 small { font-size:8.5px; letter-spacing:.24em; color:#e6dcff; }
+  .seq { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+  @media (max-width:700px) { .seq { grid-template-columns:1fr; } }
+  .seq .art .h { font-size:17px; }
+  @media (prefers-reduced-motion:reduce) { * { transition:none !important; animation:none !important; } }
+</style>
+
+<div class="wrap">
+  <p class="eyebrow">Wabfy · campanha de novembro de 2026</p>
+  <h1>2027: <span class="grad">está escrito nos dados</span></h1>
+  <p class="sub">Não conte com as estrelas, conte com a Wabfy · 4 a 30 de novembro de 2026</p>
+  <p class="status">Documento para validação da Duda e do Marco. Os posts estão como proposta para decidirmos juntos.</p>
+
+  <nav class="tabs" role="tablist" aria-label="Seções">
+    <button class="tab" role="tab" aria-selected="true" aria-controls="p-conceito" id="t-conceito" data-tab="conceito">Conceito</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p-defesa" id="t-defesa" data-tab="defesa">Por que funciona</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p-construcao" id="t-construcao" data-tab="construcao">Como se constrói</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p-valor" id="t-valor" data-tab="valor">Valor na rotina</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p-linguagem" id="t-linguagem" data-tab="linguagem">Linguagem</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p-urgencia" id="t-urgencia" data-tab="urgencia">Urgência e porte</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p-visual" id="t-visual" data-tab="visual">Direção visual e peças</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p-posts" id="t-posts" data-tab="posts">Posts</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p-stories" id="t-stories" data-tab="stories">Stories</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p-distribuicao" id="t-distribuicao" data-tab="distribuicao">Distribuição</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p-quiz" id="t-quiz" data-tab="quiz">Quiz e páginas</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p-canais" id="t-canais" data-tab="canais">Canais e anúncios</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p-emails" id="t-emails" data-tab="emails">E-mail e newsletter</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p-passos" id="t-passos" data-tab="passos">Próximos passos</button>
+    <button class="tab" role="tab" aria-selected="false" aria-controls="p-fontes" id="t-fontes" data-tab="fontes">Fontes</button>
+  </nav>
+
+  <!-- CONCEITO -->
+  <div class="panel active" id="p-conceito" role="tabpanel" aria-labelledby="t-conceito">
+    <div class="grid two">
+      <div class="card" style="display:flex;flex-direction:column;justify-content:center;gap:8px;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:var(--on-accent);border:0">
+        <span class="label" style="color:var(--on-accent);opacity:.85">O mote</span>
+        <p style="font-size:44px;font-weight:800;line-height:1;margin:0">2027:</p>
+        <p style="font-size:26px;font-weight:800;line-height:1.15;margin:0">está escrito nos dados.</p>
+        <p style="margin:6px 0 0;opacity:.9">Não conte com as estrelas, conte com a Wabfy.</p>
+        <p style="margin:10px 0 0;font-size:13px;opacity:.85">Exemplos de peça na aba Direção visual</p>
+      </div>
+      <div style="display:grid;gap:14px;align-content:start">
+        <div class="card"><span class="label">Tensão</span><p>Muito RH ainda decide promoção, sucessão e desligamento pelo que ouviu falar e pelo feeling. É uma previsão sem base, quase uma consulta aos astros.</p></div>
+        <div class="card"><span class="label">Virada</span><p>A astrologia entra como contraponto bem-humorado: é o símbolo do feeling. Os dados são a previsão que funciona.</p></div>
+        <div class="card"><span class="label">Promessa</span><p>Com os dados conectados, o que vai acontecer no seu RH em 2027 aparece antes de acontecer.</p></div>
+      </div>
+    </div>
+
+    <div class="block">
+      <h2>Ficha da campanha</h2>
+      <ul class="fact-list" style="margin-top:8px">
+        <li><span class="k">Mote</span><span>2027: está escrito nos dados.</span></li>
+        <li><span class="k">Sub</span><span>Não conte com as estrelas, conte com a Wabfy.</span></li>
+        <li><span class="k">Hashtag</span><span>#EscritoNosDados, só na legenda (fora da arte)</span></li>
+        <li><span class="k">Período</span><span>4 a 30 de novembro de 2026, sem posts nos dias 2 e 20</span></li>
+        <li><span class="k">Público</span><span>Gerentes e diretores de RH e T&amp;D de empresas a partir de 200 pessoas, que decidem orçamento e plataforma</span></li>
+        <li><span class="k">Papel da astrologia</span><span>Contraponto. Astros e feeling de um lado, dados do outro. A astrologia é o jeito divertido de mostrar o que é decidir no feeling. A brincadeira é com o hábito de adivinhar, e quem curte signo entra na piada junto.</span></li>
+        <li><span class="k">Objetivo</span><span>Criar uma campanha forte e diferente, que leve a Wabfy para muito mais gente e faça a marca ser lembrada. Ao mesmo tempo, usar a copy e a proposta para filtrar quem chega: atrair gestores de RH de empresas a partir de 200 pessoas e afastar curiosos sem orçamento. A base cresce e se qualifica junto.</span></li>
+        <li><span class="k">Tom</span><span>Divertido de verdade quando é brincadeira, concreto quando fala de produto. A dose muda de post para post.</span></li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <h2>Manifesto</h2>
+      <p class="muted">Para o vídeo de abertura e a página da campanha.</p>
+      <div class="manifesto" style="margin-top:10px">
+        <p>Todo fim de ano é a mesma coisa.</p>
+        <p>Previsões, horóscopo, simpatia para o ano novo.</p>
+        <p>No RH, a gente também tenta adivinhar.</p>
+        <p>Quem vai pedir demissão. Quem está pronto para liderar.</p>
+        <p>Se a avaliação vai fechar no prazo.</p>
+        <p>E aí descobre que a resposta estava lá o tempo todo,</p>
+        <p>espalhada em quatro sistemas, duas planilhas e um caderno.</p>
+        <p>Em 2027, o seu RH não precisa de sorte.</p>
+        <p>Precisa dos dados no mesmo lugar.</p>
+        <p class="sign">2027: está escrito nos dados.</p><p>Não conte com as estrelas, conte com a Wabfy.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- POR QUE FUNCIONA -->
+  <div class="panel" id="p-defesa" role="tabpanel" aria-labelledby="t-defesa">
+    <h2>Fora do óbvio é o que faz a marca ser lembrada</h2>
+    <p class="muted">Marcas de setores sérios, inclusive de RH e de software para empresas, ganharam atenção ao trazer um universo popular que ninguém esperava ver ali.</p>
+
+    <div class="grid two" style="margin-top:14px">
+      <div class="case">
+        <div class="brand"><b>Sólides + Popó</b><span class="badge b-acc">RH · ago. a out. 2026</span></div>
+        <p class="row"><strong>O que fez:</strong> "Lute como um campeão, vença com a Sólides". O pugilista Popó no ringue da gestão de pessoas, lançado no CONARH, com vídeos e peças até outubro.</p>
+        <p class="row"><strong>Por que funciona:</strong> a própria Sólides diz que buscou uma linguagem que alcance qualquer gestor, não só o RH. A metáfora rende tudo: round, cinturão, nocaute.</p>
+        <p class="row"><a href="https://mundorh.com.br/lute-como-um-campeao-popo-freitas-sobe-no-ringue-da-gestao-de-pessoas-a-convite-da-solides/" target="_blank" rel="noopener">Mundo RH</a> · <a href="https://grandesnomesdapropaganda.com.br/mercado-digital/popo-entra-no-ringue-da-gestao-de-pessoas-para-lutar-ao-lado-da-solides/" target="_blank" rel="noopener">Grandes Nomes da Propaganda</a></p>
+      </div>
+      <div class="case">
+        <div class="brand"><b>Cimed + Toguro</b><span class="badge b-acc">Farmacêutica · fev. 2026</span></div>
+        <p class="row"><strong>O que fez:</strong> contratou o influenciador Toguro como head de comunicação. Uma farmacêutica, setor conservador, apostando em repertório da internet.</p>
+        <p class="row"><strong>Por que funciona:</strong> a empresa diz ter tido 2 bilhões de visualizações orgânicas em sete dias (número da própria Cimed).</p>
+        <p class="row"><a href="https://www.cidademarketing.com.br/marketing/2026/02/08/cimed-comemora-2-bilhoes-de-visualizacoes-com-toguro-em-apenas-7-dias/" target="_blank" rel="noopener">Cidade Marketing</a> · <a href="https://forbes.com.br/forbes-mkt/2026/04/efeito-toguro-dezenas-de-celebridades-ja-lideraram-marcas-especialistas-alertam-para-excessos/" target="_blank" rel="noopener">Forbes: o efeito Toguro</a></p>
+      </div>
+      <div class="case">
+        <div class="brand"><b>Livelo + Márcia Sensitiva</b><span class="badge b-acc">Novembro de 2025</span></div>
+        <p class="row"><strong>O que fez:</strong> a Pink Friday da Livelo virou "alinhamento planetário", com a Márcia Sensitiva indicando o que cada signo devia comprar. Campanha da AlmapBBDO no mês inteiro de novembro.</p>
+        <p class="row"><strong>Por que funciona:</strong> é a prova de que astrologia rende em novembro e serve para explicar algo racional (pontos e consumo inteligente) com humor.</p>
+        <p class="row"><a href="https://nossomeio.com.br/almapbbdo-assina-nova-campanha-da-livelo-com-marcia-sensitiva-para-a-pink-friday/" target="_blank" rel="noopener">Nosso Meio</a> · <a href="https://marcaspelomundo.com.br/anunciantes/marcia-sensitiva-revela-como-os-astros-influenciam-o-acumulo-de-pontos-em-acao-de-black-friday-da-livelo/" target="_blank" rel="noopener">Marcas pelo Mundo</a></p>
+      </div>
+      <div class="case">
+        <div class="brand"><b>Hope + Márcia Sensitiva</b><span class="badge b-acc">Dezembro de 2025</span></div>
+        <p class="row"><strong>O que fez:</strong> a tradição das cores da virada virou campanha, com teste interativo e peças por signo.</p>
+        <p class="row"><strong>Por que funciona:</strong> mostra o fim de ano como o momento de "previsão para o próximo ciclo", o mesmo gancho que usamos para 2027.</p>
+        <p class="row"><a href="https://www.meioemensagem.com.br/comunicacao/hope-e-marcia-sensitiva-indicam-cores-para-a-virada-do-ano" target="_blank" rel="noopener">Meio &amp; Mensagem</a></p>
+      </div>
+      <div class="case">
+        <div class="brand"><b>Hurb · Destinos Astrológicos</b><span class="badge b-acc">Janeiro de 2023</span></div>
+        <p class="row"><strong>O que fez:</strong> "Tudo te leva ao seu destino": um destino de viagem para cada signo, com astróloga e cards dos 12 signos.</p>
+        <p class="row"><strong>Por que funciona:</strong> uma empresa de tecnologia usando signos como porta de entrada para o produto, no começo do ano.</p>
+        <p class="row"><a href="https://marcaspelomundo.com.br/agencias/hurb-cria-campanha-destinos-astrologicos-para-os-viajantes-encontrarem-seus-destinos/" target="_blank" rel="noopener">Marcas pelo Mundo</a></p>
+      </div>
+      <div class="case">
+        <div class="brand"><b>Mailchimp · Did You Mean Mailchimp?</b><span class="badge b-acc">Software B2B · 2017</span></div>
+        <p class="row"><strong>O que fez:</strong> uma ferramenta de e-mail marketing lançou filmes e produtos absurdos com nomes parecidos (MailShrimp, KaleMail, JailBlimp).</p>
+        <p class="row"><strong>Por que funciona:</strong> é o exemplo clássico de software para empresas que virou assunto por fugir do tom "corporativo".</p>
+        <p class="row"><a href="https://www.thedrum.com/creative-works/droga5-mailchimp-did-you-mean-mailchimp" target="_blank" rel="noopener">The Drum</a> · <a href="https://lovethework.com/work-awards/campaigns/did-you-mean-mailchimp-27923" target="_blank" rel="noopener">Cannes Lions</a></p>
+      </div>
+    </div>
+
+    <h2 class="block">Por que astrologia, e por que agora</h2>
+    <div class="grid two" style="margin-top:12px">
+      <div class="card"><span class="label">Fim de ano</span><p>Dezembro e janeiro são a época das previsões. A Márcia Sensitiva, por exemplo, ocupa portais e TV com "o signo de 2026" e "o pior dia do ano" entre dezembro e janeiro. A campanha entra nessa conversa um mês antes.</p></div>
+      <div class="card"><span class="label">Começo de ciclo</span><p>No RH, janeiro é começo de ciclo: metas, avaliação, mérito e PDI. A pergunta "como vai ser 2027?" é real para o nosso público.</p></div>
+      <div class="card"><span class="label">Popular para todo mundo</span><p>"Estava escrito nas estrelas" é uma expressão que todo brasileiro conhece. Quem acredita brinca, quem não acredita também.</p></div>
+      <div class="card"><span class="label">B2B ainda é gente</span><p>Quem decide a compra é uma pessoa que lê horóscopo, manda meme no grupo e está cansada de montar relatório na mão. A campanha fala com essa pessoa antes de falar com o cargo.</p></div>
+    </div>
+
+    <h2 class="block">As três perguntas que vão fazer, e as respostas</h2>
+    <div class="grid three" style="margin-top:12px">
+      <div class="card"><span class="label">E a urgência?</span><p>Está no mote: 2027 aparece duas vezes. E cresce no conteúdo ao longo do mês, até virar decisão na última semana. Exemplos na aba "Urgência e porte".</p></div>
+      <div class="card"><span class="label">E o porte 200+?</span><p>Entra dentro dos conteúdos: a Márcia trabalha numa empresa de 1.200 pessoas, os cenários falam de diretoria, várias unidades e holding, e os anúncios dizem o porte com todas as letras.</p></div>
+      <div class="card"><span class="label">Não vai atrair curioso?</span><p>No orgânico, a brincadeira traz alcance. Nos anúncios, toda peça deixa claro na primeira linha que é sobre RH, dados e empresa grande. Detalhes na aba "Canais e anúncios".</p></div>
+    </div>
+  </div>
+
+  <!-- COMO SE CONSTRÓI -->
+  <div class="panel" id="p-construcao" role="tabpanel" aria-labelledby="t-construcao">
+    <h2>Uma abertura e cinco frentes que rodam juntas</h2>
+    <p class="muted">Sem ordem de atos. Todas as frentes aparecem em todas as semanas, para falar ao mesmo tempo com quem está chegando e com quem já está decidindo.</p>
+
+    <div class="card" style="margin-top:14px"><span class="label">Abertura · 4 a 6 de novembro</span><h3>A campanha se apresenta</h3><p>Peça estática com o mote (dia 4), vídeo do manifesto (dia 5) e a Márcia, a gestora de RH de uma empresa de 1.200 pessoas que decide promoção e desligamento pelo que ouviu falar e pelo feeling (dia 6).</p></div>
+
+    <div class="fronts" style="margin-top:14px">
+      <div class="front"><span class="tag">Frente 1</span><h3>Dados x feeling</h3><p>A tensão central: a previsão pelos astros e pelo feeling ao lado da previsão pelos dados.</p><ul><li>Comparativos "Pelos astros / Pelos dados"</li><li>"Estava escrito nos dados, mas o RH preferiu o feeling"</li><li>Bola de cristal do RH</li></ul></div>
+      <div class="front"><span class="tag">Frente 2</span><h3>Signos do RH</h3><p>Humor e alcance. Brincar com os signos junto com o público.</p><ul><li>Signos do RH (série)</li><li>Horóscopo do RH da semana</li><li>Compatibilidade gestor e liderado</li><li>Retrospectiva astral do RH em 2026</li></ul></div>
+      <div class="front"><span class="tag">Frente 3</span><h3>Mercúrio retrógrado leva a culpa</h3><p>Os problemas do dia a dia que a gente culpa no céu, mas são dado espalhado.</p><ul><li>Documento não encontrado</li><li>1:1 não registrado</li><li>Planilha corrompida, avaliação perdida</li><li>Troquei RH e armazenamento cheio, com a roupagem da campanha</li></ul></div>
+      <div class="front"><span class="tag">Frente 4</span><h3>Previsão de verdade</h3><p>O produto como a previsão que funciona: risco de saída, sucessão, prontidão, indicadores.</p><ul><li>Vídeos de módulo (um por semana)</li><li>Novidades (a cada 15 dias)</li><li>Tudo numa plataforma: o alinhamento dos planetas</li><li>Conectado em janeiro</li></ul></div>
+      <div class="front"><span class="tag">Frente 5</span><h3>Fora do mote</h3><p>Conteúdos que não precisam da astrologia, como a Sólides também fez durante a campanha dela.</p><ul><li>Equipe de produto conta, com o Emerson, gravado no Conecta</li><li>Raio-X de T&amp;D</li><li>Notícias de RH no LinkedIn</li></ul></div>
+    </div>
+    <p class="note"><strong>Equilíbrio do feed:</strong> a maior parte dos posts é de alcance com potencial de viralização, principalmente nas frentes 2 e 3, e o restante é de manutenção, com produto e fixos. A proporção real está na aba Posts.</p>
+
+    <h2 class="block">Leads frios, mornos e quentes na mesma semana</h2>
+    <div class="table-wrap t-wide" style="margin-top:10px">
+      <table>
+        <thead><tr><th></th><th>Frio · se reconhecer</th><th>Morno · entender</th><th>Quente · decidir</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Canais</strong></td><td>Instagram orgânico, humor, Meta para primeiro contato</td><td>LinkedIn, Raio-X, newsletter, vídeos de módulo</td><td>Remarketing, e-mail da base, WhatsApp do comercial</td></tr>
+          <tr><td><strong>Semana 1</strong></td><td>Abertura, Márcia, horóscopo do dia 7</td><td>Raio-X (3), vídeo do manifesto (5)</td><td>Remarketing "contrato vencendo em janeiro?", e-mail para leads parados</td></tr>
+          <tr><td><strong>Semana 2</strong></td><td>Troquei RH, Mercúrio retrógrado (11), signos (14)</td><td>Vídeo de Sucessão, newsletter 1</td><td>Novidades (12), dúvida das planilhas, e-mail com caso</td></tr>
+          <tr><td><strong>Semana 3</strong></td><td>Bola de cristal (16), signos (21)</td><td>Mentoria, horóscopo 2027, alinhamento dos planetas</td><td>Dúvida "só um módulo?", remarketing com demonstração</td></tr>
+          <tr><td><strong>Semana 4</strong></td><td>Signos do RH (28)</td><td>Gerador de Cursos, Equipe de produto conta (23), engajamento (25), minicurso</td><td>Novidades e suporte (26), conectado em janeiro (27), tarot (30)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- VALOR NA ROTINA -->
+  <div class="panel" id="p-valor" role="tabpanel" aria-labelledby="t-valor">
+    <h2>No fim do dia: como uso isso e o que eu ganho</h2>
+    <p class="muted">A brincadeira chama a atenção. O que faz o lead avançar é entender como a Wabfy entra na rotina dele e o que muda. Toda peça da campanha precisa responder isso, na arte, na legenda ou no stories do dia.</p>
+
+    <div class="grid two" style="margin-top:14px">
+      <div class="card"><span class="label">Os quatro tempos de uma peça</span>
+        <ol style="margin:0;padding-left:20px">
+          <li><strong>Brincadeira:</strong> o gancho astrológico (signo, Mercúrio retrógrado, bola de cristal).</li>
+          <li><strong>Dor:</strong> a cena real do RH de empresa grande.</li>
+          <li><strong>Na rotina:</strong> onde isso fica na Wabfy e como a pessoa usa, de preferência com print ou GIF.</li>
+          <li><strong>Ganho:</strong> o que muda: tempo, decisão com base, credibilidade com a diretoria, time engajado.</li>
+        </ol>
+      </div>
+      <div class="card"><span class="label">Nem toda peça leva os quatro</span><p>Humor de sábado pode ficar só na brincadeira e na dor. Nesses dias, o stories completa com "E na Wabfy?" e um print. O que não pode é a campanha inteira ficar só no gancho.</p><p>A pergunta para revisar cada post: <strong>depois de ver isso, a pessoa sabe o que faria diferente na segunda-feira?</strong></p></div>
+    </div>
+
+    <h2 class="block">Mapa: da dor ao ganho</h2>
+    <p class="muted">Baseado no que a plataforma faz hoje, conforme os releases e a demo.</p>
+    <div class="table-wrap t-wide" style="margin-top:10px">
+      <table>
+        <thead><tr><th>Dor (com o gancho)</th><th>Na rotina, com a Wabfy</th><th>Ganho</th></tr></thead>
+        <tbody>
+          <tr><td>"O 1:1 sumiu" (Mercúrio retrógrado)</td><td>A IA sugere pauta e roteiro; o gestor conduz em cinco etapas; os combinados viram plano de ação com prazo</td><td>Nada do que foi combinado se perde; o RH vê se as conversas estão em dia</td></tr>
+          <tr><td>"Quem vai pedir demissão?" (eclipse)</td><td>Sucessão com risco de saída, sucessores por cargo crítico e plano com apoio da IA</td><td>Saber antes da carta de demissão e ter quem assume</td></tr>
+          <tr><td>"Promoção pelo feeling" (bola de cristal)</td><td>Cargos com requisitos, avaliação, 9Box e PDI no mesmo histórico</td><td>Promoção e desligamento com critério que dá para explicar</td></tr>
+          <tr><td>"Relatório rapidinho da diretoria" (inferno astral)</td><td>Indicadores reunidos no painel, sem juntar dado de quatro sistemas</td><td>Horas de montagem viram minutos; o RH chega na reunião com número</td></tr>
+          <tr><td>"PDI na gaveta" (lua parada)</td><td>PDI com metas, ações e evidências, acompanhado pelo gestor</td><td>Desenvolvimento que anda e aparece na avaliação</td></tr>
+          <tr><td>"Treinamento que não escala" (sorte de principiante)</td><td>O Gerador de Cursos transforma PDF ou PPT em curso com quiz, podcast e vídeo, no celular</td><td>Linha de frente treinada sem tirar ninguém da loja</td></tr>
+          <tr><td>"Ninguém conclui o curso" (ascendente parado)</td><td>Gamificação com missões, ligas e loja de recompensas</td><td>Time que abre a plataforma por vontade própria</td></tr>
+          <tr><td>"Vaga pedida por e-mail" (Mercúrio retrógrado)</td><td>Solicitação de vaga pelo gestor, Kanban do processo e os 5 internos mais aderentes</td><td>Processo visível e mobilidade interna antes de abrir fora</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="block">Revisão dos posts: deixam claro o uso e o valor?</h2>
+    <div class="table-wrap t-wide" style="margin-top:10px">
+      <table>
+        <thead><tr><th>Dia</th><th>Post</th><th>Hoje</th><th>Ajuste para deixar claro</th></tr></thead>
+        <tbody>
+          <tr><td class="day">3</td><td>Raio-X de T&amp;D</td><td><span class="badge b-ok">Claro</span></td><td>Legenda: o resultado mostra onde o T&amp;D está e o que priorizar.</td></tr>
+          <tr><td class="day">4</td><td>Abertura</td><td><span class="badge b-warn">Parcial</span></td><td>Legenda com três exemplos do que fica "escrito nos dados": risco de saída, 1:1 registrado, avaliação no histórico.</td></tr>
+          <tr><td class="day">6</td><td>Conheça a Márcia</td><td><span class="badge b-warn">Parcial</span></td><td>O final mostra a Márcia depois: relatório para a diretoria em minutos e promoção com histórico de avaliação e PDI.</td></tr>
+          <tr><td class="day">7 · 14 · 21</td><td>Humor</td><td><span class="badge b-todo">Só gancho</span></td><td>Proposital. O stories do dia completa com "E na Wabfy?" e um print.</td></tr>
+          <tr><td class="day">9</td><td>Troquei RH</td><td><span class="badge b-warn">Parcial</span></td><td>Última tela ou legenda: o indicador sai do painel, sem abrir quatro sistemas.</td></tr>
+          <tr><td class="day">10 · 17 · 24</td><td>Vídeos de módulo</td><td><span class="badge b-ok">Claro</span></td><td>Já mostram a tela e o uso.</td></tr>
+          <tr><td class="day">11</td><td>Mercúrio retrógrado leva a culpa</td><td><span class="badge b-warn">Parcial</span></td><td>Cada "erro" ganha a resposta: onde isso fica na Wabfy (1:1 com plano de ação, avaliação no histórico, vaga pedida pelo gestor).</td></tr>
+          <tr><td class="day">12 · 26</td><td>Novidades</td><td><span class="badge b-ok">Claro</span></td><td>Uma novidade por tela, com o benefício.</td></tr>
+          <tr><td class="day">13</td><td>Armazenamento cheio</td><td><span class="badge b-warn">Parcial</span></td><td>"Libere espaço": a última tela mostra o que a Wabfy guarda por você.</td></tr>
+          <tr><td class="day">16</td><td>Bola de cristal</td><td><span class="badge b-warn">Parcial</span></td><td>O gráfico dentro da bola vira um print real do painel de carreira, desempenho e sucessão.</td></tr>
+          <tr><td class="day">18</td><td>Horóscopo do RH com base em dados</td><td><span class="badge b-ok">Claro</span></td><td>Cada previsão cita a parte da plataforma de onde vem o dado.</td></tr>
+          <tr><td class="day">19</td><td>Alinhamento dos planetas</td><td><span class="badge b-warn">Parcial</span></td><td>Legenda com a rotina: a avaliação alimenta o PDI, o PDI vira curso, a sucessão usa tudo.</td></tr>
+          <tr><td class="day">25</td><td>Gamificação</td><td><span class="badge b-warn">Parcial</span></td><td>Garantir o print de pontos, ranking e loja na peça.</td></tr>
+          <tr><td class="day">27</td><td>Conectado em janeiro</td><td><span class="badge b-ok">Claro</span></td><td>Mostra as etapas e o acompanhamento.</td></tr>
+          <tr><td class="day">28</td><td>Signo e jeito de decidir</td><td><span class="badge b-todo">Só gancho</span></td><td>Proposital: post para compartilhar. O resultado do quiz é que mostra o módulo que ajuda.</td></tr>
+          <tr><td class="day">30</td><td>O tarot do RH</td><td><span class="badge b-ok">Claro</span></td><td>Cada previsão é uma função da Wabfy, e a última carta revela a plataforma.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- LINGUAGEM -->
+  <div class="panel" id="p-linguagem" role="tabpanel" aria-labelledby="t-linguagem">
+    <h2>Previsão pelos astros x previsão pelos dados</h2>
+    <p class="muted">O formato que mostra a diferença entre adivinhar e saber. Funciona em carrossel, stories e anúncio.</p>
+    <div class="versus" style="margin-top:12px">
+      <div class="h astro astro">Pelos astros ou pelo feeling</div><div class="h dado dado">Pelos dados</div>
+      <div class="astro">"Escorpião terá surpresas no trabalho."</div><div class="dado">Três pessoas do time comercial com risco de saída alto.</div>
+      <div class="astro">"Acho que a Ana está pronta para gerente."</div><div class="dado">A Ana tem duas competências abaixo do esperado para o cargo.</div>
+      <div class="astro">"Lua em Capricórnio favorece decisões."</div><div class="dado">A avaliação de desempenho fechou em 87% das áreas.</div>
+      <div class="astro">"Ouvi dizer que o time está desmotivado."</div><div class="dado">O engajamento caiu em duas unidades desde agosto.</div>
+    </div>
+
+    <h2 class="block">Estava escrito nos dados, mas o RH preferiu o feeling</h2>
+    <ul class="quotes" style="margin-top:12px">
+      <li>Quem ia pedir demissão? Estava escrito nos dados. Mas o RH preferiu o feeling.</li>
+      <li>Quem estava pronto para liderar estava nos dados. O RH foi pelo "ouvi dizer".</li>
+      <li>O turnover de março estava escrito nos dados. O RH estava contando com a sorte.</li>
+      <li>A promoção do ano estava nos dados. A decisão saiu do cafezinho.</li>
+      <li>O treinamento que ninguém concluiu? Estava nos dados desde fevereiro.</li>
+      <li>Não foi Mercúrio retrógrado. Foi o 1:1 que ninguém registrou.</li>
+    </ul>
+
+
+    <h2 class="block">Como brincar sem ofender quem gosta de astrologia</h2>
+    <p class="muted">A piada é sempre com o hábito do RH de decidir sem dado ou com dado espalhado. Nunca com a astrologia, com quem acredita ou com quem trabalha com ela.</p>
+    <div class="grid two" style="margin-top:12px">
+      <div class="card"><span class="label">O princípio</span><p>A astrologia é a língua que todo mundo entende para falar de previsão e de jeito de ser. A campanha usa essa língua com carinho e mostra que, para decisões de RH, o melhor aliado é o dado. É "e", não "ou": o signo fica para a vida, o dado fica para a promoção.</p><p><strong>Tom de referência:</strong> "Pode ler o horóscopo. Só não decida a promoção por ele."</p></div>
+      <div class="card"><span class="label">Palavras e ideias que ficam de fora</span><ul style="margin:0;padding-left:18px"><li>Crendice, superstição, bobagem, "não existe", "não funciona"</li><li>"Quem acredita em horóscopo…" como alvo da piada</li><li>Astrólogo, taróloga ou vidente como charlatão</li><li>Elementos religiosos e espirituais: velas, oferendas, orixás, figura de cigana</li><li>Cartas e símbolos de peso negativo, como A Morte e O Diabo</li></ul></div>
+      <div class="card"><span class="label">Signos com carinho</span><p>Cada signo aparece com um traço reconhecível e simpático, nunca como defeito de caráter. No quiz e nas séries, sempre que possível, um ponto forte acompanha o ponto de atenção.</p></div>
+      <div class="card"><span class="label">Símbolos usados do jeito certo</span><p>Os arcanos do tarot entram com o sentido tradicional: O Mago é criação, O Eremita é solidão, A Estrela é esperança, O Sol é sucesso, O Mundo é completude. Usar certo é uma forma de respeito, e a parceria de astrologia, se fechar, revisa os textos.</p></div>
+      <div class="card"><span class="label">Mercúrio retrógrado</span><p>A graça está em culpar o céu por algo que é dado espalhado ("O RH culpou os astros, mas o culpado eram os dados espalhados"). A piada não diz que Mercúrio retrógrado não existe.</p></div>
+      <div class="card"><span class="label">Nos comentários</span><p>Quando alguém defender a astrologia, a resposta vai na mesma brincadeira e com respeito: "Aqui ninguém briga com os astros. Só queremos o 1:1 registrado."</p></div>
+    </div>
+    <div class="note"><strong>Checklist de cada peça:</strong> (1) quem é o alvo da piada: o hábito do RH ou a astrologia? (2) alguém que ama astrologia riria junto? (3) tem alguma palavra que desqualifica a astrologia? (4) o símbolo ou a carta foi usado com o sentido correto?</div>
+    <h2 class="block">Fórmulas de frase</h2>
+    <div class="grid two" style="margin-top:12px">
+      <div class="card"><p style="font-weight:800;color:var(--accent)">[Situação]? Está escrito nos dados.</p><p>Quem ia pedir demissão? Estava escrito nos dados.</p></div>
+      <div class="card"><p style="font-weight:800;color:var(--accent)">Os astros dizem… Os dados dizem…</p><p>Os astros dizem: semana de mudanças. Os dados dizem: três pessoas com risco de saída.</p></div>
+      <div class="card"><p style="font-weight:800;color:var(--accent)">Não foi [fenômeno astrológico]. Foi [dor real].</p><p>Não foi Mercúrio retrógrado. Foi a planilha que só a Fernanda entende.</p></div>
+      <div class="card"><p style="font-weight:800;color:var(--accent)">O RH culpou os astros, mas o culpado eram os dados espalhados.</p><p>Frase-guia da frente "Mercúrio retrógrado leva a culpa", para capas, legendas e anúncios.</p></div>
+      <div class="card"><p style="font-weight:800;color:var(--accent)">Seu signo não muda. Seu RH, sim.</p><p>Assinatura da série de signos.</p></div>
+    </div>
+
+    <h2 class="block">Dicionário: astrologia no RH</h2>
+    <div class="table-wrap" style="margin-top:10px">
+      <table>
+        <thead><tr><th>Astrologia</th><th>No RH</th></tr></thead>
+        <tbody>
+          <tr><td>Mercúrio retrógrado</td><td>Arquivo que some, planilha corrompida, sistema fora do ar</td></tr>
+          <tr><td>Inferno astral</td><td>Fim do ciclo de avaliação montado na mão</td></tr>
+          <tr><td>Bola de cristal</td><td>Decisão pelo feeling, sem indicador</td></tr>
+          <tr><td>Mapa astral</td><td>Mapa de talentos (9Box, competências)</td></tr>
+          <tr><td>Ascendente</td><td>Potencial e prontidão para o próximo cargo</td></tr>
+          <tr><td>Compatibilidade de signos</td><td>Pareamento entre mentor e mentorado</td></tr>
+          <tr><td>Eclipse</td><td>Pedido de demissão que pegou todo mundo de surpresa</td></tr>
+          <tr><td>Alinhamento dos planetas</td><td>Módulos conectados numa plataforma</td></tr>
+          <tr><td>Lua nova</td><td>Começo do ciclo de 2027</td></tr>
+          <tr><td>Tarot de sim ou não</td><td>A pergunta direta do fechamento</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="block">Os signos do RH</h2>
+    <div class="signs" style="margin-top:12px">
+      <div class="sign-card"><b>Áries</b>Abre 7 abas antes de entender o pedido.</div>
+      <div class="sign-card"><b>Touro</b>Não larga a planilha de 2019, "porque funciona".</div>
+      <div class="sign-card"><b>Gêmeos</b>Tem o arquivo final e o final_v2_agora_vai.</div>
+      <div class="sign-card"><b>Câncer</b>Guarda todos os 1:1 no caderno, com carinho. Ninguém mais acha.</div>
+      <div class="sign-card"><b>Leão</b>Faz o relatório mais bonito da empresa, na véspera, às 23h.</div>
+      <div class="sign-card"><b>Virgem</b>Conferiu a fórmula do mérito quatro vezes e ainda não confia.</div>
+      <div class="sign-card"><b>Libra</b>Não fecha a promoção porque falta o dado para desempatar.</div>
+      <div class="sign-card"><b>Escorpião</b>Sabe quem vai pedir demissão, mas não consegue provar.</div>
+      <div class="sign-card"><b>Sagitário</b>Vai organizar tudo "no ano que vem".</div>
+      <div class="sign-card"><b>Capricórnio</b>Tem indicador, só que em quatro sistemas diferentes.</div>
+      <div class="sign-card"><b>Aquário</b>Quer IA no RH, mas o dado ainda está no e-mail.</div>
+      <div class="sign-card"><b>Peixes</b>Tem uma intuição ótima, mas a diretoria pediu o número.</div>
+    </div>
+
+    <h2 class="block">Outras ideias de meme</h2>
+    <div class="grid two" style="margin-top:12px">
+      <div class="card"><ul style="margin:0;padding-left:18px"><li>Retrospectiva astral do RH em 2026</li><li>Horóscopo do chefe que pede o relatório "rapidinho"</li><li>Compatibilidade: gestor de Áries com liderado de Touro</li><li>"Mercúrio retrógrado: ligado / desligado" no RH</li></ul></div>
+      <div class="card"><ul style="margin:0;padding-left:18px"><li>Reel "a vidente do RH", que acerta tudo… porque abriu o painel</li><li>Tarot do ciclo de avaliação: a carta do "prazo vencido"</li><li>Simpatias de ano novo para o RH (e por que não funcionam)</li><li>POV: você descobriu que o dado estava no sistema o tempo todo</li></ul></div>
+    </div>
+  </div>
+
+  <!-- URGÊNCIA E PORTE -->
+  <div class="panel" id="p-urgencia" role="tabpanel" aria-labelledby="t-urgencia">
+    <h2>A urgência cresce ao longo do mês</h2>
+    <p class="muted">O ano de 2027 já faz parte do trabalho. Ao longo do mês, a brincadeira vira decisão.</p>
+    <div class="grid two" style="margin-top:12px">
+      <div class="card"><span class="label">Começo do mês · planta o ano</span><ul class="quotes"><li>Horóscopo de 2027 para quem deixar os dados espalhados: o mesmo ano de 2026, só que mais longo.</li><li>Seu signo não decide 2027. O que você organiza em novembro, sim.</li></ul></div>
+      <div class="card"><span class="label">Meio do mês · a dor se repete</span><ul class="quotes"><li>Mercúrio retrógrado passa. A planilha espalhada vai junto para 2027.</li><li>O relatório de 2027 vai ser montado com os dados de 2026. Onde eles estão?</li></ul></div>
+      <div class="card"><span class="label">Terceira semana · o pico</span><ul class="quotes"><li>Horóscopo do RH para 2027: quem decide em novembro começa janeiro com os dados no lugar.</li><li>Os astros não aprovam orçamento. A sua diretoria aprova, e é em novembro.</li></ul></div>
+      <div class="card"><span class="label">Fim do mês · decisão</span><ul class="quotes"><li>Lua nova de janeiro: o ciclo de 2027 começa com ou sem os seus dados conectados.</li><li>Contrato vencendo em janeiro? Isso não está nas estrelas. Está no calendário.</li></ul></div>
+    </div>
+
+    <h2 class="block">Exemplos por canal</h2>
+    <div class="table-wrap t-wide" style="margin-top:10px">
+      <table>
+        <thead><tr><th>Canal</th><th>Exemplo</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Stories</strong></td><td>Contagem regressiva "2027 começa em…" com a pergunta "Seu RH entra no ano lendo a sorte ou com os dados no lugar?"</td></tr>
+          <tr><td><strong>Stories</strong></td><td>Enquete "Como seu RH vai decidir 2027?" (No feeling / Nos dados)</td></tr>
+          <tr><td><strong>E-mail</strong></td><td>Assunto: "Seu horóscopo de 2027 chegou (e ele depende de novembro)"</td></tr>
+          <tr><td><strong>E-mail</strong></td><td>Assunto: "Mercúrio retrógrado não vai organizar seu RH até janeiro"</td></tr>
+          <tr><td><strong>Remarketing</strong></td><td>"Seu contrato vence em janeiro? Os astros não renovam. Você decide em novembro."</td></tr>
+          <tr><td><strong>LinkedIn</strong></td><td>"O orçamento de 2027 está sendo fechado agora. Com que dados o seu RH vai defender o próximo ano?"</td></tr>
+          <tr><td><strong>WhatsApp</strong></td><td>Dúvida da semana: "Dá tempo de deixar 2027 escrito nos dados?"</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="block">Como o porte 200+ aparece no conteúdo</h2>
+    <div class="grid two" style="margin-top:12px">
+      <div class="card"><span class="label">Personagem</span><p>"Conheça a Márcia, gestora de RH numa empresa de 1.200 pessoas, que decide promoção e desligamento com base no que ouviu falar e no feeling."</p></div>
+      <div class="card"><span class="label">Cenários</span><p>Diretoria pedindo número, três unidades com dados diferentes, holding aprovando orçamento, linha de frente sem computador, ciclo de avaliação de centenas de pessoas.</p></div>
+      <div class="card"><span class="label">Números nas peças</span><p>"Avaliação de 850 pessoas em quatro sistemas", "11 lojas, 11 planilhas". O número já filtra quem não vive isso.</p></div>
+      <div class="card"><span class="label">Nos anúncios</span><p>O porte vai escrito: "Para RHs de empresas com mais de 200 pessoas". Mais segmentação por cargo e tamanho de empresa.</p></div>
+    </div>
+  </div>
+
+  <!-- DIREÇÃO VISUAL -->
+  <div class="panel" id="p-visual" role="tabpanel" aria-labelledby="t-visual">
+    <h2>Direção visual</h2>
+    <p class="muted">Aguardando a proposta do Nallan. A tendência é apostar em algo místico, mantendo o roxo, que conversa muito com o universo da astrologia.</p>
+    <ul class="fact-list" style="margin-top:12px">
+      <li><span class="k">Status</span><span><span class="badge b-warn">Aguardando Nallan</span></span></li>
+      <li><span class="k">Direção provável</span><span>Místico, com o roxo da marca como base</span></li>
+      <li><span class="k">O que o conceito pede</span><span>Elementos que a campanha vai usar nas peças: céu e constelações, bola de cristal, carta de tarot, órbitas, janelas de erro do computador e prints da plataforma</span></li>
+      <li><span class="k">Ponto de atenção</span><span>A ideia de "dado" precisa aparecer na arte (gráfico, painel, ponto conectado), para a peça não virar só um post de horóscopo</span></li>
+      <li><span class="k">Abertura</span><span>Pode sair estática enquanto a identidade e o vídeo não ficam prontos</span></li>
+    </ul>
+
+    <h2 class="block">Como fica nas peças</h2>
+    <p class="muted">Exemplos para visualizar como a campanha une o visual da Wabfy (aurora, vidro, quadradinhos de ícone) ao tema. Alguns são só humor, outros falam de RH e de produto. A arte final é do Nallan. A hashtag fica só na legenda.</p>
+
+    <div class="pieces" style="margin-top:14px">
+      <figure class="piece">
+        <div class="art" role="img" aria-label="Exemplo da abertura, mapa astral do RH">
+          <span class="eb">Mapa astral do seu RH · 2027</span>
+          <svg viewBox="0 0 220 220" style="width:66%;height:auto;margin:2px auto 0;display:block" aria-hidden="true"><circle cx="110" cy="110" r="98" fill="rgba(255,255,255,.08)" stroke="rgba(255,255,255,.55)"/><circle cx="110" cy="110" r="70" fill="none" stroke="rgba(255,255,255,.4)"/><circle cx="110" cy="110" r="26" fill="rgba(255,255,255,.18)" stroke="rgba(255,255,255,.6)"/><line x1="72.5" y1="19.5" x2="83.2" y2="45.3" stroke="rgba(255,255,255,.4)"/><text x="110.0" y="29.0" text-anchor="middle" font-size="8.5" font-weight="700" fill="#fff" font-family="Plus Jakarta Sans, sans-serif">Cargos</text><circle cx="110.0" cy="62.0" r="3" fill="#f7b6e3"/><line x1="147.5" y1="19.5" x2="136.8" y2="45.3" stroke="rgba(255,255,255,.4)"/><text x="169.4" y="53.6" text-anchor="middle" font-size="8.5" font-weight="700" fill="#fff" font-family="Plus Jakarta Sans, sans-serif">Avaliação</text><circle cx="143.9" cy="76.1" r="3" fill="#f7b6e3"/><line x1="200.5" y1="72.5" x2="174.7" y2="83.2" stroke="rgba(255,255,255,.4)"/><text x="194.0" y="113.0" text-anchor="middle" font-size="8.5" font-weight="700" fill="#fff" font-family="Plus Jakarta Sans, sans-serif">PDI</text><circle cx="158.0" cy="110.0" r="3" fill="#f7b6e3"/><line x1="200.5" y1="147.5" x2="174.7" y2="136.8" stroke="rgba(255,255,255,.4)"/><text x="169.4" y="172.4" text-anchor="middle" font-size="8.5" font-weight="700" fill="#fff" font-family="Plus Jakarta Sans, sans-serif">Treinamento</text><circle cx="143.9" cy="143.9" r="3" fill="#f7b6e3"/><line x1="147.5" y1="200.5" x2="136.8" y2="174.7" stroke="rgba(255,255,255,.4)"/><text x="110.0" y="197.0" text-anchor="middle" font-size="8.5" font-weight="700" fill="#fff" font-family="Plus Jakarta Sans, sans-serif">Sucessão</text><circle cx="110.0" cy="158.0" r="3" fill="#f7b6e3"/><line x1="72.5" y1="200.5" x2="83.2" y2="174.7" stroke="rgba(255,255,255,.4)"/><text x="50.6" y="172.4" text-anchor="middle" font-size="8.5" font-weight="700" fill="#fff" font-family="Plus Jakarta Sans, sans-serif">1:1</text><circle cx="76.1" cy="143.9" r="3" fill="#f7b6e3"/><line x1="19.5" y1="147.5" x2="45.3" y2="136.8" stroke="rgba(255,255,255,.4)"/><text x="26.0" y="113.0" text-anchor="middle" font-size="8.5" font-weight="700" fill="#fff" font-family="Plus Jakarta Sans, sans-serif">Clima</text><circle cx="62.0" cy="110.0" r="3" fill="#f7b6e3"/><line x1="19.5" y1="72.5" x2="45.3" y2="83.2" stroke="rgba(255,255,255,.4)"/><text x="50.6" y="53.6" text-anchor="middle" font-size="8.5" font-weight="700" fill="#fff" font-family="Plus Jakarta Sans, sans-serif">Carreira</text><circle cx="76.1" cy="76.1" r="3" fill="#f7b6e3"/><path d="M110.0 62.0 L158.0 110.0 L76.1 143.9 L76.1 76.1 L143.9 143.9" fill="none" stroke="rgba(255,255,255,.55)" stroke-dasharray="3 3"/><text x="110" y="115" text-anchor="middle" font-size="15" font-weight="800" fill="#fff" font-family="Plus Jakarta Sans, sans-serif">W</text></svg>
+          <div class="h" style="font-size:20px;margin-top:2px">2027: está escrito nos dados.</div>
+          <div class="s">Não conte com as estrelas, conte com a Wabfy.</div>
+          <div class="foot"><span>wabfy</span><span>by Belago</span></div>
+        </div>
+        <figcaption><b>Dia 4 · Abertura.</b> Um mapa astral em que cada casa é um dado do RH (cargos, avaliação, PDI, sucessão…) e a Wabfy fica no centro.</figcaption>
+      </figure>
+
+      <figure class="piece">
+        <div class="art" role="img" aria-label="Exemplo da bola de cristal">
+          <span class="eb">Chega de RH na bola de cristal</span>
+          <div class="h">Quem está pronto para liderar em 2027?</div>
+          <div class="orbball" aria-hidden="true"><span style="height:28%"></span><span style="height:48%"></span><span style="height:38%"></span><span style="height:66%"></span></div>
+          <div class="orbbase" aria-hidden="true"></div>
+          <div class="s" style="margin-top:6px">Na Wabfy, carreira, desempenho e sucessão aparecem no mesmo painel.</div>
+          <div class="foot"><span>wabfy</span><span>by Belago</span></div>
+        </div>
+        <figcaption><b>Dia 16 · Bola de cristal.</b> A bola é o vidro da marca; dentro dela, o painel. Fala de RH (prontidão) e de produto (painel).</figcaption>
+      </figure>
+
+      <figure class="piece">
+        <div class="art" role="img" aria-label="Exemplo pelos astros e pela Wabfy">
+          <span class="eb">Previsão do seu time</span>
+          <div class="h">Quem pode sair em 2027?</div>
+          <div class="vs">
+            <div class="a"><b>Pelos astros</b>"Escorpião terá surpresas no trabalho."</div>
+            <div class="glass" style="padding:10px 12px"><b style="display:block;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px">Pela Wabfy · Sucessão</b>
+              <div style="display:grid;gap:5px">
+                <div class="ui-row"><i style="background:#ff8fb5"></i>Analista comercial<div class="bar"><span style="width:82%"></span></div></div>
+                <div class="ui-row"><i style="background:#ff8fb5"></i>Coord. de loja<div class="bar"><span style="width:74%"></span></div></div>
+                <div class="ui-row"><i style="background:#c6b4ff"></i>Supervisora<div class="bar"><span style="width:41%"></span></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="foot"><span>wabfy</span><span>by Belago</span></div>
+        </div>
+        <figcaption><b>Dia 18 · Horóscopo do RH com base em dados.</b> O astro aparece tracejado; a Wabfy em vidro, com o dado e a parte da plataforma de onde ele vem.</figcaption>
+      </figure>
+
+      <figure class="piece">
+        <div class="art" role="img" aria-label="Exemplo de Reels com UGC, signos do RH">
+          <span class="eb">Reels · Signos do RH</span>
+          <div style="flex:1;display:grid;place-items:center">
+            <div style="width:62px;height:62px;border-radius:50%;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.55);display:grid;place-items:center"><svg viewBox="0 0 24 24" width="26" height="26"><path d="M8 5l12 7-12 7z" fill="#fff"/></svg></div>
+          </div>
+          <div class="glass" style="padding:10px 12px"><div class="h" style="font-size:16px">POV: você é do RH de Áries e pediram um número "rapidinho"</div></div>
+          <div class="foot"><span>wabfy</span><span>marque seu signo</span></div>
+        </div>
+        <figcaption><b>Dias 14 e 21 · Meme em vídeo.</b> Reels com a Bruna no formato POV, legenda na tela. Só humor, para marcar o colega.</figcaption>
+      </figure>
+      <figure class="piece">
+        <div class="art" role="img" aria-label="Exemplo signos de fogo no RH">
+          <span class="eb">O que seu signo diz sobre você no RH</span>
+          <div class="h" style="font-size:26px;margin-top:18%">Signos de fogo</div>
+          <div class="s" style="font-size:12px;letter-spacing:.08em;text-transform:uppercase">Áries · Leão · Sagitário</div>
+          <div class="glass" style="padding:10px 12px;font-size:13px;line-height:1.4">Decidem rápido e puxam o time. Às vezes, antes de olhar o histórico.</div>
+          <div class="foot"><span>wabfy</span><span>2 / 6</span></div>
+        </div>
+        <figcaption><b>Dia 28 · O que seu signo diz sobre você no RH.</b> Um elemento por tela, sempre com um ponto forte. Só para compartilhar; fecha com o quiz.</figcaption>
+      </figure>
+
+      <figure class="piece">
+        <div class="art" role="img" aria-label="Exemplo alinhamento dos planetas">
+          <span class="eb">Alinhamento dos planetas</span>
+          <div class="h" style="font-size:18px">E se todo o ciclo de gestão de pessoas girasse em torno do mesmo lugar?</div>
+          <svg viewBox="0 0 260 180" style="width:100%;height:auto" aria-hidden="true"><ellipse cx="130" cy="92" rx="118" ry="52" fill="none" stroke="rgba(255,255,255,.4)"/><ellipse cx="130" cy="92" rx="78" ry="32" fill="none" stroke="rgba(255,255,255,.3)"/><circle cx="130" cy="92" r="24" fill="rgba(255,255,255,.18)" stroke="rgba(255,255,255,.6)"/><text x="130" y="97" text-anchor="middle" font-size="15" font-weight="800" fill="#fff" font-family="Plus Jakarta Sans, sans-serif">W</text>
+            <g font-family="Plus Jakarta Sans, sans-serif" font-size="9" font-weight="700" fill="#fff" text-anchor="middle">
+            <rect x="2" y="78" width="26" height="26" rx="7" fill="#c6b4ff"/><text x="15" y="117">PDI</text>
+            <rect x="232" y="78" width="26" height="26" rx="7" fill="#9ec2ff"/><text x="245" y="117">Cargos</text>
+            <rect x="117" y="27" width="26" height="26" rx="7" fill="#f7b6e3"/><text x="130" y="22">Avaliação</text>
+            <rect x="52" y="110" width="22" height="22" rx="6" fill="#c6b4ff"/><text x="63" y="145">Treinamento</text>
+            <rect x="186" y="110" width="22" height="22" rx="6" fill="#9ec2ff"/><text x="197" y="145">Sucessão</text></g>
+            <path d="M28 91 L117 40 M143 40 L232 91 M74 121 L186 121" stroke="rgba(255,255,255,.35)" stroke-dasharray="3 4"/></svg>
+          <div class="s">Quando tudo se conecta, a resposta aparece.</div>
+          <div class="foot"><span>wabfy</span><span>by Belago</span></div>
+        </div>
+        <figcaption><b>Dia 19 · Alinhamento dos planetas.</b> A Wabfy no centro e os módulos em órbita, como quadradinhos de ícone.</figcaption>
+      </figure>
+
+      <figure class="piece">
+        <div class="art" role="img" aria-label="Exemplo tarot do RH, O Mago">
+          <span class="eb">O tarot do RH</span>
+          <div class="glass tarot2" style="width:46%"><small>I</small><div class="inner"><svg viewBox="0 0 40 40" width="42" height="42" aria-hidden="true"><path d="M8 8h18l6 6v18H8z" fill="none" stroke="#fff" stroke-width="1.6"/><path d="M26 8v6h6" fill="none" stroke="#fff" stroke-width="1.6"/><path d="M14 22l4 4 8-8" fill="none" stroke="#f7b6e3" stroke-width="2" stroke-linecap="round"/><path d="M33 3l1 2.5 2.5 1-2.5 1L33 10l-1-2.5-2.5-1 2.5-1z" fill="#fff"/></svg><span style="font-size:14px;font-weight:800;letter-spacing:.12em">O MAGO</span></div><small>TAROT DO RH</small></div>
+          <div class="h" style="font-size:14.5px;text-align:center">"Em janeiro, um PDF vai virar curso com quiz e podcast em poucos minutos."</div>
+          <div class="foot"><span>wabfy</span><span>1 / 6</span></div>
+        </div>
+        <figcaption><b>Dia 30 · O tarot do RH.</b> Cada carta é uma previsão com data, e o que ela prevê é uma função da Wabfy. A última, O Mundo, revela a plataforma.</figcaption>
+      </figure>
+    </div>
+
+    <h3 class="block" style="margin-bottom:10px">Como o produto entra num carrossel · dia 11</h3>
+    <div class="seq">
+      <div class="art" role="img" aria-label="Capa do carrossel Mercúrio retrógrado">
+        <span class="eb">Mercúrio retrógrado de novo?</span>
+        <div style="display:flex;gap:10px;align-items:center"><span class="tile "><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M8 3.5c.5 2 2 3 4 3s3.5-1 4-3"/><circle cx="12" cy="11" r="4"/><path d="M12 15v6M9.5 18.5h5"/></svg></span><div class="h" style="font-size:17px">O RH culpou os astros.</div></div>
+        <div class="glass" style="padding:10px 12px;font-size:11.5px;margin-top:6px"><b style="display:block;margin-bottom:3px">Arquivo não encontrado</b>avaliacao_FINAL_v3_agora_vai.xlsx</div>
+        <div class="foot"><span>wabfy</span><span>1 / 5</span></div>
+      </div>
+      <div class="art" role="img" aria-label="Tela do 1:1 que sumiu">
+        <span class="eb">Mas o culpado era outro</span>
+        <div class="h">Eram os dados espalhados. Como o 1:1 que ninguém registrou.</div>
+        <div class="s">A conversa aconteceu. O combinado se perdeu.</div>
+        <div class="foot"><span>wabfy</span><span>2 / 5</span></div>
+      </div>
+      <div class="art" role="img" aria-label="Tela com o 1:1 na Wabfy">
+        <span class="eb">Na Wabfy</span>
+        <div class="h">Cada 1:1 vira plano de ação.</div>
+        <div class="glass" style="padding:10px;display:grid;gap:5px">
+          <div class="ui-row"><i style="background:#9ec2ff"></i>Pauta sugerida pela IA</div>
+          <div class="ui-row"><i style="background:#c6b4ff"></i>Combinado: curso de liderança · 15/12</div>
+          <div class="ui-row"><i style="background:#f7b6e3"></i>Próxima conversa · 08/01</div>
+        </div>
+        <div class="foot"><span>wabfy</span><span>3 / 5</span></div>
+      </div>
+    </div>
+
+    <h3 class="block" style="margin-bottom:10px">Carrossel aberto · dia 18 · Horóscopo do RH para 2027, com base em dados</h3>
+    <p class="muted" style="margin-bottom:12px">Em cada tela, os astros "preveem" algo genérico (card tracejado) e a Wabfy mostra o que está acontecendo, com a parte da plataforma de onde vem o dado (card de vidro). Dados ilustrativos.</p>
+    <div class="seq"><div class="art" role="img" aria-label="Tela 1 do carrossel do dia 18"><span class="eb">Horóscopo do RH · 2027</span><div class="h" style="font-size:20px">O que os astros preveem para o seu RH em 2027?</div><div class="s">E o que os dados já mostram.</div>
+<svg viewBox="0 0 260 120" style="width:100%;height:auto;margin-top:auto" aria-hidden="true"><g stroke="rgba(255,255,255,.45)" stroke-dasharray="3 4" fill="none"><path d="M10 90 L45 60 L80 78 L115 40"/></g><g fill="#fff" opacity=".7"><circle cx="10" cy="90" r="2.5"/><circle cx="45" cy="60" r="3"/><circle cx="80" cy="78" r="2.5"/><circle cx="115" cy="40" r="3.5"/></g><path d="M115 40 L150 55 L185 30 L220 38 L250 12" fill="none" stroke="#9ec2ff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><g fill="#fff"><circle cx="150" cy="55" r="3.5"/><circle cx="185" cy="30" r="3.5"/><circle cx="220" cy="38" r="3.5"/><circle cx="250" cy="12" r="4"/></g></svg><div class="foot"><span>wabfy</span><span>1 / 6</span></div></div><div class="art" role="img" aria-label="Tela 2 do carrossel do dia 18"><span class="eb">Sucessão</span><div class="vs"><div class="a" style="display:flex;gap:8px;align-items:flex-start"><svg viewBox="0 0 24 24" width="14" height="14" fill="#e6dcff" style="flex:none;margin-top:2px"><path d="M12 3l1.6 5.2L19 10l-5.4 1.8L12 17l-1.6-5.2L5 10l5.4-1.8z"/></svg><span><b>Pelos astros</b>"Escorpião terá surpresas no trabalho."</span></div></div><div class="glass" style="padding:10px 12px"><b style="display:block;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px">Com a Wabfy · Sucessão</b><div style="font-size:12.5px;font-weight:700;margin-bottom:6px">A analista comercial tem risco alto de saída. E já tem quem pode assumir.</div><div style="display:grid;gap:5px"><div class="ui-row"><i style="background:#ff8fb5"></i>Analista comercial<div class="bar"><span style="width:84%"></span></div></div><div class="ui-row"><i style="background:#c6b4ff"></i>Coord. de loja<div class="bar"><span style="width:52%"></span></div></div><div class="ui-row"><i style="background:#9ec2ff"></i>Supervisora<div class="bar"><span style="width:30%"></span></div></div></div></div><div class="foot"><span>wabfy</span><span>2 / 6</span></div></div><div class="art" role="img" aria-label="Tela 3 do carrossel do dia 18"><span class="eb">9Box</span><div class="vs"><div class="a" style="display:flex;gap:8px;align-items:flex-start"><svg viewBox="0 0 24 24" width="14" height="14" fill="#e6dcff" style="flex:none;margin-top:2px"><path d="M12 3l1.6 5.2L19 10l-5.4 1.8L12 17l-1.6-5.2L5 10l5.4-1.8z"/></svg><span><b>Pelos astros</b>"Leão vai brilhar."</span></div></div><div class="glass" style="padding:10px 12px"><b style="display:block;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px">Com a Wabfy · 9Box</b><div style="font-size:12.5px;font-weight:700;margin-bottom:8px">O supervisor da loja 3 está pronto para coordenar.</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;width:40%"><div style="aspect-ratio:1;border-radius:4px;background:rgba(255,255,255,.12)"></div><div style="aspect-ratio:1;border-radius:4px;background:rgba(255,255,255,.12)"></div><div style="aspect-ratio:1;border-radius:4px;background:rgba(158,194,255,.9);box-shadow:0 0 14px rgba(158,194,255,.9)"></div><div style="aspect-ratio:1;border-radius:4px;background:rgba(255,255,255,.12)"></div><div style="aspect-ratio:1;border-radius:4px;background:rgba(255,255,255,.12)"></div><div style="aspect-ratio:1;border-radius:4px;background:rgba(255,255,255,.12)"></div><div style="aspect-ratio:1;border-radius:4px;background:rgba(255,255,255,.12)"></div><div style="aspect-ratio:1;border-radius:4px;background:rgba(255,255,255,.12)"></div><div style="aspect-ratio:1;border-radius:4px;background:rgba(255,255,255,.12)"></div></div></div><div class="foot"><span>wabfy</span><span>3 / 6</span></div></div><div class="art" role="img" aria-label="Tela 4 do carrossel do dia 18"><span class="eb">1:1</span><div class="vs"><div class="a" style="display:flex;gap:8px;align-items:flex-start"><svg viewBox="0 0 24 24" width="14" height="14" fill="#e6dcff" style="flex:none;margin-top:2px"><path d="M12 3l1.6 5.2L19 10l-5.4 1.8L12 17l-1.6-5.2L5 10l5.4-1.8z"/></svg><span><b>Pelos astros</b>"Semana de conversas difíceis."</span></div></div><div class="glass" style="padding:10px 12px"><b style="display:block;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px">Com a Wabfy · 1:1</b><div style="font-size:12.5px;font-weight:700;margin-bottom:6px">Quatro combinados atrasados no time de operações.</div><div style="display:grid;gap:4px"><div class="ui-row"><i style="background:#ff8fb5"></i>Feedback do turno<span style="margin-left:auto;font-size:10px;opacity:.85">atrasado</span></div><div class="ui-row"><i style="background:#ff8fb5"></i>Curso de liderança<span style="margin-left:auto;font-size:10px;opacity:.85">atrasado</span></div><div class="ui-row"><i style="background:#ff8fb5"></i>Plano de escala<span style="margin-left:auto;font-size:10px;opacity:.85">atrasado</span></div><div class="ui-row"><i style="background:#ff8fb5"></i>Ajuste de metas<span style="margin-left:auto;font-size:10px;opacity:.85">atrasado</span></div></div></div><div class="foot"><span>wabfy</span><span>4 / 6</span></div></div><div class="art" role="img" aria-label="Tela 5 do carrossel do dia 18"><span class="eb">Pesquisa de clima</span><div class="vs"><div class="a" style="display:flex;gap:8px;align-items:flex-start"><svg viewBox="0 0 24 24" width="14" height="14" fill="#e6dcff" style="flex:none;margin-top:2px"><path d="M12 3l1.6 5.2L19 10l-5.4 1.8L12 17l-1.6-5.2L5 10l5.4-1.8z"/></svg><span><b>Pelos astros</b>"A lua favorece o trabalho em equipe."</span></div></div><div class="glass" style="padding:10px 12px"><b style="display:block;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:6px">Com a Wabfy · Clima</b><div style="font-size:12.5px;font-weight:700;margin-bottom:8px">O engajamento caiu em duas unidades desde agosto.</div><div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px"><div style="border-radius:4px;padding:5px 4px;font-size:9.5px;text-align:center;background:rgba(158,194,255,.55)">Unid. 1</div><div style="border-radius:4px;padding:5px 4px;font-size:9.5px;text-align:center;background:rgba(255,143,181,.75)">Unid. 2</div><div style="border-radius:4px;padding:5px 4px;font-size:9.5px;text-align:center;background:rgba(158,194,255,.45)">Unid. 3</div><div style="border-radius:4px;padding:5px 4px;font-size:9.5px;text-align:center;background:rgba(255,143,181,.75)">Unid. 4</div><div style="border-radius:4px;padding:5px 4px;font-size:9.5px;text-align:center;background:rgba(198,180,255,.5)">Unid. 5</div><div style="border-radius:4px;padding:5px 4px;font-size:9.5px;text-align:center;background:rgba(158,194,255,.55)">Unid. 6</div></div></div><div class="foot"><span>wabfy</span><span>5 / 6</span></div></div><div class="art" role="img" aria-label="Tela 6 do carrossel do dia 18"><span class="eb">Em 2027</span><div class="h" style="font-size:20px">Você não vai no chute. Vai com dados.</div><div class="s">Sucessão, 9Box, 1:1 e clima no mesmo lugar.</div>
+<svg viewBox="0 0 240 110" style="width:100%;height:auto" aria-hidden="true"><g stroke="rgba(255,255,255,.45)" stroke-dasharray="3 3"><line x1="40" y1="25" x2="120" y2="55"/><line x1="200" y1="25" x2="120" y2="55"/><line x1="40" y1="90" x2="120" y2="55"/><line x1="200" y1="90" x2="120" y2="55"/></g><circle cx="120" cy="55" r="20" fill="rgba(255,255,255,.18)" stroke="rgba(255,255,255,.6)"/><text x="120" y="60" text-anchor="middle" font-size="14" font-weight="800" fill="#fff" font-family="Plus Jakarta Sans, sans-serif">W</text><g><rect x="28" y="13" width="24" height="24" rx="6" fill="#f7b6e3"/><rect x="188" y="13" width="24" height="24" rx="6" fill="#c6b4ff"/><rect x="28" y="78" width="24" height="24" rx="6" fill="#9ec2ff"/><rect x="188" y="78" width="24" height="24" rx="6" fill="#c6b4ff"/></g></svg>
+<div class="glass" style="padding:8px 10px;font-size:11.5px;line-height:1.4"><b>Não conte com as estrelas, conte com a Wabfy.</b><br>Quer saber o que seu signo diz sobre você no RH? Comente SIGNO.</div><div class="foot"><span>wabfy</span><span>6 / 6</span></div></div></div>
+    <div class="card" style="margin-top:14px"><span class="label">Legenda</span>
+      <p>Os astros podem até dar um palpite sobre 2027. Mas quem vai pedir demissão, quem está pronto para liderar e onde o engajamento caiu, isso os dados já mostram.</p>
+      <p>Com a Wabfy, sucessão, 9Box, 1:1 e clima ficam no mesmo lugar, e o seu RH entra em 2027 decidindo com base no que está acontecendo com o time.</p>
+      <p>Quer saber o que seu signo diz sobre você no RH? Comente SIGNO e receba o quiz.</p>
+      <p>#EscritoNosDados</p>
+    </div>
+    <p class="note">O padrão se repete em toda a campanha: a capa traz a brincadeira, o meio traz a dor do RH e a última parte mostra a Wabfy resolvendo, com a interface em vidro.</p>
+  </div>
+
+  <!-- POSTS -->
+  <div class="panel" id="p-posts" role="tabpanel" aria-labelledby="t-posts">
+    <h2>Posts do feed</h2>
+    <p class="muted">Cada post com o objetivo, o gancho de distribuição, o formato, o que ele depende e quem faz. A proporção abaixo é calculada a partir da tabela.</p>
+
+    <div class="grid three" style="margin-top:14px" id="mix">
+      <div class="card"><span class="label">Post de alcance com potencial de viralização</span><p style="font-size:30px;font-weight:800;margin:0" id="mix-a">-</p><p class="muted" id="mix-a-n"></p></div>
+      <div class="card"><span class="label">Post de manutenção</span><p style="font-size:30px;font-weight:800;margin:0" id="mix-m">-</p><p class="muted" id="mix-m-n"></p></div>
+      <div class="card"><span class="label">Institucional (fora da conta)</span><p style="font-size:30px;font-weight:800;margin:0" id="mix-i">-</p><p class="muted" id="mix-i-n">posts fora da conta</p></div>
+    </div>
+    <p class="note" id="mix-read"><strong>Leitura:</strong> a conta considera só os posts de alcance e de manutenção; os institucionais (podcast e minicurso) ficam de fora. A base também é trabalhada nos stories, que não entram nessa conta.</p>
+
+    <div class="table-wrap" style="margin-top:14px">
+      <table style="min-width:1180px" id="posts-table">
+        <thead><tr><th>Dia</th><th>Post</th><th>Objetivo</th><th>Potencial de viralização</th><th>Gancho de distribuição</th><th>Formato</th><th>Dependências</th><th>Responsável</th></tr></thead>
+<tbody>
+          <tr data-obj="m"><td class="day">3</td><td>Vídeo do Raio-X de T&amp;D</td><td><span class="badge b-acc">Post de manutenção</span></td><td>Baixo</td><td>Link do diagnóstico nos stories</td><td>Vídeo 1:1</td><td>Pronto</td><td>Wendy</td></tr>
+          <tr data-obj="m"><td class="day">4</td><td>Abertura: o mapa astral do seu RH</td><td><span class="badge b-acc">Post de manutenção</span></td><td>Sem potencial</td><td>Mapa astral do RH com a Wabfy no centro; stories com contagem regressiva</td><td>Estático</td><td>Identidade do Nallan</td><td>Nallan, Wendy</td></tr>
+          <tr data-obj="a"><td class="day">5</td><td>Vídeo do manifesto</td><td><span class="badge b-ok">Alcance com potencial de viralização</span></td><td>Baixo</td><td>Manifesto em Reels, para repostar</td><td>Reels com texto animado</td><td>Roteiro do manifesto; identidade</td><td>Glauber, Wendy</td></tr>
+          <tr data-obj="a"><td class="day">6</td><td>Conheça a Márcia</td><td><span class="badge b-ok">Alcance com potencial de viralização</span></td><td>Bom</td><td>"Marque a Márcia do seu time"; vira anúncio na Meta</td><td>Vídeo com narrador</td><td>Roteiro e narração; 2D depende do Glauber e do Marco</td><td>Glauber, Wendy</td></tr>
+          <tr data-obj="a"><td class="day">7</td><td>Horóscopo do RH da semana</td><td><span class="badge b-ok">Alcance com potencial de viralização</span></td><td>Alto</td><td>"Mande para o colega do seu signo"</td><td>Reels leve (teste com a Bruna) ou carrossel</td><td>Parceria de astrologia, se fechar</td><td>Wendy, Bruna</td></tr>
+          <tr data-obj="m"><td class="day">9</td><td>Troquei RH</td><td><span class="badge b-acc">Post de manutenção</span></td><td>Médio</td><td>Paródia de fofoca</td><td>Estático</td><td>Peça pronta, com a roupagem da campanha</td><td>Nallan</td></tr>
+          <tr data-obj="m"><td class="day">10</td><td>Vídeo de Sucessão</td><td><span class="badge b-acc">Post de manutenção</span></td><td>Baixo</td><td>Link da página do módulo</td><td>Vídeo de módulo</td><td>Vídeo a produzir</td><td>Glauber</td></tr>
+          <tr data-obj="a"><td class="day">11</td><td>Mercúrio retrógrado leva a culpa</td><td><span class="badge b-ok">Alcance com potencial de viralização</span></td><td>Bom</td><td>"Marque quem culpa Mercúrio"; carrossel para salvar</td><td>Carrossel</td><td>Prints da plataforma para cada "erro"</td><td>Nallan, Wendy</td></tr>
+          <tr data-obj="m"><td class="day">12</td><td>Novidades</td><td><span class="badge b-acc">Post de manutenção</span></td><td>Baixo</td><td>Base atual e clientes</td><td>Carrossel</td><td>Releases da quinzena</td><td>Wendy, Nallan</td></tr>
+          <tr data-obj="a"><td class="day">13</td><td>Memória cheia, com a Márcia</td><td><span class="badge b-ok">Alcance com potencial de viralização</span></td><td>A avaliar</td><td>Identificação com o alerta do celular</td><td>Carrossel</td><td>Personagem da Márcia</td><td>Nallan, Glauber</td></tr>
+          <tr data-obj="a"><td class="day">14</td><td>Signos do RH, parte 1: meme em vídeo</td><td><span class="badge b-ok">Alcance com potencial de viralização</span></td><td>A avaliar</td><td>"Marque seu signo"; formato de POV para circular</td><td>Reels com UGC (Bruna)</td><td>Roteiro e gravação</td><td>Wendy, Bruna, Glauber</td></tr>
+          <tr data-obj="a"><td class="day">16</td><td>Chega de RH na bola de cristal</td><td><span class="badge b-ok">Alcance com potencial de viralização</span></td><td>Médio</td><td>Frase de impacto para repostar</td><td>Estático</td><td>Peça 13 adaptada, print do painel</td><td>Nallan</td></tr>
+          <tr data-obj="m"><td class="day">17</td><td>Vídeo de Mentoria</td><td><span class="badge b-acc">Post de manutenção</span></td><td>Baixo</td><td>Link da página do módulo</td><td>Vídeo de módulo</td><td>Vídeo em produção</td><td>Glauber</td></tr>
+          <tr data-obj="a"><td class="day">18</td><td>Horóscopo do RH para 2027, com base em dados (lançamento do quiz)</td><td><span class="badge b-ok">Alcance com potencial de viralização</span></td><td>Bom</td><td>Formato de horóscopo; última tela: "Comente SIGNO e receba o quiz"</td><td>Carrossel</td><td>Prints ou telas da Sucessão, 9Box, 1:1 e Clima; quiz e automação prontos</td><td>Nallan, Wendy, Larissa, Francisco</td></tr>
+          <tr data-obj="m"><td class="day">19</td><td>Alinhamento dos planetas</td><td><span class="badge b-acc">Post de manutenção</span></td><td>Baixo</td><td>Mostra a plataforma inteira conectada</td><td>Estático</td><td>Peça "Tudo numa plataforma só" adaptada</td><td>Nallan</td></tr>
+          <tr data-obj="a"><td class="day">21</td><td>Signos do RH, parte 2: meme em vídeo</td><td><span class="badge b-ok">Alcance com potencial de viralização</span></td><td>A avaliar</td><td>"Marque seu signo"; fecha com o quiz</td><td>Reels com UGC (Bruna)</td><td>Roteiro e gravação</td><td>Wendy, Bruna, Glauber</td></tr>
+          <tr data-obj="m"><td class="day">23</td><td>Equipe de produto conta, com o Emerson</td><td><span class="badge b-acc">Post de manutenção</span></td><td>Baixo</td><td>Bastidor e autoridade; forte no LinkedIn</td><td>Vídeo de entrevista</td><td>Gravação no Conecta</td><td>Glauber, Emerson</td></tr>
+          <tr data-obj="m"><td class="day">24</td><td>Gerador de Cursos</td><td><span class="badge b-acc">Post de manutenção</span></td><td>Baixo</td><td>Link da página do módulo</td><td>Vídeo de módulo</td><td>Vídeo a produzir</td><td>Glauber</td></tr>
+          <tr data-obj="a"><td class="day">25</td><td>Como fazer cada signo engajar no treinamento</td><td><span class="badge b-ok">Alcance com potencial de viralização</span></td><td>A avaliar</td><td>"Marque seu signo"; fecha com o quiz "Conheça seu signo no RH"</td><td>Carrossel</td><td>Print da gamificação</td><td>Nallan, Wendy</td></tr>
+          <tr data-obj="m"><td class="day">26</td><td>Novidades e suporte</td><td><span class="badge b-acc">Post de manutenção</span></td><td>Baixo</td><td>Base atual e clientes</td><td>Carrossel</td><td>Releases da quinzena</td><td>Wendy, Nallan</td></tr>
+          <tr data-obj="a"><td class="day">27</td><td>Conectados em janeiro, com a Márcia</td><td><span class="badge b-ok">Alcance com potencial de viralização</span></td><td>A avaliar</td><td>A Márcia "rastreando o pedido" do RH de 2027</td><td>Vídeo</td><td>Personagem da Márcia; roteiro</td><td>Glauber, Wendy</td></tr>
+          <tr data-obj="a"><td class="day">28</td><td>O que seu signo diz sobre como você decide no RH</td><td><span class="badge b-ok">Alcance com potencial de viralização</span></td><td>Bom</td><td>"Marque o colega do seu elemento"; fecha com o quiz</td><td>Carrossel</td><td>Nenhuma</td><td>Wendy, Nallan</td></tr>
+          <tr data-obj="a"><td class="day">30</td><td>O tarot do RH: previsões para 2027</td><td><span class="badge b-ok">Alcance com potencial de viralização</span></td><td>A avaliar</td><td>"Qual carta é a do seu RH em 2027?"; para repostar e comentar</td><td>Carrossel ou vídeo</td><td>Arte nova das cartas</td><td>Nallan, Wendy</td></tr>
+          <tr data-obj="i"><td class="day">A definir</td><td>Divulgação do podcast da Wabfy</td><td><span class="badge b-todo">Institucional</span></td><td>-</td><td>Episódio e convidado</td><td>A definir</td><td>Data do episódio</td><td>A definir</td></tr>
+          <tr data-obj="i"><td class="day">A definir</td><td>Divulgação do minicurso</td><td><span class="badge b-todo">Institucional</span></td><td>-</td><td>Inscrição gratuita com certificado</td><td>A definir</td><td>Data de publicação (prevista para 24/11)</td><td>Wendy</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid two block">
+      
+      <div class="card"><span class="label">Dia 25 · como fazer cada signo engajar no treinamento</span><p>Carrossel signo a signo, em que cada dica de engajamento é uma função da gamificação:</p>
+        <ul style="margin:0;padding-left:18px"><li><strong>Áries:</strong> ligas e ranking, porque gosta de competir.</li><li><strong>Touro:</strong> loja de recompensas, porque gosta de ver o resultado na mão.</li><li><strong>Gêmeos:</strong> trilhas curtas e variadas, porque enjoa rápido.</li><li><strong>Virgem:</strong> jornada de 30, 60 e 90 dias, porque gosta de saber onde está.</li><li><strong>Capricórnio:</strong> ofensiva de dias seguidos, porque não quebra uma meta.</li></ul>
+        <p style="margin-top:8px">Fecha com o convite para o quiz "Conheça seu signo no RH".</p></div>
+      <div class="card"><span class="label">Dia 18 · horóscopo do RH para 2027, com base em dados</span><p>Cada tela mostra a previsão pelos astros e, ao lado, o que a Wabfy mostra, citando a parte da plataforma de onde vem o dado (dados ilustrativos):</p>
+        <ul style="margin:0;padding-left:18px"><li><strong>Pelos astros:</strong> "Escorpião terá surpresas no trabalho." <strong>Pela Wabfy · Sucessão:</strong> a analista comercial tem risco alto de saída.</li><li><strong>Pelos astros:</strong> "Leão vai brilhar." <strong>Pela Wabfy · 9Box:</strong> o supervisor da loja 3 está pronto para coordenar.</li><li><strong>Pelos astros:</strong> "Semana de conversas difíceis." <strong>Pela Wabfy · 1:1:</strong> quatro combinados atrasados no time de operações.</li><li><strong>Pelos astros:</strong> "A lua favorece o trabalho em equipe." <strong>Pela Wabfy · Pesquisa de clima:</strong> o engajamento caiu em duas unidades.</li></ul>
+        <p style="margin-top:8px">Última tela: "Em 2027, conte com a Wabfy. Quer saber o que seu signo diz sobre você no RH? Comente SIGNO e receba o quiz."</p></div>
+      <div class="card"><span class="label">Dia 28 · o que seu signo diz sobre como você decide no RH</span><p>Post para compartilhar, sem produto. Os signos aparecem agrupados pelos quatro elementos, sempre com um ponto forte:</p>
+        <ul style="margin:0;padding-left:18px"><li><strong>Fogo (Áries, Leão, Sagitário):</strong> decidem rápido e puxam o time, às vezes antes de olhar o histórico.</li><li><strong>Terra (Touro, Virgem, Capricórnio):</strong> confiam no que é concreto e conferem tudo, às vezes na planilha que só eles entendem.</li><li><strong>Ar (Gêmeos, Libra, Aquário):</strong> ouvem todo mundo antes de decidir, às vezes falta o número para desempatar.</li><li><strong>Água (Câncer, Escorpião, Peixes):</strong> sentem o clima do time antes de todo mundo, às vezes sem o dado para mostrar à diretoria.</li></ul>
+        <p style="margin-top:8px">Última tela: "Quer o seu completo? Faça o quiz." O produto aparece no resultado do quiz, não no post.</p></div>
+      
+      <div class="card"><span class="label">Dias 14 e 21 · meme em vídeo</span><p>Reels com UGC da Bruna, no formato "POV: você é do RH de [signo]". Sem linha de produto: é só para rir e marcar o colega. Exemplos: o RH de Áries recebendo um pedido "rapidinho"; o RH de Virgem conferindo a planilha de mérito pela quarta vez; o RH de Sagitário deixando tudo para 2027.</p></div>
+      <div class="card"><span class="label">Dia 30 · o tarot do RH: previsões para 2027</span><p>Cada carta faz uma previsão para o RH, com data, e o que ela "prevê" é uma função da Wabfy:</p>
+        <ul style="margin:0;padding-left:18px"><li><strong>O Mago:</strong> "Em janeiro, um PDF vai virar curso com quiz e podcast em poucos minutos."</li><li><strong>O Eremita:</strong> "Em fevereiro, você não vai montar o relatório da diretoria sozinho. O painel já vai estar pronto."</li><li><strong>A Estrela:</strong> "Em março, você vai saber quem está pronto para liderar antes da reunião de sucessão."</li><li><strong>O Sol:</strong> "Em abril, cada 1:1 do time vai virar plano de ação."</li><li><strong>O Mundo:</strong> "Em 2027, você vai descobrir uma plataforma que reúne cargos, avaliação, PDI, treinamento e sucessão. O nome dela é Wabfy."</li></ul></div>
+      <div class="card"><span class="label">Dia 4 · o mapa astral do seu RH</span><p>Um mapa astral em que cada casa é um dado do RH: cargos, avaliação, PDI, treinamento, sucessão, 1:1, clima e carreira. A Wabfy fica no centro, ligando tudo.</p><p><strong>Título:</strong> 2027: está escrito nos dados.<br><strong>Sub:</strong> Não conte com as estrelas, conte com a Wabfy.<br><strong>Legenda:</strong> "O mapa do seu RH para 2027 não está nos astros. Está nos dados de cargos, avaliação, PDI, treinamento e sucessão, reunidos num lugar só. Em 2027, conte com a Wabfy."</p></div>
+      <div class="card"><span class="label">Dia 5 · definido</span><p>Vídeo do manifesto, com texto animado. O corte do evento saiu da campanha.</p></div>
+      <div class="card"><span class="label">Márcia em mais aparições</span><p>Aparece no dia 6 e pode voltar na memória cheia (13) e nos conectados em janeiro (27), a testar. Como pode virar mascote, o personagem em 2D depende do prazo e da complexidade que o Glauber avaliar e da aprovação do Marco.</p></div>
+    </div>
+  </div>
+
+  <!-- STORIES -->
+  <div class="panel" id="p-stories" role="tabpanel" aria-labelledby="t-stories">
+    <h2>Stories: onde a base é trabalhada</h2>
+    <p class="muted">É onde a base é mais trabalhada: mais produto, mais link e mais conversa com quem já segue a Wabfy. A tela 1 sempre traz o tema do post do dia.</p>
+    <div class="table-wrap t-wide" style="margin-top:12px">
+      <table>
+        <thead><tr><th>Dia</th><th>Quadro fixo</th><th>O que entra</th><th>Link</th></tr></thead>
+        <tbody>
+          <tr><td class="day">Segunda</td><td>Horóscopo da semana do RH</td><td>A previsão da semana com enquete ("Sua semana vai ser de planilha ou de painel?")</td><td>Home</td></tr>
+          <tr><td class="day">Terça</td><td>Produto em 15 segundos</td><td>Um GIF ou print do módulo da semana, com o que ele resolve na rotina</td><td>Página do módulo e Raio-X de T&amp;D</td></tr>
+          <tr><td class="day">Quarta</td><td>Pergunte ao produto</td><td>Caixinha de perguntas sobre a plataforma, respondidas pelo time de produto (Emerson e equipe) na semana seguinte</td><td>WhatsApp</td></tr>
+          <tr><td class="day">Quinta</td><td>Dúvida da semana</td><td>A objeção comercial da semana, respondida em uma tela</td><td>WhatsApp do comercial</td></tr>
+          <tr><td class="day">Sexta</td><td>RH responde</td><td>Dúvidas de RH que não são sobre a Wabfy: como manter os dados atualizados, por onde começar a organizar, o que levar para a diretoria</td><td>Quiz "Conheça seu signo no RH" (a partir do dia 18)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="grid two block">
+      <div class="card"><span class="label">Para puxar interação</span><ul style="margin:0;padding-left:18px"><li>Enquetes de signo com tema de RH</li><li>Quiz do stories: "Conheça seu signo no RH"</li><li>Caixinha "Qual dado você mais demora para achar?" (respostas viram conteúdo)</li><li>Contagem regressiva para 2027 na última semana</li></ul></div>
+      <div class="card"><span class="label">No radar</span><ul style="margin:0;padding-left:18px"><li>Cobertura do Conecta no meio do mês, com bastidores e gravações</li><li>Repost do podcast e do minicurso quando saírem</li><li>Repost do humor de sábado e respostas da audiência</li></ul></div>
+    </div>
+  </div>
+
+  <!-- DISTRIBUIÇÃO -->
+  <div class="panel" id="p-distribuicao" role="tabpanel" aria-labelledby="t-distribuicao">
+    <h2>Distribuição, não só criação</h2>
+    <p class="muted">A campanha sai em novembro sem depender de contratação. Influenciador e parcerias entram como reforço, se houver verba e aprovação.</p>
+
+    <div class="grid two" style="margin-top:12px">
+      <div class="card"><span class="label">Frente 2 como motor de compartilhamento</span><p>Os Signos do RH são os posts feitos para circular: marcar o colega, mandar no grupo do RH, repostar o próprio signo.</p><ul style="margin:0;padding-left:18px"><li>Chamada para marcar ou enviar em todos os posts da série</li><li>Versões em Reels para alcance fora da base</li><li>Impulsionar na Meta os que performarem melhor no orgânico</li></ul></div>
+      <div class="card"><span class="label">Influenciador</span><p>Perfil que traga audiência, autoridade e humor corporativo, sem uma visão negativa das empresas.</p><ul style="margin:0;padding-left:18px"><li><strong>Quando:</strong> lançamento em novembro sem influenciador; reforço no fim de novembro ou em dezembro e janeiro, se houver verba e aprovação</li><li><strong>Formatos:</strong> collab em Reels, react de uma peça da campanha, participação no quiz</li><li><strong>Próximo passo:</strong> levantar nomes e cotar</li></ul></div>
+      <div class="card"><span class="label">UGC com a Bruna</span><p>Separado de influência: a Bruna ajuda a testar vídeos mais humanizados, mas não traz a mesma audiência nem a mesma autoridade de um influenciador.</p><ul style="margin:0;padding-left:18px"><li>Vídeos mais leves, principalmente nos sábados (horóscopo e signos do RH)</li><li>Teste de formato antes de investir em influência</li></ul></div>
+      <div class="card"><span class="label">Parceria de astrologia</span><p>Para dar autenticidade ao horóscopo e ao quiz, não necessariamente para trazer audiência.</p><ul style="margin:0;padding-left:18px"><li>Opções citadas: João Bidu ou alguém de tarô</li><li>Astrolink: nova opção para pesquisar e cotar</li><li>Status: nenhuma parceria fechada</li></ul></div>
+    </div>
+  </div>
+
+  <!-- QUIZ E PÁGINAS -->
+  <div class="panel" id="p-quiz" role="tabpanel" aria-labelledby="t-quiz">
+    <h2>Quiz "Conheça seu signo no RH"</h2>
+    <p class="muted">Funciona como o Raio-X de T&amp;D, mas fala primeiro da pessoa e depois do RH dela. O tom é leve, sem ser caricato: o signo serve de porta de entrada para falar do jeito de trabalhar e de decidir. A parte pessoal é o que faz a pessoa compartilhar; a parte do RH é o que qualifica e leva ao produto.</p>
+    <div class="grid two" style="margin-top:12px">
+      <div class="card"><span class="label">Parte 1 · você</span><p>Três ou quatro perguntas leves sobre a pessoa:</p><ul style="margin:0;padding-left:18px"><li>Qual é o seu signo?</li><li>Quando precisa decidir uma promoção, você… (vai no feeling, pede opinião, abre a planilha, olha o histórico)</li><li>Seu ritual de fim de ano no trabalho é… (fechar tudo, deixar para janeiro, fazer a lista de metas)</li><li>Quando a diretoria pede um número "rapidinho", você…</li></ul></div>
+      <div class="card"><span class="label">Parte 2 · o seu RH</span><p>Quatro ou cinco perguntas sobre onde estão os dados e como as decisões acontecem:</p><ul style="margin:0;padding-left:18px"><li>Onde ficam os registros de 1:1?</li><li>Como é montado o relatório para a diretoria?</li><li>Quantos sistemas o RH usa no dia a dia?</li><li>Como vocês sabem quem está pronto para assumir um cargo?</li></ul></div>
+    </div>
+    <ul class="fact-list" style="margin-top:16px">
+      <li><span class="k">Resultado em dois blocos</span><span><strong>Seu signo no RH:</strong> como o seu signo aparece no trabalho, com pontos fortes e pontos de atenção na hora de decidir, num card pronto para postar nos stories. <strong>O momento do seu RH:</strong> um de quatro níveis (dados espalhados, em organização, conectados em parte, escrito nos dados), com a previsão para 2027, o que fazer primeiro e o módulo que ajuda.</span></li>
+      <li><span class="k">Qualificação</span><span>Antes do resultado, a pessoa informa cargo e tamanho da empresa. Abaixo de 200 pessoas recebe o resultado e conteúdos; a partir de 200, recebe também o convite para falar com um especialista</span></li>
+      <li><span class="k">Distribuição</span><span>Lançamento no dia 18 com "Comente SIGNO"; depois, o quiz fecha os posts de signo (21, 25 e 28), é lembrado na legenda do dia 30 e fica nos stories de sexta. Se ficar pronto antes, o lançamento pode ir para o dia 14, e a parte 1 dos Signos do RH também passa a fechar com ele; uma automação de direct (ManyChat ou similar) envia o link. O card pessoal leva a marca e o link do quiz, para quem vê no stories de outra pessoa também fazer</span></li>
+      <li><span class="k">Autenticidade</span><span>Os textos da parte pessoal podem ser revisados pela parceria de astrologia, se fechar</span></li>
+      <li><span class="k">Dependências</span><span>Ferramenta do quiz, gerador do card compartilhável, automação no Instagram, página e revisão dos resultados</span></li>
+    </ul>
+
+    <h2 class="block">Páginas da campanha</h2>
+    <div class="table-wrap t-wide" style="margin-top:10px">
+      <table>
+        <thead><tr><th>Página</th><th>O que tem</th><th>CTA</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Página da campanha</strong></td><td>Mote, manifesto, "pelos astros x pelos dados" com três exemplos da plataforma e os módulos</td><td>Fale com um especialista (com campo de tamanho da empresa)</td></tr>
+          <tr><td><strong>Página do quiz</strong></td><td>Chamada do quiz, as duas partes de perguntas e o formulário de cargo e porte</td><td>Fazer o quiz</td></tr>
+          <tr><td><strong>Páginas de resultado</strong></td><td>O card pessoal para compartilhar e, abaixo, o céu do RH para 2027 com o que fazer primeiro e o módulo que ajuda</td><td>Especialista (200+) ou conteúdo (abaixo de 200)</td></tr>
+          <tr><td><strong>Material "O mapa do RH para 2027"</strong></td><td>Checklist do que conectar antes de janeiro, ligado à newsletter de 26/11</td><td>Baixar o material</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Responsáveis: Larissa e Francisco nas páginas e na automação, Wendy na copy.</p>
+  </div>
+
+  <!-- CANAIS E ANÚNCIOS -->
+  <div class="panel" id="p-canais" role="tabpanel" aria-labelledby="t-canais">
+    <h2>Papel de cada canal</h2>
+    <div class="grid two" style="margin-top:12px">
+      <div class="card"><span class="badge b-ok">Definido</span><h3 style="margin-top:8px">Instagram orgânico</h3><p>Onde a brincadeira mais rende: signos, Mercúrio retrógrado, horóscopo e as peças da campanha. Feed e stories ajustáveis conforme fizer sentido.</p></div>
+      <div class="card"><span class="badge b-ok">Definido</span><h3 style="margin-top:8px">LinkedIn</h3><p>As mesmas peças, mais "RH na semana" e a entrevista com o Emerson. Aqui o formato "Pelos astros x Pelos dados" funciona muito bem.</p></div>
+      <div class="card"><span class="badge b-warn">Proposta</span><h3 style="margin-top:8px">Newsletter do LinkedIn</h3><p>"Escrito nos Dados", uma edição por semana às quintas. Plano completo na aba "E-mail e newsletter".</p></div>
+      <div class="card"><span class="badge b-warn">Proposta</span><h3 style="margin-top:8px">Equipe de produto conta</h3><p>Entrevista com o Emerson, gravada no Conecta, sobre a plataforma pelo lado do produto: o porquê de cada decisão e como funciona. Entra no feed no dia 23.</p></div>
+      <div class="card"><span class="badge b-warn">Proposta</span><h3 style="margin-top:8px">E-mail</h3><p>Um e-mail da campanha por semana às quartas e uma sequência para leads quentes. O "Seu 1:1 com a Wabfy" (novidades) segue à parte, a cada 15 dias. Plano na aba "E-mail e newsletter".</p></div>
+      <div class="card"><span class="badge b-warn">Proposta</span><h3 style="margin-top:8px">Material "comente para receber"</h3><p>"O mapa do seu RH para 2027": checklist do que conectar antes de janeiro, entregue por DM.</p></div>
+      <div class="card"><span class="badge b-warn">Proposta</span><h3 style="margin-top:8px">Página da campanha</h3><p>Mote, manifesto, Raio-X, checklist e contato com especialista.</p></div>
+      <div class="card"><span class="badge b-todo">A confirmar</span><h3 style="margin-top:8px">Minicurso</h3><p>"Decisões de RH na prática" como a parte prática: como deixar 2027 escrito nos dados. Publicação prevista para 24/11.</p></div>
+    </div>
+
+    <h2 class="block">Anúncios sem atrair curiosos</h2>
+    <p class="muted">O cuidado é não encher a base de pessoas que gostam de astrologia mas não têm nada a ver com RH, o que atrapalha o aprendizado das campanhas.</p>
+    <div class="grid two" style="margin-top:12px">
+      <div class="card"><span class="label">O que fazer</span><ul style="margin:0;padding-left:18px"><li>A primeira linha sempre fala de RH e de dados.</li><li>O porte vai escrito: "para RHs de empresas com mais de 200 pessoas".</li><li>Usar os formatos que já mostram o produto: "Pelos astros x Pelos dados", bola de cristal, alinhamento dos planetas.</li><li>Segmentar por cargo e por tamanho de empresa.</li></ul></div>
+      <div class="card"><span class="label">O que evitar nos anúncios</span><ul style="margin:0;padding-left:18px"><li>Quiz "descubra seu signo" como anúncio.</li><li>Peça só de horóscopo, sem RH na imagem.</li><li>Promessas genéricas de "previsão", sem dizer de quê.</li></ul></div>
+    </div>
+    <div class="table-wrap" style="margin-top:14px">
+      <table>
+        <thead><tr><th>Exemplo de anúncio</th><th>Para quem</th></tr></thead>
+        <tbody>
+          <tr><td>"Seu RH ainda prevê turnover pelo feeling? Em empresas com mais de 200 pessoas, o risco de saída já está nos dados."</td><td>Primeiro contato</td></tr>
+          <tr><td>"Pelos astros: surpresas no trabalho. Pelos dados: quem pode sair do seu time no próximo trimestre."</td><td>Primeiro contato</td></tr>
+          <tr><td>"Seu contrato vence em janeiro? Os astros não renovam. Você decide em novembro."</td><td>Remarketing</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- E-MAIL E NEWSLETTER -->
+  <div class="panel" id="p-emails" role="tabpanel" aria-labelledby="t-emails">
+    <h2>E-mail e newsletter, toda semana</h2>
+    <p class="muted">Um e-mail da campanha por semana para a base e uma edição semanal da newsletter no LinkedIn. O "Seu 1:1 com a Wabfy", e-mail de novidades da plataforma, é outra série e segue no próprio calendário, a cada 15 dias.</p>
+
+    <h3 class="block" style="margin-bottom:10px">E-mail semanal da campanha (quartas-feiras)</h3>
+    <div class="table-wrap t-wide">
+      <table>
+        <thead><tr><th>Data</th><th>Assunto</th><th>Conteúdo</th><th>CTA</th></tr></thead>
+        <tbody>
+          <tr><td class="day">4/11</td><td>2027: está escrito nos dados</td><td>Lançamento. Manifesto curto e três decisões de 2027 que dependem de dado (sucessão, mérito, orçamento de pessoas).</td><td>Faça o diagnóstico (Raio-X)</td></tr>
+          <tr><td class="day">11/11</td><td>Não foi Mercúrio retrógrado: os dados que somem no RH</td><td>O que costuma sumir (a conversa de 1:1, a avaliação, o PDI, o pedido de vaga) e onde isso fica na Wabfy, com print de cada um.</td><td>Página dos módulos citados</td></tr>
+          <tr><td class="day">18/11</td><td>Pelos astros ou pelos dados: a previsão do seu time para 2027</td><td>Sucessão e risco de saída na rotina, em três passos com print. Comparativo "pelos astros x pelos dados".</td><td>Fale com um especialista</td></tr>
+          <tr><td class="day">25/11</td><td>Alinhamento para 2027: como é começar</td><td>Como é a implantação, como o time passa a usar (gamificação, trilhas) e quem acompanha depois.</td><td>Fale com um especialista · minicurso</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Nas semanas em que o "Seu 1:1 com a Wabfy" também sai, vale enviar em dias diferentes ou separar os públicos, para a base não receber dois e-mails da Wabfy no mesmo dia.</p>
+
+    <h3 class="block" style="margin-bottom:10px">Newsletter "Escrito nos Dados" no LinkedIn (quintas-feiras)</h3>
+    <div class="table-wrap t-wide">
+      <table>
+        <thead><tr><th>Data</th><th>Título</th><th>Do que trata</th></tr></thead>
+        <tbody>
+          <tr><td class="day">5/11</td><td>O fim do RH no feeling: por que 2027 vai cobrar dado</td><td>As decisões de pessoas que a diretoria vai pedir com número em 2027, e o que o RH precisa ter em mãos.</td></tr>
+          <tr><td class="day">12/11</td><td>Mercúrio retrógrado não existe no RH: os cinco dados que mais somem</td><td>1:1, avaliação, PDI, histórico de cargo e treinamento: onde costumam estar e onde deveriam estar.</td></tr>
+          <tr><td class="day">19/11</td><td>Previsão de verdade: como ler risco de saída e prontidão antes do ciclo</td><td>Sucessão e 9Box explicados na prática, com exemplo de empresa de mais de 200 pessoas.</td></tr>
+          <tr><td class="day">26/11</td><td>O que conectar antes de janeiro: checklist do RH para 2027</td><td>Checklist prático, do que organizar primeiro até como apresentar a plataforma ao time.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">A newsletter é mais séria que o feed: a astrologia fica no título e na abertura, e o resto é conteúdo útil. Fica melhor assinada por uma pessoa, como o Marco ou um especialista da Wabfy.</p>
+
+    <h3 class="block" style="margin-bottom:10px">Sequência para leads quentes</h3>
+    <p class="muted">Para quem já falou com o comercial ou ficou parado no funil. Enviada separada do e-mail semanal.</p>
+    <div class="table-wrap t-wide" style="margin-top:8px">
+      <table>
+        <thead><tr><th>Data</th><th>Assunto</th><th>Conteúdo</th></tr></thead>
+        <tbody>
+          <tr><td class="day">19/11</td><td>Seu contrato vence em janeiro? Isso está no calendário, não nas estrelas</td><td>Por que decidir agora e o que dá para fazer até janeiro.</td></tr>
+          <tr><td class="day">24/11</td><td>Como é a implantação, passo a passo</td><td>As etapas, quem participa e o que o time do cliente precisa fazer.</td></tr>
+          <tr><td class="day">27/11</td><td>Quem te atende depois que a plataforma está no ar</td><td>Acompanhamento, suporte e como o time é engajado depois da implantação.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h2 class="block">Estrutura de cada e-mail</h2>
+    <div class="grid two" style="margin-top:12px">
+      <div class="card">
+        <ol style="margin:0;padding-left:20px">
+          <li><strong>Abertura com a brincadeira</strong>, em uma ou duas linhas.</li>
+          <li><strong>A dor</strong>, numa cena de empresa grande.</li>
+          <li><strong>Na sua rotina:</strong> três passos com print ou GIF.</li>
+          <li><strong>O que você ganha</strong>, em uma frase.</li>
+          <li><strong>CTA</strong> para a página do módulo ou para um especialista.</li>
+          <li><strong>P.S.:</strong> é só responder este e-mail para falar com o time.</li>
+        </ol>
+      </div>
+      <div class="card"><span class="label">Exemplo · e-mail de 18/11</span>
+        <p><strong>Assunto:</strong> Pelos astros ou pelos dados: a previsão do seu time para 2027<br><strong>Pré-header:</strong> Escorpião terá surpresas no trabalho. O seu RH não precisa ter.</p>
+        <p>O horóscopo diz que dezembro é mês de mudanças. O seu time comercial também, mas por outro motivo: três pessoas estão com risco alto de saída, e ninguém viu.</p>
+        <p><strong>Na sua rotina, com o módulo de Sucessão:</strong><br>1. Veja quem está em risco de saída, por cargo crítico.<br>2. Confira quem está pronto para assumir.<br>3. Monte o plano de sucessão com apoio da IA.</p>
+        <p><strong>O que você ganha:</strong> saber antes da carta de demissão chegar, e ter quem assume.</p>
+        <p>[Ver a Sucessão na prática]</p>
+        <p class="muted">P.S.: é só responder este e-mail para falar com o nosso time.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRÓXIMOS PASSOS -->
+  <div class="panel" id="p-passos" role="tabpanel" aria-labelledby="t-passos">
+    <h2>Decisões necessárias</h2>
+    <div class="table-wrap" style="margin-top:12px">
+      <table>
+        <thead><tr><th>Decisão</th><th>Quem</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Aprovar o mote e o sub</td><td>Duda e Marco</td><td><span class="badge b-warn">Pendente</span></td></tr>
+          <tr><td>Fechar os posts a partir da proposta (dias 4, 6, 13, 16, 18, 25, 27 e 28)</td><td>Wendy, Dâmaris e Nallan</td><td><span class="badge b-warn">Pendente</span></td></tr>
+          <tr><td>Identidade visual a partir da direção de céu noturno</td><td>Nallan</td><td><span class="badge b-warn">Pendente</span></td></tr>
+          <tr><td>Confirmar data do minicurso e como entra na campanha</td><td>A definir</td><td><span class="badge b-todo">A fazer</span></td></tr>
+          <tr><td>Decidir se a Márcia vira personagem recorrente</td><td>Glauber e equipe</td><td><span class="badge b-todo">A fazer</span></td></tr>
+          <tr><td>Aprovar o personagem da Márcia em 2D como possível mascote</td><td>Glauber (prazo e complexidade) e Marco</td><td><span class="badge b-todo">A fazer</span></td></tr>
+          <tr><td>Validar os temas dos dias 25 e 28</td><td>Wendy, Dâmaris e Nallan</td><td><span class="badge b-warn">Pendente</span></td></tr>
+          <tr><td>Agendar a entrevista com o Emerson no Conecta</td><td>Glauber e Emerson</td><td><span class="badge b-todo">A fazer</span></td></tr>
+          <tr><td>Definir ferramenta do quiz e automação de direct (ManyChat ou similar)</td><td>Larissa e Francisco</td><td><span class="badge b-todo">A fazer</span></td></tr>
+          <tr><td>Levantar e cotar influenciador de humor corporativo</td><td>A definir</td><td><span class="badge b-todo">A fazer</span></td></tr>
+          <tr><td>Pesquisar e cotar parceria de astrologia (João Bidu, tarô, Astrolink)</td><td>A definir</td><td><span class="badge b-todo">A fazer</span></td></tr>
+          <tr><td>Testar vídeos leves com a Bruna nos sábados</td><td>Wendy e Bruna</td><td><span class="badge b-todo">A fazer</span></td></tr>
+          <tr><td>Aprovar o plano semanal de e-mail e newsletter, o material e a página</td><td>Duda</td><td><span class="badge b-todo">A fazer</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h2 class="block">No radar, sem mudar o conteúdo</h2>
+    <ul class="fact-list" style="margin-top:8px">
+      <li><span class="k">Conecta</span><span>Evento no meio do mês, com cobertura nos stories e no LinkedIn e a gravação da entrevista com o Emerson</span></li>
+      <li><span class="k">Podcast da Wabfy</span><span>Post de divulgação, data a definir</span></li>
+      <li><span class="k">Minicurso</span><span>Post de divulgação, publicação prevista para 24/11</span></li>
+    </ul>
+    <h2 class="block">Como vamos acompanhar</h2>
+    <ul class="fact-list" style="margin-top:8px">
+      <li><span class="k">Vendas</span><span>Calls agendadas e propostas por criativo no Growth Detector, e a proporção de leads dentro do perfil</span></li>
+      <li><span class="k">Ações do público</span><span>Cliques no WhatsApp, diagnósticos do Raio-X, pedidos do checklist e inscritos no minicurso</span></li>
+      <li><span class="k">Orgânico</span><span>Salvamentos, compartilhamentos e respostas nos stories</span></li>
+    </ul>
+  </div>
+
+  <!-- FONTES -->
+  <div class="panel" id="p-fontes" role="tabpanel" aria-labelledby="t-fontes">
+    <h2>Fontes</h2>
+    <ul class="sources" style="margin-top:12px">
+      <li><strong>Sólides + Popó (ago. 2026)</strong><a href="https://mundorh.com.br/lute-como-um-campeao-popo-freitas-sobe-no-ringue-da-gestao-de-pessoas-a-convite-da-solides/" target="_blank" rel="noopener">Mundo RH</a> · <a href="https://grandesnomesdapropaganda.com.br/mercado-digital/popo-entra-no-ringue-da-gestao-de-pessoas-para-lutar-ao-lado-da-solides/" target="_blank" rel="noopener">Grandes Nomes da Propaganda</a></li>
+      <li><strong>Cimed + Toguro (fev. 2026)</strong><a href="https://www.cidademarketing.com.br/marketing/2026/02/08/cimed-comemora-2-bilhoes-de-visualizacoes-com-toguro-em-apenas-7-dias/" target="_blank" rel="noopener">Cidade Marketing</a> · <a href="https://forbes.com.br/forbes-mkt/2026/04/efeito-toguro-dezenas-de-celebridades-ja-lideraram-marcas-especialistas-alertam-para-excessos/" target="_blank" rel="noopener">Forbes</a></li>
+      <li><strong>Livelo + Márcia Sensitiva (nov. 2025)</strong><a href="https://nossomeio.com.br/almapbbdo-assina-nova-campanha-da-livelo-com-marcia-sensitiva-para-a-pink-friday/" target="_blank" rel="noopener">Nosso Meio</a></li>
+      <li><strong>Hope + Márcia Sensitiva (dez. 2025)</strong><a href="https://www.meioemensagem.com.br/comunicacao/hope-e-marcia-sensitiva-indicam-cores-para-a-virada-do-ano" target="_blank" rel="noopener">Meio &amp; Mensagem</a></li>
+      <li><strong>Hurb · Destinos Astrológicos (jan. 2023)</strong><a href="https://marcaspelomundo.com.br/agencias/hurb-cria-campanha-destinos-astrologicos-para-os-viajantes-encontrarem-seus-destinos/" target="_blank" rel="noopener">Marcas pelo Mundo</a></li>
+      <li><strong>Mailchimp · Did You Mean Mailchimp? (2017)</strong><a href="https://www.thedrum.com/creative-works/droga5-mailchimp-did-you-mean-mailchimp" target="_blank" rel="noopener">The Drum</a> · <a href="https://lovethework.com/work-awards/campaigns/did-you-mean-mailchimp-27923" target="_blank" rel="noopener">Cannes Lions</a></li>
+      <li><strong>Previsões de fim de ano da Márcia Sensitiva</strong><a href="https://www.band.com.br/entretenimento/melhor-da-tarde/noticias/marcia-sensitiva-faz-alerta-e-revela-previsao-de-novas-guerras-para-2026-202601071455" target="_blank" rel="noopener">Band (jan. 2026)</a> · <a href="https://www.correiobraziliense.com.br/colunistas/mariana-morais/2026/01/7323830-as-previsoes-mais-chocantes-dos-famosos-segundo-marcia-sensitiva.html" target="_blank" rel="noopener">Correio Braziliense (jan. 2026)</a> · <a href="https://ohoje.com/2025/12/18/marcia-sensitiva-e-os-signos-para-2026/" target="_blank" rel="noopener">O Hoje (dez. 2025)</a></li>
+      <li><strong>Insights dos leads e campanha de novembro</strong>Documento do projeto Wabfy, 26/10/2026.</li>
+      <li><strong>Reuniões de 30/10/2026</strong><a href="https://notes.granola.ai/d/54d34e31-ca4d-4456-9ccd-06243f46ee5c" target="_blank" rel="noopener">Campanha 2027</a> · <a href="https://notes.granola.ai/d/d52ce427-b8d8-4bf3-bcf6-ff3d701e1675" target="_blank" rel="noopener">Daily Produção</a></li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  (function () {
+    var tabs = document.querySelectorAll('.tab');
+    var panels = document.querySelectorAll('.panel');
+    function select(name) {
+      tabs.forEach(function (t) { t.setAttribute('aria-selected', t.getAttribute('data-tab') === name ? 'true' : 'false'); });
+      panels.forEach(function (p) { p.classList.toggle('active', p.id === 'p-' + name); });
+    }
+    tabs.forEach(function (t) { t.addEventListener('click', function () { select(t.getAttribute('data-tab')); }); });
+  })();
+
+  (function(){var rows=document.querySelectorAll('#posts-table tbody tr');var c={a:0,m:0,i:0};rows.forEach(function(r){c[r.getAttribute('data-obj')]++;});var t=c.a+c.m;
+  function pct(n){return Math.round(n*100/t)+'%';}
+  document.getElementById('mix-a').textContent=pct(c.a);document.getElementById('mix-a-n').textContent=c.a+' de '+t+' posts';
+  document.getElementById('mix-m').textContent=pct(c.m);document.getElementById('mix-m-n').textContent=c.m+' de '+t+' posts';
+  document.getElementById('mix-i').textContent=c.i;document.getElementById('mix-i-n').textContent='posts fora da conta';})();
+</script>
+
+</body></html>

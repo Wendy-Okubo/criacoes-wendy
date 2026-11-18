@@ -1,0 +1,363 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Quadro dos fluxos de leads</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: quadro estilo whiteboard com grade pontilhada; dois quadros (e-mails e comercial) + seções de apoio */
+:root{
+  --bg:#F6F6FB; --board:#FFFFFF; --dot:#D9D8EC; --ink:#1B2350; --muted:#5B6185; --line:#8E8BC9;
+  --purple:#6147EC; --blue:#2961EB; --navy:#25356E; --rose:#AAA4FF;
+  --a-fill:#EEEBFF; --a-edge:#6147EC; --b-fill:#E8F0FF; --b-edge:#2961EB;
+  --c-fill:#E6F6EE; --c-edge:#16865A; --n-fill:#F1F2F7; --n-edge:#8B90AE;
+  --note:#FFF4C2; --note-edge:#D9B640; --exit:#FDECEC; --exit-edge:#C24A4A;
+  --font:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12142A; --board:#181B36; --dot:#2C3060; --ink:#ECEBFF; --muted:#A6A9CF; --line:#7D79D6;
+  --a-fill:#2A2560; --a-edge:#9C8DFF; --b-fill:#1C2B5C; --b-edge:#78A0FF;
+  --c-fill:#173B30; --c-edge:#5CCB98; --n-fill:#24284A; --n-edge:#8E93BF;
+  --note:#4A4120; --note-edge:#C9A93A; --exit:#4A2328; --exit-edge:#E58080; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12142A; --board:#181B36; --dot:#2C3060; --ink:#ECEBFF; --muted:#A6A9CF; --line:#7D79D6;
+  --a-fill:#2A2560; --a-edge:#9C8DFF; --b-fill:#1C2B5C; --b-edge:#78A0FF;
+  --c-fill:#173B30; --c-edge:#5CCB98; --n-fill:#24284A; --n-edge:#8E93BF;
+  --note:#4A4120; --note-edge:#C9A93A; --exit:#4A2328; --exit-edge:#E58080; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.5;margin:0}
+.wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px;max-width:1880px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+header h1{font-size:clamp(24px,3vw,34px);font-weight:800;margin:0;letter-spacing:-.01em;text-wrap:balance}
+header p{margin:6px 0 0;color:var(--muted);max-width:820px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--purple)}
+.legend{display:flex;flex-wrap:wrap;gap:10px 18px;font-size:13px;color:var(--muted);margin-top:14px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:14px;height:14px;border-radius:4px;border:2px solid}
+h2{font-size:20px;margin:0;font-weight:800}
+.boardhead{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px}
+.hint{font-size:13px;color:var(--muted)}
+.scroller{overflow-x:auto;border-radius:16px;border:1px solid var(--dot);background:var(--board);
+  background-image:radial-gradient(var(--dot) 1.2px,transparent 1.2px);background-size:22px 22px}
+.canvas{position:relative;padding:36px 24px 24px;display:grid;gap:22px 34px;width:max-content}
+#c1{column-gap:52px;row-gap:44px;grid-template-columns:180px 190px repeat(5,220px) 200px;grid-template-rows:auto auto auto auto}
+#c2{column-gap:52px;row-gap:26px;grid-template-columns:190px 210px 170px 210px 250px;grid-template-rows:repeat(5,auto)}
+svg.edges{position:absolute;inset:0;pointer-events:none;overflow:visible}
+.lane{border-radius:14px;z-index:0;margin:-10px -14px;position:relative}
+.lane>span{position:absolute;top:-21px;left:14px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.lane-a{background:color-mix(in srgb,var(--a-fill) 45%,transparent)}
+.lane-b{background:color-mix(in srgb,var(--b-fill) 45%,transparent)}
+.lane-c{background:color-mix(in srgb,var(--c-fill) 40%,transparent)}
+.lanelabel{position:relative;z-index:1;align-self:start;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-top:2px}
+.tl{font-family:var(--mono);font-size:12px;color:var(--muted);text-align:center;z-index:1;align-self:end}
+.tl b{display:block;font-family:var(--font);font-size:12px;color:var(--ink)}
+.node{position:relative;z-index:2;border:2px solid var(--n-edge);background:var(--n-fill);border-radius:12px;padding:12px 13px;
+  text-align:left;font:inherit;color:inherit;cursor:pointer;display:flex;flex-direction:column;gap:6px;min-width:0;
+  box-shadow:0 1px 0 color-mix(in srgb,var(--ink) 8%,transparent);transition:transform .12s ease,box-shadow .12s ease}
+.node:hover{transform:translateY(-2px);box-shadow:0 6px 16px color-mix(in srgb,var(--ink) 14%,transparent)}
+.node:focus-visible{outline:3px solid var(--purple);outline-offset:3px}
+.node[aria-pressed="true"]{box-shadow:0 0 0 3px var(--purple)}
+.node .k{font-family:var(--mono);font-size:11px;color:var(--muted);display:flex;justify-content:space-between;gap:8px}
+.node .t{font-weight:800;font-size:15px;line-height:1.25}
+.node .s{font-size:13px;color:var(--muted);line-height:1.4}
+.node .cta{font-size:12px;font-weight:700;margin-top:2px}
+.a{background:var(--a-fill);border-color:var(--a-edge)} .a .cta{color:var(--a-edge)}
+.b{background:var(--b-fill);border-color:var(--b-edge)} .b .cta{color:var(--b-edge)}
+.c{background:var(--c-fill);border-color:var(--c-edge)} .c .cta{color:var(--c-edge)}
+.x{background:var(--exit);border-color:var(--exit-edge)}
+.rail{border-style:dashed;justify-content:center}
+.diamond{align-self:center;justify-self:center;width:150px;height:150px;transform:rotate(45deg);padding:0;align-items:center;justify-content:center;border-radius:14px}
+.diamond:hover{transform:rotate(45deg) translateY(-2px)}
+.diamond>div{transform:rotate(-45deg);text-align:center;font-weight:800;font-size:14px;width:120px}
+.pill{display:inline-block;font-size:11px;font-weight:700;padding:1px 7px;border-radius:99px;border:1px solid currentColor}
+.p-ok{color:var(--c-edge)} .p-val{color:var(--note-edge)} .p-new{color:var(--purple)}
+.elabel{font-size:11px;font-weight:700;fill:var(--muted)}
+/* drawer */
+.drawer{position:fixed;z-index:20;top:0;right:0;height:100%;width:min(460px,100%);background:var(--board);border-left:1px solid var(--dot);
+  box-shadow:-12px 0 40px color-mix(in srgb,var(--ink) 18%,transparent);padding:calc(20px + env(safe-area-inset-top,0px)) max(20px,env(safe-area-inset-right,0px)) 24px 22px;overflow-y:auto;display:flex;flex-direction:column;gap:14px}
+.drawer h3{margin:0;font-size:22px;font-weight:800;line-height:1.2}
+.drawer .close{align-self:flex-end;border:1px solid var(--dot);background:var(--bg);color:var(--ink);border-radius:8px;padding:6px 12px;font:inherit;font-weight:700;cursor:pointer}
+.drawer dl{margin:0;display:grid;gap:12px}
+.drawer dt{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.drawer dd{margin:2px 0 0}
+.drawer ol,.drawer ul{margin:4px 0 0;padding-left:20px;display:grid;gap:4px}
+/* sections */
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:20px}
+.panel{background:var(--board);border:1px solid var(--dot);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.panel p{margin:0;max-width:72ch}
+.panel ul,.panel ol{margin:0;padding-left:20px;display:grid;gap:6px}
+.tablewrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px;min-width:640px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--dot);vertical-align:top}
+th{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+code{font-family:var(--mono);font-size:12.5px;background:var(--n-fill);padding:1px 5px;border-radius:5px}
+.notes{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.sticky{background:var(--note);border:1px solid var(--note-edge);border-radius:4px 4px 14px 4px;padding:14px;font-size:14px;box-shadow:0 2px 0 color-mix(in srgb,var(--note-edge) 40%,transparent)}
+.sticky b{display:block;margin-bottom:4px}
+.changes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px}
+.change{border-left:4px solid var(--purple);padding:4px 0 4px 12px}
+.change b{display:block}
+.drawer[hidden]{display:none}
+@media (prefers-reduced-motion:reduce){.node{transition:none}}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">Wabfy · Recuperação de leads · versão de 20 out. (copies v7)</div>
+  <h1>Quadro dos fluxos de leads</h1>
+  <p>Como o fluxo fica no RD com as copies v7. O fluxo avança pelo que o comercial registra. Clique em qualquer cartão para ver assuntos e estrutura. Os textos completos estão na <a href="https://claude.ai/artifact/PbV4SzAf9YoXtHUNP8z1Qm" target="_blank" rel="noopener" style="color:var(--purple)">prévia dos e-mails</a>.</p>
+  <div class="legend">
+    <span><i class="sw" style="background:var(--a-fill);border-color:var(--a-edge)"></i>Fluxo A · Meta</span>
+    <span><i class="sw" style="background:var(--b-fill);border-color:var(--b-edge)"></i>Fluxo B · Doc Ads</span>
+    <span><i class="sw" style="background:var(--c-fill);border-color:var(--c-edge)"></i>Comercial no WhatsApp</span>
+    <span><i class="sw" style="background:var(--n-fill);border-color:var(--n-edge)"></i>Entrada e operação no RD</span>
+    <span><i class="sw" style="background:var(--exit);border-color:var(--exit-edge)"></i>Fim do fluxo</span>
+    <span>Seta contínua: segue quando não há avanço registrado</span>
+    <span>Seta tracejada verde: clique no WhatsApp</span>
+  </div>
+</header>
+
+
+<section style="display:flex;flex-direction:column;gap:10px">
+  <div class="boardhead"><h2>Quadro 1 · Fluxos de e-mail</h2><span class="hint">Role para o lado para ver o quadro inteiro</span></div>
+  <div class="scroller"><div class="canvas" id="c1"></div></div>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:10px">
+  <div class="boardhead"><h2>Quadro 2 · O que acontece no WhatsApp</h2><span class="hint">Cada desfecho vira uma marcação no RD, que tira o lead do fluxo ou o devolve</span></div>
+  <div class="scroller"><div class="canvas" id="c2"></div></div>
+</section>
+
+<section class="grid2">
+  <div class="panel">
+    <h2>Como o RD fica sabendo de cada estado</h2>
+    <p>Nomes de tags e campos são sugestão.</p>
+    <div class="tablewrap"><table>
+      <thead><tr><th>Situação</th><th>Quem registra</th><th>Marcação sugerida</th><th>Efeito no fluxo</th></tr></thead>
+      <tbody>
+        <tr><td>Clicou no WhatsApp</td><td>RD, pelo clique no link do e-mail</td><td>Condição de clique no fluxo</td><td>Pausa 2 dias úteis e cria tarefa</td></tr>
+        <tr><td>Clicou num botão de área</td><td>RD, pelo link de cada área no e-mail 1</td><td>Tag <code>area_rh_ted</code>, <code>_dho</code>, <code>_atracao</code> ou <code>_lideranca</code></td><td>Define a versão do e-mail 2. Também pausa, porque abre o WhatsApp</td></tr>
+        <tr><td>Conversa começou</td><td>Comercial</td><td><code>status_comercial = em conversa</code></td><td>Critério de saída</td></tr>
+        <tr><td>Qualificado</td><td>Comercial</td><td>Etapa Qualificado no CRM (avisa a Meta)</td><td>Critério de saída</td></tr>
+        <tr><td>Fora do perfil</td><td>Comercial</td><td>Tag <code>fora-do-perfil</code></td><td>Saída</td></tr>
+        <tr><td>Agora não</td><td>Comercial ou o próprio lead no e-mail 5</td><td>Tag <code>retomar</code> + campo <code>data_retomada</code></td><td>Saída; volta pela porta Antigo na data</td></tr>
+        <tr><td>Conversou e esfriou</td><td>Comercial</td><td>Tag <code>esfriou</code></td><td>Entra pela porta Esfriou</td></tr>
+        <tr><td>Descadastro, bounce</td><td>RD, automático</td><td>Padrão da ferramenta</td><td>Saída definitiva</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+  <div class="panel">
+    <h2>Componentes do RD que o quadro usa</h2>
+    <p>Confirmar no plano contratado antes de montar.</p>
+    <ul>
+      <li><b>Entrada:</b> três portas. Novo pela conversão no formulário, Antigo por segmentação e Esfriou pela tag do comercial. Um fluxo com condição na entrada ou três fluxos, a definir.</li>
+      <li><b>Ações:</b> enviar e-mail, aplicar tag, criar tarefa ou negociação no CRM.</li>
+      <li><b>Espera:</b> intervalo entre os e-mails e a pausa de 2 dias após o clique.</li>
+      <li><b>Condição:</b> clicou no link do WhatsApp e qual botão de área foi clicado. Exige o modo avançado.</li>
+      <li><b>Saída:</b> tag ou campo marcado pelo comercial, conversão no agendamento, descadastro.</li>
+      <li><b>Exclusão:</b> clientes, domínios de clientes, leads já com o comercial e quem não tem base legal.</li>
+    </ul>
+      </div>
+</section>
+
+<section class="grid2">
+  <div class="panel">
+    <h2>Metodologia</h2>
+    <ul>
+      <li><b>Níveis de consciência (Schwartz):</b> definem quanto produto cada e-mail mostra. Lead da Meta entra consciente do produto; lead do Doc Ads, consciente do problema; lead antigo recebe a Wabfy reapresentada.</li>
+      <li><b>Arco de decisão:</b> cada e-mail sobe um degrau. Isso é para mim, o custo de não mudar, na minha empresa, decidir com segurança, agora ou depois.</li>
+      <li><b>Área do RH</b> <span class="pill p-val">Opcional</span> o e-mail 2 tem uma versão por área, escolhida pelo botão clicado no e-mail 1. Sem clique, vai a versão RH geral.</li>
+      <li><b>Situação do lead:</b> o e-mail 1 tem uma versão para cada porta (Novo, Antigo e Esfriou). Do e-mail 2 em diante, todos seguem juntos.</li>
+    </ul>
+  </div>
+  <div class="panel">
+    <h2>Estrutura padrão de cada e-mail</h2>
+        <ol>
+      <li><b>Nome e contexto:</b> abre por [NOME] e pelo motivo do contato.</li>
+      <li><b>Tensão:</b> a situação de trabalho que o e-mail aborda.</li>
+      <li><b>Wabfy como resposta:</b> uma ou duas frases de produto.</li>
+      <li><b>Próximo passo:</b> CTA principal e botões de apoio.</li>
+    </ol>
+    <p>Cada degrau dá mais peso a um bloco: o e-mail 2 à tensão da área, o 3 ao primeiro passo na empresa, o 4 à prova com o case Caixa, o 5 só ao próximo passo. Todos fecham com "Estamos te esperando!".</p>
+    <p><b>Botões:</b> em todos os e-mails, o botão principal, grande e roxo, leva ao WhatsApp. A agenda aparece só como link no fim: "Se preferir escolher o horário por conta própria, minha agenda está aberta: Abrir agenda".</p>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>O que cadastrar no RD</h2>
+  <div class="tablewrap"><table>
+    <thead><tr><th>E-mail</th><th>Fluxo A · Meta</th><th>Fluxo B · Doc Ads</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>3 versões (Novo, Antigo, Esfriou)</td><td>3 versões (Novo, Antigo, Esfriou)</td></tr>
+      <tr><td>2</td><td>5 versões (uma por área)</td><td>5 versões (uma por área)</td></tr>
+      <tr><td>3, 4 e 5</td><td>1 versão cada</td><td>1 versão cada, iguais às do A</td></tr>
+      <tr><td><b>Total</b></td><td><b>11 e-mails</b></td><td><b>11 e-mails</b></td></tr>
+    </tbody>
+  </table></div>
+  <p>Os dois fluxos somam 22 e-mails, mais uma segmentação para a porta Antigo e as tags de área, situação e retomada.</p>
+</section>
+
+<section class="panel">
+  <h2>Como medir</h2>
+  <ul>
+    <li><b>Por e-mail:</b> cliques no WhatsApp ou no agendamento.</li>
+    <li><b>Por fluxo:</b> conversas registradas, leads qualificados, demonstrações agendadas e realizadas.</li>
+    <li><b>Recortes:</b> Fluxo A e B, campanha da Meta (geração de lead ou lead qualificado), criativo, lead recente ou antigo.</li>
+    <li><b>Saúde da base:</b> descadastros, bounces e marcações de spam.</li>
+  </ul>
+</section>
+
+<section style="display:flex;flex-direction:column;gap:12px">
+  <h2>Decisões em aberto</h2>
+  <div class="notes">
+    <div class="sticky"><b>Registro do comercial</b>Quem marca o status no RD e em quanto tempo.</div>
+    <div class="sticky"><b>Remetente</b>Fluxo A: Eduarda ou outra pessoa do comercial. Fluxo B: uma pessoa em nome da Wabfy.</div>
+    <div class="sticky"><b>Critério de Qualificado</b>O mesmo para todo lead, venha do anúncio ou do e-mail, porque a etapa avisa a Meta.</div>
+    <div class="sticky"><b>Prazo do sinal para a Meta</b>Confirmar com a GT se existe janela de tempo para a qualificação contar.</div>
+    <div class="sticky"><b>RD: clique por link</b>Confirmar se o plano identifica qual botão de área e qual período de retomada foram clicados. Sem isso, o comercial marca a área pela conversa.</div>
+    <div class="sticky"><b>RD: portas de entrada</b>Um fluxo com condição na entrada ou três fluxos. E se a espera conta dias úteis.</div>
+    <div class="sticky"><b>Números do case Caixa</b>PDI individual, 80%, 30 minutos e 3 dias, no e-mail 4 dos dois fluxos. Sem aprovação, a lista sai.</div>
+    <div class="sticky"><b>Prints do e-mail 2</b>Cinco telas, uma por área.</div>
+    <div class="sticky"><b>Links</b>Agenda e vídeo.</div>
+        <div class="sticky"><b>Recente ou antigo</b>Corte proposto: 30 dias desde o cadastro.</div>
+    <div class="sticky"><b>Cadência</b>A: D0, 2, 5, 9 e 14 úteis. B: D0, 3, 6, 10 e 15 úteis.</div>
+  </div>
+</section>
+</div>
+
+<aside class="drawer" id="drawer" hidden aria-live="polite">
+  <button class="close" id="closeBtn" type="button">Fechar</button>
+  <div class="eyebrow" id="dEyebrow"></div>
+  <h3 id="dTitle"></h3>
+  <dl id="dBody"></dl>
+</aside>
+
+<script>
+const N = {
+ // ---------- Quadro 1 ----------
+ src_v:{c:1,r:2,cls:"",k:"Porta 1 · Novo",t:"Formulários da Meta",s:"2 campanhas e 2 vídeos no mesmo fluxo",
+   d:{"Campanhas":"Uma otimiza para geração de lead. A outra para lead qualificado: mover para Qualificado no CRM avisa a Meta. As duas entram no Fluxo A.","Vídeo de origem":"Não muda nada nos e-mails. O link do P.S. é o mesmo para os dois vídeos.","Campos":"Nome, e-mail comercial, telefone e empresa. Sem área, cargo ou porte.","Gatilho no RD":"Conversão do formulário da Meta. O e-mail 1 sai poucos minutos depois."}},
+ src_base:{c:1,r:3,cls:"",k:"Portas 2 e 3",t:"Antigo e Esfriou",s:"Leads parados e conversas que esfriaram",
+   d:{"Porta 2 · Antigo":"Segmentação: lead com mais de 30 dias e sem avanço registrado, inclusive a base importada e quem pediu para ser procurado depois, na data escolhida.","Porta 3 · Esfriou":"Tag aplicada pelo comercial quando a conversa parou.","Antes de enviar":"Higienizar, deduplicar e mandar a lista de quem já conversou para o comercial vetar."}},
+ src_d:{c:1,r:4,cls:"",k:"Porta 1 · Novo",t:"Formulário do Doc Ads",s:"Só no LinkedIn (Lead Gen)",
+   d:{"O que entra":"Cadastros do documento O Fim do Apagão de Talentos.","Gatilho no RD":"Conversão do formulário do LinkedIn. Antigo e Esfriou seguem as mesmas portas do Fluxo A."}},
+ tri:{c:2,r:"2 / 5",cls:"",k:"Operação no RD",t:"Triagem",s:"Deduplica, exclui e escolhe a versão do e-mail 1",
+   d:{"Versão do e-mail 1":"Novo, Antigo ou Esfriou, conforme a porta.","Deduplicação":"Uma pessoa por vez em um fluxo. Quem está nas duas origens vai para a conversão mais recente.","Exclusões":"Em conversa, qualificados, oportunidade aberta, clientes e domínios de clientes, concorrentes, internos, descadastrados, bounces e quem não tem base legal.","Origem":"Registrar plataforma, campanha e criativo."}},
+ A1:{c:3,r:2,cls:"a",k:"A1 · D0 · 3 versões",t:"Isso é para mim",s:"Recebi sua solicitação e a pergunta da área",cta:"Agendar nosso papo (WhatsApp)",
+   d:{"Assuntos":["Novo: [NOME], recebi sua solicitação!","Antigo: [NOME], ainda quer conhecer a Wabfy?","Esfriou: [NOME], vamos retomar nossa conversa?"],"Estrutura":["Saudação e quem escreve","A Wabfy em uma frase (Novo) ou a retomada (Antigo e Esfriou)","Convite para o papo e botão Agendar nosso papo","Como é a call","Pergunta da área e 5 botões, que abrem o WhatsApp com a área na mensagem","Link da agenda","Estamos te esperando! e P.S. com o site e o vídeo"],"Registro":"O link de cada área aplica a tag area_rh_ted, _dho, _atracao ou _lideranca. Outra área não aplica tag."}},
+ A2:{c:4,r:2,cls:"a",k:"A2 · D+2 úteis · 5 versões",t:"O custo de não mudar",s:"Uma pergunta difícil por área, com print",cta:"Chamar no WhatsApp",
+   d:{"Qual versão":"A tag de área do e-mail 1. Sem tag, vai a versão RH geral.","Assuntos":["RH geral: Quantos arquivos o RH abre antes de começar uma análise?","T&D: [NOME], qual curso resolve o gap de cada pessoa?","DHO e carreira: [NOME], cada gestor usa um critério diferente de avaliação?","Atração e seleção: [NOME], quem do time poderia ser uma boa opção para a próxima vaga?","Liderança de RH e BP: [NOME], quem está pronto para o próximo desafio no seu time?"],"Estrutura":["Pergunta difícil","O que acontece hoje","Como a Wabfy conecta","Print da tela da área","Convite e botão do WhatsApp"]}},
+ A3:{c:5,r:2,cls:"a",k:"A3 · D+5 úteis",t:"Na minha empresa",s:"Por onde começar a mudança?",cta:"Ver como isso funcionaria na minha empresa",
+   d:{"Assunto":"Por onde começar a mudança?","Estrutura":["A empresa que avalia, mas o PDI não continua","O que se perde semanas depois","Com a Wabfy, o gap orienta o PDI e o acompanhamento continua","Botão Ver como isso funcionaria na minha empresa (WhatsApp)","O que dá para conectar a partir daí","Na demonstração, por onde começar","Link da agenda no fim"]}},
+ A4:{c:6,r:2,cls:"a",k:"A4 · D+9 úteis",t:"Decidir com segurança",s:"Case Caixa",cta:"Ver como a Wabfy funciona na minha empresa",
+   d:{"Assunto":"Case Caixa: o que acontece quando o ciclo de pessoas deixa de ser manual?","Estrutura":["Isso funciona de verdade?","A Caixa usa a Wabfy com 150 mil servidores","Quatro resultados do case","Botão do WhatsApp","O princípio que vale para qualquer empresa"],"Validar":"Os quatro números do case (PDI individual, 80%, 30 minutos e 3 dias) estão fora da lista aprovada na fonte da verdade."}},
+ A5:{c:7,r:2,cls:"a",k:"A5 · D+14 úteis",t:"Agora ou depois",s:"Quando é o melhor momento?",cta:"Quero ver agora ou escolher período",
+   d:{"Assunto":"[NOME], quando é o melhor momento?","Estrutura":["A decisão é grande e leva tempo","O convite continua","Botão Quero ver agora (WhatsApp)","Em quanto tempo retomar: 1, 3 ou 6 meses"],"Registro":"Clique no período aplica a tag retomar e a data."}},
+ B1:{c:3,r:4,cls:"b",k:"B1 · D0 · 3 versões",t:"Isso é para mim",s:"Vamos continuar a conversa do material?",cta:"Ver como isso funcionaria na minha empresa (WhatsApp)",
+   d:{"Assuntos":["Novo e Antigo: O apagão de talentos começa antes da demissão","Esfriou: Vamos retomar essa conversa?"],"Estrutura":["Saudação e retomada do material","Vamos continuar essa conversa?","Reter talentos depende do que a pessoa enxerga para crescer","Com a Wabfy, cargo, avaliação, PDI e carreira conectados","Botão Ver como isso funcionaria na minha empresa (WhatsApp)","RH, gestores e colaboradores com a mesma referência","Personalize sua demonstração: pergunta e 5 botões de área","Link da agenda","Um abraço e P.S. com vídeo e material"]}},
+ B2:{c:4,r:4,cls:"b",k:"B2 · D+3 úteis · 5 versões",t:"O custo de não mudar",s:"Quem do seu time está pensando em sair?",cta:"Chamar no WhatsApp",
+   d:{"Qual versão":"A tag de área do e-mail 1. Sem tag, vai a versão RH geral.","Estrutura":["A pessoa que pediu demissão e pegou todo mundo de surpresa","O problema na área","Como a Wabfy resolve","Convite e botão do WhatsApp","Ainda com dúvidas? Link do site","Link da agenda"]}},
+ B3:{c:5,r:4,cls:"b",k:"B3 · D+6 úteis",t:"Na minha empresa",s:"Igual ao A3",cta:"Ver como isso funcionaria na minha empresa",
+   d:{"Texto":"Igual ao A3, com a mensagem do WhatsApp e a assinatura do Fluxo B."}},
+ B4:{c:6,r:4,cls:"b",k:"B4 · D+10 úteis",t:"Decidir com segurança",s:"Igual ao A4",cta:"Ver como a Wabfy funciona na minha empresa",
+   d:{"Texto":"Igual ao A4, com a mensagem do WhatsApp e a assinatura do Fluxo B.","Validar":"Os mesmos quatro números do case Caixa."}},
+ B5:{c:7,r:4,cls:"b",k:"B5 · D+15 úteis",t:"Agora ou depois",s:"Igual ao A5, com P.S. do material",cta:"Quero ver agora ou escolher período",
+   d:{"Texto":"Igual ao A5, com a mensagem do WhatsApp e a assinatura do Fluxo B, mais o P.S. com o link do estudo."}},
+ rail:{c:"3 / 8",r:3,cls:"c rail",k:"Vale para qualquer e-mail",t:"Clicou no WhatsApp: pausa de 2 dias úteis e tarefa para o comercial",s:"Inclui os botões de área e os prints. Conversa registrada tira o lead do fluxo (Quadro 2). Sem registro, segue para o próximo e-mail.",
+   d:{"No RD":"Condição de clique no link, espera de 2 dias úteis e tarefa para o responsável.","Comercial":"Confere se a pessoa chamou e marca o status. Se não chamou, pode abordá-la pelo WhatsApp."}},
+ endA:{c:8,r:2,cls:"x",k:"Fim A",t:"Sem avanço após o A5",s:"Sai do fluxo e segue no remarketing pago",
+   d:{"O que acontece":"Sai da sequência de e-mails. Continua nos públicos de remarketing até ter conversa registrada."}},
+ later:{c:8,r:3,cls:"c",k:"Ser procurado depois",t:"Retomada na data escolhida",s:"Tag retomar + data. Volta pela porta Antigo",
+   d:{"Entrada":"Clique em 1, 3 ou 6 meses no e-mail 5, ou marcação agora não feita pelo comercial.","Na data":"O lead volta pela porta Antigo e recebe o e-mail 1 na versão Antigo."}},
+ endB:{c:8,r:4,cls:"x",k:"Fim B",t:"Sem avanço após o B5",s:"Sai do fluxo e segue no remarketing pago",
+   d:{"O que acontece":"Sai da sequência de e-mails. Continua nos públicos de remarketing até ter conversa registrada."}},
+ // ---------- Quadro 2 ----------
+ q_click:{g:2,c:1,r:3,cls:"c",k:"Sinal",t:"Clique no WhatsApp",s:"Botão, print ou botão de área, em qualquer e-mail"},
+ q_task:{g:2,c:2,r:3,cls:"",k:"RD",t:"Pausa e tarefa",s:"2 dias úteis para o comercial conferir",
+   d:{"Ação":"Tarefa para o responsável comercial, com origem, e-mail clicado e área, quando houver."}},
+ q_dec:{g:2,c:3,r:3,cls:"c diamond",t:"A conversa começou?",
+   d:{"Sim":"O comercial qualifica no WhatsApp e registra o desfecho.","Não":"O fluxo retoma no próximo e-mail."}},
+ q_no:{g:2,c:3,r:5,cls:"",k:"Não",t:"Retoma o próximo e-mail",s:"Sem mencionar o clique"},
+ q_qual:{g:2,c:4,r:3,cls:"c",k:"Sim · Comercial",t:"Qualifica no WhatsApp",s:"Porte, cargo, contexto e prioridade",
+   d:{"Perguntar":"Porte, papel na decisão, como cargos e avaliações funcionam hoje e qual problema é prioridade. O formulário da Meta não coleta esses dados.","Área":"Se a pessoa não clicou num botão de área, o comercial marca a tag pela conversa.","Registro":"Todo desfecho vira uma marcação no RD."}},
+ o1:{g:2,c:5,r:1,cls:"c",k:"Sai do fluxo",t:"Qualificado: demonstração agendada",s:"Entra no pipeline. A etapa avisa a Meta, então segue o critério combinado",cta:"Etapa Qualificado no CRM"},
+ o2:{g:2,c:5,r:2,cls:"c",k:"Sai do fluxo",t:"Em conversa",s:"O comercial conduz pelo WhatsApp. Não move para Qualificado",cta:"status_comercial = em conversa"},
+ o3:{g:2,c:5,r:3,cls:"x",k:"Sai do fluxo",t:"Fora do perfil",s:"Empresa fora do perfil de cliente",cta:"Tag fora-do-perfil"},
+ o4:{g:2,c:5,r:4,cls:"c",k:"Sai do fluxo",t:"Agora não",s:"Volta pela porta Antigo na data combinada",cta:"Tag retomar + data"},
+ o5:{g:2,c:5,r:5,cls:"",k:"Volta",t:"Conversou e esfriou",s:"Entra pela porta Esfriou",cta:"Tag esfriou"}
+};
+const E1 = [
+ ["src_v","tri"],["src_base","tri"],["src_d","tri"],["tri","A1"],["tri","B1"],
+ ["A1","A2"],["A2","A3"],["A3","A4"],["A4","A5"],["A5","endA"],
+ ["B1","B2"],["B2","B3"],["B3","B4"],["B4","B5"],["B5","endB"],
+ ["A5","later"],["B5","later"]
+];
+const RAIL = ["A1","A2","A3","A4","A5","B1","B2","B3","B4","B5"];
+const E2 = [["q_click","q_task"],["q_task","q_dec"],["q_dec","q_qual"],["q_dec","q_no",null,"v"],
+ ["q_qual","o1"],["q_qual","o2"],["q_qual","o3"],["q_qual","o4"],["q_qual","o5"]];
+
+function el(tag,attrs,html){const e=document.createElement(tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(html!=null)e.innerHTML=html;return e;}
+function build(){
+  const c1=document.getElementById("c1"), c2=document.getElementById("c2");
+  // timeline header
+  const tl=[["",""],["",""],["D0","1º e-mail"],["D+2 · D+3","2º e-mail"],["D+5 · D+6","3º e-mail"],["D+9 · D+10","4º e-mail"],["D+14 · D+15","5º e-mail"],["Depois","Fim ou retomada"]];
+  tl.forEach((t,i)=>{if(!t[0])return;const d=el("div",{class:"tl",style:`grid-column:${i+1};grid-row:1`},`<b>${t[1]}</b>${t[0]}${(i>2&&i<7)?" úteis":""}`);c1.appendChild(d);});
+  // lanes
+  [["lane-a",2,"Fluxo A · Meta"],["lane-c",3,"Comercial"],["lane-b",4,"Fluxo B · Doc Ads"]].forEach(([cls,r,label])=>{
+    c1.appendChild(el("div",{class:"lane "+cls,style:`grid-column:3 / 9;grid-row:${r}`},`<span>${label}</span>`));
+  });
+  c2.appendChild(el("div",{class:"lane lane-c",style:"grid-column:4 / 6;grid-row:1 / 6"},"<span>Comercial</span>"));
+  for(const id in N){
+    const n=N[id], host=n.g===2?c2:c1;
+    const b=el("button",{class:"node "+(n.cls||""),id:"n-"+id,type:"button","aria-pressed":"false",style:`grid-column:${n.c};grid-row:${n.r}`});
+    if((n.cls||"").includes("diamond")) b.innerHTML=`<div>${n.t}</div>`;
+    else b.innerHTML=(n.k?`<span class="k"><span>${n.k}</span></span>`:"")+`<span class="t">${n.t}</span>`+(n.s?`<span class="s">${n.s}</span>`:"")+(n.cta?`<span class="cta">→ ${n.cta}</span>`:"");
+    b.addEventListener("click",()=>open(id));
+    host.appendChild(b);
+  }
+  [c1,c2].forEach(c=>{const s=document.createElementNS("http://www.w3.org/2000/svg","svg");s.setAttribute("class","edges");c.prepend(s);});
+}
+function rel(node,box){const r=node.getBoundingClientRect(),b=box.getBoundingClientRect();return{x:r.left-b.left,y:r.top-b.top,w:r.width,h:r.height};}
+function draw(cid,edges,rail){
+  const c=document.getElementById(cid), svg=c.querySelector("svg.edges");
+  svg.setAttribute("width",c.scrollWidth);svg.setAttribute("height",c.scrollHeight);
+  const col=getComputedStyle(document.documentElement).getPropertyValue("--line").trim()||"#888";
+  const green=getComputedStyle(document.documentElement).getPropertyValue("--c-edge").trim()||"#2a7";
+  let h=`<defs><marker id="ar-${cid}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="${col}"/></marker>
+  <marker id="ag-${cid}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="${green}"/></marker></defs>`;
+  edges.forEach(([a,b,label,mode])=>{
+    const A=rel(document.getElementById("n-"+a),c),B=rel(document.getElementById("n-"+b),c);
+    let x1,y1,x2,y2,d;
+    if(mode==="v"){x1=A.x+A.w/2;y1=A.y+A.h;x2=B.x+B.w/2;y2=B.y;d=`M${x1},${y1} L${x2},${y2-2}`;}
+    else{x1=A.x+A.w;y1=A.y+A.h/2;x2=B.x;y2=B.y+B.h/2;const dx=Math.max(24,(x2-x1)/2);d=`M${x1},${y1} C${x1+dx},${y1} ${x2-dx},${y2} ${x2-2},${y2}`;}
+    h+=`<path d="${d}" fill="none" stroke="${col}" stroke-width="2" marker-end="url(#ar-${cid})"/>`;
+    if(label){const lx=(x1+x2)/2,ly=(y1+y2)/2-7;h+=`<text class="elabel" x="${lx}" y="${ly}" text-anchor="middle">${label}</text>`;}
+  });
+  if(rail){const R=rel(document.getElementById("n-rail"),c);
+    rail.forEach(id=>{const A=rel(document.getElementById("n-"+id),c),x=A.x+A.w/2;const up=A.y>R.y;
+      const y1=up?A.y:A.y+A.h, y2=up?R.y+R.h:R.y;
+      h+=`<path d="M${x},${y1} L${x},${up?y2+2:y2-2}" fill="none" stroke="${green}" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#ag-${cid})"/>`;});}
+  svg.innerHTML=h;
+}
+function redraw(){draw("c1",E1,RAIL);draw("c2",E2);}
+let current=null;
+function open(id){
+  const n=N[id];if(current)document.getElementById("n-"+current).setAttribute("aria-pressed","false");
+  current=id;document.getElementById("n-"+id).setAttribute("aria-pressed","true");
+  document.getElementById("dEyebrow").textContent=n.k||"Decisão";
+  document.getElementById("dTitle").textContent=n.t;
+  const dl=document.getElementById("dBody");dl.innerHTML="";
+  const rows=Object.assign({}, n.s?{"Resumo":n.s}:{}, n.d||{}, n.cta?{"CTA ou marcação":n.cta}:{});
+  for(const k in rows){const v=rows[k];const dd=Array.isArray(v)?`<ol>${v.map(x=>`<li>${x}</li>`).join("")}</ol>`:v;
+    dl.insertAdjacentHTML("beforeend",`<div><dt>${k}</dt><dd>${dd}</dd></div>`);}
+  document.getElementById("drawer").hidden=false;document.getElementById("closeBtn").focus();
+}
+function close(){document.getElementById("drawer").hidden=true;if(current){const b=document.getElementById("n-"+current);b.setAttribute("aria-pressed","false");b.focus();current=null;}}
+document.getElementById("closeBtn").addEventListener("click",close);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")close();});
+build();redraw();
+window.addEventListener("resize",redraw);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(redraw);
+setTimeout(redraw,400);
+</script>
+
+</body></html>
