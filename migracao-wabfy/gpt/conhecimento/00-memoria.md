@@ -1,0 +1,161 @@
+# 00 · Memória do projeto Wabfy (preferências e decisões da Wendy)
+
+Copiada da memória do projeto Claude "Wabfy" em 18/11/2026. Cada linha é algo que a Wendy disse ou decidiu.
+**Prioridade:** quando este arquivo contradisser os outros arquivos de conhecimento, vale este (é o mais recente). Só o pedido da Wendy na conversa atual está acima dele.
+
+## Preferências: como a Wendy quer o trabalho no projeto Wabfy
+(arquivo atualizado em 18/11/2026)
+
+- When creating content tasks in ClickUp, always fill in the content-type field ("Tipo de conteúdo") too
+- When the same content goes to several formats/channels (story and feed, or Instagram and LinkedIn), put it in a single task and flag all destinations there instead of separate tasks
+- In page reviews, dobra numbering starts at the hero (dobra 1); the header is not a dobra
+- A "versão consolidada" of a page review means literally all the page's texts, merged with the suggested changes
+- The site's floating WhatsApp button balloon text is always "Fale com um especialista e conheça a Wabfy na prática" on every page, until she says otherwise
+- Wabfy site copy doesn't need lines saying the team reviews/decides after the AI ("as pessoas sabem isso")
+- Pillar page hero descriptions follow the model: what the pillar is responsible for, what it helps with, and by means of what
+- Site page review texts go into ClickUp tasks, so the written review and its change markings should come formatted ready to paste into ClickUp
+- For site page reviews, she also wants an HTML version of the page with the changes visually highlighted (the process first done for the Gerador de Cursos module page), to make changes easier to see
+- In every page review, send only one HTML: built in the site-page design, with green change markings, prints references and a "Ver versão limpa" toggle (like her 9 Box / Gerador de Cursos "TEXTO REVISADO" files); the standalone before/after comparison HTML is no longer sent
+- In Wabfy module page copy, H1s and conversion H2s (and other fields meant to sell) should highlight the platform's benefit (e.g. automation), not state the obvious
+- Module page FAQ "O que é" answers should bring the Wabfy module's differential, not the generic definition of the concept
+- Art direction in briefings should always be descriptive and direct, without inventing much, working with what can actually be produced
+- Designer briefings follow her template: Nome, Data de postagem, Formato, Canal, Pilar, Linha editorial, Objetivo, Mensagem central, Público-alvo, Formato e idioma, Teste (hipótese + métrica), then TELAS (Tela 1..N with text), REFERÊNCIAS VISUAIS, ASSETS, FONTES, LEGENDA
+- In briefings, the STORY section always comes right after TELAS
+- Likes on-art text presented as tables (e.g. "Elemento | Texto final", plus a table per pillar/item)
+- Font sizes and spacing in briefings can be left to the designer; no need to specify them
+- In briefings, a single piece delivered in several proportions is always one "Tela" listing all its proportions (e.g. "Tela 1:1 (1200 x 1200), 1,91:1 (1200 x 628) e 1:1,91 vertical (628 x 1200)"); separate telas only for real carousels
+- To find which pillar each Wabfy module belongs to, check the platform itself, not the presentations: the product team changes the platform often, so presentations get outdated on this
+- In Wabfy sales/nurture emails, doesn't like offering "sair da lista" as a closing option (unsubscribe always exists anyway); closing options should be "conversar agora" and "ser procurado depois"
+- Wabfy emails always open by addressing the person by name; she wants short texts (long text rarely converts), lots of imperative, human-layer tension, and buttons in several places (home, WhatsApp, specific module or pillar pages)
+- In strategy artifacts/boards, record only what's needed; no justification asides like "e não por resposta ao e-mail"
+- Visual direction in briefings must be precise and objective, not subjective/vague
+- In carousels/briefings, not every screen needs an image: some can be all-type with an element, glow or highlight; screens with image/graphic should be concrete or representative (recortes, destaques, objects, real prints)
+- Avoid defaulting to speech balloons as the visual element; vary and innovate
+- The Wabfy designer already knows the brand identity well, so briefings don't need to specify ID (colors, fonts, glassmorphism)
+- Avoid marca-texto, hand-drawn scribbles and similar effects in visual direction (the team would likely reject them); base visual direction on the image types and element styles Wabfy already produces (site and social), without ruling out other images
+- Consolidated Wabfy elements like the mandala can be used in visual direction
+- Visual direction must consider visual hierarchy and whether the suggestion really makes sense: avoid visually cluttered screens and prefer the simplest way to represent the idea
+- Prints in visual direction must name their exact source in the platform (module, view, screen, block to crop); check the platform to specify
+- People in Wabfy art should be cut out (no background) and integrated into the layout, not split-screen photo + text
+- Every visual element in a briefing must be described clearly enough to understand what it is and what it contains (no vague "simple card")
+- Carousel closing slides keep the recent pattern: a cut-out person, a short text closing the subject, and another with the CTA
+- She captures the platform prints herself, so ClickUp content tasks don't need lists of prints/recordings to capture
+- Revised visual directions/briefings must be delivered complete and in full, never as an amendment referring back to earlier versions
+- Visual direction should favor more visual, less textual images (objects/icons over text labels inside the art), while keeping a detailed description of what the image contains
+- In visual direction, don't define where elements go on the screen (the designer decides); "especificar melhor" means describing what's in the image itself
+- In Wabfy visuals, show people using a notebook, PC or tablet rather than a phone (phones are uncommon in the corporate context)
+- Visual direction should suggest brand graphic elements (glow, brandbook icon tiles); the designer knows colors/fonts, but suggesting these elements is wanted
+- No glass/glassmorphism objects in posts anymore (changed Nov 2026; "não é mais a ideia")
+- Doesn't like the large W grafismo / W contour line behind Instagram art (too much; fine for presentations); prefers brandbook icon tiles, e.g. floating icons around the main element like the site's mandala screen
+- The W-line aesthetic can be used in LinkedIn posts (e.g. photo with purple treatment, thin W contour lines, card with text)
+- Novidades (platform updates) carousels should always use platform prints for each novidade; a short GIF of the novidade on the slides is welcome
+- Don't attach generated images/sketches directly to ClickUp; she attaches them herself
+- For now she prefers to request visual-direction changes piece by piece rather than having everything updated in ClickUp at once
+- For every post, wants a simple grid sketch (esboço em grade) showing screen by screen what goes on each, which may suggest where image, elements and text fit, to make the designer's life easier
+- Create the grid sketch (esboço em grade) only after the text and scenes are approved, so it doesn't have to be recreated with each revision
+- Don't describe the grid sketch (esboço em grade) in ClickUp task descriptions; the sketch is delivered separately
+- Capture platform prints directly from the Wabfy demo open in the browser; if it isn't open, ask her to open it
+- Bring visual references from Pinterest, Instagram or other sources
+- Only put things in ClickUp (text updates or attachments) when she asks
+- Carousel covers don't always need a human hook; vary between human and other kinds of cover
+- In Wabfy copy, when describing how Wabfy solves something, always write "com a Wabfy", never "na Wabfy"
+- Wabfy Instagram stories: one screen per day by default, already with the link (2 screens only if really necessary), because people drop off after the second screen; prioritize links
+- Every day needs a story about that day's theme (the feed post's subject), even when there's also a story about something else like the minicurso
+- Educational stories: one screen about the subject, at most a second screen with interaction (enquete, caixinha); product stories can repost the feed post with a link to the specific module page
+- Wabfy story copy: less generic; questions that provoke people to answer and short, impactful phrases (e.g. an educational story can be a single screen with phrase + enquete/caixinha)
+- Wabfy content should name things explicitly so people identify what's being talked about: say "módulo de Seleção", "pilar Escalar" etc. (e.g. narration opening "Este é o módulo de Seleção da Wabfy...")
+- Wabfy product videos/content must start from the RH audience's pain and context (why someone who doesn't know the platform would stop to watch, as if presenting to a client), not a feature tour; secondary features (e.g. indicação) stay in the background
+- Any piece whose closing art points to "link na bio" and also goes to LinkedIn needs two closing versions: one saying "link na bio" (Instagram) and one saying "link na legenda" (LinkedIn)
+- Visual direction shouldn't lean too much on "tela de PC" (notebook/computer screens with things on them); think of other ways to represent ideas
+- In Wabfy titles/copy, avoid splitting a line into two short sentences (e.g. "X acontece. Agora ela fica registrada.") unless the break really makes sense; prefer one fluid sentence
+- Wants emails shown inside an email layout (visual preview), not as tables of text
+- The Caixa Econômica case goes only on the Home and pillar pages, never on product/module pages
+- Module page reviews follow a checklist: text blocks of at most 3-4 lines, check the platform for product updates and update copy, update images/prints if the layout changed, no Caixa case, always leave a space for the module video (the page publishes even without the video; meanwhile the space holds a suggestion of what the video would be)
+- In page reviews, keep most of the images already on the page; don't propose changing all of them, only what really needs it
+- In Wabfy copy, generally no comma before "e", except when there is a change (e.g. of subject) in the sentence
+- In Wabfy site copy, no "pra", "pro" or "num"; the WhatsApp initial message names the origin page ("Olá! Vim pela página de X da Wabfy e gostaria de agendar uma demonstração.")
+- When accessing the Wabfy demo, use https://demo.app.wabfy.com/beto-carrero-world-marco and don't modify, change or add anything in it (read only)
+- Module page reviews keep the standard module page structure agreed earlier (standardized eyebrows, a Conexões na plataforma dobra, etc.); only the Caixa case is removed
+- In Wabfy copy, don't use the term "RH estratégico" (considered outdated); wants research-backed HR language that grabs the RH audience's attention
+- Page review wireframes shouldn't mention the AI's own process issues (e.g. "couldn't capture the screen because it froze"); notes just say what the page needs
+- Wabfy page titles (H1 and H2) should be short and direct, and should not end with "com a Wabfy" (the "com a Wabfy" rule applies to prose, not to titles)
+- Wabfy page titles (H1 and H2) should anchor in concrete things (a module/product like PDI, curso, trilha; a role like RH, gestor, colaborador; or a recognizable scene like fila de dúvidas, mesa do RH), not abstract/generic phrasing
+- Hero subtitle shouldn't open by naming the module ("Este é o módulo X da Wabfy"): the eyebrow and H1 already do that; the subtitle goes straight to the scene, pain or gain
+- Ao criar tarefas no ClickUp, não criar subtarefas desnecessárias (lição de campanha anterior onde várias foram criadas sem necessidade)
+- Para demandas que chegam das pessoas do time (Nalan, Glauber, Letícia, Duda, Marco), organizar primeiro no chat (frente, prazo e importância) e esperar o ok dela; só depois criar no ClickUp
+- Always include the direct link to every post cited (the post URL itself, not the profile page), e.g. in competitor reports and panel items
+
+## Área Wabfy: o trabalho de marketing da Wendy
+(arquivo atualizado em 17/11/2026)
+
+- Wendy works on Wabfy marketing; earlier Wabfy work was done in ChatGPT/Codex.
+- Moving Wabfy work from Codex to the Claude project (Oct 2026).
+- Validated claim: creating a course with Wabfy's AI (Gerador de Cursos/Magic) really takes minutes, so "em minutos" can be used in copy.
+- Wabfy email automation flows (lead recovery/nurture) will be built in RD Station.
+- Wabfy's Mentoria module moved from the Escalar pillar to the Desenvolver pillar (Oct 2026).
+- Pesquisa de Clima can be included in Wabfy communication (decided Oct 2026; it had been blocked before).
+- Wabfy Instagram content should be mainly videos and carousels; LinkedIn can mix docs, videos and images.
+- Lari is the person who builds the email HTML for Wabfy (links the buttons in the HTML).
+- Wabfy platform releases are posted in the Teams group "Novidades Wabfy Demo"; Wendy needs to keep watching it and update the project from it. Releases feed social content, a biweekly (quinzenal) release email, and updates to pages/LPs/documents; the open demo app is sometimes not yet updated.
+- Wabfy social cadence: Instagram feed Mon–Sat (no Sunday); stories and LinkedIn Mon–Fri, with interlinked content across channels.
+- Planning a recorded mini-course (minicurso gravado) for end of Nov 2026 (originally a live event); details still being defined, leave calendar slots for its promotion.
+- Platform-update content focus: Seleções, Sucessões and Mentorias as the 3 main updates (spaced out); other updates grouped, e.g. a "principais atualizações" carousel.
+- Wabfy social content speaks to HR professionals, not to employees (colaboradores).
+- Wabfy social planning (from Nov 2026): one campaign/theme per month so each month has its own "rostinho"; she was asked to bring fixed editorias (e.g. Novidades as carousel + video; humor already runs on Saturdays), leave room for trends, and prioritize reach on LinkedIn over Instagram.
+- Biweekly release email compiles platform updates and gets its own name (a tag with "Wabfy"); it communicates only novidades and melhorias that impact platform users' day-to-day, leaving out things like removals with no user gain (e.g. Udemy removal from Gestão de Carreiras).
+- The biweekly release email series is named "Seu 1:1 com a Wabfy" (wording chosen so it isn't mistaken for a message about the 1:1 module); highlight Seleção, Sucessão, Mentoria and also the Magic.
+- Fixed Wabfy editorias (updated Nov 2026): only Saturday humor, module videos, platform novidades every 15 days and the Raio-X de T&D; the rest of the month belongs to the monthly campaign (weekly RH news no longer a fixed editoria).
+- The 35/35/20/10 editorial-pillar distribution is no longer used; the month is organized by the campaign and fixed editorias.
+- Monthly content plan should be closed by the 25th of the previous month.
+- Metricool is connected but on a plan without paid data; metrics should come from Meta Business Suite, LinkedIn and RD Station directly.
+- Decisions from meetings (Granola) aren't always real decisions; they need her validation before becoming rules.
+- Insights from the commercial team (via Elephan or conversations) will be an important source for pautas and campaigns; got Elephan data via Cris and requested the Elephan MCP connection from Roger (Nov 2026).
+- Bruna is the UGC creator who records Wabfy Reels/videos.
+- "Márcia do RH" is the Wabfy animated character used in videos (alternative to UGC recording); Márcia pieces can be funnier/humorous.
+- Competitors Wendy selected to monitor on Instagram and LinkedIn: impulseup, Gupy, InCicle, LG lugar de gente, Beehome, Senior Sistemas, Sólides, Feedz by TOTVS (Instagram), Mindsight, Alura para Empresas.
+- "Seu 1:1 com a Wabfy" format: novidades organized by pillar, then module; each benefit tied to a specific novidade (not loose per module); items flagged as novo vs melhoria.
+- "Seu 1:1 com a Wabfy": the backlog of releases up to late Oct 2026 is split by time period into 3 emails sent close together, then the series goes every 15 days; no dates in the email text.
+- Wabfy editorial calendar follows a business/HR corporate calendar, not consumer ("CPF") dates: no Black Friday or commemorative dates like Finados, Novembro Azul, Consciência Negra; from competitor analysis, disregard anything very dated or that would look like a copy.
+- Mentoria module video being produced for social, then reused in the Mentoria LP (pt-br page: wabfy.com/pt-br/mentorias-wabfy/). Module video order (Nov 2026): Sucessão next, then Mentoria.
+- Wabfy already held an RH event; its videos are to be reused in social content (reserve some days per month).
+- The Nov 2026 minicurso comes out at the end of the month, so its promotion must run throughout the month, not at the end.
+- Mentoria module: AI session analysis (PDI actions suggested by AI from the session) exists in the product, just isn't in the demo, so it can be used in copy without a print.
+- Demo to use for reading/prints: demo.app.wabfy.com/beto-carrero-world-marco (Marco profile); never modify, change or add anything in it.
+- PDI module facts (Oct 2026): Avaliação 360° generates items in the PDI; the Trajetória "Leitura do ciclo" is made by AI; the "O que os PDIs estão dizendo" insights panel is data, not AI; in Meu PDI "Por módulo", each origin (treinamentos e trilhas, 1:1, mentoria) is a separate card.
+- In Wabfy campaign planning, every funnel stage (reconhecimento, consideração, decisão) must run every week; don't distribute stages across different weeks.
+- Wabfy creative direction: wants more parodies and releituras of other sources (e.g. "Troquei RH", a parody of the gossip page "Choquei"; ads made to look like real news); the audience knows they're not real, so don't flag these as misleading. Don't repeat the same parodies (it gets tiresome): keep drawing on new sources each time, always asking what would make someone stop scrolling to read.
+- Nallan (Nallan Reis) is the Wabfy designer.
+- Glauber is the one who makes Wabfy's animations (animated videos, e.g. Márcia do RH pieces).
+- Nov 2026 campaign direction: talk specifically about Excel, planilhas and data integration, while leaving room for the curso, updates etc.; the scattered-tools/data angle is about the mess, overload and having everything in your head, not cost.
+- "Nosso artefato" for the editorial calendar means the Calendário Editorial Vivo central (conteudos/2026-10/calendario-editorial-vivo.html); new monthly cycles go into it.
+- "Isca de T&D" means the Raio-X de T&D (wabfy.com/wabfy-quiz/); it should be fitted into the monthly calendar.
+- Wabfy targets larger companies (200+ employees, no upper limit); content should not speak to small companies.
+- Nov 2026 campaign mote Wendy proposed (Nov 3, pending Duda/Marco approval): "2027: estava escrito nos dados", sub "Não conte com as estrelas em 2027": astrology/horóscopo humor as contraponto to deciding by feeling; replaces the earlier Excel/planilha and "Conecte o que importa" directions.
+- "Escrito nos Dados" campaign already presented to Duda, who suggested an influencer and a collab with some page; Wendy sees it as a long-term campaign worth investing in. Two visual options: V1 more disruptive/identifiable as campaign, V2 closer to Wabfy's visual identity.
+- Building a series of AI agents and subagents for her Wabfy work (editoria, pesquisa, revisão, copy, concorrentes, desempenho, memória, social listening; Nov 2026); wants scheduled agents' results in a single panel, and the memory agent may add on its own but removes only with her approval.
+- Leads found by the Wabfy social listening go to Will (comercial).
+- Scheduled Wabfy agents must run only Mon–Fri between 09h30 and 18h00.
+- Continued the "Review Ponta a Ponta — LPs Wabfy" page reviews in GPT (Nov 2026) because Claude tokens were running out; GPT can read the site and the demo when asked.
+- After the Claude project went over its size limit (Nov 2026): the project keeps only core reference docs; deliverables (briefings, copies, roteiros, page reviews, emails, HTML previews) go to her local Wabfy folder.
+- Videos ready to place on the LPs (Nov 2026): pilar Estruturar, pilar Desenvolver, pilar Engajar, pilar Escalar, Magic (Gerador de Cursos), Processos (Desenho de Processos), Plano de Cargos, PDI, 9 Box and the Caixa case; the Seleções module video is also ready. In LP reviews, leave a video slot on these pages (the older review rule "nenhum vídeo de módulo existe" no longer holds for them).
+- Her AI work focus (from Nov 2026): turn agent outputs into shared apps with accessible history (e.g. Growth Detector), make the AI use fewer tokens via organized .md memory and connectors, and replace screen-reading metric collection (AI currently reads Meta Business and RD Station screens, slow and breaks) with integrations.
+- Wants a general orchestrator ("chefão") over the Wabfy agents; for now it acts as a filter that resolves as much as possible before reaching her (redoing weak work itself), with more autonomy only once she trusts it.
+- The Engajar pillar does NOT act only in informal cycles; it works every day, inside and outside the formal cycles (correction for LP copy and positioning, Nov 2026).
+- Calls the Wabfy page review/audit agents "Iris" and "Sami" (equivalent to wabfy-revisor-paginas and the auditor-pagina subagent).
+- Escrito nos Dados: influencer search left for early Dec 2026, only if the campaign is performing well; paid media for the campaign is uncertain (Márcia ad creatives as the example).
+- Marco is Wendy's direct manager at Wabfy and the one who approves her budget/spend requests; he escalates bigger approvals to Nimrod (higher-level approver). Not to be confused with the "Marco profile" in the demo environment.
+- Nallan usa Magnific (ex-Freepik) para o trabalho de designer dele; atende bem e ele disse que não precisa de ChatGPT (Nov 2026).
+- Plano de assinar Higgsfield para produzir avatares humanos realistas (Nov 2026); incerto se serviria para a Márcia.
+- Pipeline dos vídeos animados da Márcia (Nov 2026): Wendy entrega copy + rascunho em grade dos frames feito no Codex (ChatGPT) junto; Glauber gera o vídeo final no Veo 3 do Google; narração via ElevenLabs e trilha via Envato.
+- Direção proposta para o Marco/Nimrod (Nov 2026): contratar ChatGPT Business da empresa para cobrir dois usos: Codex (frames dos vídeos da Márcia) + ChatGPT para roteiros, drafts e ideias da equipe no dia a dia.
+- Compromisso daqui pra frente: zero uso de cartão pessoal da equipe para ferramentas de produção de conteúdo Wabfy; tudo em contas e cartão corporativo (Nov 2026).
+- Mapa das 9 frentes de trabalho dela na Wabfy (Nov 2026): Newsletter (Seu 1:1 com a Wabfy), E-mail (RD Station), LPs, Quizes e interações, Redes sociais, Ações orgânicas (influencer, vídeos da Márcia, collabs, humanização), Social listening, Comunicações integradas (campanhas cross-canal), IA (automações + visibilidade em IA/buscadores: GEO/AEO/SEO).
+- Fora do escopo dela na Wabfy: testes e ajustes de conversão de página, e tratamento dos leads que vêm dos quizes (são de outra pessoa).
+- Wabfy provavelmente entra nos EUA a partir de jan 2027 (expansão internacional).
+
+## Growth Detector (painel interno de métricas)
+(arquivo atualizado em 04/11/2026)
+
+- "Growth Detector" = internal tool at growth.refatorando.com.br (organic metrics at /detector/organico?tab=instagram), not a public product
+- Wendy uses its design as the visual reference for the "Pulso Orgânico Wabfy" report page
+- For the weekly Wabfy organic report, wants data collected up to the run day (not only the last full Mon–Sun week)

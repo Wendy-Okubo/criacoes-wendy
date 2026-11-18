@@ -67,8 +67,7 @@ Checklist de página de módulo:
 ## Entrega
 1. Revisão por dobra, formatada para colar no ClickUp, com as marcações de mudança.
 2. Versão consolidada: todos os textos da página com as mudanças aplicadas.
-3. HTML de comparação antes e depois.
-4. HTML no layout da página com marcações verdes nas mudanças e botão "Ver versão limpa" (como o arquivo "TEXTO REVISADO" do 9 Box).
+3. Um único HTML no layout da página com marcações verdes nas mudanças e botão "Ver versão limpa" (como o arquivo "TEXTO REVISADO" do 9 Box).
 Rode a skill `wabfy-revisor` no texto final.
 
 ## Gravar

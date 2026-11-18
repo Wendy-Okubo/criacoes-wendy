@@ -72,11 +72,12 @@ Nome, Data de postagem, Formato, Canal, Pilar, Linha editorial, Objetivo, Mensag
 - Descritiva, direta, precisa e objetiva, sem inventar o que não dá para produzir. Descrever o que tem dentro de cada elemento (nada de "card simples").
 - Hierarquia visual e o jeito mais simples de representar a ideia; evitar tela poluída.
 - Mais visual, menos texto: objetos e ícones em vez de rótulos de texto dentro da arte.
-- Sugerir elementos da marca: objetos de vidro (glass), glow, tiles de ícones do brandbook flutuando ao redor do elemento principal (como a mandala do site). A mandala pode ser usada.
+- Sugerir elementos da marca: glow, tiles de ícones do brandbook flutuando ao redor do elemento principal (como a mandala do site). A mandala pode ser usada.
 - Nem toda tela precisa de imagem: pode ser só tipografia com um elemento, glow ou destaque. Telas com imagem trazem algo concreto (recortes, objetos, prints reais).
 - Pessoas recortadas (sem fundo) e integradas ao layout, nunca foto dividida com texto. Pessoas usando notebook, PC ou tablet, não celular.
+- Nada de objetos de vidro ou glassmorphism nos posts (mudou em nov. 2026).
 - Evitar: balão de fala como padrão, marca-texto, rabiscos à mão, W grande ou linha de contorno do W atrás das artes do Instagram, excesso de "tela de PC".
-- LinkedIn pode usar a estética das linhas do W (foto com tratamento roxo, linhas finas, card de vidro com texto).
+- LinkedIn pode usar a estética das linhas do W (foto com tratamento roxo, linhas finas, card com texto).
 - Capa de carrossel varia entre gancho humano e outros tipos. Fechamento de carrossel: pessoa recortada com texto curto que fecha o assunto e outra tela com o CTA.
 - Peça com "link na bio" que também vai ao LinkedIn tem dois fechamentos: "link na bio" (Instagram) e "link na legenda" (LinkedIn).
 - Paródias e releituras são bem-vindas (ex.: "Troquei RH", anúncio que parece notícia); o público sabe que não é real. Não repetir a mesma paródia: buscar fonte nova a cada vez, sempre perguntando o que faria alguém parar o scroll.
