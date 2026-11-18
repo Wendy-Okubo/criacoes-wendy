@@ -1,0 +1,206 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Troca por área do RH</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: passo a passo à esquerda (e-mail 1 com botões), painel do RD e e-mails 2 e 3 que mudam conforme a área escolhida */
+:root{
+  --bg:#F5F5FB; --card:#FFFFFF; --ink:#1B2350; --muted:#5B6185; --line:#E1E0F0;
+  --purple:#6147EC; --purple-soft:#EEEBFF; --blue:#2961EB; --green:#16865A; --green-soft:#E6F6EE; --amber:#B7791F; --amber-soft:#FFF4D6;
+  --font:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Arial,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12142A; --card:#1A1D3A; --ink:#ECEBFF; --muted:#A6A9CF; --line:#2E3263;
+  --purple:#9C8DFF; --purple-soft:#2A2560; --blue:#78A0FF; --green:#5CCB98; --green-soft:#173B30; --amber:#E2B45C; --amber-soft:#3D3218; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12142A; --card:#1A1D3A; --ink:#ECEBFF; --muted:#A6A9CF; --line:#2E3263;
+  --purple:#9C8DFF; --purple-soft:#2A2560; --blue:#78A0FF; --green:#5CCB98; --green-soft:#173B30; --amber:#E2B45C; --amber-soft:#3D3218; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:15px;line-height:1.55;margin:0}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 56px;display:flex;flex-direction:column;gap:26px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--purple)}
+h1{font-size:clamp(24px,3vw,32px);font-weight:800;margin:4px 0 0;text-wrap:balance}
+h2{font-size:18px;font-weight:800;margin:0}
+.lead{color:var(--muted);max-width:760px;margin:8px 0 0}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr));gap:14px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:flex-start}
+.step .n{flex:none;width:28px;height:28px;border-radius:50%;background:var(--purple);color:#fff;font-weight:800;display:grid;place-items:center;font-size:14px}
+.step p{margin:0;font-size:14px}
+.step b{display:block;font-size:14.5px}
+.grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:20px;align-items:start}
+@media (max-width:860px){.grid{grid-template-columns:1fr}}
+.col{display:flex;flex-direction:column;gap:16px;min-width:0}
+.mail{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.mail .bar{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:10px 16px;border-bottom:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+.mail .bar b{color:var(--ink)}
+.mail .body{padding:18px 20px;display:flex;flex-direction:column;gap:12px}
+.mail .body p{margin:0}
+.cta{align-self:flex-start;background:var(--purple);color:#fff;border-radius:10px;padding:10px 16px;font-weight:700;font-size:14px}
+.chips-label{font-size:13.5px;color:var(--muted);margin-top:4px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid var(--purple);background:transparent;color:var(--purple);border-radius:999px;padding:7px 13px;font:inherit;font-size:13.5px;font-weight:700;cursor:pointer}
+.chip:hover{background:var(--purple-soft)}
+.chip[aria-pressed="true"]{background:var(--purple);color:#fff}
+.chip:focus-visible,.reset:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.reset{border:1px dashed var(--muted);background:transparent;color:var(--muted);border-radius:999px;padding:7px 13px;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
+.swap{background:var(--amber-soft);border-left:4px solid var(--amber);border-radius:8px;padding:10px 12px;transition:background .25s ease}
+.swap .tag{display:block;font-family:var(--mono);font-size:11px;color:var(--amber);margin-bottom:4px}
+.link{color:var(--blue);font-weight:700;font-size:14px}
+.rd{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.rd .row{display:flex;justify-content:space-between;gap:10px;font-size:14px;border-bottom:1px solid var(--line);padding-bottom:8px}
+.rd .row:last-child{border-bottom:0;padding-bottom:0}
+.rd code{font-family:var(--mono);font-size:12.5px;background:var(--green-soft);color:var(--green);padding:2px 7px;border-radius:6px}
+.rd code.none{background:var(--purple-soft);color:var(--muted)}
+.flow{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+.flowgrid{display:grid;grid-template-columns:150px 30px 170px 30px minmax(220px,1fr) 30px 150px;align-items:center;min-width:820px;gap:0}
+.box{border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;font-size:13.5px;background:var(--bg)}
+.box b{display:block;font-size:14px}
+.box.hl{border-color:var(--purple);background:var(--purple-soft)}
+.arrow{text-align:center;color:var(--muted);font-size:18px}
+.branches{display:flex;flex-direction:column;gap:6px}
+.branch{border:1.5px solid var(--line);border-radius:10px;padding:6px 10px;font-size:13px;background:var(--bg);display:flex;justify-content:space-between;gap:8px}
+.branch.on{border-color:var(--green);background:var(--green-soft);font-weight:700}
+.branch small{color:var(--muted);font-family:var(--mono);font-size:11px}
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:14px}
+.note{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;font-size:14px}
+.note b{display:block;margin-bottom:4px}
+.pill{display:inline-block;font-size:11px;font-weight:700;padding:1px 8px;border-radius:99px;border:1px solid var(--amber);color:var(--amber);margin-left:6px;vertical-align:middle}
+@media (prefers-reduced-motion:reduce){.swap{transition:none}}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">Wabfy · Recuperação de leads · Demonstração</div>
+  <h1>Troca por área do RH</h1>
+  <p class="lead">Clique em uma área no e-mail 1, como se fosse o lead. Veja a tag que o RD aplica e como os e-mails 2 e 3 mudam. Sem clique, o lead recebe a versão RH geral.</p>
+</header>
+
+<section class="steps" aria-label="Como funciona">
+  <div class="step"><span class="n">1</span><p><b>O lead clica na área</b>Os botões de área ficam no e-mail 1. Cada um leva à página da área.</p></div>
+  <div class="step"><span class="n">2</span><p><b>O RD aplica a tag</b>A automação reconhece o link clicado e marca <code style="font-family:var(--mono);font-size:12px">area_rh</code>.</p></div>
+  <div class="step"><span class="n">3</span><p><b>O fluxo divide o caminho</b>Antes do e-mail 2, o RD confere a tag e manda a versão da área.</p></div>
+  <div class="step"><span class="n">4</span><p><b>Os caminhos se juntam</b>Os e-mails 4 e 5 são iguais para todos.</p></div>
+</section>
+
+<div class="grid">
+  <div class="col">
+    <h2>E-mail 1 · o que o lead recebe</h2>
+    <article class="mail" aria-label="E-mail 1">
+      <div class="bar"><span><b>[Remetente]</b> · Wabfy</span><span>Assunto: [NOME], sua demonstração da Wabfy Carreiras</span></div>
+      <div class="body">
+        <p>Ana, você pediu mais informações sobre a Wabfy Carreiras. Vamos direto ao ponto.</p>
+        <p>Você não precisa mais estruturar cargos, mapear gaps e gerar PDI na mão. A IA sugere as competências de cada cargo, e a Avaliação 360° mostra o gap de cada pessoa.</p>
+        <span class="cta">Agendar minha demonstração</span>
+        <div class="chips-label">Veja o que muda na sua área:</div>
+        <div class="chips" id="chips"></div>
+        <div><button class="reset" id="reset" type="button">Simular lead que não clicou</button></div>
+      </div>
+    </article>
+
+    <div class="rd" aria-live="polite">
+      <h2>No RD</h2>
+      <div class="row"><span>Link clicado</span><span id="rdLink">nenhum</span></div>
+      <div class="row"><span>Tag aplicada</span><code id="rdTag" class="none">sem tag</code></div>
+      <div class="row"><span>Página aberta</span><span id="rdPage">nenhuma</span></div>
+      <div class="row"><span>Caminho do fluxo</span><b id="rdPath">RH geral</b></div>
+    </div>
+  </div>
+
+  <div class="col">
+    <h2>E-mails 2 e 3 · o que muda</h2>
+    <article class="mail" aria-label="E-mail 2">
+      <div class="bar"><span><b>E-mail 2</b> · D+2 úteis</span><span>O próximo ciclo vai ser igual ao último?</span></div>
+      <div class="body">
+        <p>Ana, pense no próximo ciclo. Se nada mudar, ele começa igual ao último.</p>
+        <div class="swap"><span class="tag" id="tag2">bloco: RH geral</span><span id="block2"></span></div>
+        <p>Mude isso antes do próximo ciclo.</p>
+        <span class="cta">Agendar demonstração</span>
+        <span class="link" id="link2"></span>
+      </div>
+    </article>
+    <article class="mail" aria-label="E-mail 3">
+      <div class="bar"><span><b>E-mail 3</b> · D+5 úteis</span><span>Como seria a Wabfy na sua empresa</span></div>
+      <div class="body">
+        <p>Ana, a pergunta que importa agora: como isso funcionaria na sua empresa?</p>
+        <div class="swap"><span class="tag" id="tag3">linha: RH geral</span><span id="line3"></span></div>
+        <p>Não precisa ter tudo pronto. A implantação tem acompanhamento do nosso time.</p>
+        <span class="cta">Quero ver na minha empresa</span>
+      </div>
+    </article>
+  </div>
+</div>
+
+<section style="display:flex;flex-direction:column;gap:10px">
+  <h2>Como fica a automação no RD</h2>
+  <div class="flow">
+    <div class="flowgrid">
+      <div class="box"><b>E-mail 1</b>com os botões de área</div>
+      <div class="arrow">→</div>
+      <div class="box"><b>Condição: clicou no link de área?</b>Cada link aplica a sua tag</div>
+      <div class="arrow">→</div>
+      <div class="branches" id="branches"></div>
+      <div class="arrow">→</div>
+      <div class="box hl"><b>E-mails 4 e 5</b>iguais para todos</div>
+    </div>
+  </div>
+</section>
+
+<section class="notes">
+  <div class="note"><b>O que precisa existir no RD <span class="pill">Confirmar</span></b>Uma condição no fluxo que identifique qual link do e-mail 1 foi clicado e aplique a tag. Isso fica no modo avançado do fluxo de automação.</div>
+  <div class="note"><b>Quantos e-mails a mais</b>Cada área tem a sua versão do e-mail 2 e do e-mail 3. Com 5 áreas e a versão RH geral, são 12 versões, que só mudam um parágrafo.</div>
+  <div class="note"><b>Se o clique vier tarde</b>Quem clica depois do e-mail 2 já sair recebe o e-mail 3 da área. O e-mail 2 fica na versão RH geral.</div>
+  <div class="note"><b>Se não der para montar</b>Por ser opcional, o fluxo funciona com a versão RH geral para todos. Os botões de área continuam úteis porque levam à página certa e mostram ao comercial o interesse do lead.</div>
+</section>
+</div>
+
+<script>
+const AREAS = {
+  geral:{label:"RH geral",tag:null,page:"Home",
+    b2:"A avaliação fica numa planilha, o PDI em outra e os cursos num terceiro sistema. Na Wabfy, cargo, avaliação, PDI e trilha ficam conectados, e o ciclo seguinte parte do histórico do anterior.",
+    l2:"Conheça a Wabfy",
+    l3:"Comece pelo que mais pesa hoje: cargos e avaliação, trilhas ou indicadores para a diretoria. Na demonstração, a gente ajuda a escolher."},
+  ted:{label:"T&D",tag:"ted",page:"Pilar Desenvolver",
+    b2:"Os cursos existem, mas ninguém sabe qual resolve qual gap. E cada conteúdo novo entra numa fila de produção. Na Wabfy, a trilha nasce do gap da avaliação, e o Gerador de Cursos com IA cria o curso que falta em minutos.",
+    l2:"Veja o pilar Desenvolver",
+    l3:"Para T&D, o caminho natural é ligar as trilhas aos gaps de cada cargo e criar com IA os cursos que faltam."},
+  dho:{label:"DHO e carreira",tag:"dho",page:"Plano de Cargos",
+    b2:"Cada gestor avalia de um jeito, e o PDI fica pronto quando o ciclo já acabou. Na Wabfy, o Plano de Cargos define o que se espera em cada nível, e a avaliação e o PDI partem da mesma referência.",
+    l2:"Veja o Plano de Cargos",
+    l3:"Para DHO, o caminho natural é começar pelo Plano de Cargos e usar essa base na primeira Avaliação 360°."},
+  atracao:{label:"Atração e seleção",tag:"atracao",page:"Pilar Escalar",
+    b2:"Cada vaga recomeça do zero: currículos espalhados e critérios redefinidos. Na Wabfy, cada pessoa tem um cadastro único no banco de candidatos, os colaboradores indicam pelo próprio link e as vagas internas mostram quem já está pronto.",
+    l2:"Veja o pilar Escalar",
+    l3:"Para atração e seleção, o caminho natural é reunir os candidatos num banco único e abrir vagas internas com os critérios de cada cargo."},
+  lideranca:{label:"Liderança de RH e BP",tag:"lideranca",page:"Pilar Estruturar",
+    b2:"A diretoria pede uma resposta, e o RH começa a juntar dados de fontes diferentes. Na Wabfy, o Dashboard de RH reúne desenvolvimento e performance por área e ciclo, com modo apresentação para a reunião.",
+    l2:"Veja o pilar Estruturar",
+    l3:"Para a liderança de RH, o caminho natural é ter um painel único de desenvolvimento e performance para levar às reuniões."},
+  comunicacao:{label:"Comunicação interna",tag:"comunicacao",page:"Pilar Engajar",
+    b2:"A trilha foi publicada e parte do time nem ficou sabendo. Na Wabfy, comunicados e campanhas saem segmentados por área e cargo, em vários canais, e a Pesquisa de Clima mostra como cada área está.",
+    l2:"Veja o pilar Engajar",
+    l3:"Para comunicação interna, o caminho natural é segmentar comunicados por área e cargo e acompanhar o alcance de cada um."}
+};
+const ORDER=["ted","dho","atracao","lideranca","comunicacao"];
+const chips=document.getElementById("chips"), branches=document.getElementById("branches");
+ORDER.forEach(k=>{const b=document.createElement("button");b.className="chip";b.type="button";b.id="chip-"+k;b.textContent=AREAS[k].label;b.setAttribute("aria-pressed","false");b.addEventListener("click",()=>pick(k));chips.appendChild(b);});
+[...ORDER,"geral"].forEach(k=>{const d=document.createElement("div");d.className="branch";d.id="br-"+k;d.innerHTML=`<span>${AREAS[k].label}</span><small>${AREAS[k].tag?"area_rh = "+AREAS[k].tag:"sem tag"}</small>`;branches.appendChild(d);});
+function pick(k){
+  const a=AREAS[k];
+  ORDER.forEach(x=>document.getElementById("chip-"+x).setAttribute("aria-pressed",String(x===k)));
+  document.querySelectorAll(".branch").forEach(e=>e.classList.toggle("on",e.id==="br-"+k));
+  document.getElementById("rdLink").textContent=a.tag?a.label:"nenhum";
+  const t=document.getElementById("rdTag");t.textContent=a.tag?"area_rh = "+a.tag:"sem tag";t.className=a.tag?"":"none";
+  document.getElementById("rdPage").textContent=a.tag?a.page:"nenhuma";
+  document.getElementById("rdPath").textContent=a.label;
+  document.getElementById("tag2").textContent="bloco: "+a.label;
+  document.getElementById("block2").textContent=a.b2;
+  document.getElementById("link2").textContent=a.l2+" →";
+  document.getElementById("tag3").textContent="linha: "+a.label;
+  document.getElementById("line3").textContent=a.l3;
+}
+document.getElementById("reset").addEventListener("click",()=>pick("geral"));
+pick("geral");
+</script>
+
+</body></html>
