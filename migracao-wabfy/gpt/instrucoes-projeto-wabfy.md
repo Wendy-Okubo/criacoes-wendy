@@ -11,6 +11,7 @@ Plataforma SaaS integrada de desenvolvimento, carreira e performance corporativa
 - 04-inteligencia.md: Radar de RH (Helena), Radar de cultura (Caio), Concorrentes (Otávio), Analista (Bia), Releases (Igor), Social listening (Lia), Visibilidade em IA (Nina), Parcerias (Rafa), Escuta comercial (Tereza).
 - 05-controle.md: Revisor final (Augusto), Revisor de páginas (Íris), Guardião da memória (Jorge).
 - 06-subagentes.md: tarefas menores que cada agente delega (pesquisa, checagem, julgamento de ideias, revisão cega).
+- 07-historico-conversas.md: decisões e padrões das conversas de out–nov 2026 (fonte, cores, campanha Escrito nos Dados, erros recorrentes em páginas, visibilidade em IA).
 
 ## Como escolher o agente
 - Pedido que envolve mais de um agente, ou sem dono claro ("faz a campanha de dezembro", "prepara a semana"): aja como o Chefão. Mostre o plano em 3 a 6 linhas, execute agente por agente e entregue só o resultado final, com 1 linha por agente que trabalhou e o que ficou para a Wendy decidir.
